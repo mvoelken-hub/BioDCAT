@@ -1,0 +1,2385 @@
+---
+id: https://nfdi-de.github.io/chem-dcat-ap/biocatalysis_ap.yaml
+name: biocatalysis-ap
+title: Biocatalysis Application Profile
+description: |-
+  This is an application profile for biocatalytic experiments based on the
+  STRENDA Biocatalysis Guidelines (https://github.com/Strenda-biocatalysis/Strenda-biocatalysis).
+  It extends DCAT-AP-Plus via dcat_4c_ap and reuses classes from the chem-dcat-ap
+  family (material_entities_ap, chemical_entities_ap, chemical_reaction_ap).
+  The profile is intended to support FAIR data publication of biocatalytic
+  experimental data in alignment with BFO/OBI/CHEBI ontology design patterns.
+license: CC-BY 4.0
+see_also:
+  - https://github.com/Strenda-biocatalysis/Strenda-biocatalysis
+  - https://nfdi-de.github.io/chem-dcat-ap/
+prefixes:
+  biocatalysis_ap: https://nfdi-de.github.io/chem-dcat-ap/biocatalysis_ap.yaml#
+  chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  prov: http://www.w3.org/ns/prov#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  owl: http://www.w3.org/2002/07/owl#
+  skos: http://www.w3.org/2004/02/skos/core#
+  foaf: http://xmlns.com/foaf/0.1/
+  qudt: http://qudt.org/schema/qudt/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  RO: http://purl.obolibrary.org/obo/RO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  CHMO: http://purl.obolibrary.org/obo/CHMO_
+  CHEMINF: http://semanticscience.org/resource/CHEMINF_
+  RXNO: http://purl.obolibrary.org/obo/RXNO_
+  SIO: http://semanticscience.org/resource/SIO_
+  AFE: http://purl.allotrope.org/ontologies/equipment#AFE_
+  AFP: http://purl.allotrope.org/ontologies/process#AFP_
+  AFR: http://purl.allotrope.org/ontologies/result#AFR_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  PROCO: http://purl.obolibrary.org/obo/PROCO_
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  adms: http://www.w3.org/ns/adms#
+  time: http://www.w3.org/2006/time#
+default_prefix: biocatalysis_ap
+default_range: string
+imports:
+  - linkml:types
+  - chemdcatap:dcat_4c_ap
+
+# =============================================================================
+# ENUMERATIONS
+# =============================================================================
+
+enums:
+
+  OperationModeEnum:
+    description: >-
+      The mode in which a biocatalytic experiment was operated.
+    permissible_values:
+      Batch:
+        description: >-
+          All reaction components are mixed simultaneously in a closed system
+          and the reaction proceeds until a predetermined endpoint.
+        meaning: CHMO:0000611
+      FedBatch:
+        description: >-
+          Additional compounds are gradually added during the reaction to
+          control reaction conditions or enhance product formation.
+        todos:
+          - Verify CHMO identifier for fed-batch operation
+      Continuous:
+        description: >-
+          The reaction operates continuously with substrates continuously
+          supplied and products continuously removed.
+        todos:
+          - Verify CHMO identifier for continuous operation
+      Combinatorial:
+        description: >-
+          A mixture of operation modes used to systematically explore various
+          reaction conditions or components in a combined manner.
+
+  BiocatalystApplicationFormEnum:
+    description: >-
+      The physical form in which a biocatalyst is applied in an experiment.
+    permissible_values:
+      PurifiedEnzyme:
+        meaning: OBI:0000925
+      CrudeCellExtract:
+        meaning: OBI:0000261
+      WholeCell:
+        meaning: OBI:0000651
+      SecretedEnzyme:
+        description: Enzyme secreted into culture supernatant and separated from cells.
+      CellFreeProduction:
+        meaning: OBI:0000737
+      Immobilised:
+        description: Biocatalyst attached to or entrapped within a carrier material.
+
+  ComponentRoleEnum:
+    description: >-
+      The functional role of a chemical component in a biocatalytic reaction.
+      Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter
+      may leave this unpopulated.
+    permissible_values:
+      Substrate:
+        meaning: CHEBI:78675
+      Cofactor:
+        meaning: CHEBI:23357
+      Buffer:
+        meaning: CHEBI:35225
+      Cosolvent:
+        meaning: CHEBI:46787
+      SaltIon:
+        meaning: CHEBI:24867
+      InternalStandard:
+        meaning: CHEBI:50504
+      Other:
+
+  InhibitionTypeEnum:
+    description: Type of enzyme inhibition observed.
+    permissible_values:
+      Competitive:
+        meaning: SIO:010997
+      NonCompetitive:
+        meaning: SIO:010998
+      Uncompetitive:
+        meaning: SIO:010999
+      Mixed:
+      Irreversible:
+
+  DryingMethodEnum:
+    description: Method used to remove moisture from a biocatalyst preparation.
+    permissible_values:
+      FreezeDrying:
+        description: Lyophilization — moisture removed under vacuum from frozen material.
+      SprayDrying:
+        description: Solution atomized into small particles before drying.
+      VacuumDrying:
+        description: Moisture removed through low-pressure conditions.
+      Other:
+
+  PhysicalStateFormEnum:
+    description: Physical state/formulation of a biocatalyst or component as applied.
+    permissible_values:
+      Powder:
+        meaning: PATO:0001736
+      Liquid:
+        meaning: PATO:0001735
+      Gaseous:
+        meaning: PATO:0001737
+      Suspension:
+      Other:
+
+# =============================================================================
+# QUANTITATIVE ATTRIBUTE SUBCLASSES
+# (defined before classes that use them)
+# =============================================================================
+
+classes:
+
+  # ---------------------------------------------------------------------------
+  # Physical / chemical quantity types (new in biocatalysis_ap)
+  # ---------------------------------------------------------------------------
+
+  Purity:
+    is_a: QuantitativeAttribute
+    class_uri: AFR:0002010
+    description: >-
+      A QuantitativeAttribute expressing the percentage of the pure or desired
+      compound relative to the total mass or volume of a substance preparation.
+    close_mappings:
+      - PATO:0001723
+    todos:
+      - Verify AFR:0002010 mapping; consider PATO:0001958 (purity)
+
+  SolubilityLimit:
+    is_a: QuantitativeAttribute
+    description: >-
+      The maximum concentration of a component that can dissolve in a solution
+      or gas phase under given conditions.
+    close_mappings:
+      - PATO:0001656
+
+  IonicStrength:
+    is_a: QuantitativeAttribute
+    description: >-
+      Ionic strength calculated from dissolved ions in the solvent,
+      I = 0.5 * sum(ci * zi^2).
+    close_mappings:
+      - PATO:0001655
+
+  FlowRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      The volumetric flow rate of a liquid or gas through a reactor or system.
+    todos:
+      - Bind has_quantity_type to qudt:VolumeFlowRate
+
+  ResidenceTime:
+    is_a: QuantitativeAttribute
+    description: >-
+      The average amount of time a substance or component spends inside a
+      specific reactor system (tau).
+    todos:
+      - Bind has_quantity_type to qudt:Time
+
+  AngularVelocity:
+    is_a: QuantitativeAttribute
+    description: >-
+      The speed or frequency at which a stirrer or shaker operates.
+    todos:
+      - Bind has_quantity_type to qudt:AngularVelocity
+
+  PowerPerVolume:
+    is_a: QuantitativeAttribute
+    description: >-
+      The amount of mixing power or energy input per unit volume of the
+      reaction mixture.
+    todos:
+      - Bind has_quantity_type to qudt:PowerPerVolume
+
+  QuenchingRatio:
+    is_a: QuantitativeAttribute
+    description: >-
+      The ratio of the volume of quenching solution to the volume of the
+      reaction mixture.
+
+  SamplingTimepoint:
+    is_a: QuantitativeAttribute
+    description: >-
+      The time at which a sample was taken from the reaction vessel,
+      expressed relative to the start of the reaction.
+    slots:
+      - has_time_value
+      - time_unit
+
+  TemperatureTimepoint:
+    is_a: QuantitativeAttribute
+    description: >-
+      A temperature value recorded at a specific time point during a
+      temperature shift or profile.
+    slots:
+      - has_temperature
+      - has_time_value
+
+  # ---------------------------------------------------------------------------
+  # Kinetic / result quantity types
+  # ---------------------------------------------------------------------------
+
+  MichaelisConstant:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000610
+    description: >-
+      The substrate concentration at which an enzyme achieves half of its
+      maximum reaction rate (Km).
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+  MaximumReactionRate:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000612
+    description: >-
+      The maximum reaction rate (Vmax) under conditions of enzyme saturation
+      with substrate.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+
+  TurnoverNumber:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000611
+    description: >-
+      The number of substrate molecules converted per active site per unit
+      time when the enzyme is fully saturated (kcat).
+    todos:
+      - Bind has_quantity_type to qudt:Frequency
+
+  CatalyticEfficiency:
+    is_a: QuantitativeAttribute
+    description: >-
+      The ratio of turnover number to Michaelis constant (kcat/Km), measuring
+      how effectively an enzyme converts substrate to product.
+    todos:
+      - Bind has_quantity_type to qudt:VolumePerAmountOfSubstancePerTime
+
+  DissociationConstant:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000609
+    description: >-
+      The equilibrium dissociation constant (Kd) representing the balance
+      between a complex and its dissociated components.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+  HillCoefficient:
+    is_a: QuantitativeAttribute
+    description: >-
+      A parameter describing cooperativity in molecular binding. Values greater
+      than 1 indicate positive cooperativity; less than 1 negative cooperativity.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  InhibitionConstant:
+    is_a: QuantitativeAttribute
+    description: >-
+      The inhibition constant (Ki) describing the affinity of an inhibitor for
+      an enzyme. A lower Ki indicates stronger binding.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+  HalfLife:
+    is_a: QuantitativeAttribute
+    description: >-
+      The time required for the activity of a biocatalyst to decrease to half
+      of its initial value under defined conditions.
+    todos:
+      - Bind has_quantity_type to qudt:Time
+
+  SpaceTimeYield:
+    is_a: QuantitativeAttribute
+    description: >-
+      The mass of product obtained per unit volume of the reactor per unit
+      time. Also referred to as volumetric productivity.
+    todos:
+      - Bind has_quantity_type to qudt:MassPerVolumePerTime
+
+  SubstrateConversion:
+    is_a: QuantitativeAttribute
+    description: >-
+      The percentage of substrate that undergoes transformation into the
+      desired product during a reaction.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  SpecificActivity:
+    is_a: QuantitativeAttribute
+    description: >-
+      The amount of product formed or substrate consumed per unit of enzyme
+      per unit of time. Expressed as µmol/min/mg.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
+
+  InitialReactionRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      The rate at which product is formed in the first 10% of the enzymatic
+      reaction under specific initial substrate concentrations and conditions.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+
+  EnantioselectivityRatio:
+    is_a: QuantitativeAttribute
+    description: >-
+      The enantiomeric ratio (E) defining the enzyme's preference to
+      catalyze the transformation of one enantiomer over its mirror image.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  EnantiomericExcess:
+    is_a: QuantitativeAttribute
+    description: >-
+      The enantiomeric excess (ee) expressed as a percentage, indicating the
+      predominance of one enantiomer over the other in the product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  DiastereomericExcess:
+    is_a: QuantitativeAttribute
+    description: >-
+      The diastereomeric excess (de) expressed as a percentage, indicating
+      the predominance of one diastereomer over the other in the product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  IsomericContent:
+    is_a: QuantitativeAttribute
+    description: >-
+      The isomeric content expressed as a percentage of a specific isomer
+      relative to total product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  GibbsFreeEnergyChange:
+    is_a: QuantitativeAttribute
+    description: >-
+      The change in Gibbs free energy (delta G) for a biocatalytic reaction,
+      indicating thermodynamic spontaneity.
+    close_mappings:
+      - PATO:0001546
+    todos:
+      - Bind has_quantity_type to qudt:Energy
+      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+
+  EnthalpyChange:
+    is_a: QuantitativeAttribute
+    description: >-
+      The change in enthalpy (delta H) for a biocatalytic reaction.
+    close_mappings:
+      - PATO:0001563
+    todos:
+      - Bind has_quantity_type to qudt:Energy
+      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+
+# =============================================================================
+# STORAGE CONDITIONS
+# (D-003 — shared between BiocatalystPreparation and BiocatalyticComponent)
+# =============================================================================
+
+  StorageAdditive:
+    is_a: ChemicalSubstance
+    description: >-
+      A ChemicalSubstance added to a storage medium to preserve or stabilize
+      a MaterialEntity during storage (e.g. antioxidants, stabilizers,
+      drying agents, inert gases such as argon or nitrogen).
+    todos:
+      - Constrain role via CHEBI role hierarchy in a future iteration
+        (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
+
+  StorageConditions:
+    is_a: QuantitativeAttribute
+    description: >-
+      The conditions under which a biocatalyst preparation or reaction
+      component is stored, including temperature, start date, and additives.
+      Modelled as a QuantitativeAttribute cluster rather than Entity since
+      it describes measurable environmental conditions of a material entity.
+    slots:
+      - has_temperature
+      - storage_start
+      - has_storage_additive
+
+  DryingProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A MaterialProcessing step in which moisture is removed from a
+      BiocatalystPreparation prior to or during storage.
+    todos:
+      - Identify specific OBI or AFP subclass URI for drying process
+    slots:
+      - drying_method_type
+
+# =============================================================================
+# BIOCATALYST
+# (D-002 — Biocatalyst as subclass of Catalyst (AgenticEntity),
+#  BiocatalystPreparation as MaterialSample)
+# =============================================================================
+
+  Biocatalyst:
+    is_a: Catalyst
+    class_uri: CHEBI:23888
+    description: >-
+      An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of
+      Catalyst (AgenticEntity). The physical form in which it is applied is
+      described by an associated BiocatalystPreparation.
+    slots:
+      - ec_number
+      - sequence_amino_acid
+      - sequence_DNA
+      - origin_organism
+      - posttranslational_modification
+      - molecular_weight
+      - is_self_produced
+      - has_biocatalyst_production_process
+    slot_usage:
+      title:
+        description: >-
+          The name of the biocatalyst, either generic (e.g. 'lipase') or
+          specific (genus and species, e.g. 'Candida antarctica lipase B').
+        required: true
+      other_identifier:
+        description: >-
+          Identifiers for the biocatalyst such as UniProt accession,
+          EC number reference, or other database identifiers.
+      has_quantitative_attribute:
+        description: >-
+          Quantitative attributes of the biocatalyst entity, such as
+          molecular weight.
+
+  BiocatalystProductionProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A MaterialProcessing that describes how a biocatalyst was produced,
+      including the production organism, plasmid, and purification steps.
+      Only present when Biocatalyst.is_self_produced is true.
+    todos:
+      - Identify specific OBI subclass URI (e.g. OBI:0000070 protein expression)
+    slots:
+      - production_organism
+      - sequence_plasmid
+      - plasmid_specifications
+      - purification_method
+      - has_purity
+      - purity_specification
+
+  BiocatalystPreparation:
+    is_a: SubstanceSample
+    class_uri: OBI:0000747
+    description: >-
+      The physical form in which a Biocatalyst is applied in a
+      BiocatalyticExperiment. Derived from the Biocatalyst entity via
+      prov:wasDerivedFrom. Subclasses encode the specific application form;
+      the application_form slot is retained here for P-002 converter
+      compatibility but is redundant with the subclass type.
+    todos:
+      - Consider removing application_form from base class once converters
+        reliably instantiate the correct subclass (redundant with rdf:type)
+    slots:
+      - application_form
+      - has_concentration
+      - has_activity
+      - has_formulation
+      - has_storage_conditions
+      - had_drying_process
+    slot_usage:
+      derived_from:
+        description: The Biocatalyst from which this preparation was derived.
+        range: Biocatalyst
+        required: true
+
+  PurifiedEnzymePreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000925
+    description: A BiocatalystPreparation consisting of a purified enzyme solution.
+    slots:
+      - concentration_determination_method
+      - activity_determination_method
+
+  CrudeCellExtractPreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000261
+    description: >-
+      A BiocatalystPreparation consisting of a crude cell extract obtained
+      by cell disruption.
+    slots:
+      - cell_disruption_process
+      - concentration_determination_method
+
+  WholeCellPreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000651
+    description: >-
+      A BiocatalystPreparation in which whole cells serve as the biocatalyst.
+    slots:
+      - harvesting_method
+      - concentration_determination_method
+
+  SecretedEnzymePreparation:
+    is_a: BiocatalystPreparation
+    description: >-
+      A BiocatalystPreparation consisting of an enzyme secreted into the
+      culture supernatant and separated from cells.
+    todos:
+      - Find appropriate OBI or CHEBI class URI for secreted enzyme preparation
+    slots:
+      - separation_method
+      - concentration_determination_method
+
+  CellFreePreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000737
+    description: >-
+      A BiocatalystPreparation produced by cell-free expression, where
+      synthesis occurs outside living cells using extracted cellular machinery.
+    slots:
+      - source_of_cellfree_extract
+      - concentration_determination_method
+
+  ImmobilisedPreparation:
+    is_a: BiocatalystPreparation
+    description: >-
+      A BiocatalystPreparation in which the biocatalyst is attached to or
+      entrapped within a carrier material. Always derived from another
+      BiocatalystPreparation via prov:wasDerivedFrom.
+    todos:
+      - Find appropriate OBI or Allotrope class URI for immobilised preparation
+    slots:
+      - immobilisation_chemistry
+      - carrier_material
+      - linkers
+      - immobilisation_method
+      - purification_method
+      - concentration_determination_method
+    slot_usage:
+      derived_from:
+        description: >-
+          The BiocatalystPreparation (e.g. PurifiedEnzymePreparation) from
+          which this immobilised preparation was derived.
+        range: BiocatalystPreparation
+        required: true
+
+# =============================================================================
+# BIOCATALYTIC COMPONENT
+# (D-004 — ChemicalSubstance / MaterialEntity)
+# =============================================================================
+
+  BiocatalyticComponent:
+    is_a: ChemicalSubstance
+    class_uri: CHEBI:59999
+    description: >-
+      A ChemicalSubstance present in the reaction mixture of a biocatalytic
+      experiment, regardless of its functional role (substrate, cofactor,
+      buffer, cosolvent, etc.). Role differentiation is optional per P-002.
+    slots:
+      - has_component_role
+      - has_concentration
+      - has_solubility_limit
+      - has_purity
+      - supplied_by
+      - has_formulation
+      - has_storage_conditions
+    slot_usage:
+      other_identifier:
+        description: >-
+          One or more persistent identifiers for the component such as CAS
+          number, PubChem CID, InChI, or similar database identifiers.
+      description:
+        description: >-
+          Free-text description of additional component characteristics not
+          covered by other slots (STRENDA special_treatment fallback, P-001).
+          Flagged as candidate for future structured modelling.
+
+# =============================================================================
+# REACTION CONDITIONS — PHASE SYSTEM
+# (D-006 — attachment to BiocatalyticReaction via has_reaction_medium)
+# =============================================================================
+
+  ReactionMedium:
+    is_a: MaterialEntity
+    class_uri: CHMO:0000892
+    description: >-
+      The medium in which a biocatalytic reaction takes place, described by
+      its phase composition, ionic strength, and additives.
+    slots:
+      - has_phase_count
+      - has_liquid_phase
+      - has_solid_phase
+      - has_gas_phase
+      - has_ionic_strength
+      - has_medium_additive
+    slot_usage:
+      description:
+        description: >-
+          Free-text description of additional medium characteristics
+          (STRENDA special_treatment fallback, P-001).
+
+  LiquidPhase:
+    is_a: MaterialEntity
+    class_uri: CHMO:0002722
+    description: A liquid phase present in the reaction medium.
+    slots:
+      - has_liquid_type
+      - has_volume
+
+  SolidPhase:
+    is_a: MaterialEntity
+    class_uri: CHMO:0002723
+    description: A solid phase present in the reaction medium.
+    slots:
+      - has_solid_type
+      - has_mass
+
+  GasPhase:
+    is_a: MaterialEntity
+    class_uri: CHMO:0002724
+    description: A gas phase present in the reaction medium or headspace.
+    slots:
+      - has_gas_type
+      - has_amount
+
+# =============================================================================
+# REACTION CONDITIONS — TEMPERATURE AND pH PROFILES
+# (D-006)
+# =============================================================================
+
+  TemperatureShiftProcess:
+    is_a: PlannedProcess
+    description: >-
+      A PlannedProcess representing an event-based change in temperature
+      during a biocatalytic reaction.
+    todos:
+      - Identify specific OBI or AFP subclass URI for temperature shift
+    slots:
+      - has_temperature_before
+      - has_temperature_after
+      - has_trigger_event
+      - has_temperature_at_timepoint
+
+  TemperatureGradient:
+    is_a: PlannedProcess
+    description: >-
+      A PlannedProcess representing a dynamic temperature gradient applied
+      over distance or time in a tubular flow reactor.
+    todos:
+      - Identify specific OBI or AFP subclass URI for temperature gradient
+    slots:
+      - has_temperature_start
+      - has_temperature_end
+      - has_gradient_length
+      - has_measurement_points
+
+  PHShiftProcess:
+    is_a: PlannedProcess
+    description: >-
+      A PlannedProcess representing an event-based change in pH during a
+      biocatalytic reaction.
+    todos:
+      - Identify specific OBI or AFP subclass URI for pH shift process
+    slots:
+      - has_ph_before
+      - has_ph_after
+      - has_trigger_event
+      - has_ph_at_timepoint
+      - has_ph_measurement
+
+  PHGradient:
+    is_a: PlannedProcess
+    description: >-
+      A PlannedProcess representing a dynamic pH gradient applied over
+      distance or time in a tubular flow reactor.
+    todos:
+      - Identify specific OBI or AFP subclass URI for pH gradient process
+    slots:
+      - has_ph_start
+      - has_ph_end
+      - has_gradient_length
+      - has_measurement_points
+      - has_ph_measurement
+
+  PHMeasurementProcess:
+    is_a: MeasurementProcess
+    class_uri: OBI:0000070
+    description: >-
+      A MeasurementProcess capturing the method and context of pH measurement,
+      including when it was measured and by which method. Retained for
+      reproducibility provenance; acknowledged as potentially deeper than
+      strictly necessary for this schema.
+    slots:
+      - has_ph_value
+      - detected_when
+      - detected_how
+      - has_temperature
+      - has_calibration_info
+
+# =============================================================================
+# VESSELS AND MIXING
+# (D-007)
+# =============================================================================
+
+  ReactionVessel:
+    is_a: Reactor
+    class_uri: AFE:0000153
+    description: >-
+      A Reactor that serves as the physical container in which a
+      BiocatalyticReaction takes place. Intermediate class between
+      Reactor and specific vessel types.
+
+  Vial:
+    is_a: ReactionVessel
+    description: >-
+      A sealable container used as a reaction vessel, available in various
+      sizes and materials.
+    todos:
+      - Verify Allotrope class URI for vial (AFE:0000022 tentative)
+    slots:
+      - has_volume
+      - vial_size_unit
+      - vial_material
+      - closure_type
+    slot_usage:
+      description:
+        description: >-
+          Additional vial preparation details (STRENDA special_treatment
+          fallback, P-001). Candidate for VesselPreparationProcess in
+          future iteration.
+
+  Plate:
+    is_a: ReactionVessel
+    description: >-
+      A multi-well plate used as a reaction vessel (e.g. microtiter plate,
+      deep-well plate).
+    todos:
+      - Verify Allotrope class URI for plate (AFE:0000036 tentative)
+    slots:
+      - plate_type
+      - plate_material
+      - number_of_wells
+      - well_shape
+      - well_volume
+      - well_arrangement
+      - sealing_method
+      - sealing_material
+      - supplied_by
+    slot_usage:
+      other_identifier:
+        description: Lot number or batch code of the plate (adms:Identifier).
+
+  StirredTankReactor:
+    is_a: ReactionVessel
+    description: >-
+      A vessel with mechanical or magnetic stirring used for biocatalytic
+      reactions, allowing precise regulation of temperature, pH, and mixing.
+    slots:
+      - reactor_material
+      - has_volume
+      - geometry
+      - bottom_type
+    slot_usage:
+      has_part:
+        description: >-
+          Parts of the StirredTankReactor including MixingImpeller,
+          GasSupplySystem, and TemperatureControlDevice.
+        range: Device
+        multivalued: true
+        inlined_as_list: true
+
+  TubularFlowReactor:
+    is_a: ReactionVessel
+    description: >-
+      A tubular or continuous flow reactor used for biocatalytic reactions,
+      including packed bed reactors, plug flow reactors, and microreactors.
+    todos:
+      - Verify Allotrope class URI for tubular flow reactor
+    slots:
+      - reactor_type_description
+      - reactor_material
+      - has_volume
+      - geometry
+      - tubing
+      - has_flow_rate
+      - has_catalyst_localisation
+      - has_residence_time
+      - has_reynolds_number
+      - has_passive_mixing
+      - has_active_mixer
+      - has_pulsing_description
+
+  MixingImpeller:
+    is_a: Device
+    description: >-
+      A stirring device that is a physical part of a StirredTankReactor,
+      including magnetic stir bars, mechanical stirrers, and overhead impellers.
+    todos:
+      - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
+    slots:
+      - stirring_type
+      - stirrer_material
+      - supplied_by
+      - number_of_stirrers
+      - distance_between_stirrers
+      - blade_pitch_angle
+      - number_of_blades
+      - blade_size
+      - stirrer_geometry
+      - stirrer_speed
+      - height_above_vessel_base
+      - power_per_volume_input
+      - stir_bar_size
+      - stir_bar_shape
+
+  Shaker:
+    is_a: Device
+    description: >-
+      An external shaking device acting on a reaction vessel to achieve
+      mixing. Linked to BiocatalyticExperiment via carried_out_by.
+    todos:
+      - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
+      - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus,
+        which is required for carried_out_by on BiocatalyticExperiment
+        to accept Shaker as range
+    slots:
+      - shaking_type
+      - deflection
+      - shaking_speed
+      - shaking_position
+
+  GasSupplySystem:
+    is_a: Device
+    description: >-
+      A device that supplies gas to a StirredTankReactor, forming a part
+      of it via has_part.
+    slots:
+      - has_gas_phase
+      - gas_supply_method
+      - has_flow_rate
+
+  TemperatureControlDevice:
+    is_a: Device
+    description: >-
+      A device that controls the temperature of a StirredTankReactor
+      (e.g. heating jacket, cooling coil, external thermostat). Forms a
+      part of the reactor via has_part.
+    slots:
+      - temperature_control_method
+
+# =============================================================================
+# SAMPLING
+# (D-008)
+# =============================================================================
+
+  SamplingProcess:
+    is_a: PlannedProcess
+    class_uri: OBI:0000744
+    description: >-
+      A PlannedProcess describing how samples were taken from the reaction
+      vessel during a BiocatalyticExperiment, including phase, volume,
+      timing, and vessel state.
+    slots:
+      - has_sample_volume
+      - has_sampling_timepoint
+      - mixing_during_sampling
+      - vessel_opened_for_sampling
+      - has_gas_phase
+      - sampled_from_phase
+      - biocatalyst_contamination_possible
+    slot_usage:
+      had_output_entity:
+        description: The MaterialSample produced by this SamplingProcess.
+        range: MaterialSample
+        multivalued: true
+        inlined_as_list: true
+
+  # Wire SamplePreparationProcess to MaterialSample via slot_usage.
+  # MaterialSample is defined in material_entities_ap (via dcat_4c_ap import).
+  # We add was_processed_by as a slot_usage refinement here.
+  MaterialSample:
+    slot_usage:
+      description:
+        description: >-
+          Free-text description of this material sample.
+    slots:
+      - was_processed_by
+
+  SamplePreparationProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A MaterialProcessing step applied to a collected MaterialSample before
+      analysis, including quenching and further treatment steps.
+    todos:
+      - Identify specific OBI subclass URI for sample preparation
+    slot_usage:
+      has_part:
+        description: >-
+          Subprocess steps of sample preparation, including QuenchingProcess
+          and SampleTreatmentProcess.
+        range: MaterialProcessing
+        multivalued: true
+        inlined_as_list: true
+
+  QuenchingProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A reaction-stopping MaterialProcessing step applied to a collected
+      sample. The choice of quenching method directly affects downstream
+      analytical results.
+    todos:
+      - Identify specific OBI subclass URI for quenching (e.g. OBI:0302893
+        enzymatic inactivation or similar)
+    slots:
+      - quenching_method_type
+      - has_quenching_ratio
+
+  SampleTreatmentProcess:
+    is_a: MaterialProcessing
+    description: >-
+      Additional sample processing steps applied after quenching
+      (e.g. filtration, centrifugation, dilution).
+    todos:
+      - Identify specific OBI subclass URI for sample treatment
+    slot_usage:
+      description:
+        description: >-
+          Description of treatment procedure and any additional sample
+          handling steps (STRENDA special_treatment fallback, P-001).
+
+# =============================================================================
+# RESULT WRAPPER CLASSES
+# (D-009)
+# =============================================================================
+
+  KineticParameters:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping kinetic parameters determined for a
+      biocatalytic reaction. Km and kcat values must be determined by
+      varying all substrate concentrations to obtain true (non-apparent) values.
+    todos:
+      - Identify appropriate OBI measurement datum URI for kinetic parameter set
+    slots:
+      - has_michaelis_constant
+      - has_maximum_reaction_rate
+      - has_turnover_number
+      - has_catalytic_efficiency
+      - has_dissociation_constant
+      - has_hill_coefficient
+      - has_inhibition_characterisation
+      - has_enzyme_stability
+    slot_usage:
+      description:
+        description: >-
+          Additional kinetic characterisation details not covered by other
+          slots (STRENDA special_treatment fallback, P-001).
+
+  EnzymeInhibitionCharacterisation:
+    is_a: QuantitativeAttribute
+    description: >-
+      A paired description of enzyme inhibition type and inhibition constant
+      (Ki). The two fields are semantically coupled and should always appear
+      together.
+    slots:
+      - inhibition_type
+      - has_inhibition_constant
+
+  EnzymeStabilityCharacterisation:
+    is_a: QuantitativeAttribute
+    description: >-
+      A characterisation of biocatalyst stability, including half-life and
+      qualitative description of activity decline or preservation.
+    slots:
+      - has_half_life
+      - stability_description
+    todos:
+      - ActivityDeclineProfile class may be warranted in a future iteration
+        to handle activity-over-time trajectories analogously to
+        TemperatureGradient (D-006).
+
+  YieldAndConversion:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping yield and conversion metrics for a biocatalytic
+      reaction.
+    slots:
+      - has_yield
+      - has_space_time_yield
+      - has_substrate_conversion
+    slot_usage:
+      description:
+        description: >-
+          Additional yield or conversion determination details
+          (STRENDA special_treatment fallback, P-001).
+
+  ActivityAndInitialReactionRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping activity and initial reaction rate measurements
+      for a biocatalytic reaction.
+    slots:
+      - has_specific_activity
+      - has_initial_reaction_rate
+    slot_usage:
+      description:
+        description: >-
+          Additional activity measurement details
+          (STRENDA special_treatment fallback, P-001).
+
+  SelectivityAndSpecificity:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping selectivity and specificity parameters for a
+      biocatalytic reaction.
+    slots:
+      - has_enantioselectivity_ratio
+      - has_enantiomeric_excess
+      - has_diastereomeric_excess
+      - has_isomeric_content
+      - stereoselectivity_description
+      - chemoselectivity_description
+      - regioselectivity_description
+    slot_usage:
+      description:
+        description: >-
+          Additional selectivity determination details
+          (STRENDA special_treatment fallback, P-001).
+
+  ThermodynamicParameters:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping thermodynamic parameters for a biocatalytic
+      reaction.
+    slots:
+      - has_gibbs_free_energy_change
+      - has_enthalpy_change
+    slot_usage:
+      description:
+        description: >-
+          Additional thermodynamic characterisation details
+          (STRENDA special_treatment fallback, P-001).
+
+  # --- OBI process stubs ---
+  # These classes are referenced from OBI but not yet available via the
+  # import chain. Declared as stubs pending a direct OBI import.
+  # NOTE: is_a: EvaluatedActivity is used as the closest available ancestor
+  # in DCAT-AP-Plus for process classes. This is a pragmatic shortcut —
+  # replace with proper BFO/OBI class hierarchy when OBI is imported.
+  # TODO: Replace all three stubs with a direct OBI import.
+
+  PlannedProcess:
+    class_uri: OBI:0000011
+    is_a: EvaluatedActivity
+    description: >-
+      A process that realizes a plan — i.e. it is carried out with the
+      intention of achieving a specified objective. (OBI:0000011 stub)
+    todos:
+      - Replace with direct OBI import
+      - Verify correct DCAT-AP-Plus ancestor for BFO process classes
+
+  MaterialProcessing:
+    class_uri: OBI:0000094
+    is_a: PlannedProcess
+    description: >-
+      A planned process that has the objective to produce a material entity
+      by processing input material entities. (OBI:0000094 stub)
+    todos:
+      - Replace with direct OBI import
+
+  MeasurementProcess:
+    class_uri: OBI:0000070
+    is_a: PlannedProcess
+    description: >-
+      A planned process that has the objective to produce information about
+      a material entity by examining it. (OBI:0000070 stub)
+    todos:
+      - Replace with direct OBI import
+
+# =============================================================================
+# BIOCATALYTIC REACTION
+# (D-001 evaluated activity; D-006 conditions attachment point)
+# =============================================================================
+
+  BiocatalyticReaction:
+    is_a: ChemicalReaction
+    class_uri: SIO:010345
+    description: >-
+      A ChemicalReaction that is catalyzed by a Biocatalyst (enzyme or whole
+      cell). Evaluated by a BiocatalyticExperiment. Carries reaction conditions,
+      phase system, and result attributes.
+    slots:
+      - has_reaction_medium
+      - has_temperature_shift
+      - has_temperature_gradient
+      - has_ph_shift
+      - has_ph_gradient
+      - has_ph_measurement
+      - has_kinetic_parameters
+      - has_yield_and_conversion
+      - has_activity_and_reaction_rate
+      - has_selectivity_and_specificity
+      - has_thermodynamic_parameters
+    slot_usage:
+      used_catalyst:
+        description: >-
+          The Biocatalyst (AgenticEntity) that catalyzes this reaction.
+        range: Biocatalyst
+      has_temperature:
+        description: >-
+          The constant temperature at which the reaction takes place.
+          For non-constant temperatures use has_temperature_shift or
+          has_temperature_gradient.
+      has_ph_value:
+        description: >-
+          The constant pH of the reaction medium. For non-constant pH
+          use has_ph_shift or has_ph_gradient.
+
+# =============================================================================
+# BIOCATALYTIC EXPERIMENT
+# (D-001 — top-level DataGeneratingActivity)
+# =============================================================================
+
+  BiocatalyticExperiment:
+    is_a: DataGeneratingActivity
+    class_uri: OBI:0000066
+    aliases:
+      - BiocatalyticInvestigation
+    description: >-
+      A DataGeneratingActivity representing a biocatalytic experiment
+      carried out according to the STRENDA Biocatalysis Guidelines.
+      The BiocatalyticReaction is the evaluated activity; all STRENDA
+      modules (biocatalyst, components, vessel, operation mode, conditions,
+      sampling, results) attach to or via this class.
+    slots:
+      - has_operation_mode
+      - used_biocatalyst_preparation
+      - has_biocatalytic_component
+      - used_reaction_vessel
+      - has_sampling_process
+    slot_usage:
+      evaluated_activity:
+        description: The BiocatalyticReaction that this experiment evaluates.
+        range: BiocatalyticReaction
+        multivalued: false
+        inlined: true
+      occurred_in:
+        description: The Laboratory in which the experiment took place.
+        range: Laboratory
+      carried_out_by:
+        description: >-
+          AgenticEntities that carried out the experiment, including
+          Shaker devices.
+
+# =============================================================================
+# SLOTS
+# =============================================================================
+
+slots:
+
+  # --- Biocatalyst slots ---
+
+  ec_number:
+    slot_uri: SIO:001235
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Numerical classification of the enzyme based on its biochemical
+      function, e.g. EC 3.1.4.12.
+
+  sequence_amino_acid:
+    slot_uri: SIO:010016
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The amino acid sequence of the biocatalyst in one-letter or
+      three-letter code. Refer to UniProt for standardized sequences.
+
+  sequence_DNA:
+    slot_uri: SIO:010015
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The DNA sequence of the biocatalyst including any tags and linkers.
+
+  origin_organism:
+    slot_uri: SIO:010079
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The genus and species of the organism from which the biocatalyst
+      is derived or isolated.
+
+  posttranslational_modification:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Chemical modifications to the biocatalyst protein after translation
+      (e.g. phosphorylation, glycosylation, acetylation).
+
+  is_self_produced:
+    range: boolean
+    required: true
+    description: >-
+      True if the biocatalyst was produced in-house; false if purchased
+      from a commercial supplier. Self-produced biocatalysts should have
+      an associated BiocatalystProductionProcess.
+
+  has_biocatalyst_production_process:
+    slot_uri: prov:wasGeneratedBy
+    range: BiocatalystProductionProcess
+    description: >-
+      The production process by which this biocatalyst was generated.
+      Only present when is_self_produced is true.
+    inlined: true
+
+  production_organism:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The organism used to produce the biocatalyst, relevant in the
+      context of heterologous gene expression.
+
+  sequence_plasmid:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The DNA sequence of the plasmid used to produce the biocatalyst,
+      or a database identifier for it.
+
+  plasmid_specifications:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      All DNA sequence changes such as codon optimization or mutations
+      introduced into the plasmid.
+
+  purification_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method(s) used to purify the biocatalyst, e.g. chromatography,
+      precipitation, ultrafiltration.
+
+  purity_specification:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of how the purity of the biocatalyst was determined,
+      e.g. gel electrophoresis, HPLC, Bradford assay.
+
+  has_purity:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Purity
+    description: >-
+      The purity of the biocatalyst or component as a percentage of the
+      pure compound relative to the total preparation.
+
+  application_form:
+    range: BiocatalystApplicationFormEnum
+    required: true
+    description: >-
+      The physical form in which the biocatalyst is applied in the
+      experiment.
+
+  has_activity:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SpecificActivity
+    description: >-
+      The catalytic activity of the biocatalyst preparation, expressed
+      as volumetric or specific activity.
+
+  has_formulation:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The physical state in which the biocatalyst or component is present
+      (e.g. dissolved, powder, suspension).
+
+  had_drying_process:
+    slot_uri: prov:wasGeneratedBy
+    range: DryingProcess
+    description: >-
+      A drying step applied to the biocatalyst preparation prior to or
+      during storage.
+    inlined: true
+
+  cell_disruption_process:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to disrupt cells to obtain the crude cell extract
+      (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).
+    todos:
+      - P-001 candidate: could be modelled as CellDisruptionProcess (subclass of OBI:0000094) with method_type enum in a future iteration
+
+  harvesting_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to harvest whole cells from culture
+      (e.g. centrifugation, filtration).
+    todos:
+      - P-001 candidate: could be modelled as CellHarvestingProcess (subclass of OBI:0000094) in a future iteration
+
+  separation_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to separate the secreted enzyme supernatant from cells
+      (e.g. centrifugation, filtration).
+    todos:
+      - P-001 candidate: could be modelled as SeparationProcess (subclass of OBI:0000094) in a future iteration
+
+  source_of_cellfree_extract:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The organism or cell type from which the cell-free extract is derived.
+
+  concentration_determination_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to determine the concentration of the biocatalyst
+      preparation (e.g. Bradford assay, UV absorption, activity assay).
+
+  activity_determination_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to determine enzyme activity
+      (e.g. spectrophotometric, colorimetric, fluorometric assay).
+
+  immobilisation_chemistry:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The chemical strategy used to immobilise the biocatalyst
+      (e.g. covalent bonding, adsorption, crosslinking, encapsulation).
+
+  carrier_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The support material used for immobilisation (name, type, supplier,
+      product details).
+    todos:
+      - P-001 candidate: carrier_material is a MaterialEntity with its own identity; could be modelled as a ChemicalSubstance or MaterialEntity subclass with supplied_by slot in a future iteration
+
+  linkers:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Chemical linkers or spacers used to connect the biocatalyst to the
+      carrier material.
+    todos:
+      - P-001 candidate: linkers are ChemicalSubstances with a specific role; could be modelled as ChemicalSubstance with CHEBI linker role in a future iteration
+
+  immobilisation_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Detailed description of the immobilisation procedure.
+
+  # --- StorageConditions slots ---
+
+  storage_start:
+    slot_uri: dcterms:created
+    range: date
+    description: The date since which the material entity has been stored.
+
+  has_storage_additive:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: StorageAdditive
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Additives present in the storage medium to preserve or stabilize
+      the material entity.
+
+  has_storage_conditions:
+    slot_uri: SIO:000008
+    range: StorageConditions
+    description: >-
+      The conditions under which the biocatalyst preparation or component
+      is stored.
+    inlined: true
+
+  drying_method_type:
+    range: DryingMethodEnum
+    description: The type of drying method applied to the biocatalyst preparation.
+
+  # --- Component slots ---
+
+  has_component_role:
+    slot_uri: RO:0000087
+    range: ComponentRoleEnum
+    description: >-
+      The functional role of this component in the biocatalytic reaction.
+      Optional per P-002 — a structural converter may leave this unpopulated;
+      a smarter converter or human annotator populates it from CHEBI roles.
+    recommended: true
+
+  has_solubility_limit:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SolubilityLimit
+    description: >-
+      The maximum concentration of this component that can dissolve in the
+      reaction solution under the given conditions.
+
+  supplied_by:
+    slot_uri: prov:wasAttributedTo
+    range: Agent
+    description: >-
+      The commercial supplier or research group that provided this material.
+      Maps to the STRENDA supplier string via Agent.name (foaf:name).
+
+  # --- ReactionMedium / Phase slots ---
+
+  has_reaction_medium:
+    slot_uri: SIO:000008
+    range: ReactionMedium
+    description: The reaction medium in which the biocatalytic reaction takes place.
+    inlined: true
+
+  has_phase_count:
+    slot_uri: SIO:000008
+    range: integer
+    description: >-
+      The number of distinct phases present in the reaction medium
+      (e.g. 2 for aqueous + gas phase).
+
+  has_liquid_phase:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: LiquidPhase
+    multivalued: true
+    inlined_as_list: true
+    description: A liquid phase present in the reaction medium.
+
+  has_solid_phase:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: SolidPhase
+    multivalued: true
+    inlined_as_list: true
+    description: A solid phase present in the reaction medium.
+
+  has_gas_phase:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: GasPhase
+    multivalued: true
+    inlined_as_list: true
+    description: A gas phase present in the reaction medium or headspace.
+
+  has_ionic_strength:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: IonicStrength
+    description: The ionic strength of the reaction medium.
+
+  has_medium_additive:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: ChemicalSubstance
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Additional substances in the reaction medium such as cosolvents or
+      ionic strength adjusters. Optional role annotation via CHEBI role
+      hierarchy recommended.
+
+  has_liquid_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The type of liquid phase (e.g. aqueous buffer, organic solvent,
+      mixed aqueous-organic).
+
+  has_solid_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The type of solid phase (e.g. support material, solid catalyst,
+      precipitate).
+
+  has_gas_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The type of gas present (e.g. nitrogen, oxygen, carbon dioxide, argon).
+
+  # --- Temperature/pH profile slots ---
+
+  has_temperature_shift:
+    slot_uri: SIO:000008
+    range: TemperatureShiftProcess
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Event-based temperature change(s) during the reaction. Use instead of
+      has_temperature when temperature is not constant.
+
+  has_temperature_gradient:
+    slot_uri: SIO:000008
+    range: TemperatureGradient
+    description: >-
+      A dynamic temperature gradient applied in the reactor. Use for
+      tubular flow reactors with non-uniform temperature profiles.
+    inlined: true
+
+  has_ph_shift:
+    slot_uri: SIO:000008
+    range: PHShiftProcess
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Event-based pH change(s) during the reaction. Use instead of
+      has_ph_value when pH is not constant.
+
+  has_ph_gradient:
+    slot_uri: SIO:000008
+    range: PHGradient
+    description: >-
+      A dynamic pH gradient applied in the reactor.
+    inlined: true
+
+  has_ph_measurement:
+    slot_uri: SIO:000008
+    range: PHMeasurementProcess
+    description: >-
+      The measurement process used to determine the pH value, capturing
+      method and measurement context for reproducibility.
+    inlined: true
+
+  has_temperature_before:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Temperature
+    description: The temperature prior to the event causing a temperature shift.
+
+  has_temperature_after:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Temperature
+    description: The temperature after the event causing a temperature shift.
+
+  has_temperature_start:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Temperature
+    description: The initial temperature from which a temperature gradient begins.
+
+  has_temperature_end:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Temperature
+    description: The target temperature reached after a temperature gradient.
+
+  has_temperature_at_timepoint:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: TemperatureTimepoint
+    multivalued: true
+    inlined_as_list: true
+    description: Temperature values recorded at specific timepoints during a shift.
+
+  has_trigger_event:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of the event that triggered a temperature or pH shift
+      (e.g. addition of substrate, planned time-point in fed-batch protocol).
+
+  has_ph_before:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PHValue
+    description: The pH prior to the event causing a pH shift.
+
+  has_ph_after:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PHValue
+    description: The pH after the event causing a pH shift.
+
+  has_ph_start:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PHValue
+    description: The initial pH from which a pH gradient begins.
+
+  has_ph_end:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PHValue
+    description: The target pH reached after a pH gradient.
+
+  has_ph_at_timepoint:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PHValue
+    multivalued: true
+    inlined_as_list: true
+    description: pH values recorded at specific timepoints during a shift.
+
+  has_gradient_length:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      The distance or time span over which a temperature or pH gradient
+      is applied.
+
+  has_measurement_points:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Information about locations or timepoints where temperature or pH
+      measurements are taken to monitor the gradient.
+
+  detected_when:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Specification of when the pH was measured (before, during, or after
+      the reaction; whether all components were present).
+
+  detected_how:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The method used to measure pH (e.g. pH meter, pH paper, titration,
+      electrochemical sensor).
+
+  has_calibration_info:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Calibration conditions for the pH electrode, especially if differing
+      from standard (20-25°C buffer calibration).
+
+  has_time_value:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: float
+    description: A time value as a numeric quantity.
+
+  time_unit:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Unit for a time value (s, min, h).
+
+  # --- Vessel slots ---
+
+  reactor_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The material from which the reactor is constructed
+      (e.g. glass, polypropylene, stainless steel).
+
+  geometry:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The geometric dimensions or ratios of the reactor
+      (e.g. height:width ratio for STR).
+
+  bottom_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Shape of the reactor bottom (e.g. round bottom, flat bottom).
+
+  reactor_type_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of the tubular flow reactor type (e.g. packed bed reactor,
+      plug flow reactor, microreactor).
+
+  tubing:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Details of tubing used in the reactor including material, diameter,
+      length, and connections.
+
+  has_flow_rate:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: FlowRate
+    description: >-
+      The volumetric flow rate through the reactor or gas supply system.
+
+  has_catalyst_localisation:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The location of the biocatalyst within the tubular flow reactor
+      (e.g. suspended in liquid phase, immobilised on support matrix or membrane).
+
+  has_residence_time:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: ResidenceTime
+    description: >-
+      The average residence time (tau) of the reaction mixture in the
+      tubular flow reactor.
+
+  has_reynolds_number:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The Reynolds number indicating flow regime (laminar, turbulent, or
+      transitional) in the reactor.
+
+  has_passive_mixing:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of passive mixing achieved through coil geometry or
+      flow patterns without external agitation.
+
+  has_active_mixer:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of an active T- or Y-mixer including inlet ports,
+      chamber, and control details.
+
+  has_pulsing_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of pulsing process involving periodic injection of
+      reactants or additives.
+
+  vial_size_unit:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Unit for vial size (mL for volume, cm for dimensions).
+
+  vial_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the vial (e.g. glass, plastic).
+
+  closure_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of closure or stopper used for the vial. Affects sealing and
+      reaction course. Note if no closure was used.
+
+  plate_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Type of plate (e.g. microtiter plate, deep-well plate).
+
+  plate_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the plate (e.g. polystyrene, glass, metal).
+
+  number_of_wells:
+    slot_uri: SIO:000008
+    range: integer
+    description: Total number of wells or cavities in the plate.
+
+  well_shape:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Shape of the wells (e.g. round, rectangular, square).
+
+  well_volume:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Volume
+    description: The volume of each well, typically expressed in µL.
+
+  well_arrangement:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Arrangement of wells in the plate (rows and columns).
+
+  sealing_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Whether and how wells were sealed (sealing film or lid).
+
+  sealing_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the sealing film or lid.
+
+  # --- MixingImpeller slots ---
+
+  stirring_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of stirring (e.g. magnetic from vessel bottom, mechanical,
+      overhead).
+
+  stirrer_material:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Composition of the stirrer (e.g. PTFE-coated magnetic, stainless
+      steel).
+
+  number_of_stirrers:
+    slot_uri: SIO:000008
+    range: integer
+    description: Number of stirrers present in the system.
+
+  distance_between_stirrers:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Distance between stirring rods or impellers within the vessel.
+
+  blade_pitch_angle:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      The pitch angle of impeller blades relative to the plane of rotation,
+      expressed in degrees.
+
+  number_of_blades:
+    slot_uri: SIO:000008
+    range: integer
+    description: Number of blades on each stirrer impeller.
+
+  blade_size:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Size (diameter) of the impeller blades.
+
+  stirrer_geometry:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Morphology of the impeller (e.g. radial, axial, helical ribbon,
+      paddle).
+
+  stirrer_speed:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: AngularVelocity
+    description: Speed or frequency of stirring (RPM, Hz, or rad/s).
+
+  height_above_vessel_base:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      Vertical distance between the vessel bottom and the lowest point of
+      the stirrer.
+
+  power_per_volume_input:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: PowerPerVolume
+    description: Stirring power input per unit volume of reaction mixture.
+
+  stir_bar_size:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      Length, diameter, or volume of the stir bar used in the experiment.
+
+  stir_bar_shape:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Shape of the stir bar (e.g. cylindrical, octagonal, oval). Affects
+      mixing patterns and efficiency.
+
+  # --- Shaker slots ---
+
+  shaking_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of shaking motion (e.g. horizontal, vertical, back-and-forth,
+      circulatory).
+
+  deflection:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Extent of deflection of the shaker from its original position.
+
+  shaking_speed:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: AngularVelocity
+    description: Speed or frequency of shaking (rpm or Hz).
+
+  shaking_position:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Orientation of the reaction vessel in the shaking system relative
+      to deflection.
+
+  # --- GasSupplySystem slots ---
+
+  gas_supply_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Method of gas introduction into the reactor (e.g. sparging via tube,
+      aeration basket, bubbling, direct injection).
+
+  temperature_control_method:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Method used to control reactor temperature (e.g. heating jacket,
+      cooling coil, external temperature control unit).
+
+  # --- Sampling slots ---
+
+  has_sample_volume:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Volume
+    description: Volume of the collected sample.
+
+  has_sampling_timepoint:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SamplingTimepoint
+    description: The timepoint at which the sample was taken.
+    inlined: true
+
+  mixing_during_sampling:
+    slot_uri: SIO:000008
+    range: boolean
+    description: >-
+      Whether the reaction was mixed during sampling. Affects the
+      representativeness of the collected sample.
+
+  vessel_opened_for_sampling:
+    slot_uri: SIO:000008
+    range: boolean
+    description: Whether the reaction vessel was opened for sampling.
+
+  sampled_from_phase:
+    slot_uri: SIO:000008
+    range: MaterialEntity
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      The phase(s) from which the sample was collected. Range is
+      LiquidPhase, SolidPhase, or GasPhase (reuse from D-006).
+
+  biocatalyst_contamination_possible:
+    slot_uri: SIO:000008
+    range: boolean
+    description: >-
+      Whether the collected sample may be contaminated with the biocatalyst.
+
+  quenching_method_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The technique used to stop the reaction (e.g. heat treatment, organic
+      solvent, acid/base addition, freezing).
+    todos:
+      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
+        AcidBase, Freezing, Other) in a future iteration.
+
+  has_quenching_ratio:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuenchingRatio
+    description: >-
+      The ratio of quenching solution volume to reaction mixture volume.
+
+  # --- Result slots ---
+
+  has_kinetic_parameters:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: KineticParameters
+    description: Kinetic parameters determined for the biocatalytic reaction.
+    inlined: true
+
+  has_yield_and_conversion:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: YieldAndConversion
+    description: Yield and conversion metrics for the biocatalytic reaction.
+    inlined: true
+
+  has_activity_and_reaction_rate:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: ActivityAndInitialReactionRate
+    description: Activity and initial reaction rate measurements.
+    inlined: true
+
+  has_selectivity_and_specificity:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SelectivityAndSpecificity
+    description: Selectivity and specificity parameters for the reaction.
+    inlined: true
+
+  has_thermodynamic_parameters:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: ThermodynamicParameters
+    description: Thermodynamic parameters for the biocatalytic reaction.
+    inlined: true
+
+  has_michaelis_constant:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: MichaelisConstant
+    description: The Michaelis-Menten constant (Km) of the enzyme.
+
+  has_maximum_reaction_rate:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: MaximumReactionRate
+    description: The maximum reaction rate (Vmax) of the enzyme.
+
+  has_turnover_number:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: TurnoverNumber
+    description: The turnover number (kcat) of the enzyme.
+
+  has_catalytic_efficiency:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: CatalyticEfficiency
+    description: The catalytic efficiency (kcat/Km) of the enzyme.
+
+  has_dissociation_constant:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: DissociationConstant
+    description: The dissociation constant (Kd) of the enzyme-substrate complex.
+
+  has_hill_coefficient:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: HillCoefficient
+    description: The Hill coefficient describing binding cooperativity.
+
+  has_inhibition_characterisation:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: EnzymeInhibitionCharacterisation
+    description: Inhibition type and constant for the enzyme.
+    inlined: true
+
+  has_enzyme_stability:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: EnzymeStabilityCharacterisation
+    description: Stability characterisation of the biocatalyst.
+    inlined: true
+
+  inhibition_type:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: InhibitionTypeEnum
+    description: >-
+      The type of enzyme inhibition observed (competitive, non-competitive,
+      uncompetitive, mixed, or irreversible).
+
+  has_inhibition_constant:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: InhibitionConstant
+    description: The inhibition constant (Ki) of the inhibitor.
+
+  has_half_life:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: HalfLife
+    description: >-
+      The half-life of the biocatalyst under defined conditions.
+
+  stability_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Qualitative description of enzyme stability including activity decline
+      profile and preservation conditions.
+
+  has_space_time_yield:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SpaceTimeYield
+    description: >-
+      The mass of product obtained per unit volume per unit time
+      (volumetric productivity).
+
+  has_substrate_conversion:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SubstrateConversion
+    description: >-
+      The percentage of substrate converted to desired product.
+
+  has_specific_activity:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SpecificActivity
+    description: Specific activity of the biocatalyst.
+
+  has_initial_reaction_rate:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: InitialReactionRate
+    description: Initial reaction rate in the first 10% of the reaction.
+
+  has_enantioselectivity_ratio:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: EnantioselectivityRatio
+    description: Enantiomeric ratio (E) of the biocatalytic reaction.
+
+  has_enantiomeric_excess:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: EnantiomericExcess
+    description: Enantiomeric excess (ee) of the product.
+
+  has_diastereomeric_excess:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: DiastereomericExcess
+    description: Diastereomeric excess (de) of the product.
+
+  has_isomeric_content:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: IsomericContent
+    description: Isomeric content of the product as a percentage.
+
+  stereoselectivity_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Qualitative description of stereoselectivity — the preference of the
+      reaction to produce a specific stereoisomer or spatial arrangement.
+
+  chemoselectivity_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Qualitative description of chemoselectivity — the ability to target
+      a specific functional group without affecting others.
+
+  regioselectivity_description:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Qualitative description of regioselectivity — the preference for
+      reaction at a specific site within the molecule.
+
+  has_gibbs_free_energy_change:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: GibbsFreeEnergyChange
+    description: Change in Gibbs free energy (delta G) for the reaction.
+
+  has_enthalpy_change:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: EnthalpyChange
+    description: Change in enthalpy (delta H) for the reaction.
+
+  # --- BiocatalyticExperiment slots ---
+
+  has_operation_mode:
+    slot_uri: dcterms:type
+    range: OperationModeEnum
+    required: true
+    description: >-
+      The operation mode of the biocatalytic experiment (Batch, FedBatch,
+      Continuous, or Combinatorial).
+
+  used_biocatalyst_preparation:
+    slot_uri: prov:used
+    is_a: had_input_entity
+    range: BiocatalystPreparation
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      The BiocatalystPreparation used in the experiment.
+    recommended: true
+
+  has_biocatalytic_component:
+    slot_uri: prov:used
+    is_a: had_input_entity
+    range: BiocatalyticComponent
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      The chemical components present in the reaction mixture.
+    recommended: true
+
+  used_reaction_vessel:
+    slot_uri: prov:wasAssociatedWith
+    is_a: carried_out_by
+    range: ReactionVessel
+    description: >-
+      The reaction vessel in which the biocatalytic reaction took place.
+    recommended: true
+
+  has_sampling_process:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: SamplingProcess
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Sampling processes carried out during the BiocatalyticExperiment.
+
+  # --- Missing slots identified in self-critique ---
+
+  has_amount:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      The amount of a gas phase present in the reaction medium or headspace,
+      expressed as volume fraction, partial pressure, or moles.
+    todos:
+      - Bind to appropriate QUDT quantity type (AmountOfSubstance or
+        VolumeFraction depending on context)
+
+  has_yield:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Yield
+    description: >-
+      The chemical yield of a biocatalytic reaction expressed as a percentage.
+      Reuses Yield from chemical_reaction_ap.
+
+  molecular_weight:
+    slot_uri: SIO:000119
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      The molecular weight of the biocatalyst, expressed in Da or kDa.
+    todos:
+      - Bind to QUDT MolarMass quantity type
+
+  was_processed_by:
+    slot_uri: prov:wasGeneratedBy
+    range: SamplePreparationProcess
+    description: >-
+      The SamplePreparationProcess (quenching, treatment) that was applied
+      to this MaterialSample before analysis.
+    inlined: true
+
+  # --- MeasurementProcess base class stub ---
+  # (slot section stub comment — class declared above in classes section)
