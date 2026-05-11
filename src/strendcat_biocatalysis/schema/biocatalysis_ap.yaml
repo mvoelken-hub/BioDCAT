@@ -4,11 +4,11 @@ name: biocatalysis-ap
 title: Biocatalysis Application Profile
 description: |-
   This is an application profile for biocatalytic experiments based on the
-  STRENDA Biocatalysis Guidelines (https://github.com/Strenda-biocatalysis/Strenda-biocatalysis).
-  It extends DCAT-AP-Plus via dcat_4c_ap and reuses classes from the chem-dcat-ap
-  family (material_entities_ap, chemical_entities_ap, chemical_reaction_ap).
-  The profile is intended to support FAIR data publication of biocatalytic
-  experimental data in alignment with BFO/OBI/CHEBI ontology design patterns.
+ # STRENDA Biocatalysis Guidelines (https://github.com/Strenda-biocatalysis/Strenda-biocatalysis).
+ # TODO: It extends DCAT-AP-Plus via dcat_4c_ap and reuses classes from the chem-dcat-ap
+ # TODO: family (material_entities_ap, chemical_entities_ap, chemical_reaction_ap).
+ # TODO: The profile is intended to support FAIR data publication of biocatalytic
+ # TODO: experimental data in alignment with BFO/OBI/CHEBI ontology design patterns.
 license: CC-BY 4.0
 see_also:
   - https://github.com/Strenda-biocatalysis/Strenda-biocatalysis
@@ -52,7 +52,7 @@ default_prefix: biocatalysis_ap
 default_range: string
 imports:
   - linkml:types
-  - chemdcatap:dcat_4c_ap
+  - chem_dcat_ap #chemdcatap:chem_dcat_ap
 
 # =============================================================================
 # ENUMERATIONS
@@ -413,7 +413,7 @@ classes:
 # =============================================================================
 
   StorageAdditive:
-    is_a: ChemicalSubstance
+    is_a: ChemicalEntity #ChemicalSubstance
     description: >-
       A ChemicalSubstance added to a storage medium to preserve or stabilize
       a MaterialEntity during storage (e.g. antioxidants, stabilizers,
@@ -599,7 +599,7 @@ classes:
 # =============================================================================
 
   BiocatalyticComponent:
-    is_a: ChemicalSubstance
+    is_a: ChemicalEntity #ChemicalSubstance
     class_uri: CHEBI:59999
     description: >-
       A ChemicalSubstance present in the reaction mixture of a biocatalytic
@@ -927,13 +927,14 @@ classes:
   # Wire SamplePreparationProcess to MaterialSample via slot_usage.
   # MaterialSample is defined in material_entities_ap (via dcat_4c_ap import).
   # We add was_processed_by as a slot_usage refinement here.
-  MaterialSample:
-    slot_usage:
-      description:
-        description: >-
-          Free-text description of this material sample.
-    slots:
-      - was_processed_by
+ #SLOT ALREADY EXIST IN DCAT-AP+ 
+ # MaterialSample:
+ #   slot_usage:
+ #     description:
+ #       description: >-
+ #         Free-text description of this material sample.
+ #   slots:
+ #     - was_processed_by
 
   SamplePreparationProcess:
     is_a: MaterialProcessing
@@ -1534,7 +1535,7 @@ slots:
   has_medium_additive:
     slot_uri: BFO:0000051
     is_a: has_part
-    range: ChemicalSubstance
+    #range: ChemicalSubstance
     multivalued: true
     inlined_as_list: true
     description: >-
@@ -1742,13 +1743,14 @@ slots:
       The material from which the reactor is constructed
       (e.g. glass, polypropylene, stainless steel).
 
-  geometry:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      The geometric dimensions or ratios of the reactor
-      (e.g. height:width ratio for STR).
+#  SLOT ALREADY EXISTING IN DCAT-AP+
+#  geometry:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The geometric dimensions or ratios of the reactor
+#      (e.g. height:width ratio for STR).
 
   bottom_type:
     slot_uri: SIO:000008
@@ -2182,7 +2184,7 @@ slots:
 
   inhibition_type:
     slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
+    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
     range: InhibitionTypeEnum
     description: >-
       The type of enzyme inhibition observed (competitive, non-competitive,
@@ -2344,25 +2346,25 @@ slots:
       Sampling processes carried out during the BiocatalyticExperiment.
 
   # --- Missing slots identified in self-critique ---
-
-  has_amount:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: QuantitativeAttribute
-    description: >-
-      The amount of a gas phase present in the reaction medium or headspace,
-      expressed as volume fraction, partial pressure, or moles.
-    todos:
-      - Bind to appropriate QUDT quantity type (AmountOfSubstance or
-        VolumeFraction depending on context)
-
-  has_yield:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: Yield
-    description: >-
-      The chemical yield of a biocatalytic reaction expressed as a percentage.
-      Reuses Yield from chemical_reaction_ap.
+ #SLOT ALREADY EXIST IN DCAT-AP+
+ # has_amount:
+ #   slot_uri: SIO:000008
+ #   is_a: has_quantitative_attribute
+ #   range: QuantitativeAttribute
+ #   description: >-
+ #     The amount of a gas phase present in the reaction medium or headspace,
+ #     expressed as volume fraction, partial pressure, or moles.
+ #   todos:
+ #     - Bind to appropriate QUDT quantity type (AmountOfSubstance or
+ #       VolumeFraction depending on context)
+ #SLOT ALREADY EXIST IN DCAT-AP+
+ # has_yield:
+ #   slot_uri: SIO:000008
+ #   is_a: has_quantitative_attribute
+ #   range: Yield
+ #   description: >-
+ #     The chemical yield of a biocatalytic reaction expressed as a percentage.
+ #     Reuses Yield from chemical_reaction_ap.
 
   molecular_weight:
     slot_uri: SIO:000119

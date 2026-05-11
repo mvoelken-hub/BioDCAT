@@ -11,7 +11,7 @@ see_also:
 prefixes:
   strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
+  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
@@ -57,17 +57,20 @@ classes:
         inlined_as_list: true
 
 slots:
-  id:
-    identifier: true
-    slot_uri: schema:identifier
-    range: uriorcurie
-    description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
+#SLOT ALREADY EXISTS IN DCAT-AP+
+#  id:
+#    identifier: true
+#    slot_uri: schema:identifier
+#    range: uriorcurie
+#    description: A unique identifier for a thing
+#SLOT ALREADY EXISTS IN DCAT-AP+
+#  name:
+#    slot_uri: schema:name
+#    description: A human-readable name for a thing
+#SLOT ALREADY EXISTS IN DCAT-AP+
+#  description:
+#    slot_uri: schema:description
+#    description: A human-readable description for a thing
   primary_email:
     slot_uri: schema:email
     description: The main email address of a person
