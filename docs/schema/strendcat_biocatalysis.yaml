@@ -7,7 +7,8 @@ id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
 imports:
 - linkml:types
 - chem_dcat_ap
-- strendcat-vessels_and_mixing
+- strendcat_vessels-and-mixing
+- strendcat_sampling
 - dcatapplus:latest/schema/dcat_ap_plus
 - chemical_entities_ap
 - chemical_reaction_ap
@@ -563,6 +564,803 @@ slots:
     domain_of:
     - Person
     range: PersonStatus
+  vial_size_unit:
+    name: vial_size_unit
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vial_size_unit
+    description: Unit for vial size (mL for volume, cm for dimensions).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:vial_size_unit
+    owner: Vial
+    domain_of:
+    - Vial
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  vial_material:
+    name: vial_material
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vial_material
+    description: Material of the vial (e.g. glass, plastic).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:vial_material
+    owner: Vial
+    domain_of:
+    - Vial
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  closure_type:
+    name: closure_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/closure_type
+    description: Type of closure or stopper used for the vial. Affects sealing and
+      reaction course. Note if no closure was used.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:closure_type
+    owner: Vial
+    domain_of:
+    - Vial
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  plate_type:
+    name: plate_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/plate_type
+    description: Type of plate (e.g. microtiter plate, deep-well plate).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:plate_type
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  plate_material:
+    name: plate_material
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/plate_material
+    description: Material of the plate (e.g. polystyrene, glass, metal).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:plate_material
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  number_of_wells:
+    name: number_of_wells
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/number_of_wells
+    description: Total number of wells or cavities in the plate.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    slot_uri: strendcat_biocatalysis:number_of_wells
+    owner: Plate
+    domain_of:
+    - Plate
+    range: integer
+  well_shape:
+    name: well_shape
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/well_shape
+    description: Shape of the wells (e.g. round, rectangular, square).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:well_shape
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  well_volume:
+    name: well_volume
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/well_volume
+    description: "The volume of each well, typically expressed in \xB5L."
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:well_volume
+    owner: Plate
+    domain_of:
+    - Plate
+    range: Volume
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  well_arrangement:
+    name: well_arrangement
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/well_arrangement
+    description: Arrangement of wells in the plate (rows and columns).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:well_arrangement
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  sealing_method:
+    name: sealing_method
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sealing_method
+    description: Whether and how wells were sealed (sealing film or lid).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:sealing_method
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  sealing_material:
+    name: sealing_material
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sealing_material
+    description: Material of the sealing film or lid.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:sealing_material
+    owner: Plate
+    domain_of:
+    - Plate
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  supplied_by:
+    name: supplied_by
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/supplied_by
+    description: The commercial supplier or research group that provided this material.
+      Maps to the STRENDA supplier string via Agent.name (foaf:name).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    mappings:
+    - prov:wasAttributedTo
+    slot_uri: prov:wasAttributedTo
+    owner: MixingImpeller
+    domain_of:
+    - Plate
+    - MixingImpeller
+    range: Agent
+    inlined: true
+    inlined_as_list: true
+  reactor_material:
+    name: reactor_material
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/reactor_material
+    description: The material from which the reactor is constructed (e.g. glass, polypropylene,
+      stainless steel).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:reactor_material
+    owner: TubularFlowReactor
+    domain_of:
+    - StirredTankReactor
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  bottom_type:
+    name: bottom_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/bottom_type
+    description: Shape of the reactor bottom (e.g. round bottom, flat bottom).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:bottom_type
+    owner: StirredTankReactor
+    domain_of:
+    - StirredTankReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  reactor_type_description:
+    name: reactor_type_description
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/reactor_type_description
+    description: Description of the tubular flow reactor type (e.g. packed bed reactor,
+      plug flow reactor, microreactor).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:reactor_type_description
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  tubing:
+    name: tubing
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/tubing
+    description: Details of tubing used in the reactor including material, diameter,
+      length, and connections.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:tubing
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_flow_rate:
+    name: has_flow_rate
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_flow_rate
+    description: The volumetric flow rate through the reactor or gas supply system.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:has_flow_rate
+    owner: GasSupplySystem
+    domain_of:
+    - TubularFlowReactor
+    - GasSupplySystem
+    range: FlowRate
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_catalyst_localisation:
+    name: has_catalyst_localisation
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_catalyst_localisation
+    description: The location of the biocatalyst within the tubular flow reactor (e.g.
+      suspended in liquid phase, immobilised on support matrix or membrane).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_catalyst_localisation
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_residence_time:
+    name: has_residence_time
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_residence_time
+    description: The average residence time (tau) of the reaction mixture in the tubular
+      flow reactor.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:has_residence_time
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: ResidenceTime
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_reynolds_number:
+    name: has_reynolds_number
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_reynolds_number
+    description: The Reynolds number indicating flow regime (laminar, turbulent, or
+      transitional) in the reactor.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_reynolds_number
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_passive_mixing:
+    name: has_passive_mixing
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_passive_mixing
+    description: Description of passive mixing achieved through coil geometry or flow
+      patterns without external agitation.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_passive_mixing
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_active_mixer:
+    name: has_active_mixer
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_active_mixer
+    description: Description of an active T- or Y-mixer including inlet ports, chamber,
+      and control details.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_active_mixer
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_pulsing_description:
+    name: has_pulsing_description
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_pulsing_description
+    description: Description of pulsing process involving periodic injection of reactants
+      or additives.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_pulsing_description
+    owner: TubularFlowReactor
+    domain_of:
+    - TubularFlowReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  stirring_type:
+    name: stirring_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stirring_type
+    description: Type of stirring (e.g. magnetic from vessel bottom, mechanical, overhead).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:stirring_type
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  stirrer_material:
+    name: stirrer_material
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stirrer_material
+    description: Composition of the stirrer (e.g. PTFE-coated magnetic, stainless
+      steel).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:stirrer_material
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  number_of_stirrers:
+    name: number_of_stirrers
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/number_of_stirrers
+    description: Number of stirrers present in the system.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    slot_uri: strendcat_biocatalysis:number_of_stirrers
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: integer
+  distance_between_stirrers:
+    name: distance_between_stirrers
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/distance_between_stirrers
+    description: Distance between stirring rods or impellers within the vessel.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:distance_between_stirrers
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  blade_pitch_angle:
+    name: blade_pitch_angle
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/blade_pitch_angle
+    description: The pitch angle of impeller blades relative to the plane of rotation,
+      expressed in degrees.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:blade_pitch_angle
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  number_of_blades:
+    name: number_of_blades
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/number_of_blades
+    description: Number of blades on each stirrer impeller.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    slot_uri: strendcat_biocatalysis:number_of_blades
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: integer
+  blade_size:
+    name: blade_size
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/blade_size
+    description: Size (diameter) of the impeller blades.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:blade_size
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  stirrer_geometry:
+    name: stirrer_geometry
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stirrer_geometry
+    description: Morphology of the impeller (e.g. radial, axial, helical ribbon, paddle).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:stirrer_geometry
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  stirrer_speed:
+    name: stirrer_speed
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stirrer_speed
+    description: Speed or frequency of stirring (RPM, Hz, or rad/s).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:stirrer_speed
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: AngularVelocity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  height_above_vessel_base:
+    name: height_above_vessel_base
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/height_above_vessel_base
+    description: Vertical distance between the vessel bottom and the lowest point
+      of the stirrer.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:height_above_vessel_base
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  power_per_volume_input:
+    name: power_per_volume_input
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/power_per_volume_input
+    description: Stirring power input per unit volume of reaction mixture.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:power_per_volume_input
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: PowerPerVolume
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  stir_bar_size:
+    name: stir_bar_size
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stir_bar_size
+    description: Length, diameter, or volume of the stir bar used in the experiment.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:stir_bar_size
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  stir_bar_shape:
+    name: stir_bar_shape
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stir_bar_shape
+    description: Shape of the stir bar (e.g. cylindrical, octagonal, oval). Affects
+      mixing patterns and efficiency.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:stir_bar_shape
+    owner: MixingImpeller
+    domain_of:
+    - MixingImpeller
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  shaking_type:
+    name: shaking_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/shaking_type
+    description: Type of shaking motion (e.g. horizontal, vertical, back-and-forth,
+      circulatory).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:shaking_type
+    owner: Shaker
+    domain_of:
+    - Shaker
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  deflection:
+    name: deflection
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/deflection
+    description: Extent of deflection of the shaker from its original position.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:deflection
+    owner: Shaker
+    domain_of:
+    - Shaker
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  shaking_speed:
+    name: shaking_speed
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/shaking_speed
+    description: Speed or frequency of shaking (rpm or Hz).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_quantitative_attribute
+    slot_uri: strendcat_biocatalysis:shaking_speed
+    owner: Shaker
+    domain_of:
+    - Shaker
+    range: AngularVelocity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  shaking_position:
+    name: shaking_position
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/shaking_position
+    description: Orientation of the reaction vessel in the shaking system relative
+      to deflection.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:shaking_position
+    owner: Shaker
+    domain_of:
+    - Shaker
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_gas_phase:
+    name: has_gas_phase
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_gas_phase
+    description: A gas phase present in the reaction medium or headspace.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    mappings:
+    - BFO:0000051
+    is_a: has_part
+    slot_uri: BFO:0000051
+    owner: SamplingProcess
+    domain_of:
+    - GasSupplySystem
+    - SamplingProcess
+    range: GasPhase
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  gas_supply_method:
+    name: gas_supply_method
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/gas_supply_method
+    description: Method of gas introduction into the reactor (e.g. sparging via tube,
+      aeration basket, bubbling, direct injection).#
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:gas_supply_method
+    owner: GasSupplySystem
+    domain_of:
+    - GasSupplySystem
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  temperature_control_method:
+    name: temperature_control_method
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/temperature_control_method
+    description: Method used to control reactor temperature (e.g. heating jacket,
+      cooling coil, external temperature control unit).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:temperature_control_method
+    owner: TemperatureControlDevice
+    domain_of:
+    - TemperatureControlDevice
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_gas_type:
+    name: has_gas_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_gas_type
+    description: The type of gas present (e.g. nitrogen, oxygen, carbon dioxide, argon).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: has_qualitative_attribute
+    slot_uri: strendcat_biocatalysis:has_gas_type
+    owner: GasPhase
+    domain_of:
+    - GasPhase
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_sample_volume:
+    name: has_sample_volume
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_sample_volume
+    description: Volume of the collected sample.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: Volume
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_sampling_timepoint:
+    name: has_sampling_timepoint
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_sampling_timepoint
+    description: The timepoint at which the sample was taken.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: SamplingTimepoint
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  mixing_during_sampling:
+    name: mixing_during_sampling
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/mixing_during_sampling
+    description: Whether the reaction was mixed during sampling. Affects the representativeness
+      of the collected sample.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: boolean
+  vessel_opened_for_sampling:
+    name: vessel_opened_for_sampling
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel_opened_for_sampling
+    description: Whether the reaction vessel was opened for sampling.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: boolean
+  sampled_from_phase:
+    name: sampled_from_phase
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampled_from_phase
+    description: The phase(s) from which the sample was collected. Range is LiquidPhase,
+      SolidPhase, or GasPhase (reuse from D-006).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: MaterialEntity
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  biocatalyst_contamination_possible:
+    name: biocatalyst_contamination_possible
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/biocatalyst_contamination_possible
+    description: Whether the collected sample may be contaminated with the biocatalyst.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    range: boolean
+  quenching_method_type:
+    name: quenching_method_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/quenching_method_type
+    description: The technique used to stop the reaction (e.g. heat treatment, organic
+      solvent, acid/base addition, freezing).
+    todos:
+    - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent, AcidBase, Freezing,
+      Other) in a future iteration.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: QuenchingProcess
+    domain_of:
+    - QuenchingProcess
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_quenching_ratio:
+    name: has_quenching_ratio
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_quenching_ratio
+    description: The ratio of quenching solution volume to reaction mixture volume.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: QuenchingProcess
+    domain_of:
+    - QuenchingProcess
+    range: QuenchingRatio
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_time_value:
+    name: has_time_value
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_time_value
+    description: A time value as a numeric quantity.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: SamplingTimepoint
+    domain_of:
+    - SamplingTimepoint
+    range: float
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  time_unit:
+    name: time_unit
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/time_unit
+    description: Unit for a time value (s, min, h).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: SamplingTimepoint
+    domain_of:
+    - SamplingTimepoint
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
   access_URL:
     name: access_URL
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_URL
@@ -1075,6 +1873,8 @@ slots:
     slot_uri: locn:geometry
     owner: Location
     domain_of:
+    - StirredTankReactor
+    - TubularFlowReactor
     - Location
     range: string
   had_input_activity:
@@ -2080,6 +2880,7 @@ slots:
     slot_uri: SIO:000008
     owner: ChemicalSubstanceMixin
     domain_of:
+    - GasPhase
     - ChemicalSubstanceMixin
     range: AmountOfSubstance
     recommended: true
@@ -2475,6 +3276,9 @@ slots:
     slot_uri: SIO:000008
     owner: MaterialisticMixin
     domain_of:
+    - Vial
+    - StirredTankReactor
+    - TubularFlowReactor
     - MaterialisticMixin
     range: Volume
     recommended: true
@@ -2757,6 +3561,124 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  Vial_description:
+    name: Vial_description
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
+    description: Additional vial preparation details (STRENDA special_treatment fallback,
+      P-001). Candidate for VesselPreparationProcess in future iteration.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - dcterms:description
+    is_a: description
+    domain: Vial
+    slot_uri: dcterms:description
+    alias: description
+    owner: Vial
+    domain_of:
+    - Vial
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
+  Plate_other_identifier:
+    name: Plate_other_identifier
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
+    description: Lot number or batch code of the plate (adms:Identifier).
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - adms:identifier
+    is_a: other_identifier
+    domain: Plate
+    slot_uri: adms:identifier
+    alias: other_identifier
+    owner: Plate
+    domain_of:
+    - Plate
+    is_usage_slot: true
+    usage_slot_name: other_identifier
+    range: string
+  StirredTankReactor_has_part:
+    name: StirredTankReactor_has_part
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
+    description: Parts of the StirredTankReactor including MixingImpeller, GasSupplySystem,
+      and TemperatureControlDevice.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - dcterms:hasPart
+    is_a: has_part
+    domain: StirredTankReactor
+    slot_uri: dcterms:hasPart
+    alias: has_part
+    owner: StirredTankReactor
+    domain_of:
+    - StirredTankReactor
+    is_usage_slot: true
+    usage_slot_name: has_part
+    range: Device
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  SamplingProcess_had_output_entity:
+    name: SamplingProcess_had_output_entity
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/had_output_entity
+    description: The MaterialSample produced by this SamplingProcess.
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - prov:generated
+    is_a: had_output_entity
+    domain: SamplingProcess
+    slot_uri: prov:generated
+    alias: had_output_entity
+    owner: SamplingProcess
+    domain_of:
+    - SamplingProcess
+    is_usage_slot: true
+    usage_slot_name: had_output_entity
+    range: MaterialSample
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  SamplePreparationProcess_has_part:
+    name: SamplePreparationProcess_has_part
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
+    description: Subprocess steps of sample preparation, including QuenchingProcess
+      and SampleTreatmentProcess.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - dcterms:hasPart
+    is_a: has_part
+    domain: SamplePreparationProcess
+    slot_uri: dcterms:hasPart
+    alias: has_part
+    owner: SamplePreparationProcess
+    domain_of:
+    - SamplePreparationProcess
+    is_usage_slot: true
+    usage_slot_name: has_part
+    range: MaterialProcessing
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  SampleTreatmentProcess_description:
+    name: SampleTreatmentProcess_description
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
+    description: Description of treatment procedure and any additional sample handling
+      steps (STRENDA special_treatment fallback, P-001).
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - dcterms:description
+    is_a: description
+    domain: SampleTreatmentProcess
+    slot_uri: dcterms:description
+    alias: description
+    owner: SampleTreatmentProcess
+    domain_of:
+    - SampleTreatmentProcess
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
   Activity_title:
     name: Activity_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
@@ -6727,6 +7649,613 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     class_uri: ENVO:01001405
+  FlowRate:
+    name: FlowRate
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/FlowRate
+    description: The volumetric flow rate of a liquid or gas through a reactor or
+      system.
+    todos:
+    - Bind has_quantity_type to qudt:VolumeFlowRate
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:FlowRate
+  ResidenceTime:
+    name: ResidenceTime
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/ResidenceTime
+    description: The average amount of time a substance or component spends inside
+      a specific reactor system (tau).
+    todos:
+    - Bind has_quantity_type to qudt:Time
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:ResidenceTime
+  PowerPerVolume:
+    name: PowerPerVolume
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PowerPerVolume
+    description: The amount of mixing power or energy input per unit volume of the
+      reaction mixture.
+    todos:
+    - Bind has_quantity_type to qudt:PowerPerVolume
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:PowerPerVolume
+  AngularVelocity:
+    name: AngularVelocity
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/AngularVelocity
+    description: The speed or frequency at which a stirrer or shaker operates.
+    todos:
+    - Bind has_quantity_type to qudt:AngularVelocity
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:AngularVelocity
+  GasPhase:
+    name: GasPhase
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/GasPhase
+    description: A gas phase present in the reaction medium or headspace.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    mappings:
+    - CHMO:0002724
+    is_a: MaterialEntity
+    slots:
+    - Entity_title
+    - Entity_description
+    - id
+    - Entity_other_identifier
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - Entity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - MaterialEntity_has_part
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_volume
+    - has_density
+    - has_pressure
+    - has_gas_type
+    - has_amount
+    class_uri: CHMO:0002724
+  ReactionVessel:
+    name: ReactionVessel
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/ReactionVessel
+    description: A Reactor that serves as the physical container in which a BiocatalyticReaction
+      takes place. Intermediate class between Reactor and specific vessel types.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    mappings:
+    - AFE:0000153
+    is_a: Reactor
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_volume
+    - has_density
+    - has_pressure
+    class_uri: AFE:0000153
+  Vial:
+    name: Vial
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Vial
+    description: A sealable container used as a reaction vessel, available in various
+      sizes and materials.
+    todos:
+    - Verify Allotrope class URI for vial (AFE:0000022 tentative)
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: ReactionVessel
+    slots:
+    - id
+    - title
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_density
+    - has_pressure
+    - has_volume
+    - vial_size_unit
+    - vial_material
+    - closure_type
+    - Vial_description
+    slot_usage:
+      description:
+        name: description
+        description: Additional vial preparation details (STRENDA special_treatment
+          fallback, P-001). Candidate for VesselPreparationProcess in future iteration.
+    class_uri: strendcat_biocatalysis:Vial
+  Plate:
+    name: Plate
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Plate
+    description: A multi-well plate used as a reaction vessel (e.g. microtiter plate,
+      deep-well plate).
+    todos:
+    - Verify Allotrope class URI for plate (AFE:0000036 tentative)
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: ReactionVessel
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_volume
+    - has_density
+    - has_pressure
+    - plate_type
+    - plate_material
+    - number_of_wells
+    - well_shape
+    - well_volume
+    - well_arrangement
+    - sealing_method
+    - sealing_material
+    - supplied_by
+    - Plate_other_identifier
+    slot_usage:
+      other_identifier:
+        name: other_identifier
+        description: Lot number or batch code of the plate (adms:Identifier).
+    class_uri: strendcat_biocatalysis:Plate
+  StirredTankReactor:
+    name: StirredTankReactor
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/StirredTankReactor
+    description: A vessel with mechanical or magnetic stirring used for biocatalytic
+      reactions, allowing precise regulation of temperature, pH, and mixing.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: ReactionVessel
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_other_identifier
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_density
+    - has_pressure
+    - reactor_material
+    - has_volume
+    - geometry
+    - bottom_type
+    - StirredTankReactor_has_part
+    slot_usage:
+      has_part:
+        name: has_part
+        description: Parts of the StirredTankReactor including MixingImpeller, GasSupplySystem,
+          and TemperatureControlDevice.
+        range: Device
+        multivalued: true
+        inlined_as_list: true
+    class_uri: strendcat_biocatalysis:StirredTankReactor
+  TubularFlowReactor:
+    name: TubularFlowReactor
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TubularFlowReactor
+    description: A tubular or continuous flow reactor used for biocatalytic reactions,
+      including packed bed reactors, plug flow reactors, and microreactors.
+    todos:
+    - Verify Allotrope class URI for tubular flow reactor
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: ReactionVessel
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - alternative_label
+    - has_physical_state
+    - has_temperature
+    - has_mass
+    - has_density
+    - has_pressure
+    - reactor_type_description
+    - reactor_material
+    - has_volume
+    - geometry
+    - tubing
+    - has_flow_rate
+    - has_catalyst_localisation
+    - has_residence_time
+    - has_reynolds_number
+    - has_passive_mixing
+    - has_active_mixer
+    - has_pulsing_description
+    class_uri: strendcat_biocatalysis:TubularFlowReactor
+  MixingImpeller:
+    name: MixingImpeller
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MixingImpeller
+    description: A stirring device that is a physical part of a StirredTankReactor,
+      including magnetic stir bars, mechanical stirrers, and overhead impellers.
+    todos:
+    - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: Device
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - stirring_type
+    - stirrer_material
+    - supplied_by
+    - number_of_stirrers
+    - distance_between_stirrers
+    - blade_pitch_angle
+    - number_of_blades
+    - blade_size
+    - stirrer_geometry
+    - stirrer_speed
+    - height_above_vessel_base
+    - power_per_volume_input
+    - stir_bar_size
+    - stir_bar_shape
+    class_uri: strendcat_biocatalysis:MixingImpeller
+  Shaker:
+    name: Shaker
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Shaker
+    description: An external shaking device acting on a reaction vessel to achieve
+      mixing. Linked to BiocatalyticExperiment via carried_out_by.
+    todos:
+    - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
+    - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus, which is
+      required for carried_out_by on BiocatalyticExperiment to accept Shaker as range
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: Device
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - shaking_type
+    - deflection
+    - shaking_speed
+    - shaking_position
+    class_uri: strendcat_biocatalysis:Shaker
+  GasSupplySystem:
+    name: GasSupplySystem
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/GasSupplySystem
+    description: A device that supplies gas to a StirredTankReactor, forming a part
+      of it via has_part.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: Device
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - has_gas_phase
+    - gas_supply_method
+    - has_flow_rate
+    class_uri: strendcat_biocatalysis:GasSupplySystem
+  TemperatureControlDevice:
+    name: TemperatureControlDevice
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TemperatureControlDevice
+    description: A device that controls the temperature of a StirredTankReactor (e.g.
+      heating jacket, cooling coil, external thermostat). Forms a part of the reactor
+      via has_part.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/vessel-and-mixing
+    is_a: Device
+    slots:
+    - id
+    - title
+    - description
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - AgenticEntity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - Device_has_part
+    - Device_other_identifier
+    - temperature_control_method
+    class_uri: strendcat_biocatalysis:TemperatureControlDevice
+  SamplingTimepoint:
+    name: SamplingTimepoint
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SamplingTimepoint
+    description: The time at which a sample was taken from the reaction vessel, expressed
+      relative to the start of the reaction.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    - has_time_value
+    - time_unit
+    class_uri: strendcat_biocatalysis:SamplingTimepoint
+  QuenchingRatio:
+    name: QuenchingRatio
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/QuenchingRatio
+    description: The ratio of the volume of quenching solution to the volume of the
+      reaction mixture.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:QuenchingRatio
+  PlannedProcess:
+    name: PlannedProcess
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PlannedProcess
+    description: "A process that realizes a plan \u2014 i.e. it is carried out with\
+      \ the intention of achieving a specified objective. (OBI:0000011 stub)"
+    todos:
+    - Replace with direct OBI import
+    - Verify correct DCAT-AP-Plus ancestor for BFO process classes
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - OBI:0000011
+    is_a: EvaluatedActivity
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    class_uri: OBI:0000011
+  MaterialProcessing:
+    name: MaterialProcessing
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MaterialProcessing
+    description: A planned process that has the objective to produce a material entity
+      by processing input material entities. (OBI:0000094 stub)
+    todos:
+    - Replace with direct OBI import
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - OBI:0000094
+    is_a: PlannedProcess
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    class_uri: OBI:0000094
+  SamplingProcess:
+    name: SamplingProcess
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SamplingProcess
+    description: A PlannedProcess describing how samples were taken from the reaction
+      vessel during a BiocatalyticExperiment, including phase, volume, timing, and
+      vessel state.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    mappings:
+    - OBI:0000744
+    is_a: PlannedProcess
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    - has_sample_volume
+    - has_sampling_timepoint
+    - mixing_during_sampling
+    - vessel_opened_for_sampling
+    - has_gas_phase
+    - sampled_from_phase
+    - biocatalyst_contamination_possible
+    - SamplingProcess_had_output_entity
+    slot_usage:
+      had_output_entity:
+        name: had_output_entity
+        description: The MaterialSample produced by this SamplingProcess.
+        range: MaterialSample
+        multivalued: true
+        inlined_as_list: true
+    class_uri: OBI:0000744
+  SamplePreparationProcess:
+    name: SamplePreparationProcess
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SamplePreparationProcess
+    description: A MaterialProcessing step applied to a collected MaterialSample before
+      analysis, including quenching and further treatment steps.
+    todos:
+    - Identify specific OBI subclass URI for sample preparation
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    is_a: MaterialProcessing
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    - SamplePreparationProcess_has_part
+    slot_usage:
+      has_part:
+        name: has_part
+        description: Subprocess steps of sample preparation, including QuenchingProcess
+          and SampleTreatmentProcess.
+        range: MaterialProcessing
+        multivalued: true
+        inlined_as_list: true
+    class_uri: strendcat_biocatalysis:SamplePreparationProcess
+  QuenchingProcess:
+    name: QuenchingProcess
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/QuenchingProcess
+    description: A reaction-stopping MaterialProcessing step applied to a collected
+      sample. The choice of quenching method directly affects downstream analytical
+      results.
+    todos:
+    - Identify specific OBI subclass URI for quenching (e.g. OBI:0302893 enzymatic
+      inactivation or similar)
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    is_a: MaterialProcessing
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    - quenching_method_type
+    - has_quenching_ratio
+    class_uri: strendcat_biocatalysis:QuenchingProcess
+  SampleTreatmentProcess:
+    name: SampleTreatmentProcess
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SampleTreatmentProcess
+    description: Additional sample processing steps applied after quenching (e.g.
+      filtration, centrifugation, dilution).
+    todos:
+    - Identify specific OBI subclass URI for sample treatment
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+    is_a: MaterialProcessing
+    slots:
+    - id
+    - Activity_title
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    - SampleTreatmentProcess_description
+    slot_usage:
+      description:
+        name: description
+        description: Description of treatment procedure and any additional sample
+          handling steps (STRENDA special_treatment fallback, P-001).
+    class_uri: strendcat_biocatalysis:SampleTreatmentProcess
   Activity:
     name: Activity
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Activity
@@ -9966,7 +11495,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-05-13T08:44:15'
-source_file_size: 2595
-generation_date: '2026-05-13T10:40:50'
+source_file_date: '2026-05-13T10:59:16'
+source_file_size: 2619
+generation_date: '2026-05-13T11:16:57'
 
