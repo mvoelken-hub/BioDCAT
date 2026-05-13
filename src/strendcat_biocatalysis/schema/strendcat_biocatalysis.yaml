@@ -20,7 +20,9 @@ default_range: string
 
 imports:
   - linkml:types
-  - biocatalysis_ap
+  - chem_dcat_ap
+  #- biocatalysis_ap
+  - strendcat-vessels_and_mixing
 
 classes:
 

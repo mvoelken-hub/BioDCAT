@@ -1,0 +1,523 @@
+---
+id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+name: StrenDCAT-Biocatalysis
+title: StrenDCAT-Biocatalysis
+description: |-
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+license: MIT
+see_also:
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
+prefixes:
+  strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+  prov: http://www.w3.org/ns/prov#
+  BFO: http://purl.obolibrary.org/obo/BFO_
+default_prefix: strendcat_biocatalysis
+default_range: string
+
+
+classes:
+  # --- physical / chemical quantity classses ---
+  FlowRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      The volumetric flow rate of a liquid or gas through a reactor or system.
+    todos:
+      - Bind has_quantity_type to qudt:VolumeFlowRate
+
+  ResidenceTime:
+    is_a: QuantitativeAttribute
+    description: >-
+      The average amount of time a substance or component spends inside a
+      specific reactor system (tau).
+    todos:
+      - Bind has_quantity_type to qudt:Time
+
+  PowerPerVolume:
+    is_a: QuantitativeAttribute
+    description: >-
+      The amount of mixing power or energy input per unit volume of the
+      reaction mixture.
+    todos:
+      - Bind has_quantity_type to qudt:PowerPerVolume
+
+  AngularVelocity:
+    is_a: QuantitativeAttribute
+    description: >-
+      The speed or frequency at which a stirrer or shaker operates.
+    todos:
+      - Bind has_quantity_type to qudt:AngularVelocity
+
+  # --- material entity classes ---
+  GasPhase:
+    is_a: MaterialEntity
+    class_uri: CHMO:0002724
+    description: A gas phase present in the reaction medium or headspace.
+    slots:
+      - has_gas_type
+      - has_amount
+
+  # --- vessel classes ---
+  ReactionVessel:
+    is_a: Reactor
+    class_uri: AFE:0000153
+    description: >-
+      A Reactor that serves as the physical container in which a
+      BiocatalyticReaction takes place. Intermediate class between
+      Reactor and specific vessel types.
+
+  Vial:
+    is_a: ReactionVessel
+    description: >-
+      A sealable container used as a reaction vessel, available in various
+      sizes and materials.
+    todos:
+      - Verify Allotrope class URI for vial (AFE:0000022 tentative)
+    slots:
+      - has_volume
+      - vial_size_unit
+      - vial_material
+      - closure_type
+    slot_usage:
+      description:
+        description: >-
+          Additional vial preparation details (STRENDA special_treatment
+          fallback, P-001). Candidate for VesselPreparationProcess in
+          future iteration.
+
+  Plate:
+    is_a: ReactionVessel
+    description: >-
+      A multi-well plate used as a reaction vessel (e.g. microtiter plate,
+      deep-well plate).
+    todos:
+      - Verify Allotrope class URI for plate (AFE:0000036 tentative)
+    slots:
+      - plate_type
+      - plate_material
+      - number_of_wells
+      - well_shape
+      - well_volume
+      - well_arrangement
+      - sealing_method
+      - sealing_material
+      - supplied_by
+    slot_usage:
+      other_identifier:
+        description: Lot number or batch code of the plate (adms:Identifier).
+
+  StirredTankReactor:
+    is_a: ReactionVessel
+    description: >-
+      A vessel with mechanical or magnetic stirring used for biocatalytic
+      reactions, allowing precise regulation of temperature, pH, and mixing.
+    slots:
+      - reactor_material
+      - has_volume
+      - geometry
+      - bottom_type
+    slot_usage:
+      has_part:
+        description: >-
+          Parts of the StirredTankReactor including MixingImpeller,
+          GasSupplySystem, and TemperatureControlDevice.
+        range: Device
+        multivalued: true
+        inlined_as_list: true
+
+  TubularFlowReactor:
+    is_a: ReactionVessel
+    description: >-
+      A tubular or continuous flow reactor used for biocatalytic reactions,
+      including packed bed reactors, plug flow reactors, and microreactors.
+    todos:
+      - Verify Allotrope class URI for tubular flow reactor
+    slots:
+      - reactor_type_description
+      - reactor_material
+      - has_volume
+      - geometry
+      - tubing
+      - has_flow_rate
+      - has_catalyst_localisation
+      - has_residence_time
+      - has_reynolds_number
+      - has_passive_mixing
+      - has_active_mixer
+      - has_pulsing_description
+
+  # --- mixing classes ---
+  MixingImpeller:
+    is_a: Device
+    description: >-
+      A stirring device that is a physical part of a StirredTankReactor,
+      including magnetic stir bars, mechanical stirrers, and overhead impellers.
+    todos:
+      - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
+    slots:
+      - stirring_type
+      - stirrer_material
+      - supplied_by
+      - number_of_stirrers
+      - distance_between_stirrers
+      - blade_pitch_angle
+      - number_of_blades
+      - blade_size
+      - stirrer_geometry
+      - stirrer_speed
+      - height_above_vessel_base
+      - power_per_volume_input
+      - stir_bar_size
+      - stir_bar_shape
+
+  Shaker:
+    is_a: Device
+    description: >-
+      An external shaking device acting on a reaction vessel to achieve
+      mixing. Linked to BiocatalyticExperiment via carried_out_by.
+    todos:
+      - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
+      - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus,
+        which is required for carried_out_by on BiocatalyticExperiment
+        to accept Shaker as range
+    slots:
+      - shaking_type
+      - deflection
+      - shaking_speed
+      - shaking_position
+
+  GasSupplySystem:
+    is_a: Device
+    description: >-
+      A device that supplies gas to a StirredTankReactor, forming a part
+      of it via has_part.
+    slots:
+      - has_gas_phase
+      - gas_supply_method
+      - has_flow_rate
+
+  TemperatureControlDevice:
+    is_a: Device
+    description: >-
+      A device that controls the temperature of a StirredTankReactor
+      (e.g. heating jacket, cooling coil, external thermostat). Forms a
+      part of the reactor via has_part.
+    slots:
+      - temperature_control_method
+
+
+slots:
+# --- vessel slots ---
+  vial_size_unit:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Unit for vial size (mL for volume, cm for dimensions).
+
+  vial_material:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the vial (e.g. glass, plastic).
+
+  closure_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of closure or stopper used for the vial. Affects sealing and
+      reaction course. Note if no closure was used.
+
+  plate_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Type of plate (e.g. microtiter plate, deep-well plate).
+
+  plate_material:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the plate (e.g. polystyrene, glass, metal).
+
+  number_of_wells:
+    slot_uri: #TODO
+    range: integer
+    description: Total number of wells or cavities in the plate.
+
+  well_shape:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Shape of the wells (e.g. round, rectangular, square).
+
+  well_volume:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: Volume
+    description: The volume of each well, typically expressed in µL.
+
+  well_arrangement:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Arrangement of wells in the plate (rows and columns).
+
+  sealing_method:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Whether and how wells were sealed (sealing film or lid).
+
+  sealing_material:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Material of the sealing film or lid.
+
+  supplied_by:
+    slot_uri: prov:wasAttributedTo
+    range: Agent
+    description: >-
+      The commercial supplier or research group that provided this material.
+      Maps to the STRENDA supplier string via Agent.name (foaf:name).
+
+  reactor_material:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The material from which the reactor is constructed
+      (e.g. glass, polypropylene, stainless steel).
+
+  bottom_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: Shape of the reactor bottom (e.g. round bottom, flat bottom).
+
+  reactor_type_description:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of the tubular flow reactor type (e.g. packed bed reactor,
+      plug flow reactor, microreactor).
+
+  tubing:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Details of tubing used in the reactor including material, diameter,
+      length, and connections.
+
+  has_flow_rate:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: FlowRate
+    description: >-
+      The volumetric flow rate through the reactor or gas supply system.
+
+  has_catalyst_localisation:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The location of the biocatalyst within the tubular flow reactor
+      (e.g. suspended in liquid phase, immobilised on support matrix or membrane).
+
+  has_residence_time:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: ResidenceTime
+    description: >-
+      The average residence time (tau) of the reaction mixture in the
+      tubular flow reactor.
+
+  has_reynolds_number:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The Reynolds number indicating flow regime (laminar, turbulent, or
+      transitional) in the reactor.
+
+  has_passive_mixing:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of passive mixing achieved through coil geometry or
+      flow patterns without external agitation.
+
+  has_active_mixer:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of an active T- or Y-mixer including inlet ports,
+      chamber, and control details.
+
+  has_pulsing_description:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Description of pulsing process involving periodic injection of
+      reactants or additives.
+
+# --- mixing slots ---
+  stirring_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of stirring (e.g. magnetic from vessel bottom, mechanical,
+      overhead).
+
+  stirrer_material:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Composition of the stirrer (e.g. PTFE-coated magnetic, stainless
+      steel).
+
+  number_of_stirrers:
+    slot_uri: #TODO
+    range: integer
+    description: Number of stirrers present in the system.
+
+  distance_between_stirrers:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Distance between stirring rods or impellers within the vessel.
+
+  blade_pitch_angle:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      The pitch angle of impeller blades relative to the plane of rotation,
+      expressed in degrees.
+
+  number_of_blades:
+    slot_uri: #TODO
+    range: integer
+    description: Number of blades on each stirrer impeller.
+
+  blade_size:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Size (diameter) of the impeller blades.
+
+  stirrer_geometry:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Morphology of the impeller (e.g. radial, axial, helical ribbon,
+      paddle).
+
+  stirrer_speed:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: AngularVelocity
+    description: Speed or frequency of stirring (RPM, Hz, or rad/s).
+
+  height_above_vessel_base:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      Vertical distance between the vessel bottom and the lowest point of
+      the stirrer.
+
+  power_per_volume_input:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: PowerPerVolume
+    description: Stirring power input per unit volume of reaction mixture.
+
+  stir_bar_size:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: >-
+      Length, diameter, or volume of the stir bar used in the experiment.
+
+  stir_bar_shape:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Shape of the stir bar (e.g. cylindrical, octagonal, oval). Affects
+      mixing patterns and efficiency.
+
+  shaking_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Type of shaking motion (e.g. horizontal, vertical, back-and-forth,
+      circulatory).
+
+  deflection:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: QuantitativeAttribute
+    description: Extent of deflection of the shaker from its original position.
+
+  shaking_speed:
+    slot_uri: #TODO
+    is_a: has_quantitative_attribute
+    range: AngularVelocity
+    description: Speed or frequency of shaking (rpm or Hz).
+
+  shaking_position:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Orientation of the reaction vessel in the shaking system relative
+      to deflection.
+
+  has_gas_phase:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: GasPhase
+    multivalued: true
+    inlined_as_list: true
+    description: A gas phase present in the reaction medium or headspace.
+
+  gas_supply_method:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Method of gas introduction into the reactor (e.g. sparging via tube,
+      aeration basket, bubbling, direct injection).#
+
+  temperature_control_method:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Method used to control reactor temperature (e.g. heating jacket,
+      cooling coil, external temperature control unit).
+
+  # --- material entity classes ---
+  has_gas_type:
+    slot_uri: #TODO
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The type of gas present (e.g. nitrogen, oxygen, carbon dioxide, argon).
