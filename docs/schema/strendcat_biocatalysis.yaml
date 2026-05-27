@@ -9,6 +9,7 @@ imports:
 - chem_dcat_ap
 - strendcat_vessels-and-mixing
 - strendcat_sampling
+- strendcat_results
 - dcatapplus:latest/schema/dcat_ap_plus
 - chemical_entities_ap
 - chemical_reaction_ap
@@ -11495,7 +11496,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-05-13T10:59:16'
-source_file_size: 2619
-generation_date: '2026-05-13T11:16:57'
+source_file_date: '2026-05-27T13:36:25'
+source_file_size: 2642
+generation_date: '2026-05-27T14:15:04'
 

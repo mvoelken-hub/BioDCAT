@@ -19,7 +19,7 @@ default_range: string
 
 
 classes:
-# --- physical / chemical quantity classes
+# --- physical / chemical quantity classes ---
   SamplingTimepoint:
     is_a: QuantitativeAttribute
     description: >-

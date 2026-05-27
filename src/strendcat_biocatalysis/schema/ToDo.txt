@@ -1,0 +1,5 @@
+1. Finalisiere Modularisierung
+2. Checke HB's ToDo's (strg + F)
+3. Class Mapping
+4. Checke HB's ToDo's (strg + F) erneut für alle Sachen, die erst nach Mapping gemacht werden können.
+5. Lösche ChemDCAT Import und ergänze (neue) fehlenden Klassen (copy aus ChemDCAT)[sollten somit direkt gemappt sein]
