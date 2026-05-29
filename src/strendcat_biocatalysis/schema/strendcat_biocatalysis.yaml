@@ -22,9 +22,10 @@ imports:
   - linkml:types
   - chem_dcat_ap
   #- biocatalysis_ap
-  - strendcat_vessels-and-mixing
-  - strendcat_sampling
-  - strendcat_results
+  - strendcat_biocat_vessels-and-mixing
+  - strendcat_biocat_sampling
+  - strendcat_biocat_results
+  - strendcat_biocat_reaction-conditions
 
 classes:
 
