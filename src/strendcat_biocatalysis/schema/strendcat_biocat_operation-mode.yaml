@@ -20,3 +20,4 @@ default_range: string
 
 
 # MAYBE NO SEPERATE YAML-FILE NECESSARY
+# Note: Operation mode is implemented as slot where needed
