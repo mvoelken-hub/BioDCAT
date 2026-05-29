@@ -18,5 +18,158 @@ prefixes:
 default_prefix: strendcat_biocatalysis
 default_range: string
 
+enums:
+  ComponentRoleEnum:
+    description: >-
+      The functional role of a chemical component in a biocatalytic reaction.
+      Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter
+      may leave this unpopulated.
+    permissible_values:
+      Substrate:
+        meaning: CHEBI:78675
+      Cofactor:
+        meaning: CHEBI:23357
+      Buffer:
+        meaning: CHEBI:35225
+      Cosolvent:
+        meaning: CHEBI:46787
+      SaltIon:
+        meaning: CHEBI:24867
+      InternalStandard:
+        meaning: CHEBI:50504
+      Other:
 
-# MAYBE NO SEPERATE YAML-FILE NECESSARY
+classes:
+# --- component classes ---
+  BiocatalyticComponent:
+    is_a: ChemicalEntity #ChemicalSubstance
+    class_uri: CHEBI:59999
+    description: >-
+      A ChemicalSubstance present in the reaction mixture of a biocatalytic
+      experiment, regardless of its functional role (substrate, cofactor,
+      buffer, cosolvent, etc.). Role differentiation is optional per P-002.
+    slots:
+      - has_component_role
+      - has_concentration
+      - has_solubility_limit
+      - has_purity
+      - supplied_by
+      - has_formulation
+      - has_storage_conditions
+    slot_usage:
+      other_identifier:
+        description: >-
+          One or more persistent identifiers for the component such as CAS
+          number, PubChem CID, InChI, or similar database identifiers.
+      description:
+        description: >-
+          Free-text description of additional component characteristics not
+          covered by other slots (STRENDA special_treatment fallback, P-001).
+          Flagged as candidate for future structured modelling.
+
+# --- range classes ---
+  Purity:
+    is_a: QuantitativeAttribute
+    class_uri: AFR:0002010
+    description: >-
+      A QuantitativeAttribute expressing the percentage of the pure or desired
+      compound relative to the total mass or volume of a substance preparation.
+    close_mappings:
+      - PATO:0001723
+    todos:
+      - Verify AFR:0002010 mapping; consider PATO:0001958 (purity)
+
+  SolubilityLimit:
+    is_a: QuantitativeAttribute
+    description: >-
+      The maximum concentration of a component that can dissolve in a solution
+      or gas phase under given conditions.
+    close_mappings:
+      - PATO:0001656
+
+  StorageConditions:
+    is_a: QuantitativeAttribute
+    description: >-
+      The conditions under which a biocatalyst preparation or reaction
+      component is stored, including temperature, start date, and additives.
+      Modelled as a QuantitativeAttribute cluster rather than Entity since
+      it describes measurable environmental conditions of a material entity.
+    slots:
+      - has_temperature
+      - storage_start
+      - has_storage_additive
+
+  StorageAdditive:
+    is_a: ChemicalEntity #ChemicalSubstance
+    description: >-
+      A ChemicalSubstance added to a storage medium to preserve or stabilize
+      a MaterialEntity during storage (e.g. antioxidants, stabilizers,
+      drying agents, inert gases such as argon or nitrogen).
+    todos:
+      - Constrain role via CHEBI role hierarchy in a future iteration
+        (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
+
+
+slots:
+  has_component_role:
+    slot_uri: RO:0000087
+    range: ComponentRoleEnum
+    description: >-
+      The functional role of this component in the biocatalytic reaction.
+      Optional per P-002 — a structural converter may leave this unpopulated;
+      a smarter converter or human annotator populates it from CHEBI roles.
+    recommended: true
+
+  has_solubility_limit:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: SolubilityLimit
+    description: >-
+      The maximum concentration of this component that can dissolve in the
+      reaction solution under the given conditions.
+
+  supplied_by:
+    slot_uri: prov:wasAttributedTo
+    range: Agent
+    description: >-
+      The commercial supplier or research group that provided this material.
+      Maps to the STRENDA supplier string via Agent.name (foaf:name).
+
+  has_purity:
+    slot_uri: SIO:000008
+    is_a: has_quantitative_attribute
+    range: Purity
+    description: >-
+      The purity of the biocatalyst or component as a percentage of the
+      pure compound relative to the total preparation.
+
+  has_formulation:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      The physical state in which the biocatalyst or component is present
+      (e.g. dissolved, powder, suspension).
+
+  has_storage_conditions:
+    slot_uri: SIO:000008
+    range: StorageConditions
+    description: >-
+      The conditions under which the biocatalyst preparation or component
+      is stored.
+    inlined: true
+
+  storage_start:
+    slot_uri: dcterms:created
+    range: date
+    description: The date since which the material entity has been stored.
+
+  has_storage_additive:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: StorageAdditive
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Additives present in the storage medium to preserve or stabilize
+      the material entity.
