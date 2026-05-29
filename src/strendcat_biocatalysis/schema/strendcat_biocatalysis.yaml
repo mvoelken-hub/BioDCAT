@@ -26,6 +26,7 @@ imports:
   - strendcat_biocat_sampling
   - strendcat_biocat_results
   - strendcat_biocat_reaction-conditions
+  - strendcat_biocat_biocatalyst
 
 classes:
 
