@@ -1,0 +1,502 @@
+---
+id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+name: StrenDCAT-Biocatalysis
+title: StrenDCAT-Biocatalysis
+description: |-
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+license: MIT
+see_also:
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
+prefixes:
+  strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: strendcat_biocatalysis
+default_range: string
+
+imports:
+  - linkml:types
+  - chem_dcat_ap
+  - strendcat_biocat_common
+
+#enums:
+#  BiocatalystApplicationFormEnum:
+#    description: >-
+#      The physical form in which a biocatalyst is applied in an experiment.
+#    permissible_values:
+#      PurifiedEnzyme:
+#        meaning: OBI:0000925
+#      CrudeCellExtract:
+#        meaning: OBI:0000261
+#      WholeCell:
+#        meaning: OBI:0000651
+#      SecretedEnzyme:
+#        description: Enzyme secreted into culture supernatant and separated from cells.
+#      CellFreeProduction:
+#        meaning: OBI:0000737
+#      Immobilised:
+#        description: Biocatalyst attached to or entrapped within a carrier material.
+#
+#  DryingMethodEnum:
+#    description: Method used to remove moisture from a biocatalyst preparation.
+#    permissible_values:
+#      FreezeDrying:
+#        description: Lyophilization — moisture removed under vacuum from frozen material.
+#      SprayDrying:
+#        description: Solution atomized into small particles before drying.
+#      VacuumDrying:
+#        description: Moisture removed through low-pressure conditions.
+#      Other:
+
+
+classes:
+  Biocatalyst:
+    is_a: Catalyst
+    class_uri: CHEBI:23888
+    description: >-
+      An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of
+      Catalyst (AgenticEntity). The physical form in which it is applied is
+      described by an associated BiocatalystPreparation.
+    slots:
+      - ec_number
+      - sequence_amino_acid
+      - sequence_DNA
+      - origin_organism
+      - posttranslational_modification
+      - molecular_weight
+      - is_self_produced
+      - has_biocatalyst_production_process
+    slot_usage:
+      title:
+        description: >-
+          The name of the biocatalyst, either generic (e.g. 'lipase') or
+          specific (genus and species, e.g. 'Candida antarctica lipase B').
+        required: true
+      other_identifier:
+        description: >-
+          Identifiers for the biocatalyst such as UniProt accession,
+          EC number reference, or other database identifiers.
+      has_quantitative_attribute:
+        description: >-
+          Quantitative attributes of the biocatalyst entity, such as
+          molecular weight.
+
+#  BiocatalystProductionProcess:
+#    is_a: MaterialProcessing
+#    description: >-
+#      A MaterialProcessing that describes how a biocatalyst was produced,
+#      including the production organism, plasmid, and purification steps.
+#      Only present when Biocatalyst.is_self_produced is true.
+#    todos:
+#      - Identify specific OBI subclass URI (e.g. OBI:0000070 protein expression)
+#    slots:
+#      - production_organism
+#      - sequence_plasmid
+#      - plasmid_specifications
+#      - purification_method
+#      - has_purity
+#      - purity_specification
+
+  BiocatalystPreparation:
+    is_a: SubstanceSample
+    class_uri: OBI:0000747
+    description: >-
+      The physical form in which a Biocatalyst is applied in a
+      BiocatalyticExperiment. Derived from the Biocatalyst entity via
+      prov:wasDerivedFrom. Subclasses encode the specific application form;
+      the application_form slot is retained here for P-002 converter
+      compatibility but is redundant with the subclass type.
+    todos:
+      - Consider removing application_form from base class once converters
+        reliably instantiate the correct subclass (redundant with rdf:type)
+    slots:
+      - application_form
+      - has_concentration
+      - has_activity
+      - has_formulation
+      - has_storage_conditions
+      - had_drying_process
+    slot_usage:
+      derived_from:
+        description: The Biocatalyst from which this preparation was derived.
+        range: Biocatalyst
+        required: true
+
+  PurifiedEnzymePreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000925
+    description: A BiocatalystPreparation consisting of a purified enzyme solution.
+    slots:
+      - concentration_determination_method
+      - activity_determination_method
+
+  CrudeCellExtractPreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000261
+    description: >-
+      A BiocatalystPreparation consisting of a crude cell extract obtained
+      by cell disruption.
+    slots:
+      - cell_disruption_process
+      - concentration_determination_method
+
+  WholeCellPreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000651
+    description: >-
+      A BiocatalystPreparation in which whole cells serve as the biocatalyst.
+    slots:
+      - harvesting_method
+      - concentration_determination_method
+
+  SecretedEnzymePreparation:
+    is_a: BiocatalystPreparation
+    description: >-
+      A BiocatalystPreparation consisting of an enzyme secreted into the
+      culture supernatant and separated from cells.
+    todos:
+      - Find appropriate OBI or CHEBI class URI for secreted enzyme preparation
+    slots:
+      - separation_method
+      - concentration_determination_method
+
+  CellFreePreparation:
+    is_a: BiocatalystPreparation
+    class_uri: OBI:0000737
+    description: >-
+      A BiocatalystPreparation produced by cell-free expression, where
+      synthesis occurs outside living cells using extracted cellular machinery.
+    slots:
+      - source_of_cellfree_extract
+      - concentration_determination_method
+
+  ImmobilisedPreparation:
+    is_a: BiocatalystPreparation
+    description: >-
+      A BiocatalystPreparation in which the biocatalyst is attached to or
+      entrapped within a carrier material. Always derived from another
+      BiocatalystPreparation via prov:wasDerivedFrom.
+    todos:
+      - Find appropriate OBI or Allotrope class URI for immobilised preparation
+    slots:
+      - immobilisation_chemistry
+      - carrier_material
+      - linkers
+      - immobilisation_method
+      - purification_method
+      - concentration_determination_method
+    slot_usage:
+      derived_from:
+        description: >-
+          The BiocatalystPreparation (e.g. PurifiedEnzymePreparation) from
+          which this immobilised preparation was derived.
+        range: BiocatalystPreparation
+        required: true
+
+# --- range classes ---
+  Purity:
+    is_a: QuantitativeAttribute
+    class_uri: AFR:0002010
+    description: >-
+      A QuantitativeAttribute expressing the percentage of the pure or desired
+      compound relative to the total mass or volume of a substance preparation.
+    close_mappings:
+      - PATO:0001723
+    todos:
+      - Verify AFR:0002010 mapping; consider PATO:0001958 (purity)
+
+  DryingProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A MaterialProcessing step in which moisture is removed from a
+      BiocatalystPreparation prior to or during storage.
+    todos:
+      - Identify specific OBI or AFP subclass URI for drying process
+    slots:
+      - drying_method_type
+
+  StorageConditions:
+    is_a: QuantitativeAttribute
+    description: >-
+      The conditions under which a biocatalyst preparation or reaction
+      component is stored, including temperature, start date, and additives.
+      Modelled as a QuantitativeAttribute cluster rather than Entity since
+      it describes measurable environmental conditions of a material entity.
+    slots:
+      - has_temperature
+      - storage_start
+      - has_storage_additive
+
+  StorageAdditive:
+    is_a: ChemicalEntity #ChemicalSubstance
+    description: >-
+      A ChemicalSubstance added to a storage medium to preserve or stabilize
+      a MaterialEntity during storage (e.g. antioxidants, stabilizers,
+      drying agents, inert gases such as argon or nitrogen).
+    todos:
+      - Constrain role via CHEBI role hierarchy in a future iteration
+        (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
+
+
+#slots: 
+#  ec_number:
+#    slot_uri: SIO:001235
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Numerical classification of the enzyme based on its biochemical
+#      function, e.g. EC 3.1.4.12.
+#
+#  sequence_amino_acid:
+#    slot_uri: SIO:010016
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The amino acid sequence of the biocatalyst in one-letter or
+#      three-letter code. Refer to UniProt for standardized sequences.
+#
+#  sequence_DNA:
+#    slot_uri: SIO:010015
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The DNA sequence of the biocatalyst including any tags and linkers.
+#
+#  origin_organism:
+#    slot_uri: SIO:010079
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The genus and species of the organism from which the biocatalyst
+#      is derived or isolated.
+#
+#  posttranslational_modification:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Chemical modifications to the biocatalyst protein after translation
+#      (e.g. phosphorylation, glycosylation, acetylation).
+#
+#  molecular_weight:
+#    slot_uri: SIO:000119
+#    is_a: has_quantitative_attribute
+#    range: QuantitativeAttribute
+#    description: >-
+#      The molecular weight of the biocatalyst, expressed in Da or kDa.
+#    todos:
+#      - Bind to QUDT MolarMass quantity type
+#
+#  is_self_produced:
+#    range: boolean
+#    required: true
+#    description: >-
+#      True if the biocatalyst was produced in-house; false if purchased
+#      from a commercial supplier. Self-produced biocatalysts should have
+#      an associated BiocatalystProductionProcess.
+#
+#  has_biocatalyst_production_process:
+#    slot_uri: prov:wasGeneratedBy
+#    range: BiocatalystProductionProcess
+#    description: >-
+#      The production process by which this biocatalyst was generated.
+#      Only present when is_self_produced is true.
+#    inlined: true
+#
+#  production_organism:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The organism used to produce the biocatalyst, relevant in the
+#      context of heterologous gene expression.
+#
+#  sequence_plasmid:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The DNA sequence of the plasmid used to produce the biocatalyst,
+#      or a database identifier for it.
+#
+#  plasmid_specifications:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      All DNA sequence changes such as codon optimization or mutations
+#      introduced into the plasmid.
+#
+#  purification_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method(s) used to purify the biocatalyst, e.g. chromatography,
+#      precipitation, ultrafiltration.
+#
+#  has_purity:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: Purity
+#    description: >-
+#      The purity of the biocatalyst or component as a percentage of the
+#      pure compound relative to the total preparation.
+#    
+#  purity_specification:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Description of how the purity of the biocatalyst was determined,
+#      e.g. gel electrophoresis, HPLC, Bradford assay.
+#
+#  application_form:
+#    range: BiocatalystApplicationFormEnum
+#    required: true
+#    description: >-
+#      The physical form in which the biocatalyst is applied in the
+#      experiment.
+#
+#  has_activity:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SpecificActivity
+#    description: >-
+#      The catalytic activity of the biocatalyst preparation, expressed
+#      as volumetric or specific activity.
+#
+#  has_formulation:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The physical state in which the biocatalyst or component is present
+#      (e.g. dissolved, powder, suspension).
+#
+#  has_storage_conditions:
+#    slot_uri: SIO:000008
+#    range: StorageConditions
+#    description: >-
+#      The conditions under which the biocatalyst preparation or component
+#      is stored.
+#    inlined: true
+#
+#  had_drying_process:
+#    slot_uri: prov:wasGeneratedBy
+#    range: DryingProcess
+#    description: >-
+#      A drying step applied to the biocatalyst preparation prior to or
+#      during storage.
+#    inlined: true
+#
+#  concentration_determination_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method used to determine the concentration of the biocatalyst
+#      preparation (e.g. Bradford assay, UV absorption, activity assay).
+#
+#  activity_determination_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method used to determine enzyme activity
+#      (e.g. spectrophotometric, colorimetric, fluorometric assay).
+#
+#  cell_disruption_process:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method used to disrupt cells to obtain the crude cell extract
+#      (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).
+#    todos:
+#      - P-001 candidate: could be modelled as CellDisruptionProcess (subclass of OBI:0000094) with method_type enum in a future iteration
+#
+#  harvesting_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method used to harvest whole cells from culture
+#      (e.g. centrifugation, filtration).
+#    todos:
+#      - P-001 candidate: could be modelled as CellHarvestingProcess (subclass of OBI:0000094) in a future iteration
+#
+#  separation_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The method used to separate the secreted enzyme supernatant from cells
+#      (e.g. centrifugation, filtration).
+#    todos:
+#      - P-001 candidate: could be modelled as SeparationProcess (subclass of OBI:0000094) in a future iteration
+#
+#  source_of_cellfree_extract:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The organism or cell type from which the cell-free extract is derived.
+#
+#  immobilisation_chemistry:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The chemical strategy used to immobilise the biocatalyst
+#      (e.g. covalent bonding, adsorption, crosslinking, encapsulation).
+#
+#  carrier_material:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The support material used for immobilisation (name, type, supplier,
+#      product details).
+#    todos:
+#      - P-001 candidate: carrier_material is a MaterialEntity with its own identity; could be modelled as a ChemicalSubstance or MaterialEntity subclass with supplied_by slot in a future iteration
+#
+#  linkers:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Chemical linkers or spacers used to connect the biocatalyst to the
+#      carrier material.
+#    todos:
+#      - P-001 candidate: linkers are ChemicalSubstances with a specific role; could be modelled as ChemicalSubstance with CHEBI linker role in a future iteration
+#
+#  immobilisation_method:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Detailed description of the immobilisation procedure.
+#
+#  drying_method_type:
+#    range: DryingMethodEnum
+#    description: The type of drying method applied to the biocatalyst preparation.
+#
+#  storage_start:
+#    slot_uri: dcterms:created
+#    range: date
+#    description: The date since which the material entity has been stored.
+#
+#  has_storage_additive:
+#    slot_uri: BFO:0000051
+#    is_a: has_part
+#    range: StorageAdditive
+#    multivalued: true
+#    inlined_as_list: true
+#    description: >-
+#      Additives present in the storage medium to preserve or stabilize
+#      the material entity.

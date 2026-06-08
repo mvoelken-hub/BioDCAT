@@ -17,6 +17,10 @@ prefixes:
 default_prefix: strendcat_biocatalysis
 default_range: string
 
+imports:
+  - linkml:types
+  - chem_dcat_ap
+  - strendcat_biocat_common
 
 classes:
 # --- physical / chemical quantity classes ---
@@ -130,73 +134,73 @@ classes:
           handling steps (STRENDA special_treatment fallback, P-001).
 
 
-slots:
-  has_sample_volume:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: Volume
-    description: Volume of the collected sample.
-
-  has_sampling_timepoint:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: SamplingTimepoint
-    description: The timepoint at which the sample was taken.
-    inlined: true
-
-  mixing_during_sampling:
-    slot_uri: SIO:000008
-    range: boolean
-    description: >-
-      Whether the reaction was mixed during sampling. Affects the
-      representativeness of the collected sample.
-
-  vessel_opened_for_sampling:
-    slot_uri: SIO:000008
-    range: boolean
-    description: Whether the reaction vessel was opened for sampling.
-  
-  sampled_from_phase:
-    slot_uri: SIO:000008
-    range: MaterialEntity
-    multivalued: true
-    inlined_as_list: true
-    description: >-
-      The phase(s) from which the sample was collected. Range is
-      LiquidPhase, SolidPhase, or GasPhase (reuse from D-006).
-
-  biocatalyst_contamination_possible:
-    slot_uri: SIO:000008
-    range: boolean
-    description: >-
-      Whether the collected sample may be contaminated with the biocatalyst.
-
-  quenching_method_type:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      The technique used to stop the reaction (e.g. heat treatment, organic
-      solvent, acid/base addition, freezing).
-    todos:
-      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
-        AcidBase, Freezing, Other) in a future iteration.
-
-  has_quenching_ratio:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: QuenchingRatio
-    description: >-
-      The ratio of quenching solution volume to reaction mixture volume.
-
-  has_time_value:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: float
-    description: A time value as a numeric quantity.
-
-  time_unit:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: Unit for a time value (s, min, h).
+#slots:
+#  has_sample_volume:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: Volume
+#    description: Volume of the collected sample.
+#
+#  has_sampling_timepoint:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SamplingTimepoint
+#    description: The timepoint at which the sample was taken.
+#    inlined: true
+#
+#  mixing_during_sampling:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: >-
+#      Whether the reaction was mixed during sampling. Affects the
+#      representativeness of the collected sample.
+#
+#  vessel_opened_for_sampling:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: Whether the reaction vessel was opened for sampling.
+#  
+#  sampled_from_phase:
+#    slot_uri: SIO:000008
+#    range: MaterialEntity
+#    multivalued: true
+#    inlined_as_list: true
+#    description: >-
+#      The phase(s) from which the sample was collected. Range is
+#      LiquidPhase, SolidPhase, or GasPhase (reuse from D-006).
+#
+#  biocatalyst_contamination_possible:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: >-
+#      Whether the collected sample may be contaminated with the biocatalyst.
+#
+#  quenching_method_type:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The technique used to stop the reaction (e.g. heat treatment, organic
+#      solvent, acid/base addition, freezing).
+#    todos:
+#      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
+#        AcidBase, Freezing, Other) in a future iteration.
+#
+#  has_quenching_ratio:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: QuenchingRatio
+#    description: >-
+#      The ratio of quenching solution volume to reaction mixture volume.
+#
+#  has_time_value:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: float
+#    description: A time value as a numeric quantity.
+#
+#  time_unit:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: Unit for a time value (s, min, h).

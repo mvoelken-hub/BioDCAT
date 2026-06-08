@@ -18,19 +18,24 @@ prefixes:
 default_prefix: strendcat_biocatalysis
 default_range: string
 
-enums:
-# --- enumerations ---
-  InhibitionTypeEnum:
-    description: Type of enzyme inhibition observed.
-    permissible_values:
-      Competitive:
-        meaning: SIO:010997
-      NonCompetitive:
-        meaning: SIO:010998
-      Uncompetitive:
-        meaning: SIO:010999
-      Mixed:
-      Irreversible:
+imports:
+  - linkml:types
+  - chem_dcat_ap
+  - strendcat_biocat_common
+
+#enums:
+## --- enumerations ---
+#  InhibitionTypeEnum:
+#    description: Type of enzyme inhibition observed.
+#    permissible_values:
+#      Competitive:
+#        meaning: SIO:010997
+#      NonCompetitive:
+#        meaning: SIO:010998
+#      Uncompetitive:
+#        meaning: SIO:010999
+#      Mixed:
+#      Irreversible:
 
 classes:
 # --- results classes ---
@@ -296,169 +301,169 @@ classes:
     todos:
       - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
 
-slots:
-  has_specific_activity:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: SpecificActivity
-    description: Specific activity of the biocatalyst.
-
-  has_initial_reaction_rate:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: InitialReactionRate
-    description: Initial reaction rate in the first 10% of the reaction.
-
-  has_michaelis_constant:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: MichaelisConstant
-    description: The Michaelis-Menten constant (Km) of the enzyme.
-
-  has_maximum_reaction_rate:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: MaximumReactionRate
-    description: The maximum reaction rate (Vmax) of the enzyme.
-
-  has_turnover_number:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: TurnoverNumber
-    description: The turnover number (kcat) of the enzyme.
-
-  has_catalytic_efficiency:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: CatalyticEfficiency
-    description: The catalytic efficiency (kcat/Km) of the enzyme.
-
-  has_dissociation_constant:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: DissociationConstant
-    description: The dissociation constant (Kd) of the enzyme-substrate complex.
-
-  has_hill_coefficient:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: HillCoefficient
-    description: The Hill coefficient describing binding cooperativity.
-
-  has_inhibition_characterisation:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: EnzymeInhibitionCharacterisation
-    description: Inhibition type and constant for the enzyme.
-    inlined: true
-
-  has_enzyme_stability:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: EnzymeStabilityCharacterisation
-    description: Stability characterisation of the biocatalyst.
-    inlined: true
-
-  has_enantioselectivity_ratio:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: EnantioselectivityRatio
-    description: Enantiomeric ratio (E) of the biocatalytic reaction.
-
-  has_enantiomeric_excess:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: EnantiomericExcess
-    description: Enantiomeric excess (ee) of the product.
-
-  has_diastereomeric_excess:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: DiastereomericExcess
-    description: Diastereomeric excess (de) of the product.
-
-  has_isomeric_content:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: IsomericContent
-    description: Isomeric content of the product as a percentage.
-
-  stereoselectivity_description:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      Qualitative description of stereoselectivity — the preference of the
-      reaction to produce a specific stereoisomer or spatial arrangement.
-
-  chemoselectivity_description:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      Qualitative description of chemoselectivity — the ability to target
-      a specific functional group without affecting others.
-
-  regioselectivity_description:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      Qualitative description of regioselectivity — the preference for
-      reaction at a specific site within the molecule.
-
-  has_gibbs_free_energy_change:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: GibbsFreeEnergyChange
-    description: Change in Gibbs free energy (delta G) for the reaction.
-
-  has_enthalpy_change:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: EnthalpyChange
-    description: Change in enthalpy (delta H) for the reaction.
-
-  has_space_time_yield:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: SpaceTimeYield
-    description: >-
-      The mass of product obtained per unit volume per unit time
-      (volumetric productivity).
-
-  has_substrate_conversion:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: SubstrateConversion
-    description: >-
-      The percentage of substrate converted to desired product.
-
-  has_half_life:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: HalfLife
-    description: >-
-      The half-life of the biocatalyst under defined conditions.
-
-  stability_description:
-    slot_uri: SIO:000008
-    is_a: has_qualitative_attribute
-    range: string
-    description: >-
-      Qualitative description of enzyme stability including activity decline
-      profile and preservation conditions.
-
-  inhibition_type:
-    slot_uri: SIO:000008
-    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
-    range: InhibitionTypeEnum
-    description: >-
-      The type of enzyme inhibition observed (competitive, non-competitive,
-      uncompetitive, mixed, or irreversible).
-
-  has_inhibition_constant:
-    slot_uri: SIO:000008
-    is_a: has_quantitative_attribute
-    range: InhibitionConstant
-    description: The inhibition constant (Ki) of the inhibitor.
+#slots:
+#  has_specific_activity:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SpecificActivity
+#    description: Specific activity of the biocatalyst.
+#
+#  has_initial_reaction_rate:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: InitialReactionRate
+#    description: Initial reaction rate in the first 10% of the reaction.
+#
+#  has_michaelis_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: MichaelisConstant
+#    description: The Michaelis-Menten constant (Km) of the enzyme.
+#
+#  has_maximum_reaction_rate:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: MaximumReactionRate
+#    description: The maximum reaction rate (Vmax) of the enzyme.
+#
+#  has_turnover_number:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: TurnoverNumber
+#    description: The turnover number (kcat) of the enzyme.
+#
+#  has_catalytic_efficiency:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: CatalyticEfficiency
+#    description: The catalytic efficiency (kcat/Km) of the enzyme.
+#
+#  has_dissociation_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: DissociationConstant
+#    description: The dissociation constant (Kd) of the enzyme-substrate complex.
+#
+#  has_hill_coefficient:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: HillCoefficient
+#    description: The Hill coefficient describing binding cooperativity.
+#
+#  has_inhibition_characterisation:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnzymeInhibitionCharacterisation
+#    description: Inhibition type and constant for the enzyme.
+#    inlined: true
+#
+#  has_enzyme_stability:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnzymeStabilityCharacterisation
+#    description: Stability characterisation of the biocatalyst.
+#    inlined: true
+#
+#  has_enantioselectivity_ratio:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnantioselectivityRatio
+#    description: Enantiomeric ratio (E) of the biocatalytic reaction.
+#
+#  has_enantiomeric_excess:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnantiomericExcess
+#    description: Enantiomeric excess (ee) of the product.
+#
+#  has_diastereomeric_excess:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: DiastereomericExcess
+#    description: Diastereomeric excess (de) of the product.
+#
+#  has_isomeric_content:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: IsomericContent
+#    description: Isomeric content of the product as a percentage.
+#
+#  stereoselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of stereoselectivity — the preference of the
+#      reaction to produce a specific stereoisomer or spatial arrangement.
+#
+#  chemoselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of chemoselectivity — the ability to target
+#      a specific functional group without affecting others.
+#
+#  regioselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of regioselectivity — the preference for
+#      reaction at a specific site within the molecule.
+#
+#  has_gibbs_free_energy_change:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: GibbsFreeEnergyChange
+#    description: Change in Gibbs free energy (delta G) for the reaction.
+#
+#  has_enthalpy_change:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnthalpyChange
+#    description: Change in enthalpy (delta H) for the reaction.
+#
+#  has_space_time_yield:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SpaceTimeYield
+#    description: >-
+#      The mass of product obtained per unit volume per unit time
+#      (volumetric productivity).
+#
+#  has_substrate_conversion:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SubstrateConversion
+#    description: >-
+#      The percentage of substrate converted to desired product.
+#
+#  has_half_life:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: HalfLife
+#    description: >-
+#      The half-life of the biocatalyst under defined conditions.
+#
+#  stability_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of enzyme stability including activity decline
+#      profile and preservation conditions.
+#
+#  inhibition_type:
+#    slot_uri: SIO:000008
+#    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
+#    range: InhibitionTypeEnum
+#    description: >-
+#      The type of enzyme inhibition observed (competitive, non-competitive,
+#      uncompetitive, mixed, or irreversible).
+#
+#  has_inhibition_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: InhibitionConstant
+#    description: The inhibition constant (Ki) of the inhibitor.

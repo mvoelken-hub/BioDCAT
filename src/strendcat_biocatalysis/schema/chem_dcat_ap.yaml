@@ -58,7 +58,7 @@ default_prefix: chemdcatap
 default_range: string
 imports:
   - linkml:types
-  - dcatapplus:latest/schema/dcat_ap_plus
+  - https://raw.githubusercontent.com/nfdi-de/dcat-ap-plus/main/src/dcat_ap_plus/schema/dcat_ap_plus
   - chemical_entities_ap
   - chemical_reaction_ap
 
