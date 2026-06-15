@@ -337,19 +337,23 @@ classes:
 
   SpaceTimeYield:
     is_a: QuantitativeAttribute
+    class_uri: VOC4CAT:0005006
     description: >-
-      The mass of product obtained per unit volume of the reactor per unit
-      time. Also referred to as volumetric productivity.
-    todos:
-      - Bind has_quantity_type to qudt:MassPerVolumePerTime
+      TODO: Adjust description with respect to strenda Guidelines
+    #  The mass of product obtained per unit volume of the reactor per unit
+    #  time. Also referred to as volumetric productivity.
+    #todos:
+    #  - Bind has_quantity_type to qudt:MassPerVolumePerTime
 
   SubstrateConversion:
     is_a: QuantitativeAttribute
+    class_uri: VOC4CAT:005004
     description: >-
-      The percentage of substrate that undergoes transformation into the
-      desired product during a reaction.
-    todos:
-      - Bind has_quantity_type to qudt:Dimensionless
+      TODO: Adjust description with respect to strenda Guidelines
+    #  The percentage of substrate that undergoes transformation into the
+    #  desired product during a reaction.
+    #todos:
+    #  - Bind has_quantity_type to qudt:Dimensionless
 
   SpecificActivity:
     is_a: QuantitativeAttribute
