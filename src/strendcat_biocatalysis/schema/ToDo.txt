@@ -1,9 +1,9 @@
-1. Finalisiere Modularisierung
-2. Checke HB's ToDo's (strg + F)
-3. Agentic System für Onto Mapping aufsetzen
-4. Class Mapping
-5. Checke HB's ToDo's (strg + F) erneut für alle Sachen, die erst nach Mapping gemacht werden können.
-6. Lösche ChemDCAT Import und ergänze (neue) fehlenden Klassen (copy aus ChemDCAT)[sollten somit direkt gemappt sein]
+1. Mapping für alle Klassen
+2. Mapping für alle Slots
+3. Mapping für alle Enums
+4. HBS ToDos durchgehen und schauen was noch fehlt
+5. Prüfe Prefix Links
+6. Schema aufräumen
 
 Zusatzaufgabe:
 - DrawIO für StrenDCAT-Biocatalysis erstellen

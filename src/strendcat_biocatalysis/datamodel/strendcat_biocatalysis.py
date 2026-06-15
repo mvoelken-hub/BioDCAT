@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-06-08T09:09:04
+# Generation date: 2026-06-15T11:16:43
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
@@ -94,6 +94,7 @@ CHEMDCATAP = CurieNamespace('chemdcatap', 'https://w3id.org/nfdi-de/dcat-ap-plus
 CHEMICAL_ENTITIES_AP = CurieNamespace('chemical_entities_ap', 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/')
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 DCATAP = CurieNamespace('dcatap', 'http://data.europa.eu/r5r/')
+DCATAP_PLUS = CurieNamespace('dcatap_plus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
 DCATAPPLUS = CurieNamespace('dcatapplus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 ELI = CurieNamespace('eli', 'http://data.europa.eu/eli/ontology#')
@@ -6821,7 +6822,7 @@ slots.has_version = Slot(uri=DCAT.hasVersion, name="has_version", curie=DCAT.cur
 slots.homepage = Slot(uri=FOAF.homepage, name="homepage", curie=FOAF.curie('homepage'),
                    model_uri=STRENDCAT_BIOCATALYSIS.homepage, domain=None, range=Optional[str])
 
-slots.id = Slot(uri=DCATAPPLUS.id, name="id", curie=DCATAPPLUS.curie('id'),
+slots.id = Slot(uri=DCATAP_PLUS.id, name="id", curie=DCATAP_PLUS.curie('id'),
                    model_uri=STRENDCAT_BIOCATALYSIS.id, domain=None, range=URIRef)
 
 slots.identifier = Slot(uri=DCTERMS.identifier, name="identifier", curie=DCTERMS.curie('identifier'),
