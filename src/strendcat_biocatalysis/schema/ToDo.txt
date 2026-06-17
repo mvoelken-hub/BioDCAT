@@ -4,6 +4,8 @@
 4. HBS ToDos durchgehen und schauen was noch fehlt
 5. Prüfe Prefix Links
 6. Schema aufräumen
+7. Robot nutzen um eine "MinimalOntology" zu erzeugen
+8. Beispiel SPARQL Queries
 
 Zusatzaufgabe:
 - DrawIO für StrenDCAT-Biocatalysis erstellen

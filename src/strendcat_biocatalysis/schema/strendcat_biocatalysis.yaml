@@ -165,11 +165,6 @@ enums:
       Suspension:
       Other:
 
-# =============================================================================
-# QUANTITATIVE ATTRIBUTE SUBCLASSES
-# (defined before classes that use them)
-# =============================================================================
-
 classes:
   # =============================================================================
   # Physical / chemical quantity types
@@ -357,11 +352,12 @@ classes:
 
   SpecificActivity:
     is_a: QuantitativeAttribute
+    class_uri: SBO:0000558
     description: >-
       The amount of product formed or substrate consumed per unit of enzyme
       per unit of time. Expressed as µmol/min/mg.
-    todos:
-      - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
+    #todos:
+    #  - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
 
   InitialReactionRate:
     is_a: QuantitativeAttribute
@@ -370,6 +366,7 @@ classes:
       reaction under specific initial substrate concentrations and conditions.
     todos:
       - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+      - Maybe set as subclass
 
   EnantioselectivityRatio:
     is_a: QuantitativeAttribute
