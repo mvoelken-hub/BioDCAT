@@ -1160,15 +1160,14 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      The amino acid sequence of the biocatalyst in one-letter or
-      three-letter code. Refer to UniProt for standardized sequences.
+      A nucleic acid sequence is a symbolic sequence of nucleic acid residues in a nucleic acid.
 
   sequence_DNA:
-    slot_uri: SIO:010015
+    slot_uri: SIO:010015 # protein sequence
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      The DNA sequence of the biocatalyst including any tags and linkers.
+      A protein sequence is a symbolic sequence of amino acid residues in a protein or class of proteins.
 
   origin_organism:
     slot_uri: SIO:010079
