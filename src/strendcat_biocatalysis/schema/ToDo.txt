@@ -1,4 +1,4 @@
-1. Mapping für alle Klassen
+1. Mapping für alle Klassen 	-	(Zum Großteil abgeschlossen, hier und da Rücksprache mit Alex, manche evtl. bei Voc4Cat hinzufügen)
 2. Mapping für alle Slots
 3. Mapping für alle Enums
 4. HBS ToDos durchgehen und schauen was noch fehlt
