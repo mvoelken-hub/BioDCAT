@@ -49,11 +49,13 @@ prefixes:
   adms: http://www.w3.org/ns/adms#
   time: http://www.w3.org/2006/time#
 
-  #TODO set correct uri (EDAM)
   BAO: http://www.bioassayontology.org/bao#BAO_
-  EDAM: https://www.ebi.ac.uk/ols4/ontologies/edam
+  EDAM: http://edamontology.org/data_
   SBO: https://biomodels.net/SBO/SBO_
   UO: https://purl.obolibrary.org/obo/UO_
+  AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
+  NPO: http://purl.bioontology.org/ontology/npo#NPO_
+  CAO: http://champ-project.org/images/ontology/cao.owl#CAO_
 default_prefix: strendcat_biocatalysis
 default_range: string
 
@@ -284,7 +286,7 @@ classes:
 
   CatalyticEfficiency:
     is_a: QuantitativeAttribute
-    class_uir: SBO:0000302
+    class_uri: SBO:0000302
     description: >-
       TODO: Adjust description with respect to strenda Guidelines
     #  The ratio of turnover number to Michaelis constant (kcat/Km), measuring
@@ -364,67 +366,68 @@ classes:
     description: >-
       The rate at which product is formed in the first 10% of the enzymatic
       reaction under specific initial substrate concentrations and conditions.
-    todos:
-      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
-      - Maybe set as subclass
+    #todos:
+    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+    #  - Maybe set as subclass
 
   EnantioselectivityRatio:
     is_a: QuantitativeAttribute
     description: >-
       The enantiomeric ratio (E) defining the enzyme's preference to
       catalyze the transformation of one enantiomer over its mirror image.
-    todos:
-      - Bind has_quantity_type to qudt:Dimensionless
+    #todos:
+    #  - Bind has_quantity_type to qudt:Dimensionless
+    #  - Maybe set as subclass
 
   EnantiomericExcess:
     is_a: QuantitativeAttribute
+    class_uri: AFQ:0000220
     description: >-
       The enantiomeric excess (ee) expressed as a percentage, indicating the
       predominance of one enantiomer over the other in the product.
-    todos:
-      - Bind has_quantity_type to qudt:Dimensionless
+    #todos:
+    #  - Bind has_quantity_type to qudt:Dimensionless
 
   DiastereomericExcess:
     is_a: QuantitativeAttribute
+    class_uri: AFQ:0000217
     description: >-
       The diastereomeric excess (de) expressed as a percentage, indicating
       the predominance of one diastereomer over the other in the product.
-    todos:
-      - Bind has_quantity_type to qudt:Dimensionless
+    #todos:
+    #  - Bind has_quantity_type to qudt:Dimensionless
 
   IsomericContent:
     is_a: QuantitativeAttribute
     description: >-
       The isomeric content expressed as a percentage of a specific isomer
       relative to total product.
-    todos:
-      - Bind has_quantity_type to qudt:Dimensionless
+    #todos:
+    #  - Bind has_quantity_type to qudt:Dimensionless
+    #  - Maybe set as subclass
 
   GibbsFreeEnergyChange:
     is_a: QuantitativeAttribute
+    class_uri: NCIT:C52567
     description: >-
       The change in Gibbs free energy (delta G) for a biocatalytic reaction,
       indicating thermodynamic spontaneity.
-    close_mappings:
-      - PATO:0001546
-    todos:
-      - Bind has_quantity_type to qudt:Energy
-      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+    #todos:
+    #  - Bind has_quantity_type to qudt:Energy
+    #  - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
 
   EnthalpyChange:
     is_a: QuantitativeAttribute
+    class_uri: SBO:0000573
     description: >-
       The change in enthalpy (delta H) for a biocatalytic reaction.
-    close_mappings:
-      - PATO:0001563
-    todos:
-      - Bind has_quantity_type to qudt:Energy
-      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+    #todos:
+    #  - Bind has_quantity_type to qudt:Energy
+    #  - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
 
-# =============================================================================
-# STORAGE CONDITIONS
-# (D-003 — shared between BiocatalystPreparation and BiocatalyticComponent)
-# =============================================================================
+  # =============================================================================
+  # STORAGE CONDITIONS (D-003 — shared between BiocatalystPreparation and BiocatalyticComponent)
+  # =============================================================================
 
   StorageAdditive:
     is_a: ChemicalEntity #ChemicalSubstance
@@ -432,9 +435,10 @@ classes:
       A ChemicalSubstance added to a storage medium to preserve or stabilize
       a MaterialEntity during storage (e.g. antioxidants, stabilizers,
       drying agents, inert gases such as argon or nitrogen).
-    todos:
-      - Constrain role via CHEBI role hierarchy in a future iteration
-        (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
+    #todos:
+    #  - Constrain role via CHEBI role hierarchy in a future iteration
+    #    (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
+    # Maybe set as subclass
 
   StorageConditions:
     is_a: QuantitativeAttribute
@@ -447,26 +451,25 @@ classes:
       - has_temperature
       - storage_start
       - has_storage_additive
+    #todos:
+    # Maybe set as subclass
 
   DryingProcess:
     is_a: MaterialProcessing
+    class_uri: AFP:0001876
     description: >-
       A MaterialProcessing step in which moisture is removed from a
       BiocatalystPreparation prior to or during storage.
-    todos:
-      - Identify specific OBI or AFP subclass URI for drying process
     slots:
       - drying_method_type
 
-# =============================================================================
-# BIOCATALYST
-# (D-002 — Biocatalyst as subclass of Catalyst (AgenticEntity),
-#  BiocatalystPreparation as MaterialSample)
-# =============================================================================
+  # =============================================================================
+  # BIOCATALYST (D-002 — Biocatalyst as subclass of Catalyst (AgenticEntity), BiocatalystPreparation as MaterialSample)
+  # =============================================================================
 
   Biocatalyst:
     is_a: Catalyst
-    class_uri: CHEBI:23888
+    #class_uri: CHEBI:23888
     description: >-
       An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of
       Catalyst (AgenticEntity). The physical form in which it is applied is
@@ -494,6 +497,8 @@ classes:
         description: >-
           Quantitative attributes of the biocatalyst entity, such as
           molecular weight.
+    #todos:
+    # Maybe set to SBO:0000460 (enzymatic catalyst) & PREFER:0000012 (cell biocatalyst) or as seperate subclass
 
   BiocatalystProductionProcess:
     is_a: MaterialProcessing
@@ -501,8 +506,9 @@ classes:
       A MaterialProcessing that describes how a biocatalyst was produced,
       including the production organism, plasmid, and purification steps.
       Only present when Biocatalyst.is_self_produced is true.
-    todos:
-      - Identify specific OBI subclass URI (e.g. OBI:0000070 protein expression)
+    #todos:
+    #  - Identify specific OBI subclass URI
+    # Maybe set as subclass
     slots:
       - production_organism
       - sequence_plasmid
@@ -513,16 +519,16 @@ classes:
 
   BiocatalystPreparation:
     is_a: SubstanceSample
-    class_uri: OBI:0000747
+    #class_uri: OBI:0000747 #(Material Sample)
     description: >-
       The physical form in which a Biocatalyst is applied in a
       BiocatalyticExperiment. Derived from the Biocatalyst entity via
       prov:wasDerivedFrom. Subclasses encode the specific application form;
       the application_form slot is retained here for P-002 converter
       compatibility but is redundant with the subclass type.
-    todos:
-      - Consider removing application_form from base class once converters
-        reliably instantiate the correct subclass (redundant with rdf:type)
+    #todos:
+    #  - Consider removing application_form from base class once converters
+    #    reliably instantiate the correct subclass (redundant with rdf:type)
     slots:
       - application_form
       - has_concentration
@@ -538,51 +544,61 @@ classes:
 
   PurifiedEnzymePreparation:
     is_a: BiocatalystPreparation
-    class_uri: OBI:0000925
+    #class_uri: OBI:0000925 # infectious agent)
     description: A BiocatalystPreparation consisting of a purified enzyme solution.
     slots:
       - concentration_determination_method
       - activity_determination_method
+    #todos:
+    # Maybe set as subclass
 
   CrudeCellExtractPreparation:
     is_a: BiocatalystPreparation
-    class_uri: OBI:0000261
+    #class_uri: OBI:0000261
     description: >-
       A BiocatalystPreparation consisting of a crude cell extract obtained
       by cell disruption.
     slots:
       - cell_disruption_process
       - concentration_determination_method
+    #todos:
+    # Maybe set as subclass
 
   WholeCellPreparation:
     is_a: BiocatalystPreparation
-    class_uri: OBI:0000651
+    #class_uri: OBI:0000651 # (urine specimen)
     description: >-
       A BiocatalystPreparation in which whole cells serve as the biocatalyst.
     slots:
       - harvesting_method
       - concentration_determination_method
+    #todos:
+    # Maybe set as subclass
 
   SecretedEnzymePreparation:
     is_a: BiocatalystPreparation
     description: >-
       A BiocatalystPreparation consisting of an enzyme secreted into the
       culture supernatant and separated from cells.
-    todos:
-      - Find appropriate OBI or CHEBI class URI for secreted enzyme preparation
+    #todos:
+    #  - Find appropriate OBI or CHEBI class URI for secreted enzyme preparation
     slots:
       - separation_method
       - concentration_determination_method
+    #todos:
+    # Maybe set as subclass
 
   CellFreePreparation:
     is_a: BiocatalystPreparation
-    class_uri: OBI:0000737
+    #class_uri: OBI:0000737 # (cloning vector)
     description: >-
       A BiocatalystPreparation produced by cell-free expression, where
       synthesis occurs outside living cells using extracted cellular machinery.
     slots:
       - source_of_cellfree_extract
       - concentration_determination_method
+    #todos:
+    # Maybe set as subclass
 
   ImmobilisedPreparation:
     is_a: BiocatalystPreparation
@@ -590,8 +606,8 @@ classes:
       A BiocatalystPreparation in which the biocatalyst is attached to or
       entrapped within a carrier material. Always derived from another
       BiocatalystPreparation via prov:wasDerivedFrom.
-    todos:
-      - Find appropriate OBI or Allotrope class URI for immobilised preparation
+    #todos:
+    #  - Find appropriate OBI or Allotrope class URI for immobilised preparation
     slots:
       - immobilisation_chemistry
       - carrier_material
@@ -606,11 +622,12 @@ classes:
           which this immobilised preparation was derived.
         range: BiocatalystPreparation
         required: true
+    #todos:
+    # Maybe set as subclass
 
-# =============================================================================
-# BIOCATALYTIC COMPONENT
-# (D-004 — ChemicalSubstance / MaterialEntity)
-# =============================================================================
+  # =============================================================================
+  # BIOCATALYTIC COMPONENT (D-004 — ChemicalSubstance / MaterialEntity)
+  # =============================================================================
 
   BiocatalyticComponent:
     is_a: ChemicalEntity #ChemicalSubstance
@@ -638,14 +655,13 @@ classes:
           covered by other slots (STRENDA special_treatment fallback, P-001).
           Flagged as candidate for future structured modelling.
 
-# =============================================================================
-# REACTION CONDITIONS — PHASE SYSTEM
-# (D-006 — attachment to BiocatalyticReaction via has_reaction_medium)
-# =============================================================================
+  # =============================================================================
+  # REACTION CONDITIONS — PHASE SYSTEM (D-006 — attachment to BiocatalyticReaction via has_reaction_medium)
+  # =============================================================================
 
   ReactionMedium:
     is_a: MaterialEntity
-    class_uri: CHMO:0000892
+    #class_uri: CHMO:0000892 # (proton-decoupled phosphorus-31 nuclear magnetic resonance spectrum)
     description: >-
       The medium in which a biocatalytic reaction takes place, described by
       its phase composition, ionic strength, and additives.
@@ -664,7 +680,7 @@ classes:
 
   LiquidPhase:
     is_a: MaterialEntity
-    class_uri: CHMO:0002722
+    class_uri: BAO:0002164
     description: A liquid phase present in the reaction medium.
     slots:
       - has_liquid_type
@@ -672,7 +688,7 @@ classes:
 
   SolidPhase:
     is_a: MaterialEntity
-    class_uri: CHMO:0002723
+    class_uri: BAO:0002163
     description: A solid phase present in the reaction medium.
     slots:
       - has_solid_type
@@ -680,24 +696,24 @@ classes:
 
   GasPhase:
     is_a: MaterialEntity
-    class_uri: CHMO:0002724
+    class_uri: NPO:1613
     description: A gas phase present in the reaction medium or headspace.
     slots:
       - has_gas_type
       - has_amount
 
-# =============================================================================
-# REACTION CONDITIONS — TEMPERATURE AND pH PROFILES
-# (D-006)
-# =============================================================================
+  # =============================================================================
+  # REACTION CONDITIONS — TEMPERATURE AND pH PROFILES (D-006)
+  # =============================================================================
 
   TemperatureShiftProcess:
     is_a: PlannedProcess
     description: >-
       A PlannedProcess representing an event-based change in temperature
       during a biocatalytic reaction.
-    todos:
-      - Identify specific OBI or AFP subclass URI for temperature shift
+    #todos:
+    #  - Identify specific OBI or AFP subclass URI for temperature shift
+    # Maybe set a subclass
     slots:
       - has_temperature_before
       - has_temperature_after
@@ -709,8 +725,9 @@ classes:
     description: >-
       A PlannedProcess representing a dynamic temperature gradient applied
       over distance or time in a tubular flow reactor.
-    todos:
-      - Identify specific OBI or AFP subclass URI for temperature gradient
+    #todos:
+    #  - Identify specific OBI or AFP subclass URI for temperature gradient
+    # Maybe set as subclass
     slots:
       - has_temperature_start
       - has_temperature_end
@@ -722,8 +739,9 @@ classes:
     description: >-
       A PlannedProcess representing an event-based change in pH during a
       biocatalytic reaction.
-    todos:
-      - Identify specific OBI or AFP subclass URI for pH shift process
+    #todos:
+    #  - Identify specific OBI or AFP subclass URI for pH shift process
+    # Maybe set as subclass
     slots:
       - has_ph_before
       - has_ph_after
@@ -736,8 +754,9 @@ classes:
     description: >-
       A PlannedProcess representing a dynamic pH gradient applied over
       distance or time in a tubular flow reactor.
-    todos:
-      - Identify specific OBI or AFP subclass URI for pH gradient process
+    #todos:
+    #  - Identify specific OBI or AFP subclass URI for pH gradient process
+    # Maybe set as subclass
     slots:
       - has_ph_start
       - has_ph_end
@@ -760,10 +779,9 @@ classes:
       - has_temperature
       - has_calibration_info
 
-# =============================================================================
-# VESSELS AND MIXING
-# (D-007)
-# =============================================================================
+  # =============================================================================
+  # VESSELS AND MIXING (D-007)
+  # =============================================================================
 
   ReactionVessel:
     is_a: Reactor
@@ -775,11 +793,10 @@ classes:
 
   Vial:
     is_a: ReactionVessel
+    class_uri: AFE:0000329
     description: >-
       A sealable container used as a reaction vessel, available in various
       sizes and materials.
-    todos:
-      - Verify Allotrope class URI for vial (AFE:0000022 tentative)
     slots:
       - has_volume
       - vial_size_unit
@@ -794,11 +811,10 @@ classes:
 
   Plate:
     is_a: ReactionVessel
+    class_uri: AFE:0000029
     description: >-
       A multi-well plate used as a reaction vessel (e.g. microtiter plate,
       deep-well plate).
-    todos:
-      - Verify Allotrope class URI for plate (AFE:0000036 tentative)
     slots:
       - plate_type
       - plate_material
@@ -831,14 +847,16 @@ classes:
         range: Device
         multivalued: true
         inlined_as_list: true
+    #todos:
+    # Maybe set as subclass
 
   TubularFlowReactor:
     is_a: ReactionVessel
     description: >-
       A tubular or continuous flow reactor used for biocatalytic reactions,
       including packed bed reactors, plug flow reactors, and microreactors.
-    todos:
-      - Verify Allotrope class URI for tubular flow reactor
+    #todos:
+    # Maybe set as subclass
     slots:
       - reactor_type_description
       - reactor_material
@@ -858,8 +876,9 @@ classes:
     description: >-
       A stirring device that is a physical part of a StirredTankReactor,
       including magnetic stir bars, mechanical stirrers, and overhead impellers.
-    todos:
-      - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
+    #todos:
+    #  - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
+    # Maybe set as subclass
     slots:
       - stirring_type
       - stirrer_material
@@ -881,11 +900,12 @@ classes:
     description: >-
       An external shaking device acting on a reaction vessel to achieve
       mixing. Linked to BiocatalyticExperiment via carried_out_by.
-    todos:
-      - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
-      - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus,
-        which is required for carried_out_by on BiocatalyticExperiment
-        to accept Shaker as range
+    #todos:
+    #  - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
+    #  - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus,
+    #    which is required for carried_out_by on BiocatalyticExperiment
+    #    to accept Shaker as range
+    # Maybe set as subclass
     slots:
       - shaking_type
       - deflection
@@ -901,6 +921,8 @@ classes:
       - has_gas_phase
       - gas_supply_method
       - has_flow_rate
+    #todos:
+    # Maybe set as subclass
 
   TemperatureControlDevice:
     is_a: Device
@@ -910,11 +932,12 @@ classes:
       part of the reactor via has_part.
     slots:
       - temperature_control_method
+    #todos:
+    # Maybe set as subclass
 
-# =============================================================================
-# SAMPLING
-# (D-008)
-# =============================================================================
+  # =============================================================================
+  # SAMPLING (D-008)
+  # =============================================================================
 
   SamplingProcess:
     is_a: PlannedProcess
@@ -938,25 +961,12 @@ classes:
         multivalued: true
         inlined_as_list: true
 
-  # Wire SamplePreparationProcess to MaterialSample via slot_usage.
-  # MaterialSample is defined in material_entities_ap (via dcat_4c_ap import).
-  # We add was_processed_by as a slot_usage refinement here.
- #SLOT ALREADY EXIST IN DCAT-AP+ 
- # MaterialSample:
- #   slot_usage:
- #     description:
- #       description: >-
- #         Free-text description of this material sample.
- #   slots:
- #     - was_processed_by
-
   SamplePreparationProcess:
     is_a: MaterialProcessing
+    class_uri: CAO:000043
     description: >-
       A MaterialProcessing step applied to a collected MaterialSample before
       analysis, including quenching and further treatment steps.
-    todos:
-      - Identify specific OBI subclass URI for sample preparation
     slot_usage:
       has_part:
         description: >-
@@ -968,13 +978,11 @@ classes:
 
   QuenchingProcess:
     is_a: MaterialProcessing
+    class_uri: CHMO:0002917
     description: >-
       A reaction-stopping MaterialProcessing step applied to a collected
       sample. The choice of quenching method directly affects downstream
       analytical results.
-    todos:
-      - Identify specific OBI subclass URI for quenching (e.g. OBI:0302893
-        enzymatic inactivation or similar)
     slots:
       - quenching_method_type
       - has_quenching_ratio
@@ -984,27 +992,26 @@ classes:
     description: >-
       Additional sample processing steps applied after quenching
       (e.g. filtration, centrifugation, dilution).
-    todos:
-      - Identify specific OBI subclass URI for sample treatment
+    #todos:
+    #  - Identify specific OBI subclass URI for sample treatment
+    # Maybe set as subclass
     slot_usage:
       description:
         description: >-
           Description of treatment procedure and any additional sample
           handling steps (STRENDA special_treatment fallback, P-001).
 
-# =============================================================================
-# RESULT WRAPPER CLASSES
-# (D-009)
-# =============================================================================
+  # =============================================================================
+  # RESULT WRAPPER CLASSES (D-009)
+  # =============================================================================
 
   KineticParameters:
     is_a: QuantitativeAttribute
+    #class_uri: SBO:0000256 # Evtl. kann diese genutzt werden, lieber Rücksprache halten
     description: >-
       A wrapper class grouping kinetic parameters determined for a
       biocatalytic reaction. Km and kcat values must be determined by
       varying all substrate concentrations to obtain true (non-apparent) values.
-    todos:
-      - Identify appropriate OBI measurement datum URI for kinetic parameter set
     slots:
       - has_michaelis_constant
       - has_maximum_reaction_rate
@@ -1141,10 +1148,10 @@ classes:
     todos:
       - Replace with direct OBI import
 
-# =============================================================================
-# BIOCATALYTIC REACTION
-# (D-001 evaluated activity; D-006 conditions attachment point)
-# =============================================================================
+  # =============================================================================
+  # BIOCATALYTIC REACTION
+  # (D-001 evaluated activity; D-006 conditions attachment point)
+  # =============================================================================
 
   BiocatalyticReaction:
     is_a: ChemicalReaction
@@ -1180,10 +1187,10 @@ classes:
           The constant pH of the reaction medium. For non-constant pH
           use has_ph_shift or has_ph_gradient.
 
-# =============================================================================
-# BIOCATALYTIC EXPERIMENT
-# (D-001 — top-level DataGeneratingActivity)
-# =============================================================================
+  # =============================================================================
+  # BIOCATALYTIC EXPERIMENT
+  # (D-001 — top-level DataGeneratingActivity)
+  # =============================================================================
 
   BiocatalyticExperiment:
     is_a: DataGeneratingActivity

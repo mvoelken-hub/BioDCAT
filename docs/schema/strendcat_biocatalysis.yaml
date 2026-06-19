@@ -127,6 +127,27 @@ prefixes:
   time:
     prefix_prefix: time
     prefix_reference: http://www.w3.org/2006/time#
+  BAO:
+    prefix_prefix: BAO
+    prefix_reference: http://www.bioassayontology.org/bao#BAO_
+  EDAM:
+    prefix_prefix: EDAM
+    prefix_reference: http://edamontology.org/data_
+  SBO:
+    prefix_prefix: SBO
+    prefix_reference: https://biomodels.net/SBO/SBO_
+  UO:
+    prefix_prefix: UO
+    prefix_reference: https://purl.obolibrary.org/obo/UO_
+  AFQ:
+    prefix_prefix: AFQ
+    prefix_reference: http://purl.allotrope.org/ontologies/quality#AFQ_
+  NPO:
+    prefix_prefix: NPO
+    prefix_reference: http://purl.bioontology.org/ontology/npo#NPO_
+  CAO:
+    prefix_prefix: CAO
+    prefix_reference: http://champ-project.org/images/ontology/cao.owl#CAO_
 default_prefix: strendcat_biocatalysis
 default_range: string
 subsets:
@@ -9650,13 +9671,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Purity
     description: A QuantitativeAttribute expressing the percentage of the pure or
       desired compound relative to the total mass or volume of a substance preparation.
-    todos:
-    - Verify AFR:0002010 mapping; consider PATO:0001958 (purity)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - AFR:0002010
-    close_mappings:
-    - PATO:0001723
+    - PATO:0001339
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9666,15 +9683,13 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: AFR:0002010
+    class_uri: PATO:0001339
   SolubilityLimit:
     name: SolubilityLimit
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SolubilityLimit
     description: The maximum concentration of a component that can dissolve in a solution
       or gas phase under given conditions.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    close_mappings:
-    - PATO:0001656
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9691,8 +9706,6 @@ classes:
     description: Ionic strength calculated from dissolved ions in the solvent, I =
       0.5 * sum(ci * zi^2).
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    close_mappings:
-    - PATO:0001655
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9708,8 +9721,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/FlowRate
     description: The volumetric flow rate of a liquid or gas through a reactor or
       system.
-    todos:
-    - Bind has_quantity_type to qudt:VolumeFlowRate
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -9726,8 +9737,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/ResidenceTime
     description: The average amount of time a substance or component spends inside
       a specific reactor system (tau).
-    todos:
-    - Bind has_quantity_type to qudt:Time
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -9743,8 +9752,6 @@ classes:
     name: AngularVelocity
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/AngularVelocity
     description: The speed or frequency at which a stirrer or shaker operates.
-    todos:
-    - Bind has_quantity_type to qudt:AngularVelocity
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -9761,8 +9768,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PowerPerVolume
     description: The amount of mixing power or energy input per unit volume of the
       reaction mixture.
-    todos:
-    - Bind has_quantity_type to qudt:PowerPerVolume
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -9831,11 +9836,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MichaelisConstant
     description: The substrate concentration at which an enzyme achieves half of its
       maximum reaction rate (Km).
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - SIO:000610
+    - SBO:0000027
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9845,17 +9848,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: SIO:000610
+    class_uri: SBO:0000027
   MaximumReactionRate:
     name: MaximumReactionRate
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MaximumReactionRate
     description: The maximum reaction rate (Vmax) under conditions of enzyme saturation
       with substrate.
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - SIO:000612
+    - EDAM:data_0909
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9865,17 +9866,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: SIO:000612
+    class_uri: EDAM:data_0909
   TurnoverNumber:
     name: TurnoverNumber
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TurnoverNumber
     description: The number of substrate molecules converted per active site per unit
       time when the enzyme is fully saturated (kcat).
-    todos:
-    - Bind has_quantity_type to qudt:Frequency
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - SIO:000611
+    - BAO:0000481
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9885,15 +9884,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: SIO:000611
+    class_uri: BAO:0000481
   CatalyticEfficiency:
     name: CatalyticEfficiency
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/CatalyticEfficiency
-    description: The ratio of turnover number to Michaelis constant (kcat/Km), measuring
-      how effectively an enzyme converts substrate to product.
-    todos:
-    - Bind has_quantity_type to qudt:VolumePerAmountOfSubstancePerTime
+    description: 'TODO: Adjust description with respect to strenda Guidelines'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SBO:0000302
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9903,17 +9901,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:CatalyticEfficiency
+    class_uri: SBO:0000302
   DissociationConstant:
     name: DissociationConstant
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/DissociationConstant
     description: The equilibrium dissociation constant (Kd) representing the balance
       between a complex and its dissociated components.
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - SIO:000609
+    - SBO:0000282
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9923,15 +9919,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: SIO:000609
+    class_uri: SBO:0000282
   HillCoefficient:
     name: HillCoefficient
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/HillCoefficient
-    description: A parameter describing cooperativity in molecular binding. Values
-      greater than 1 indicate positive cooperativity; less than 1 negative cooperativity.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
+    description: 'TODO: Adjust description with respect to strenda Guidelines'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SBO:0000190
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9941,15 +9936,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:HillCoefficient
+    class_uri: SBO:0000190
   InhibitionConstant:
     name: InhibitionConstant
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/InhibitionConstant
     description: The inhibition constant (Ki) describing the affinity of an inhibitor
       for an enzyme. A lower Ki indicates stronger binding.
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SBO:0000261
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9959,15 +9954,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:InhibitionConstant
+    class_uri: SBO:0000261
   HalfLife:
     name: HalfLife
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/HalfLife
-    description: The time required for the activity of a biocatalyst to decrease to
-      half of its initial value under defined conditions.
-    todos:
-    - Bind has_quantity_type to qudt:Time
+    description: 'TODO: Adjust description with respect to strenda Guidelines'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - UO:0000152
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9977,15 +9971,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:HalfLife
+    class_uri: UO:0000152
   SpaceTimeYield:
     name: SpaceTimeYield
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SpaceTimeYield
-    description: The mass of product obtained per unit volume of the reactor per unit
-      time. Also referred to as volumetric productivity.
-    todos:
-    - Bind has_quantity_type to qudt:MassPerVolumePerTime
+    description: 'TODO: Adjust description with respect to strenda Guidelines'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - VOC4CAT:0005006
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -9995,15 +9988,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:SpaceTimeYield
+    class_uri: VOC4CAT:0005006
   SubstrateConversion:
     name: SubstrateConversion
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SubstrateConversion
-    description: The percentage of substrate that undergoes transformation into the
-      desired product during a reaction.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
+    description: 'TODO: Adjust description with respect to strenda Guidelines'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - VOC4CAT:005004
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10013,15 +10005,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:SubstrateConversion
+    class_uri: VOC4CAT:005004
   SpecificActivity:
     name: SpecificActivity
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SpecificActivity
     description: "The amount of product formed or substrate consumed per unit of enzyme\
       \ per unit of time. Expressed as \xB5mol/min/mg."
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SBO:0000558
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10031,14 +10023,12 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:SpecificActivity
+    class_uri: SBO:0000558
   InitialReactionRate:
     name: InitialReactionRate
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/InitialReactionRate
     description: The rate at which product is formed in the first 10% of the enzymatic
       reaction under specific initial substrate concentrations and conditions.
-    todos:
-    - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -10055,8 +10045,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnantioselectivityRatio
     description: The enantiomeric ratio (E) defining the enzyme's preference to catalyze
       the transformation of one enantiomer over its mirror image.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -10073,9 +10061,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnantiomericExcess
     description: The enantiomeric excess (ee) expressed as a percentage, indicating
       the predominance of one enantiomer over the other in the product.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - AFQ:0000220
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10085,15 +10073,15 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:EnantiomericExcess
+    class_uri: AFQ:0000220
   DiastereomericExcess:
     name: DiastereomericExcess
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/DiastereomericExcess
     description: The diastereomeric excess (de) expressed as a percentage, indicating
       the predominance of one diastereomer over the other in the product.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - AFQ:0000217
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10103,14 +10091,12 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:DiastereomericExcess
+    class_uri: AFQ:0000217
   IsomericContent:
     name: IsomericContent
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/IsomericContent
     description: The isomeric content expressed as a percentage of a specific isomer
       relative to total product.
-    todos:
-    - Bind has_quantity_type to qudt:Dimensionless
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -10127,13 +10113,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/GibbsFreeEnergyChange
     description: The change in Gibbs free energy (delta G) for a biocatalytic reaction,
       indicating thermodynamic spontaneity.
-    todos:
-    - Bind has_quantity_type to qudt:Energy
-    - "{'Note': 'STRENDA models this as string \u2014 schema corrects to QuantitativeAttribute.\
-      \ Converter should attempt numeric parsing with string fallback.'}"
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    close_mappings:
-    - PATO:0001546
+    mappings:
+    - NCIT:C52567
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10143,18 +10125,14 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:GibbsFreeEnergyChange
+    class_uri: NCIT:C52567
   EnthalpyChange:
     name: EnthalpyChange
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnthalpyChange
     description: The change in enthalpy (delta H) for a biocatalytic reaction.
-    todos:
-    - Bind has_quantity_type to qudt:Energy
-    - "{'Note': 'STRENDA models this as string \u2014 schema corrects to QuantitativeAttribute.\
-      \ Converter should attempt numeric parsing with string fallback.'}"
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    close_mappings:
-    - PATO:0001563
+    mappings:
+    - SBO:0000573
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -10164,16 +10142,13 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: strendcat_biocatalysis:EnthalpyChange
+    class_uri: SBO:0000573
   StorageAdditive:
     name: StorageAdditive
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/StorageAdditive
     description: A ChemicalSubstance added to a storage medium to preserve or stabilize
       a MaterialEntity during storage (e.g. antioxidants, stabilizers, drying agents,
       inert gases such as argon or nitrogen).
-    todos:
-    - Constrain role via CHEBI role hierarchy in a future iteration (e.g. CHEBI:22586
-      antioxidant, CHEBI:35225 stabilizer)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: ChemicalEntity
     slots:
@@ -10220,9 +10195,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/DryingProcess
     description: A MaterialProcessing step in which moisture is removed from a BiocatalystPreparation
       prior to or during storage.
-    todos:
-    - Identify specific OBI or AFP subclass URI for drying process
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - AFP:0001876
     is_a: MaterialProcessing
     slots:
     - id
@@ -10240,7 +10215,7 @@ classes:
     - rdf_type
     - EvaluatedActivity_other_identifier
     - drying_method_type
-    class_uri: strendcat_biocatalysis:DryingProcess
+    class_uri: AFP:0001876
   Biocatalyst:
     name: Biocatalyst
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Biocatalyst
@@ -10248,8 +10223,6 @@ classes:
       of Catalyst (AgenticEntity). The physical form in which it is applied is described
       by an associated BiocatalystPreparation.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - CHEBI:23888
     is_a: Catalyst
     slots:
     - id
@@ -10296,15 +10269,13 @@ classes:
         name: has_quantitative_attribute
         description: Quantitative attributes of the biocatalyst entity, such as molecular
           weight.
-    class_uri: CHEBI:23888
+    class_uri: strendcat_biocatalysis:Biocatalyst
   BiocatalystProductionProcess:
     name: BiocatalystProductionProcess
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/BiocatalystProductionProcess
     description: A MaterialProcessing that describes how a biocatalyst was produced,
       including the production organism, plasmid, and purification steps. Only present
       when Biocatalyst.is_self_produced is true.
-    todos:
-    - Identify specific OBI subclass URI (e.g. OBI:0000070 protein expression)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: MaterialProcessing
     slots:
@@ -10336,12 +10307,7 @@ classes:
       Derived from the Biocatalyst entity via prov:wasDerivedFrom. Subclasses encode
       the specific application form; the application_form slot is retained here for
       P-002 converter compatibility but is redundant with the subclass type.
-    todos:
-    - Consider removing application_form from base class once converters reliably
-      instantiate the correct subclass (redundant with rdf:type)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - OBI:0000747
     is_a: SubstanceSample
     slots:
     - id
@@ -10378,14 +10344,12 @@ classes:
         description: The Biocatalyst from which this preparation was derived.
         range: Biocatalyst
         required: true
-    class_uri: OBI:0000747
+    class_uri: strendcat_biocatalysis:BiocatalystPreparation
   PurifiedEnzymePreparation:
     name: PurifiedEnzymePreparation
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PurifiedEnzymePreparation
     description: A BiocatalystPreparation consisting of a purified enzyme solution.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - OBI:0000925
     is_a: BiocatalystPreparation
     slots:
     - id
@@ -10418,15 +10382,13 @@ classes:
     - BiocatalystPreparation_derived_from
     - concentration_determination_method
     - activity_determination_method
-    class_uri: OBI:0000925
+    class_uri: strendcat_biocatalysis:PurifiedEnzymePreparation
   CrudeCellExtractPreparation:
     name: CrudeCellExtractPreparation
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/CrudeCellExtractPreparation
     description: A BiocatalystPreparation consisting of a crude cell extract obtained
       by cell disruption.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - OBI:0000261
     is_a: BiocatalystPreparation
     slots:
     - id
@@ -10459,14 +10421,12 @@ classes:
     - BiocatalystPreparation_derived_from
     - cell_disruption_process
     - concentration_determination_method
-    class_uri: OBI:0000261
+    class_uri: strendcat_biocatalysis:CrudeCellExtractPreparation
   WholeCellPreparation:
     name: WholeCellPreparation
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/WholeCellPreparation
     description: A BiocatalystPreparation in which whole cells serve as the biocatalyst.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - OBI:0000651
     is_a: BiocatalystPreparation
     slots:
     - id
@@ -10499,14 +10459,12 @@ classes:
     - BiocatalystPreparation_derived_from
     - harvesting_method
     - concentration_determination_method
-    class_uri: OBI:0000651
+    class_uri: strendcat_biocatalysis:WholeCellPreparation
   SecretedEnzymePreparation:
     name: SecretedEnzymePreparation
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SecretedEnzymePreparation
     description: A BiocatalystPreparation consisting of an enzyme secreted into the
       culture supernatant and separated from cells.
-    todos:
-    - Find appropriate OBI or CHEBI class URI for secreted enzyme preparation
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: BiocatalystPreparation
     slots:
@@ -10547,8 +10505,6 @@ classes:
     description: A BiocatalystPreparation produced by cell-free expression, where
       synthesis occurs outside living cells using extracted cellular machinery.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - OBI:0000737
     is_a: BiocatalystPreparation
     slots:
     - id
@@ -10581,15 +10537,13 @@ classes:
     - BiocatalystPreparation_derived_from
     - source_of_cellfree_extract
     - concentration_determination_method
-    class_uri: OBI:0000737
+    class_uri: strendcat_biocatalysis:CellFreePreparation
   ImmobilisedPreparation:
     name: ImmobilisedPreparation
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/ImmobilisedPreparation
     description: A BiocatalystPreparation in which the biocatalyst is attached to
       or entrapped within a carrier material. Always derived from another BiocatalystPreparation
       via prov:wasDerivedFrom.
-    todos:
-    - Find appropriate OBI or Allotrope class URI for immobilised preparation
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: BiocatalystPreparation
     slots:
@@ -10686,8 +10640,6 @@ classes:
     description: The medium in which a biocatalytic reaction takes place, described
       by its phase composition, ionic strength, and additives.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    mappings:
-    - CHMO:0000892
     is_a: MaterialEntity
     slots:
     - Entity_title
@@ -10718,14 +10670,14 @@ classes:
         name: description
         description: Free-text description of additional medium characteristics (STRENDA
           special_treatment fallback, P-001).
-    class_uri: CHMO:0000892
+    class_uri: strendcat_biocatalysis:ReactionMedium
   LiquidPhase:
     name: LiquidPhase
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/LiquidPhase
     description: A liquid phase present in the reaction medium.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - CHMO:0002722
+    - BAO:0002164
     is_a: MaterialEntity
     slots:
     - Entity_title
@@ -10746,14 +10698,14 @@ classes:
     - has_pressure
     - has_liquid_type
     - has_volume
-    class_uri: CHMO:0002722
+    class_uri: BAO:0002164
   SolidPhase:
     name: SolidPhase
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SolidPhase
     description: A solid phase present in the reaction medium.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - CHMO:0002723
+    - BAO:0002163
     is_a: MaterialEntity
     slots:
     - Entity_title
@@ -10774,14 +10726,14 @@ classes:
     - has_pressure
     - has_solid_type
     - has_mass
-    class_uri: CHMO:0002723
+    class_uri: BAO:0002163
   GasPhase:
     name: GasPhase
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/GasPhase
     description: A gas phase present in the reaction medium or headspace.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
-    - CHMO:0002724
+    - NPO:1613
     is_a: MaterialEntity
     slots:
     - Entity_title
@@ -10803,14 +10755,12 @@ classes:
     - has_pressure
     - has_gas_type
     - has_amount
-    class_uri: CHMO:0002724
+    class_uri: NPO:1613
   TemperatureShiftProcess:
     name: TemperatureShiftProcess
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TemperatureShiftProcess
     description: A PlannedProcess representing an event-based change in temperature
       during a biocatalytic reaction.
-    todos:
-    - Identify specific OBI or AFP subclass URI for temperature shift
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: PlannedProcess
     slots:
@@ -10838,8 +10788,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TemperatureGradient
     description: A PlannedProcess representing a dynamic temperature gradient applied
       over distance or time in a tubular flow reactor.
-    todos:
-    - Identify specific OBI or AFP subclass URI for temperature gradient
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: PlannedProcess
     slots:
@@ -10867,8 +10815,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PHShiftProcess
     description: A PlannedProcess representing an event-based change in pH during
       a biocatalytic reaction.
-    todos:
-    - Identify specific OBI or AFP subclass URI for pH shift process
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: PlannedProcess
     slots:
@@ -10897,8 +10843,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/PHGradient
     description: A PlannedProcess representing a dynamic pH gradient applied over
       distance or time in a tubular flow reactor.
-    todos:
-    - Identify specific OBI or AFP subclass URI for pH gradient process
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: PlannedProcess
     slots:
@@ -10987,9 +10931,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Vial
     description: A sealable container used as a reaction vessel, available in various
       sizes and materials.
-    todos:
-    - Verify Allotrope class URI for vial (AFE:0000022 tentative)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - AFE:0000329
     is_a: ReactionVessel
     slots:
     - id
@@ -11017,15 +10961,15 @@ classes:
         name: description
         description: Additional vial preparation details (STRENDA special_treatment
           fallback, P-001). Candidate for VesselPreparationProcess in future iteration.
-    class_uri: strendcat_biocatalysis:Vial
+    class_uri: AFE:0000329
   Plate:
     name: Plate
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Plate
     description: A multi-well plate used as a reaction vessel (e.g. microtiter plate,
       deep-well plate).
-    todos:
-    - Verify Allotrope class URI for plate (AFE:0000036 tentative)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - AFE:0000029
     is_a: ReactionVessel
     slots:
     - id
@@ -11058,7 +11002,7 @@ classes:
       other_identifier:
         name: other_identifier
         description: Lot number or batch code of the plate (adms:Identifier).
-    class_uri: strendcat_biocatalysis:Plate
+    class_uri: AFE:0000029
   StirredTankReactor:
     name: StirredTankReactor
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/StirredTankReactor
@@ -11101,8 +11045,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/TubularFlowReactor
     description: A tubular or continuous flow reactor used for biocatalytic reactions,
       including packed bed reactors, plug flow reactors, and microreactors.
-    todos:
-    - Verify Allotrope class URI for tubular flow reactor
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: ReactionVessel
     slots:
@@ -11140,8 +11082,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MixingImpeller
     description: A stirring device that is a physical part of a StirredTankReactor,
       including magnetic stir bars, mechanical stirrers, and overhead impellers.
-    todos:
-    - Verify Allotrope class URI for impeller (AFE:0000368 tentative)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: Device
     slots:
@@ -11175,10 +11115,6 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Shaker
     description: An external shaking device acting on a reaction vessel to achieve
       mixing. Linked to BiocatalyticExperiment via carried_out_by.
-    todos:
-    - Verify Allotrope class URI for shaker (AFE:0000181 tentative)
-    - Verify that Device is a subclass of AgenticEntity in dcat_ap_plus, which is
-      required for carried_out_by on BiocatalyticExperiment to accept Shaker as range
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: Device
     slots:
@@ -11285,9 +11221,9 @@ classes:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SamplePreparationProcess
     description: A MaterialProcessing step applied to a collected MaterialSample before
       analysis, including quenching and further treatment steps.
-    todos:
-    - Identify specific OBI subclass URI for sample preparation
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - CAO:000043
     is_a: MaterialProcessing
     slots:
     - id
@@ -11312,17 +11248,16 @@ classes:
         range: MaterialProcessing
         multivalued: true
         inlined_as_list: true
-    class_uri: strendcat_biocatalysis:SamplePreparationProcess
+    class_uri: CAO:000043
   QuenchingProcess:
     name: QuenchingProcess
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/QuenchingProcess
     description: A reaction-stopping MaterialProcessing step applied to a collected
       sample. The choice of quenching method directly affects downstream analytical
       results.
-    todos:
-    - Identify specific OBI subclass URI for quenching (e.g. OBI:0302893 enzymatic
-      inactivation or similar)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - CHMO:0002917
     is_a: MaterialProcessing
     slots:
     - id
@@ -11341,14 +11276,12 @@ classes:
     - EvaluatedActivity_other_identifier
     - quenching_method_type
     - has_quenching_ratio
-    class_uri: strendcat_biocatalysis:QuenchingProcess
+    class_uri: CHMO:0002917
   SampleTreatmentProcess:
     name: SampleTreatmentProcess
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/SampleTreatmentProcess
     description: Additional sample processing steps applied after quenching (e.g.
       filtration, centrifugation, dilution).
-    todos:
-    - Identify specific OBI subclass URI for sample treatment
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: MaterialProcessing
     slots:
@@ -11378,8 +11311,6 @@ classes:
     description: A wrapper class grouping kinetic parameters determined for a biocatalytic
       reaction. Km and kcat values must be determined by varying all substrate concentrations
       to obtain true (non-apparent) values.
-    todos:
-    - Identify appropriate OBI measurement datum URI for kinetic parameter set
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     is_a: QuantitativeAttribute
     slots:
@@ -15211,7 +15142,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-06-15T08:45:06'
-source_file_size: 78790
-generation_date: '2026-06-15T11:33:01'
+source_file_date: '2026-06-18T16:21:13'
+source_file_size: 79868
+generation_date: '2026-06-18T16:50:42'
 

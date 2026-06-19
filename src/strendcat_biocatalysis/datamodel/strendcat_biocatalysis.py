@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-06-15T11:16:43
+# Generation date: 2026-06-18T16:31:11
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
@@ -70,9 +70,12 @@ version = None
 # Namespaces
 AFE = CurieNamespace('AFE', 'http://purl.allotrope.org/ontologies/equipment#AFE_')
 AFP = CurieNamespace('AFP', 'http://purl.allotrope.org/ontologies/process#AFP_')
+AFQ = CurieNamespace('AFQ', 'http://purl.allotrope.org/ontologies/quality#AFQ_')
 AFR = CurieNamespace('AFR', 'http://purl.allotrope.org/ontologies/result#AFR_')
 AFX = CurieNamespace('AFX', 'http://purl.allotrope.org/ontologies/property#AFX_')
+BAO = CurieNamespace('BAO', 'http://www.bioassayontology.org/bao#BAO_')
 BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
+CAO = CurieNamespace('CAO', 'http://champ-project.org/images/ontology/cao.owl#CAO_')
 CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
 CHEMINF = CurieNamespace('CHEMINF', 'http://semanticscience.org/resource/CHEMINF_')
 CHMO = CurieNamespace('CHMO', 'http://purl.obolibrary.org/obo/CHMO_')
@@ -81,13 +84,16 @@ ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 MOP = CurieNamespace('MOP', 'http://purl.obolibrary.org/obo/MOP_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
+NPO = CurieNamespace('NPO', 'http://purl.bioontology.org/ontology/npo#NPO_')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 PROCO = CurieNamespace('PROCO', 'http://purl.obolibrary.org/obo/PROCO_')
 REX = CurieNamespace('REX', 'http://purl.obolibrary.org/obo/REX_')
 RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
 RXNO = CurieNamespace('RXNO', 'http://purl.obolibrary.org/obo/RXNO_')
+SBO = CurieNamespace('SBO', 'https://biomodels.net/SBO/SBO_')
 SIO = CurieNamespace('SIO', 'http://semanticscience.org/resource/SIO_')
+UO = CurieNamespace('UO', 'https://purl.obolibrary.org/obo/UO_')
 VOC4CAT = CurieNamespace('VOC4CAT', 'https://w3id.org/nfdi4cat/voc4cat_')
 ADMS = CurieNamespace('adms', 'http://www.w3.org/ns/adms#')
 CHEMDCATAP = CurieNamespace('chemdcatap', 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/')
@@ -2103,8 +2109,8 @@ class DryingProcess(MaterialProcessing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["DryingProcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:DryingProcess"
+    class_class_uri: ClassVar[URIRef] = AFP["0001876"]
+    class_class_curie: ClassVar[str] = "AFP:0001876"
     class_name: ClassVar[str] = "DryingProcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.DryingProcess
 
@@ -2183,8 +2189,8 @@ class SamplePreparationProcess(MaterialProcessing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SamplePreparationProcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SamplePreparationProcess"
+    class_class_uri: ClassVar[URIRef] = CAO["000043"]
+    class_class_curie: ClassVar[str] = "CAO:000043"
     class_name: ClassVar[str] = "SamplePreparationProcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SamplePreparationProcess
 
@@ -2210,8 +2216,8 @@ class QuenchingProcess(MaterialProcessing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["QuenchingProcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:QuenchingProcess"
+    class_class_uri: ClassVar[URIRef] = CHMO["0002917"]
+    class_class_curie: ClassVar[str] = "CHMO:0002917"
     class_name: ClassVar[str] = "QuenchingProcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.QuenchingProcess
 
@@ -2565,8 +2571,8 @@ class Purity(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = AFR["0002010"]
-    class_class_curie: ClassVar[str] = "AFR:0002010"
+    class_class_uri: ClassVar[URIRef] = PATO["0001339"]
+    class_class_curie: ClassVar[str] = "PATO:0001339"
     class_name: ClassVar[str] = "Purity"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Purity
 
@@ -2741,8 +2747,8 @@ class MichaelisConstant(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = SIO["000610"]
-    class_class_curie: ClassVar[str] = "SIO:000610"
+    class_class_uri: ClassVar[URIRef] = SBO["0000027"]
+    class_class_curie: ClassVar[str] = "SBO:0000027"
     class_name: ClassVar[str] = "MichaelisConstant"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MichaelisConstant
 
@@ -2756,8 +2762,8 @@ class MaximumReactionRate(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = SIO["000612"]
-    class_class_curie: ClassVar[str] = "SIO:000612"
+    class_class_uri: ClassVar[URIRef] = EDAM["data_0909"]
+    class_class_curie: ClassVar[str] = "EDAM:data_0909"
     class_name: ClassVar[str] = "MaximumReactionRate"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MaximumReactionRate
 
@@ -2772,8 +2778,8 @@ class TurnoverNumber(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = SIO["000611"]
-    class_class_curie: ClassVar[str] = "SIO:000611"
+    class_class_uri: ClassVar[URIRef] = BAO["0000481"]
+    class_class_curie: ClassVar[str] = "BAO:0000481"
     class_name: ClassVar[str] = "TurnoverNumber"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.TurnoverNumber
 
@@ -2783,13 +2789,12 @@ class TurnoverNumber(QuantitativeAttribute):
 @dataclass(repr=False)
 class CatalyticEfficiency(QuantitativeAttribute):
     """
-    The ratio of turnover number to Michaelis constant (kcat/Km), measuring how effectively an enzyme converts
-    substrate to product.
+    TODO: Adjust description with respect to strenda Guidelines
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["CatalyticEfficiency"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:CatalyticEfficiency"
+    class_class_uri: ClassVar[URIRef] = SBO["0000302"]
+    class_class_curie: ClassVar[str] = "SBO:0000302"
     class_name: ClassVar[str] = "CatalyticEfficiency"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.CatalyticEfficiency
 
@@ -2804,8 +2809,8 @@ class DissociationConstant(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = SIO["000609"]
-    class_class_curie: ClassVar[str] = "SIO:000609"
+    class_class_uri: ClassVar[URIRef] = SBO["0000282"]
+    class_class_curie: ClassVar[str] = "SBO:0000282"
     class_name: ClassVar[str] = "DissociationConstant"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.DissociationConstant
 
@@ -2815,13 +2820,12 @@ class DissociationConstant(QuantitativeAttribute):
 @dataclass(repr=False)
 class HillCoefficient(QuantitativeAttribute):
     """
-    A parameter describing cooperativity in molecular binding. Values greater than 1 indicate positive cooperativity;
-    less than 1 negative cooperativity.
+    TODO: Adjust description with respect to strenda Guidelines
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["HillCoefficient"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:HillCoefficient"
+    class_class_uri: ClassVar[URIRef] = SBO["0000190"]
+    class_class_curie: ClassVar[str] = "SBO:0000190"
     class_name: ClassVar[str] = "HillCoefficient"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.HillCoefficient
 
@@ -2836,8 +2840,8 @@ class InhibitionConstant(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["InhibitionConstant"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:InhibitionConstant"
+    class_class_uri: ClassVar[URIRef] = SBO["0000261"]
+    class_class_curie: ClassVar[str] = "SBO:0000261"
     class_name: ClassVar[str] = "InhibitionConstant"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.InhibitionConstant
 
@@ -2847,13 +2851,12 @@ class InhibitionConstant(QuantitativeAttribute):
 @dataclass(repr=False)
 class HalfLife(QuantitativeAttribute):
     """
-    The time required for the activity of a biocatalyst to decrease to half of its initial value under defined
-    conditions.
+    TODO: Adjust description with respect to strenda Guidelines
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["HalfLife"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:HalfLife"
+    class_class_uri: ClassVar[URIRef] = UO["0000152"]
+    class_class_curie: ClassVar[str] = "UO:0000152"
     class_name: ClassVar[str] = "HalfLife"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.HalfLife
 
@@ -2863,13 +2866,12 @@ class HalfLife(QuantitativeAttribute):
 @dataclass(repr=False)
 class SpaceTimeYield(QuantitativeAttribute):
     """
-    The mass of product obtained per unit volume of the reactor per unit time. Also referred to as volumetric
-    productivity.
+    TODO: Adjust description with respect to strenda Guidelines
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SpaceTimeYield"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SpaceTimeYield"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0005006"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0005006"
     class_name: ClassVar[str] = "SpaceTimeYield"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SpaceTimeYield
 
@@ -2879,12 +2881,12 @@ class SpaceTimeYield(QuantitativeAttribute):
 @dataclass(repr=False)
 class SubstrateConversion(QuantitativeAttribute):
     """
-    The percentage of substrate that undergoes transformation into the desired product during a reaction.
+    TODO: Adjust description with respect to strenda Guidelines
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SubstrateConversion"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SubstrateConversion"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["005004"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:005004"
     class_name: ClassVar[str] = "SubstrateConversion"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SubstrateConversion
 
@@ -2898,8 +2900,8 @@ class SpecificActivity(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SpecificActivity"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SpecificActivity"
+    class_class_uri: ClassVar[URIRef] = SBO["0000558"]
+    class_class_curie: ClassVar[str] = "SBO:0000558"
     class_name: ClassVar[str] = "SpecificActivity"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SpecificActivity
 
@@ -2946,8 +2948,8 @@ class EnantiomericExcess(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["EnantiomericExcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:EnantiomericExcess"
+    class_class_uri: ClassVar[URIRef] = AFQ["0000220"]
+    class_class_curie: ClassVar[str] = "AFQ:0000220"
     class_name: ClassVar[str] = "EnantiomericExcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.EnantiomericExcess
 
@@ -2962,8 +2964,8 @@ class DiastereomericExcess(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["DiastereomericExcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:DiastereomericExcess"
+    class_class_uri: ClassVar[URIRef] = AFQ["0000217"]
+    class_class_curie: ClassVar[str] = "AFQ:0000217"
     class_name: ClassVar[str] = "DiastereomericExcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.DiastereomericExcess
 
@@ -2992,8 +2994,8 @@ class GibbsFreeEnergyChange(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["GibbsFreeEnergyChange"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:GibbsFreeEnergyChange"
+    class_class_uri: ClassVar[URIRef] = NCIT["C52567"]
+    class_class_curie: ClassVar[str] = "NCIT:C52567"
     class_name: ClassVar[str] = "GibbsFreeEnergyChange"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.GibbsFreeEnergyChange
 
@@ -3007,8 +3009,8 @@ class EnthalpyChange(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["EnthalpyChange"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:EnthalpyChange"
+    class_class_uri: ClassVar[URIRef] = SBO["0000573"]
+    class_class_curie: ClassVar[str] = "SBO:0000573"
     class_name: ClassVar[str] = "EnthalpyChange"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.EnthalpyChange
 
@@ -4534,8 +4536,8 @@ class Biocatalyst(Catalyst):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHEBI["23888"]
-    class_class_curie: ClassVar[str] = "CHEBI:23888"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["Biocatalyst"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:Biocatalyst"
     class_name: ClassVar[str] = "Biocatalyst"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Biocatalyst
 
@@ -4678,8 +4680,8 @@ class Vial(ReactionVessel):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["Vial"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:Vial"
+    class_class_uri: ClassVar[URIRef] = AFE["0000329"]
+    class_class_curie: ClassVar[str] = "AFE:0000329"
     class_name: ClassVar[str] = "Vial"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Vial
 
@@ -4723,8 +4725,8 @@ class Plate(ReactionVessel):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["Plate"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:Plate"
+    class_class_uri: ClassVar[URIRef] = AFE["0000029"]
+    class_class_curie: ClassVar[str] = "AFE:0000029"
     class_name: ClassVar[str] = "Plate"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Plate
 
@@ -5097,8 +5099,8 @@ class ReactionMedium(MaterialEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHMO["0000892"]
-    class_class_curie: ClassVar[str] = "CHMO:0000892"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["ReactionMedium"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:ReactionMedium"
     class_name: ClassVar[str] = "ReactionMedium"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.ReactionMedium
 
@@ -5145,8 +5147,8 @@ class LiquidPhase(MaterialEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHMO["0002722"]
-    class_class_curie: ClassVar[str] = "CHMO:0002722"
+    class_class_uri: ClassVar[URIRef] = BAO["0002164"]
+    class_class_curie: ClassVar[str] = "BAO:0002164"
     class_name: ClassVar[str] = "LiquidPhase"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.LiquidPhase
 
@@ -5176,8 +5178,8 @@ class SolidPhase(MaterialEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHMO["0002723"]
-    class_class_curie: ClassVar[str] = "CHMO:0002723"
+    class_class_uri: ClassVar[URIRef] = BAO["0002163"]
+    class_class_curie: ClassVar[str] = "BAO:0002163"
     class_name: ClassVar[str] = "SolidPhase"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SolidPhase
 
@@ -5207,8 +5209,8 @@ class GasPhase(MaterialEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHMO["0002724"]
-    class_class_curie: ClassVar[str] = "CHMO:0002724"
+    class_class_uri: ClassVar[URIRef] = NPO["1613"]
+    class_class_curie: ClassVar[str] = "NPO:1613"
     class_name: ClassVar[str] = "GasPhase"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.GasPhase
 
@@ -5528,8 +5530,8 @@ class BiocatalystPreparation(SubstanceSample):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000747"]
-    class_class_curie: ClassVar[str] = "OBI:0000747"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["BiocatalystPreparation"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:BiocatalystPreparation"
     class_name: ClassVar[str] = "BiocatalystPreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.BiocatalystPreparation
 
@@ -5582,8 +5584,8 @@ class PurifiedEnzymePreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000925"]
-    class_class_curie: ClassVar[str] = "OBI:0000925"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["PurifiedEnzymePreparation"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:PurifiedEnzymePreparation"
     class_name: ClassVar[str] = "PurifiedEnzymePreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.PurifiedEnzymePreparation
 
@@ -5617,8 +5619,8 @@ class CrudeCellExtractPreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000261"]
-    class_class_curie: ClassVar[str] = "OBI:0000261"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["CrudeCellExtractPreparation"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:CrudeCellExtractPreparation"
     class_name: ClassVar[str] = "CrudeCellExtractPreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.CrudeCellExtractPreparation
 
@@ -5652,8 +5654,8 @@ class WholeCellPreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000651"]
-    class_class_curie: ClassVar[str] = "OBI:0000651"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["WholeCellPreparation"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:WholeCellPreparation"
     class_name: ClassVar[str] = "WholeCellPreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.WholeCellPreparation
 
@@ -5723,8 +5725,8 @@ class CellFreePreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000737"]
-    class_class_curie: ClassVar[str] = "OBI:0000737"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["CellFreePreparation"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:CellFreePreparation"
     class_name: ClassVar[str] = "CellFreePreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.CellFreePreparation
 

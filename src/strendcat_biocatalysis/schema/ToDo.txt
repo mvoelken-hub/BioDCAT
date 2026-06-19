@@ -5,7 +5,12 @@
 5. Prüfe Prefix Links
 6. Schema aufräumen
 7. Robot nutzen um eine "MinimalOntology" zu erzeugen
-8. Beispiel SPARQL Queries
+8. Benötigte aber bisher nicht definierte Subclasses zur MinimalOntology oder Voc4Cat hinzufügen (siehe #todos)
+9. Beispiel SPARQL Queries
 
 Zusatzaufgabe:
 - DrawIO für StrenDCAT-Biocatalysis erstellen
+
+
+Aktueller Stand:
+	Mapping (Klassen) bis Line: 

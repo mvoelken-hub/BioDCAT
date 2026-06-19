@@ -88,22 +88,32 @@ linkml_meta = LinkMLMeta({'default_prefix': 'strendcat_biocatalysis',
                           'prefix_reference': 'http://purl.allotrope.org/ontologies/equipment#AFE_'},
                   'AFP': {'prefix_prefix': 'AFP',
                           'prefix_reference': 'http://purl.allotrope.org/ontologies/process#AFP_'},
+                  'AFQ': {'prefix_prefix': 'AFQ',
+                          'prefix_reference': 'http://purl.allotrope.org/ontologies/quality#AFQ_'},
                   'AFR': {'prefix_prefix': 'AFR',
                           'prefix_reference': 'http://purl.allotrope.org/ontologies/result#AFR_'},
+                  'BAO': {'prefix_prefix': 'BAO',
+                          'prefix_reference': 'http://www.bioassayontology.org/bao#BAO_'},
                   'BFO': {'prefix_prefix': 'BFO',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/BFO_'},
+                  'CAO': {'prefix_prefix': 'CAO',
+                          'prefix_reference': 'http://champ-project.org/images/ontology/cao.owl#CAO_'},
                   'CHEBI': {'prefix_prefix': 'CHEBI',
                             'prefix_reference': 'http://purl.obolibrary.org/obo/CHEBI_'},
                   'CHEMINF': {'prefix_prefix': 'CHEMINF',
                               'prefix_reference': 'http://semanticscience.org/resource/CHEMINF_'},
                   'CHMO': {'prefix_prefix': 'CHMO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/CHMO_'},
+                  'EDAM': {'prefix_prefix': 'EDAM',
+                           'prefix_reference': 'http://edamontology.org/data_'},
                   'ENVO': {'prefix_prefix': 'ENVO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/ENVO_'},
                   'IAO': {'prefix_prefix': 'IAO',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/IAO_'},
                   'NCIT': {'prefix_prefix': 'NCIT',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/NCIT_'},
+                  'NPO': {'prefix_prefix': 'NPO',
+                          'prefix_reference': 'http://purl.bioontology.org/ontology/npo#NPO_'},
                   'OBI': {'prefix_prefix': 'OBI',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/OBI_'},
                   'PATO': {'prefix_prefix': 'PATO',
@@ -114,8 +124,12 @@ linkml_meta = LinkMLMeta({'default_prefix': 'strendcat_biocatalysis',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/RO_'},
                   'RXNO': {'prefix_prefix': 'RXNO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/RXNO_'},
+                  'SBO': {'prefix_prefix': 'SBO',
+                          'prefix_reference': 'https://biomodels.net/SBO/SBO_'},
                   'SIO': {'prefix_prefix': 'SIO',
                           'prefix_reference': 'http://semanticscience.org/resource/SIO_'},
+                  'UO': {'prefix_prefix': 'UO',
+                         'prefix_reference': 'https://purl.obolibrary.org/obo/UO_'},
                   'VOC4CAT': {'prefix_prefix': 'VOC4CAT',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'},
                   'adms': {'prefix_prefix': 'adms',
@@ -11393,10 +11407,8 @@ class Purity(QuantitativeAttribute):
     """
     A QuantitativeAttribute expressing the percentage of the pure or desired compound relative to the total mass or volume of a substance preparation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFR:0002010',
-         'close_mappings': ['PATO:0001723'],
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Verify AFR:0002010 mapping; consider PATO:0001958 (purity)']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'PATO:0001339',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -11504,8 +11516,7 @@ class SolubilityLimit(QuantitativeAttribute):
     """
     The maximum concentration of a component that can dissolve in a solution or gas phase under given conditions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['PATO:0001656'],
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -11613,8 +11624,7 @@ class IonicStrength(QuantitativeAttribute):
     """
     Ionic strength calculated from dissolved ions in the solvent, I = 0.5 * sum(ci * zi^2).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['PATO:0001655'],
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -11722,8 +11732,7 @@ class FlowRate(QuantitativeAttribute):
     """
     The volumetric flow rate of a liquid or gas through a reactor or system.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:VolumeFlowRate']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -11831,8 +11840,7 @@ class ResidenceTime(QuantitativeAttribute):
     """
     The average amount of time a substance or component spends inside a specific reactor system (tau).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Time']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -11940,8 +11948,7 @@ class AngularVelocity(QuantitativeAttribute):
     """
     The speed or frequency at which a stirrer or shaker operates.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:AngularVelocity']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12049,8 +12056,7 @@ class PowerPerVolume(QuantitativeAttribute):
     """
     The amount of mixing power or energy input per unit volume of the reaction mixture.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:PowerPerVolume']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12502,9 +12508,8 @@ class MichaelisConstant(QuantitativeAttribute):
     """
     The substrate concentration at which an enzyme achieves half of its maximum reaction rate (Km).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:000610',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:AmountOfSubstanceConcentration']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000027',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12612,10 +12617,8 @@ class MaximumReactionRate(QuantitativeAttribute):
     """
     The maximum reaction rate (Vmax) under conditions of enzyme saturation with substrate.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:000612',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to '
-                   'qudt:AmountOfSubstanceConcentrationPerTime']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'EDAM:data_0909',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12723,9 +12726,8 @@ class TurnoverNumber(QuantitativeAttribute):
     """
     The number of substrate molecules converted per active site per unit time when the enzyme is fully saturated (kcat).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:000611',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Frequency']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'BAO:0000481',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12831,10 +12833,10 @@ class TurnoverNumber(QuantitativeAttribute):
 
 class CatalyticEfficiency(QuantitativeAttribute):
     """
-    The ratio of turnover number to Michaelis constant (kcat/Km), measuring how effectively an enzyme converts substrate to product.
+    TODO: Adjust description with respect to strenda Guidelines
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:VolumePerAmountOfSubstancePerTime']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000302',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -12942,9 +12944,8 @@ class DissociationConstant(QuantitativeAttribute):
     """
     The equilibrium dissociation constant (Kd) representing the balance between a complex and its dissociated components.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:000609',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:AmountOfSubstanceConcentration']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000282',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13050,10 +13051,10 @@ class DissociationConstant(QuantitativeAttribute):
 
 class HillCoefficient(QuantitativeAttribute):
     """
-    A parameter describing cooperativity in molecular binding. Values greater than 1 indicate positive cooperativity; less than 1 negative cooperativity.
+    TODO: Adjust description with respect to strenda Guidelines
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000190',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13161,8 +13162,8 @@ class InhibitionConstant(QuantitativeAttribute):
     """
     The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger binding.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:AmountOfSubstanceConcentration']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000261',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13268,10 +13269,10 @@ class InhibitionConstant(QuantitativeAttribute):
 
 class HalfLife(QuantitativeAttribute):
     """
-    The time required for the activity of a biocatalyst to decrease to half of its initial value under defined conditions.
+    TODO: Adjust description with respect to strenda Guidelines
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Time']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'UO:0000152',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13377,10 +13378,10 @@ class HalfLife(QuantitativeAttribute):
 
 class SpaceTimeYield(QuantitativeAttribute):
     """
-    The mass of product obtained per unit volume of the reactor per unit time. Also referred to as volumetric productivity.
+    TODO: Adjust description with respect to strenda Guidelines
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:MassPerVolumePerTime']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0005006',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13486,10 +13487,10 @@ class SpaceTimeYield(QuantitativeAttribute):
 
 class SubstrateConversion(QuantitativeAttribute):
     """
-    The percentage of substrate that undergoes transformation into the desired product during a reaction.
+    TODO: Adjust description with respect to strenda Guidelines
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:005004',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13597,8 +13598,8 @@ class SpecificActivity(QuantitativeAttribute):
     """
     The amount of product formed or substrate consumed per unit of enzyme per unit of time. Expressed as µmol/min/mg.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000558',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13706,9 +13707,7 @@ class InitialReactionRate(QuantitativeAttribute):
     """
     The rate at which product is formed in the first 10% of the enzymatic reaction under specific initial substrate concentrations and conditions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to '
-                   'qudt:AmountOfSubstanceConcentrationPerTime']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13816,8 +13815,7 @@ class EnantioselectivityRatio(QuantitativeAttribute):
     """
     The enantiomeric ratio (E) defining the enzyme's preference to catalyze the transformation of one enantiomer over its mirror image.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -13925,8 +13923,8 @@ class EnantiomericExcess(QuantitativeAttribute):
     """
     The enantiomeric excess (ee) expressed as a percentage, indicating the predominance of one enantiomer over the other in the product.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFQ:0000220',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -14034,8 +14032,8 @@ class DiastereomericExcess(QuantitativeAttribute):
     """
     The diastereomeric excess (de) expressed as a percentage, indicating the predominance of one diastereomer over the other in the product.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFQ:0000217',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -14143,8 +14141,7 @@ class IsomericContent(QuantitativeAttribute):
     """
     The isomeric content expressed as a percentage of a specific isomer relative to total product.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Dimensionless']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -14252,12 +14249,8 @@ class GibbsFreeEnergyChange(QuantitativeAttribute):
     """
     The change in Gibbs free energy (delta G) for a biocatalytic reaction, indicating thermodynamic spontaneity.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['PATO:0001546'],
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Energy',
-                   "{'Note': 'STRENDA models this as string — schema corrects to "
-                   'QuantitativeAttribute. Converter should attempt numeric parsing '
-                   "with string fallback.'}"]})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C52567',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -14365,12 +14358,8 @@ class EnthalpyChange(QuantitativeAttribute):
     """
     The change in enthalpy (delta H) for a biocatalytic reaction.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['PATO:0001563'],
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Bind has_quantity_type to qudt:Energy',
-                   "{'Note': 'STRENDA models this as string — schema corrects to "
-                   'QuantitativeAttribute. Converter should attempt numeric parsing '
-                   "with string fallback.'}"]})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000573',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -14478,9 +14467,7 @@ class StorageAdditive(ChemicalEntity):
     """
     A ChemicalSubstance added to a storage medium to preserve or stabilize a MaterialEntity during storage (e.g. antioxidants, stabilizers, drying agents, inert gases such as argon or nitrogen).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Constrain role via CHEBI role hierarchy in a future iteration '
-                   '(e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     inchi: Optional[list[InChi]] = Field(default=None, description="""The slot to provide the InChi descriptor of a ChemicalEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalEntity'],
          'is_a': 'has_qualitative_attribute',
@@ -14740,8 +14727,7 @@ class Biocatalyst(Catalyst):
     """
     An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEBI:23888',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'has_quantitative_attribute': {'description': 'Quantitative '
                                                                       'attributes of '
                                                                       'the biocatalyst '
@@ -14965,16 +14951,12 @@ class BiocatalystPreparation(SubstanceSample):
     """
     The physical form in which a Biocatalyst is applied in a BiocatalyticExperiment. Derived from the Biocatalyst entity via prov:wasDerivedFrom. Subclasses encode the specific application form; the application_form slot is retained here for P-002 converter compatibility but is redundant with the subclass type.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000747',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'derived_from': {'description': 'The Biocatalyst from which '
                                                         'this preparation was derived.',
                                          'name': 'derived_from',
                                          'range': 'Biocatalyst',
-                                         'required': True}},
-         'todos': ['Consider removing application_form from base class once converters '
-                   'reliably instantiate the correct subclass (redundant with '
-                   'rdf:type)']})
+                                         'required': True}}})
 
     application_form: BiocatalystApplicationFormEnum = Field(default=..., description="""The physical form in which the biocatalyst is applied in the experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalystPreparation']} })
     has_concentration: Optional[list[Concentration]] = Field(default=None, description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin',
@@ -15164,8 +15146,7 @@ class PurifiedEnzymePreparation(BiocatalystPreparation):
     """
     A BiocatalystPreparation consisting of a purified enzyme solution.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000925',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     concentration_determination_method: Optional[list[str]] = Field(default=None, description="""The method used to determine the concentration of the biocatalyst preparation (e.g. Bradford assay, UV absorption, activity assay).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PurifiedEnzymePreparation',
                        'CrudeCellExtractPreparation',
@@ -15368,8 +15349,7 @@ class CrudeCellExtractPreparation(BiocatalystPreparation):
     """
     A BiocatalystPreparation consisting of a crude cell extract obtained by cell disruption.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000261',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     cell_disruption_process: Optional[list[str]] = Field(default=None, description="""The method used to disrupt cells to obtain the crude cell extract (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CrudeCellExtractPreparation'],
          'is_a': 'has_qualitative_attribute',
@@ -15575,8 +15555,7 @@ class WholeCellPreparation(BiocatalystPreparation):
     """
     A BiocatalystPreparation in which whole cells serve as the biocatalyst.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000651',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     harvesting_method: Optional[list[str]] = Field(default=None, description="""The method used to harvest whole cells from culture (e.g. centrifugation, filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['WholeCellPreparation'],
          'is_a': 'has_qualitative_attribute',
@@ -15781,9 +15760,7 @@ class SecretedEnzymePreparation(BiocatalystPreparation):
     """
     A BiocatalystPreparation consisting of an enzyme secreted into the culture supernatant and separated from cells.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Find appropriate OBI or CHEBI class URI for secreted enzyme '
-                   'preparation']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     separation_method: Optional[list[str]] = Field(default=None, description="""The method used to separate the secreted enzyme supernatant from cells (e.g. centrifugation, filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecretedEnzymePreparation'],
          'is_a': 'has_qualitative_attribute',
@@ -15988,8 +15965,7 @@ class CellFreePreparation(BiocatalystPreparation):
     """
     A BiocatalystPreparation produced by cell-free expression, where synthesis occurs outside living cells using extracted cellular machinery.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000737',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     source_of_cellfree_extract: Optional[list[str]] = Field(default=None, description="""The organism or cell type from which the cell-free extract is derived.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellFreePreparation'],
          'is_a': 'has_qualitative_attribute',
@@ -16200,9 +16176,7 @@ class ImmobilisedPreparation(BiocatalystPreparation):
                                                         'preparation was derived.',
                                          'name': 'derived_from',
                                          'range': 'BiocatalystPreparation',
-                                         'required': True}},
-         'todos': ['Find appropriate OBI or Allotrope class URI for immobilised '
-                   'preparation']})
+                                         'required': True}}})
 
     immobilisation_chemistry: Optional[list[str]] = Field(default=None, description="""The chemical strategy used to immobilise the biocatalyst (e.g. covalent bonding, adsorption, crosslinking, encapsulation).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ImmobilisedPreparation'],
          'is_a': 'has_qualitative_attribute',
@@ -16610,8 +16584,7 @@ class ReactionMedium(MaterialEntity):
     """
     The medium in which a biocatalytic reaction takes place, described by its phase composition, ionic strength, and additives.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000892',
-         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'description': {'description': 'Free-text description of '
                                                        'additional medium '
                                                        'characteristics (STRENDA '
@@ -16783,7 +16756,7 @@ class LiquidPhase(MaterialEntity):
     """
     A liquid phase present in the reaction medium.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002722',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'BAO:0002164',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_liquid_type: Optional[list[str]] = Field(default=None, description="""The type of liquid phase (e.g. aqueous buffer, organic solvent, mixed aqueous-organic).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LiquidPhase'],
@@ -16943,7 +16916,7 @@ class SolidPhase(MaterialEntity):
     """
     A solid phase present in the reaction medium.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002723',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'BAO:0002163',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_solid_type: Optional[list[str]] = Field(default=None, description="""The type of solid phase (e.g. support material, solid catalyst, precipitate).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolidPhase'],
@@ -17103,7 +17076,7 @@ class GasPhase(MaterialEntity):
     """
     A gas phase present in the reaction medium or headspace.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002724',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NPO:1613',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_gas_type: Optional[list[str]] = Field(default=None, description="""The type of gas present (e.g. nitrogen, oxygen, carbon dioxide, argon).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GasPhase'],
@@ -17422,15 +17395,15 @@ class Vial(ReactionVessel):
     """
     A sealable container used as a reaction vessel, available in various sizes and materials.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFE:0000329',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'description': {'description': 'Additional vial preparation '
                                                        'details (STRENDA '
                                                        'special_treatment fallback, '
                                                        'P-001). Candidate for '
                                                        'VesselPreparationProcess in '
                                                        'future iteration.',
-                                        'name': 'description'}},
-         'todos': ['Verify Allotrope class URI for vial (AFE:0000022 tentative)']})
+                                        'name': 'description'}}})
 
     has_volume: Optional[list[Volume]] = Field(default=None, description="""The slot to provide the Volume of a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin',
                        'LiquidPhase',
@@ -17596,12 +17569,12 @@ class Plate(ReactionVessel):
     """
     A multi-well plate used as a reaction vessel (e.g. microtiter plate, deep-well plate).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFE:0000029',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'other_identifier': {'description': 'Lot number or batch code '
                                                             'of the plate '
                                                             '(adms:Identifier).',
-                                             'name': 'other_identifier'}},
-         'todos': ['Verify Allotrope class URI for plate (AFE:0000036 tentative)']})
+                                             'name': 'other_identifier'}}})
 
     plate_type: Optional[list[str]] = Field(default=None, description="""Type of plate (e.g. microtiter plate, deep-well plate).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Plate'],
          'is_a': 'has_qualitative_attribute',
@@ -17958,8 +17931,7 @@ class TubularFlowReactor(ReactionVessel):
     """
     A tubular or continuous flow reactor used for biocatalytic reactions, including packed bed reactors, plug flow reactors, and microreactors.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Verify Allotrope class URI for tubular flow reactor']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     reactor_type_description: Optional[list[str]] = Field(default=None, description="""Description of the tubular flow reactor type (e.g. packed bed reactor, plug flow reactor, microreactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TubularFlowReactor'],
          'is_a': 'has_qualitative_attribute',
@@ -18155,8 +18127,7 @@ class MixingImpeller(Device):
     """
     A stirring device that is a physical part of a StirredTankReactor, including magnetic stir bars, mechanical stirrers, and overhead impellers.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Verify Allotrope class URI for impeller (AFE:0000368 tentative)']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     stirring_type: Optional[list[str]] = Field(default=None, description="""Type of stirring (e.g. magnetic from vessel bottom, mechanical, overhead).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MixingImpeller'],
          'is_a': 'has_qualitative_attribute',
@@ -18320,11 +18291,7 @@ class Shaker(Device):
     """
     An external shaking device acting on a reaction vessel to achieve mixing. Linked to BiocatalyticExperiment via carried_out_by.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Verify Allotrope class URI for shaker (AFE:0000181 tentative)',
-                   'Verify that Device is a subclass of AgenticEntity in dcat_ap_plus, '
-                   'which is required for carried_out_by on BiocatalyticExperiment to '
-                   'accept Shaker as range']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     shaking_type: Optional[list[str]] = Field(default=None, description="""Type of shaking motion (e.g. horizontal, vertical, back-and-forth, circulatory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Shaker'],
          'is_a': 'has_qualitative_attribute',
@@ -18709,9 +18676,7 @@ class KineticParameters(QuantitativeAttribute):
                                                        'covered by other slots '
                                                        '(STRENDA special_treatment '
                                                        'fallback, P-001).',
-                                        'name': 'description'}},
-         'todos': ['Identify appropriate OBI measurement datum URI for kinetic '
-                   'parameter set']})
+                                        'name': 'description'}}})
 
     has_michaelis_constant: Optional[list[MichaelisConstant]] = Field(default=None, description="""The Michaelis-Menten constant (Km) of the enzyme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KineticParameters'],
          'is_a': 'has_quantitative_attribute',
@@ -19736,8 +19701,7 @@ class TemperatureShiftProcess(PlannedProcess):
     """
     A PlannedProcess representing an event-based change in temperature during a biocatalytic reaction.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI or AFP subclass URI for temperature shift']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_temperature_before: Optional[list[Temperature]] = Field(default=None, description="""The temperature prior to the event causing a temperature shift.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureShiftProcess'],
          'is_a': 'has_quantitative_attribute',
@@ -19895,9 +19859,7 @@ class TemperatureGradient(PlannedProcess):
     """
     A PlannedProcess representing a dynamic temperature gradient applied over distance or time in a tubular flow reactor.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI or AFP subclass URI for temperature '
-                   'gradient']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_temperature_start: Optional[list[Temperature]] = Field(default=None, description="""The initial temperature from which a temperature gradient begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureGradient'],
          'is_a': 'has_quantitative_attribute',
@@ -20055,8 +20017,7 @@ class PHShiftProcess(PlannedProcess):
     """
     A PlannedProcess representing an event-based change in pH during a biocatalytic reaction.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI or AFP subclass URI for pH shift process']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_ph_before: Optional[list[PHValue]] = Field(default=None, description="""The pH prior to the event causing a pH shift.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHShiftProcess'],
          'is_a': 'has_quantitative_attribute',
@@ -20216,8 +20177,7 @@ class PHGradient(PlannedProcess):
     """
     A PlannedProcess representing a dynamic pH gradient applied over distance or time in a tubular flow reactor.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI or AFP subclass URI for pH gradient process']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     has_ph_start: Optional[list[PHValue]] = Field(default=None, description="""The initial pH from which a pH gradient begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHGradient'],
          'is_a': 'has_quantitative_attribute',
@@ -20686,8 +20646,8 @@ class DryingProcess(MaterialProcessing):
     """
     A MaterialProcessing step in which moisture is removed from a BiocatalystPreparation prior to or during storage.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI or AFP subclass URI for drying process']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFP:0001876',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     drying_method_type: Optional[DryingMethodEnum] = Field(default=None, description="""The type of drying method applied to the biocatalyst preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingProcess']} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -20830,9 +20790,7 @@ class BiocatalystProductionProcess(MaterialProcessing):
     """
     A MaterialProcessing that describes how a biocatalyst was produced, including the production organism, plasmid, and purification steps. Only present when Biocatalyst.is_self_produced is true.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI subclass URI (e.g. OBI:0000070 protein '
-                   'expression)']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     production_organism: Optional[list[str]] = Field(default=None, description="""The organism used to produce the biocatalyst, relevant in the context of heterologous gene expression.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalystProductionProcess'],
          'is_a': 'has_qualitative_attribute',
@@ -20998,7 +20956,8 @@ class SamplePreparationProcess(MaterialProcessing):
     """
     A MaterialProcessing step applied to a collected MaterialSample before analysis, including quenching and further treatment steps.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CAO:000043',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'has_part': {'description': 'Subprocess steps of sample '
                                                     'preparation, including '
                                                     'QuenchingProcess and '
@@ -21006,8 +20965,7 @@ class SamplePreparationProcess(MaterialProcessing):
                                      'inlined_as_list': True,
                                      'multivalued': True,
                                      'name': 'has_part',
-                                     'range': 'MaterialProcessing'}},
-         'todos': ['Identify specific OBI subclass URI for sample preparation']})
+                                     'range': 'MaterialProcessing'}}})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -21149,9 +21107,8 @@ class QuenchingProcess(MaterialProcessing):
     """
     A reaction-stopping MaterialProcessing step applied to a collected sample. The choice of quenching method directly affects downstream analytical results.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
-         'todos': ['Identify specific OBI subclass URI for quenching (e.g. OBI:0302893 '
-                   'enzymatic inactivation or similar)']})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002917',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     quenching_method_type: Optional[list[str]] = Field(default=None, description="""The technique used to stop the reaction (e.g. heat treatment, organic solvent, acid/base addition, freezing).""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuenchingProcess'],
          'is_a': 'has_qualitative_attribute',
@@ -21309,8 +21266,7 @@ class SampleTreatmentProcess(MaterialProcessing):
                                                        'sample handling steps (STRENDA '
                                                        'special_treatment fallback, '
                                                        'P-001).',
-                                        'name': 'description'}},
-         'todos': ['Identify specific OBI subclass URI for sample treatment']})
+                                        'name': 'description'}}})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
