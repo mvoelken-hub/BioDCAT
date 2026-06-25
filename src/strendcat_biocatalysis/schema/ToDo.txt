@@ -1,16 +1,14 @@
-1. Mapping für alle Klassen 	-	(Zum Großteil abgeschlossen, hier und da Rücksprache mit Alex, manche evtl. bei Voc4Cat hinzufügen)
-2. Mapping für alle Slots
-3. Mapping für alle Enums
+1. Mapping für alle Klassen 					- (Zum Großteil abgeschlossen, hier und da Rücksprache mit Alex, manche evtl. bei Voc4Cat hinzufügen)
+2. Mapping für alle Slots					- (Zum Großteil abgeschlossen, hier und da Rücksprache mit Alex, manche evtl. bei Voc4Cat hinzufügen)
+3. Mapping für alle Enums					- (In CoreMeta4Cat sind keine URI zugeordnet)
 4. HBS ToDos durchgehen und schauen was noch fehlt
-5. Prüfe Prefix Links
-6. Schema aufräumen
-7. Robot nutzen um eine "MinimalOntology" zu erzeugen
-8. Benötigte aber bisher nicht definierte Subclasses zur MinimalOntology oder Voc4Cat hinzufügen (siehe #todos)
-9. Beispiel SPARQL Queries
+5. Prüfe Prefixe 						- (Nicht benötigte zunächst verworfen)
+6. Schema aufräumen						- laufender Prozess beim erweitern
+7. Robot nutzen um eine "MinimalOntology" zu erzeugen		-?? 
+8. Benötigte aber bisher nicht definierte Subclasses zur MinimalOntology oder Voc4Cat hinzufügen (siehe #todos) --> Besser in Voc4Cat implementieren und Idee mit MinimalOntology verwerfen, da diese sonst veröffentlicht oder mitgeliefert werden muss. Da Voc4Cat bereits existiert und öffentlich ist, ist der Weg wahrscheinlich der bessere.
+9. React_flow_schema GUI nochmal um erneut aufsetzen, wenn Schema soweit "fertiggestellt" ist.
+10. "Echten" Datensatz ins Schema übersetzen
+11. Beispiel SPARQL Queries
 
 Zusatzaufgabe:
 - DrawIO für StrenDCAT-Biocatalysis erstellen
-
-
-Aktueller Stand:
-	Mapping (Klassen) bis Line: 

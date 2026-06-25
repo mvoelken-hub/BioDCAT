@@ -1,14 +1,10 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-06-18T16:31:11
+# Generation date: 2026-06-25T11:07:11
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
 # description: This is an application profile for biocatalytic experiments based on the
 #   STRENDA Biocatalysis Guidelines (https://github.com/Strenda-biocatalysis/Strenda-biocatalysis).
-#   TODO: It extends DCAT-AP-Plus via dcat_4c_ap and reuses classes from the chem-dcat-ap
-#   TODO: family (material_entities_ap, chemical_entities_ap, chemical_reaction_ap).
-#   TODO: The profile is intended to support FAIR data publication of biocatalytic
-#   TODO: experimental data in alignment with BFO/OBI/CHEBI ontology design patterns.
 # license: MIT
 
 import dataclasses
@@ -93,15 +89,14 @@ RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
 RXNO = CurieNamespace('RXNO', 'http://purl.obolibrary.org/obo/RXNO_')
 SBO = CurieNamespace('SBO', 'https://biomodels.net/SBO/SBO_')
 SIO = CurieNamespace('SIO', 'http://semanticscience.org/resource/SIO_')
+SNOMED = CurieNamespace('SNOMED', 'http://snomed.info/id/')
 UO = CurieNamespace('UO', 'https://purl.obolibrary.org/obo/UO_')
 VOC4CAT = CurieNamespace('VOC4CAT', 'https://w3id.org/nfdi4cat/voc4cat_')
 ADMS = CurieNamespace('adms', 'http://www.w3.org/ns/adms#')
-CHEMDCATAP = CurieNamespace('chemdcatap', 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/')
 CHEMICAL_ENTITIES_AP = CurieNamespace('chemical_entities_ap', 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/')
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 DCATAP = CurieNamespace('dcatap', 'http://data.europa.eu/r5r/')
 DCATAP_PLUS = CurieNamespace('dcatap_plus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
-DCATAPPLUS = CurieNamespace('dcatapplus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 ELI = CurieNamespace('eli', 'http://data.europa.eu/eli/ontology#')
 EPOS = CurieNamespace('epos', 'https://www.epos-eu.org/epos-dcat-ap#')
@@ -1475,13 +1470,13 @@ class Device(AgenticEntity):
 @dataclass(repr=False)
 class MixingImpeller(Device):
     """
-    A stirring device that is a physical part of a StirredTankReactor, including magnetic stir bars, mechanical
-    stirrers, and overhead impellers.
+    The category of mechanical or magnetic agitation device used to ensure homogeneous mixing within a reaction system
+    or mixing vessel, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["MixingImpeller"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:MixingImpeller"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0008113"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0008113"
     class_name: ClassVar[str] = "MixingImpeller"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MixingImpeller
 
@@ -1552,13 +1547,13 @@ class MixingImpeller(Device):
 @dataclass(repr=False)
 class Shaker(Device):
     """
-    An external shaking device acting on a reaction vessel to achieve mixing. Linked to BiocatalyticExperiment via
-    carried_out_by.
+    A laboratory equipment with a platform that oscillates in two or three directions. It is used to move and mix the
+    mostly liquid contents of different vessels.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["Shaker"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:Shaker"
+    class_class_uri: ClassVar[URIRef] = URIRef("http://opendata.inrae.fr/PO2/Ontology/TransformON/c_uO2UNi")
+    class_class_curie: ClassVar[str] = None
     class_name: ClassVar[str] = "Shaker"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Shaker
 
@@ -1596,8 +1591,8 @@ class GasSupplySystem(Device):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["GasSupplySystem"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:GasSupplySystem"
+    class_class_uri: ClassVar[URIRef] = SNOMED["285707009"]
+    class_class_curie: ClassVar[str] = "SNOMED:285707009"
     class_name: ClassVar[str] = "GasSupplySystem"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.GasSupplySystem
 
@@ -1626,13 +1621,13 @@ class GasSupplySystem(Device):
 @dataclass(repr=False)
 class TemperatureControlDevice(Device):
     """
-    A device that controls the temperature of a StirredTankReactor (e.g. heating jacket, cooling coil, external
-    thermostat). Forms a part of the reactor via has_part.
+    Equipment used for controlling and/or monitoring the temperature in various parts of a reactor. This can include
+    hot plates, heating elements and cryostats.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["TemperatureControlDevice"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:TemperatureControlDevice"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0000151"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0000151"
     class_name: ClassVar[str] = "TemperatureControlDevice"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.TemperatureControlDevice
 
@@ -2030,8 +2025,8 @@ class PHGradient(PlannedProcess):
 @dataclass(repr=False)
 class SamplingProcess(PlannedProcess):
     """
-    A PlannedProcess describing how samples were taken from the reaction vessel during a BiocatalyticExperiment,
-    including phase, volume, timing, and vessel state.
+    A specimen gathering process with the objective to obtain a specimen that is representative of the input material
+    entity
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2081,13 +2076,12 @@ class SamplingProcess(PlannedProcess):
 @dataclass(repr=False)
 class MaterialProcessing(PlannedProcess):
     """
-    A planned process that has the objective to produce a material entity by processing input material entities.
-    (OBI:0000094 stub)
+    A process that affects the physical qualities of materials or creates, destroys or converts materials. [Allotrope]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000094"]
-    class_class_curie: ClassVar[str] = "OBI:0000094"
+    class_class_uri: ClassVar[URIRef] = AFP["0003275"]
+    class_class_curie: ClassVar[str] = "AFP:0003275"
     class_name: ClassVar[str] = "MaterialProcessing"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MaterialProcessing
 
@@ -2105,7 +2099,7 @@ class MaterialProcessing(PlannedProcess):
 @dataclass(repr=False)
 class DryingProcess(MaterialProcessing):
     """
-    A MaterialProcessing step in which moisture is removed from a BiocatalystPreparation prior to or during storage.
+    The process of removing a solvent from a substance. [CHMO]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2184,8 +2178,7 @@ class BiocatalystProductionProcess(MaterialProcessing):
 @dataclass(repr=False)
 class SamplePreparationProcess(MaterialProcessing):
     """
-    A MaterialProcessing step applied to a collected MaterialSample before analysis, including quenching and further
-    treatment steps.
+    Methods by which physical/chemical processing of samples are performed prior to chemical analysis
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2211,8 +2204,7 @@ class SamplePreparationProcess(MaterialProcessing):
 @dataclass(repr=False)
 class QuenchingProcess(MaterialProcessing):
     """
-    A reaction-stopping MaterialProcessing step applied to a collected sample. The choice of quenching method directly
-    affects downstream analytical results.
+    Material processing in which a sample is cooled by immersion in a fluid.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2275,8 +2267,8 @@ class MeasurementProcess(PlannedProcess):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
-    class_class_curie: ClassVar[str] = "OBI:0000070"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["MeasurementProcess"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:MeasurementProcess"
     class_name: ClassVar[str] = "MeasurementProcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MeasurementProcess
 
@@ -2566,13 +2558,12 @@ class QuantitativeAttribute(YAMLRoot):
 @dataclass(repr=False)
 class Purity(QuantitativeAttribute):
     """
-    A QuantitativeAttribute expressing the percentage of the pure or desired compound relative to the total mass or
-    volume of a substance preparation.
+    A purity (datum) is a quality quantification facet that quantifies the purity of a portion of material.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PATO["0001339"]
-    class_class_curie: ClassVar[str] = "PATO:0001339"
+    class_class_uri: ClassVar[URIRef] = AFR["0002371"]
+    class_class_curie: ClassVar[str] = "AFR:0002371"
     class_name: ClassVar[str] = "Purity"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Purity
 
@@ -2612,12 +2603,12 @@ class IonicStrength(QuantitativeAttribute):
 @dataclass(repr=False)
 class FlowRate(QuantitativeAttribute):
     """
-    The volumetric flow rate of a liquid or gas through a reactor or system.
+    Flow rate is a quality quantification facet that quantifies the motion of material through a surface per time.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["FlowRate"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:FlowRate"
+    class_class_uri: ClassVar[URIRef] = AFR["0001881"]
+    class_class_curie: ClassVar[str] = "AFR:0001881"
     class_name: ClassVar[str] = "FlowRate"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.FlowRate
 
@@ -2627,12 +2618,12 @@ class FlowRate(QuantitativeAttribute):
 @dataclass(repr=False)
 class ResidenceTime(QuantitativeAttribute):
     """
-    The average amount of time a substance or component spends inside a specific reactor system (tau).
+    Mean residence time (MRT) from the time of dosing to the time of the last measurable concentration.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["ResidenceTime"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:ResidenceTime"
+    class_class_uri: ClassVar[URIRef] = NCIT["C85700"]
+    class_class_curie: ClassVar[str] = "NCIT:C85700"
     class_name: ClassVar[str] = "ResidenceTime"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.ResidenceTime
 
@@ -2743,7 +2734,8 @@ class TemperatureTimepoint(QuantitativeAttribute):
 @dataclass(repr=False)
 class MichaelisConstant(QuantitativeAttribute):
     """
-    The substrate concentration at which an enzyme achieves half of its maximum reaction rate (Km).
+    Michaelis-Menten constant - (The substrate concentration at which an enzyme achieves half of its maximum reaction
+    rate (Km).)
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2758,7 +2750,8 @@ class MichaelisConstant(QuantitativeAttribute):
 @dataclass(repr=False)
 class MaximumReactionRate(QuantitativeAttribute):
     """
-    The maximum reaction rate (Vmax) under conditions of enzyme saturation with substrate.
+    The maximum initial velocity or rate of a reaction. It is the limiting velocity as substrate concentrations get
+    very large.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2773,8 +2766,8 @@ class MaximumReactionRate(QuantitativeAttribute):
 @dataclass(repr=False)
 class TurnoverNumber(QuantitativeAttribute):
     """
-    The number of substrate molecules converted per active site per unit time when the enzyme is fully saturated
-    (kcat).
+    Turnover number representing the maximum number of substrate molecules converted to products per active site per
+    unit time.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2789,7 +2782,8 @@ class TurnoverNumber(QuantitativeAttribute):
 @dataclass(repr=False)
 class CatalyticEfficiency(QuantitativeAttribute):
     """
-    TODO: Adjust description with respect to strenda Guidelines
+    Constant representing the actual efficiency of an enzyme, taking into account its microscopic catalytic activity
+    and the rates of substrate binding and dissociation.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2804,8 +2798,8 @@ class CatalyticEfficiency(QuantitativeAttribute):
 @dataclass(repr=False)
 class DissociationConstant(QuantitativeAttribute):
     """
-    The equilibrium dissociation constant (Kd) representing the balance between a complex and its dissociated
-    components.
+    Synonym: Kd - (The equilibrium dissociation constant (Kd) representing the balance between a complex and its
+    dissociated components.)
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2820,7 +2814,9 @@ class DissociationConstant(QuantitativeAttribute):
 @dataclass(repr=False)
 class HillCoefficient(QuantitativeAttribute):
     """
-    TODO: Adjust description with respect to strenda Guidelines
+    Empirical parameter created by Archibald Vivian Hill to describe the cooperative binding of oxygen on hemoglobine
+    (Hill (1910). The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves.
+    J Physiol 40: iv-vii).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2835,8 +2831,8 @@ class HillCoefficient(QuantitativeAttribute):
 @dataclass(repr=False)
 class InhibitionConstant(QuantitativeAttribute):
     """
-    The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger
-    binding.
+    Synonym: Ki - (The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki
+    indicates stronger binding.)
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2851,7 +2847,8 @@ class InhibitionConstant(QuantitativeAttribute):
 @dataclass(repr=False)
 class HalfLife(QuantitativeAttribute):
     """
-    TODO: Adjust description with respect to strenda Guidelines
+    A time unit which represents the period over which the activity or concentration of a specified chemical or
+    element falls to half its original activity or concentration.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2866,7 +2863,9 @@ class HalfLife(QuantitativeAttribute):
 @dataclass(repr=False)
 class SpaceTimeYield(QuantitativeAttribute):
     """
-    TODO: Adjust description with respect to strenda Guidelines
+    A physical quantity that describes the amount of product produced per unit of time and unit of producing entity.
+    The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles
+    of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2881,12 +2880,13 @@ class SpaceTimeYield(QuantitativeAttribute):
 @dataclass(repr=False)
 class SubstrateConversion(QuantitativeAttribute):
     """
-    TODO: Adjust description with respect to strenda Guidelines
+    A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a
+    reactant is consumed completely its conversion is 1 (or 100 %).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = VOC4CAT["005004"]
-    class_class_curie: ClassVar[str] = "VOC4CAT:005004"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0005004"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0005004"
     class_name: ClassVar[str] = "SubstrateConversion"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SubstrateConversion
 
@@ -2896,7 +2896,9 @@ class SubstrateConversion(QuantitativeAttribute):
 @dataclass(repr=False)
 class SpecificActivity(QuantitativeAttribute):
     """
-    The amount of product formed or substrate consumed per unit of enzyme per unit of time. Expressed as µmol/min/mg.
+    A measure of enzyme activity under standard conditions, at a specific substrate concentration (usually
+    saturation), expressed as the amount of product formed per unit time, per amount of enzyme. This is often
+    expressed as micromol per min per mg, rather than the less practical official unit, Katal (1 mol per second).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2943,8 +2945,8 @@ class EnantioselectivityRatio(QuantitativeAttribute):
 @dataclass(repr=False)
 class EnantiomericExcess(QuantitativeAttribute):
     """
-    The enantiomeric excess (ee) expressed as a percentage, indicating the predominance of one enantiomer over the
-    other in the product.
+    The absolute value of the mole fraction for one enantiomer in a mixture minus the mole fraction for the other
+    enantiomer. [CHMO]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2959,8 +2961,8 @@ class EnantiomericExcess(QuantitativeAttribute):
 @dataclass(repr=False)
 class DiastereomericExcess(QuantitativeAttribute):
     """
-    The diastereomeric excess (de) expressed as a percentage, indicating the predominance of one diastereomer over the
-    other in the product.
+    The absolute value of the mole fraction for one diastereomer in a mixture minus the mole fraction for the other.
+    [CHMO]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2990,7 +2992,11 @@ class IsomericContent(QuantitativeAttribute):
 @dataclass(repr=False)
 class GibbsFreeEnergyChange(QuantitativeAttribute):
     """
-    The change in Gibbs free energy (delta G) for a biocatalytic reaction, indicating thermodynamic spontaneity.
+    A measure of the spontaneity of a chemical reaction. It is the change in the free energy of a system during a
+    chemical reaction at a pH of 7.0. It is equal to the change in the enthalpy of the system minus the change in the
+    product of the temperature times the entropy of the system. The resulting sign of Delta G determines if a reaction
+    is spontaneous or not: DG < 0 indicates that the reaction is spontaneous; DG > 0 indicates that the reaction is
+    not spontaneous; and DG = 0 indicates that the reaction is at equilibrium.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -3005,7 +3011,11 @@ class GibbsFreeEnergyChange(QuantitativeAttribute):
 @dataclass(repr=False)
 class EnthalpyChange(QuantitativeAttribute):
     """
-    The change in enthalpy (delta H) for a biocatalytic reaction.
+    Change in enthalpy observed in the constituents of a thermodynamic system when undergoing a transformation or
+    chemical reaction. This is the preferred way of expressing the energy changes to a system at constant pressure,
+    since enthalpy itself cannot be directly measured. The enthalpy change is positive in endothermic reactions,
+    negative in exothermic reactions, and is defined as the difference between the final and initial enthalpy of the
+    system under study: delta_H = Hf - Hi. The standard unit of measure is J.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -3056,8 +3066,8 @@ class KineticParameters(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["KineticParameters"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:KineticParameters"
+    class_class_uri: ClassVar[URIRef] = SIO["000144"]
+    class_class_curie: ClassVar[str] = "SIO:000144"
     class_name: ClassVar[str] = "KineticParameters"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.KineticParameters
 
@@ -3269,8 +3279,8 @@ class ThermodynamicParameters(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["ThermodynamicParameters"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:ThermodynamicParameters"
+    class_class_uri: ClassVar[URIRef] = SIO["000144"]
+    class_class_curie: ClassVar[str] = "SIO:000144"
     class_name: ClassVar[str] = "ThermodynamicParameters"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.ThermodynamicParameters
 
@@ -4082,8 +4092,8 @@ class BiocatalyticComponent(ChemicalEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CHEBI["59999"]
-    class_class_curie: ClassVar[str] = "CHEBI:59999"
+    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["BiocatalyticComponent"]
+    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:BiocatalyticComponent"
     class_name: ClassVar[str] = "BiocatalyticComponent"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.BiocatalyticComponent
 
@@ -4536,8 +4546,8 @@ class Biocatalyst(Catalyst):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["Biocatalyst"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:Biocatalyst"
+    class_class_uri: ClassVar[URIRef] = CHEBI["35233"]
+    class_class_curie: ClassVar[str] = "CHEBI:35233"
     class_name: ClassVar[str] = "Biocatalyst"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Biocatalyst
 
@@ -4652,8 +4662,7 @@ class Reactor(Device):
 @dataclass(repr=False)
 class ReactionVessel(Reactor):
     """
-    A Reactor that serves as the physical container in which a BiocatalyticReaction takes place. Intermediate class
-    between Reactor and specific vessel types.
+    A reactor is a container for controlling a biological or chemical reaction or process. [Allotrope]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -4676,7 +4685,7 @@ class ReactionVessel(Reactor):
 @dataclass(repr=False)
 class Vial(ReactionVessel):
     """
-    A sealable container used as a reaction vessel, available in various sizes and materials.
+    A vial is a small vessel or bottle. [Allotrope]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -4721,7 +4730,7 @@ class Vial(ReactionVessel):
 @dataclass(repr=False)
 class Plate(ReactionVessel):
     """
-    A multi-well plate used as a reaction vessel (e.g. microtiter plate, deep-well plate).
+    A plate is a tray with multiple "wells" used as small test tubes. [Wikipedia]
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -4789,13 +4798,13 @@ class Plate(ReactionVessel):
 @dataclass(repr=False)
 class StirredTankReactor(ReactionVessel):
     """
-    A vessel with mechanical or magnetic stirring used for biocatalytic reactions, allowing precise regulation of
-    temperature, pH, and mixing.
+    An abstract concept/ideal reactor model type, in which the volume of fluid in the reaction vessel is considered to
+    be perfectly mixed which results in the same concentration of all components in the whole reaction volume.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["StirredTankReactor"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:StirredTankReactor"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0007103"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0007103"
     class_name: ClassVar[str] = "StirredTankReactor"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.StirredTankReactor
 
@@ -4833,13 +4842,13 @@ class StirredTankReactor(ReactionVessel):
 @dataclass(repr=False)
 class TubularFlowReactor(ReactionVessel):
     """
-    A tubular or continuous flow reactor used for biocatalytic reactions, including packed bed reactors, plug flow
-    reactors, and microreactors.
+    A reactor model, in which opposing to the ideal plug flow behavior, friction is acting on the fluid, thus creating
+    a residence time distribution.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["TubularFlowReactor"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:TubularFlowReactor"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0007104"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0007104"
     class_name: ClassVar[str] = "TubularFlowReactor"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.TubularFlowReactor
 
@@ -6230,7 +6239,7 @@ class PhysicalStateEnum(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.ec_number = Slot(uri=SIO['001235'], name="ec_number", curie=SIO.curie('001235'),
+slots.ec_number = Slot(uri=CHEMINF['000447'], name="ec_number", curie=CHEMINF.curie('000447'),
                    model_uri=STRENDCAT_BIOCATALYSIS.ec_number, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.sequence_amino_acid = Slot(uri=SIO['010016'], name="sequence_amino_acid", curie=SIO.curie('010016'),
@@ -6245,7 +6254,7 @@ slots.origin_organism = Slot(uri=SIO['010079'], name="origin_organism", curie=SI
 slots.posttranslational_modification = Slot(uri=SIO['000008'], name="posttranslational_modification", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.posttranslational_modification, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.is_self_produced = Slot(uri=STRENDCAT_BIOCATALYSIS.is_self_produced, name="is_self_produced", curie=STRENDCAT_BIOCATALYSIS.curie('is_self_produced'),
+slots.is_self_produced = Slot(uri=SIO['000008'], name="is_self_produced", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_self_produced, domain=None, range=Union[bool, Bool])
 
 slots.has_biocatalyst_production_process = Slot(uri=PROV.wasGeneratedBy, name="has_biocatalyst_production_process", curie=PROV.curie('wasGeneratedBy'),
@@ -6269,7 +6278,7 @@ slots.purity_specification = Slot(uri=SIO['000008'], name="purity_specification"
 slots.has_purity = Slot(uri=SIO['000008'], name="has_purity", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_purity, domain=None, range=Optional[Union[Union[dict, Purity], list[Union[dict, Purity]]]])
 
-slots.application_form = Slot(uri=STRENDCAT_BIOCATALYSIS.application_form, name="application_form", curie=STRENDCAT_BIOCATALYSIS.curie('application_form'),
+slots.application_form = Slot(uri=SIO['000008'], name="application_form", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.application_form, domain=None, range=Union[str, "BiocatalystApplicationFormEnum"])
 
 slots.has_activity = Slot(uri=SIO['000008'], name="has_activity", curie=SIO.curie('000008'),

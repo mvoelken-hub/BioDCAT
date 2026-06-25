@@ -11,29 +11,29 @@ see_also:
   - https://nfdi-de.github.io/chem-dcat-ap/
 prefixes:
   strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
-  chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  #chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
+  #dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   dcterms: http://purl.org/dc/terms/
-  dcat: http://www.w3.org/ns/dcat#
+  #dcat: http://www.w3.org/ns/dcat#
   prov: http://www.w3.org/ns/prov#
-  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  #rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  #rdfs: http://www.w3.org/2000/01/rdf-schema#
   owl: http://www.w3.org/2002/07/owl#
-  skos: http://www.w3.org/2004/02/skos/core#
+  #skos: http://www.w3.org/2004/02/skos/core#
   foaf: http://xmlns.com/foaf/0.1/
   qudt: http://qudt.org/schema/qudt/
-  xsd: http://www.w3.org/2001/XMLSchema#
+  #xsd: http://www.w3.org/2001/XMLSchema#
   RO: http://purl.obolibrary.org/obo/RO_
   PATO: http://purl.obolibrary.org/obo/PATO_
   OBI: http://purl.obolibrary.org/obo/OBI_
-  IAO: http://purl.obolibrary.org/obo/IAO_
+  #IAO: http://purl.obolibrary.org/obo/IAO_
   BFO: http://purl.obolibrary.org/obo/BFO_
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
   CHEMINF: http://semanticscience.org/resource/CHEMINF_
-  RXNO: http://purl.obolibrary.org/obo/RXNO_
+  #RXNO: http://purl.obolibrary.org/obo/RXNO_
   SIO: http://semanticscience.org/resource/SIO_
   AFE: http://purl.allotrope.org/ontologies/equipment#AFE_
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
@@ -404,7 +404,7 @@ classes:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000573
     description: >-
-      Change in enthalpy observed in the constituents of a thermodynamic system when undergoing a transformation or chemical reaction. This is the preferred way of expressing the energy changes to a system at constant pressure, since enthalpy itself cannot be directly measured. The enthalpy change is positive in endothermic reactions, negative in exothermic reactions, and is defined as the difference between the final and initial enthalpy of the system under study: ΔH = Hf - Hi. The standard unit of measure is J. Symbol: ΔH
+      Change in enthalpy observed in the constituents of a thermodynamic system when undergoing a transformation or chemical reaction. This is the preferred way of expressing the energy changes to a system at constant pressure, since enthalpy itself cannot be directly measured. The enthalpy change is positive in endothermic reactions, negative in exothermic reactions, and is defined as the difference between the final and initial enthalpy of the system under study: delta_H = Hf - Hi. The standard unit of measure is J.
     #todos:
     #  - Bind has_quantity_type to qudt:Energy
     #  - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
@@ -1149,11 +1149,11 @@ classes:
 slots:
   # --- Biocatalyst slots ---
   ec_number:
-    slot_uri: EDAM:data_1011
+    slot_uri: CHEMINF:000447
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      An Enzyme Commission (EC) number of an enzyme.
+      A seven-digit identifier for chemical substances for regulatory purposes within the European Union.
 
   sequence_amino_acid:
     slot_uri: SIO:010016
@@ -1174,18 +1174,17 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      The genus and species of the organism from which the biocatalyst
-      is derived or isolated.
+      The genus and species of the organism from which the biocatalyst is derived or isolated.
 
   posttranslational_modification:
     slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      Chemical modifications to the biocatalyst protein after translation
-      (e.g. phosphorylation, glycosylation, acetylation).
+      Chemical modifications to the biocatalyst protein after translation (e.g. phosphorylation, glycosylation, acetylation).
 
   is_self_produced:
+    slot_uri: SIO:000008 
     range: boolean
     required: true
     description: >-
@@ -1202,7 +1201,7 @@ slots:
     inlined: true
 
   production_organism:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1210,7 +1209,7 @@ slots:
       context of heterologous gene expression.
 
   sequence_plasmid:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1218,7 +1217,7 @@ slots:
       or a database identifier for it.
 
   plasmid_specifications:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1226,7 +1225,7 @@ slots:
       introduced into the plasmid.
 
   purification_method:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1234,7 +1233,7 @@ slots:
       precipitation, ultrafiltration.
 
   purity_specification:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1242,7 +1241,7 @@ slots:
       e.g. gel electrophoresis, HPLC, Bradford assay.
 
   has_purity:
-    slot_uri: SIO:000008
+    slot_uri: SIO:000008 
     is_a: has_quantitative_attribute
     range: Purity
     description: >-
@@ -1250,6 +1249,7 @@ slots:
       pure compound relative to the total preparation.
 
   application_form:
+    slot_uri: SIO:000008 
     range: BiocatalystApplicationFormEnum
     required: true
     description: >-
@@ -1396,6 +1396,7 @@ slots:
   drying_method_type:
     range: DryingMethodEnum
     description: The type of drying method applied to the biocatalyst preparation.
+    # Maybe add to Voc4Cat
 
   # --- Component slots ---
 
@@ -1471,7 +1472,7 @@ slots:
   has_medium_additive:
     slot_uri: BFO:0000051
     is_a: has_part
-    #range: ChemicalSubstance
+    #range: ChemicalSubstance -->todo: Error: ChemicalRange is not defined until now
     multivalued: true
     inlined_as_list: true
     description: >-
@@ -1678,15 +1679,6 @@ slots:
     description: >-
       The material from which the reactor is constructed
       (e.g. glass, polypropylene, stainless steel).
-
-#  SLOT ALREADY EXISTING IN DCAT-AP+
-#  geometry:
-#    slot_uri: SIO:000008
-#    is_a: has_qualitative_attribute
-#    range: string
-#    description: >-
-#      The geometric dimensions or ratios of the reactor
-#      (e.g. height:width ratio for STR).
 
   bottom_type:
     slot_uri: SIO:000008
@@ -2120,7 +2112,6 @@ slots:
 
   inhibition_type:
     slot_uri: SIO:000008
-    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
     range: InhibitionTypeEnum
     description: >-
       The type of enzyme inhibition observed (competitive, non-competitive,
@@ -2281,27 +2272,6 @@ slots:
     description: >-
       Sampling processes carried out during the BiocatalyticExperiment.
 
-  # --- Missing slots identified in self-critique ---
- #SLOT ALREADY EXIST IN DCAT-AP+
- # has_amount:
- #   slot_uri: SIO:000008
- #   is_a: has_quantitative_attribute
- #   range: QuantitativeAttribute
- #   description: >-
- #     The amount of a gas phase present in the reaction medium or headspace,
- #     expressed as volume fraction, partial pressure, or moles.
- #   todos:
- #     - Bind to appropriate QUDT quantity type (AmountOfSubstance or
- #       VolumeFraction depending on context)
- #SLOT ALREADY EXIST IN DCAT-AP+
- # has_yield:
- #   slot_uri: SIO:000008
- #   is_a: has_quantitative_attribute
- #   range: Yield
- #   description: >-
- #     The chemical yield of a biocatalytic reaction expressed as a percentage.
- #     Reuses Yield from chemical_reaction_ap.
-
   molecular_weight:
     slot_uri: SIO:000119
     is_a: has_quantitative_attribute
@@ -2318,6 +2288,3 @@ slots:
       The SamplePreparationProcess (quenching, treatment) that was applied
       to this MaterialSample before analysis.
     inlined: true
-
-  # --- MeasurementProcess base class stub ---
-  # (slot section stub comment — class declared above in classes section)
