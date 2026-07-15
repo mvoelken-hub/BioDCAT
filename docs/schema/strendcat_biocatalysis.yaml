@@ -20,6 +20,12 @@ prefixes:
   strendcat_biocatalysis:
     prefix_prefix: strendcat_biocatalysis
     prefix_reference: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  chemdcatap:
+    prefix_prefix: chemdcatap
+    prefix_reference: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
+  dcatapplus:
+    prefix_prefix: dcatapplus
+    prefix_reference: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -29,18 +35,33 @@ prefixes:
   dcterms:
     prefix_prefix: dcterms
     prefix_reference: http://purl.org/dc/terms/
+  dcat:
+    prefix_prefix: dcat
+    prefix_reference: http://www.w3.org/ns/dcat#
   prov:
     prefix_prefix: prov
     prefix_reference: http://www.w3.org/ns/prov#
+  rdf:
+    prefix_prefix: rdf
+    prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs:
+    prefix_prefix: rdfs
+    prefix_reference: http://www.w3.org/2000/01/rdf-schema#
   owl:
     prefix_prefix: owl
     prefix_reference: http://www.w3.org/2002/07/owl#
+  skos:
+    prefix_prefix: skos
+    prefix_reference: http://www.w3.org/2004/02/skos/core#
   foaf:
     prefix_prefix: foaf
     prefix_reference: http://xmlns.com/foaf/0.1/
   qudt:
     prefix_prefix: qudt
     prefix_reference: http://qudt.org/schema/qudt/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
   RO:
     prefix_prefix: RO
     prefix_reference: http://purl.obolibrary.org/obo/RO_
@@ -50,6 +71,9 @@ prefixes:
   OBI:
     prefix_prefix: OBI
     prefix_reference: http://purl.obolibrary.org/obo/OBI_
+  IAO:
+    prefix_prefix: IAO
+    prefix_reference: http://purl.obolibrary.org/obo/IAO_
   BFO:
     prefix_prefix: BFO
     prefix_reference: http://purl.obolibrary.org/obo/BFO_
@@ -62,6 +86,9 @@ prefixes:
   CHEMINF:
     prefix_prefix: CHEMINF
     prefix_reference: http://semanticscience.org/resource/CHEMINF_
+  RXNO:
+    prefix_prefix: RXNO
+    prefix_reference: http://purl.obolibrary.org/obo/RXNO_
   SIO:
     prefix_prefix: SIO
     prefix_reference: http://semanticscience.org/resource/SIO_
@@ -432,19 +459,16 @@ enums:
         text: Batch
         description: All reaction components are mixed simultaneously in a closed
           system and the reaction proceeds until a predetermined endpoint.
-        meaning: CHMO:0000611
+        meaning: VOC4CAT:0000110
       FedBatch:
         text: FedBatch
         description: Additional compounds are gradually added during the reaction
           to control reaction conditions or enhance product formation.
-        todos:
-        - Verify CHMO identifier for fed-batch operation
       Continuous:
         text: Continuous
         description: The reaction operates continuously with substrates continuously
           supplied and products continuously removed.
-        todos:
-        - Verify CHMO identifier for continuous operation
+        meaning: VOC4CAT:0000109
       Combinatorial:
         text: Combinatorial
         description: A mixture of operation modes used to systematically explore various
@@ -1009,9 +1033,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/cell_disruption_process
     description: The method used to disrupt cells to obtain the crude cell extract
       (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).
-    todos:
-    - '{''P-001 candidate'': ''could be modelled as CellDisruptionProcess (subclass
-      of OBI:0000094) with method_type enum in a future iteration''}'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -1029,9 +1050,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/harvesting_method
     description: The method used to harvest whole cells from culture (e.g. centrifugation,
       filtration).
-    todos:
-    - '{''P-001 candidate'': ''could be modelled as CellHarvestingProcess (subclass
-      of OBI:0000094) in a future iteration''}'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -1049,9 +1067,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/separation_method
     description: The method used to separate the secreted enzyme supernatant from
       cells (e.g. centrifugation, filtration).
-    todos:
-    - '{''P-001 candidate'': ''could be modelled as SeparationProcess (subclass of
-      OBI:0000094) in a future iteration''}'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -1141,10 +1156,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/carrier_material
     description: The support material used for immobilisation (name, type, supplier,
       product details).
-    todos:
-    - '{''P-001 candidate'': ''carrier_material is a MaterialEntity with its own identity;
-      could be modelled as a ChemicalSubstance or MaterialEntity subclass with supplied_by
-      slot in a future iteration''}'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -1162,9 +1173,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/linkers
     description: Chemical linkers or spacers used to connect the biocatalyst to the
       carrier material.
-    todos:
-    - '{''P-001 candidate'': ''linkers are ChemicalSubstances with a specific role;
-      could be modelled as ChemicalSubstance with CHEBI linker role in a future iteration''}'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -1243,7 +1251,9 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/drying_method_type
     description: The type of drying method applied to the biocatalyst preparation.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
-    slot_uri: strendcat_biocatalysis:drying_method_type
+    mappings:
+    - OBI:0000011
+    slot_uri: OBI:0000011
     owner: DryingProcess
     domain_of:
     - DryingProcess
@@ -1406,8 +1416,9 @@ slots:
     owner: ReactionMedium
     domain_of:
     - ReactionMedium
-    range: string
+    range: ChemicalEntity
     multivalued: true
+    inlined: true
     inlined_as_list: true
   has_liquid_type:
     name: has_liquid_type
@@ -2613,9 +2624,6 @@ slots:
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/quenching_method_type
     description: The technique used to stop the reaction (e.g. heat treatment, organic
       solvent, acid/base addition, freezing).
-    todos:
-    - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent, AcidBase, Freezing,
-      Other) in a future iteration.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000008
@@ -3237,8 +3245,6 @@ slots:
     name: molecular_weight
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/molecular_weight
     description: The molecular weight of the biocatalyst, expressed in Da or kDa.
-    todos:
-    - Bind to QUDT MolarMass quantity type
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - SIO:000119
@@ -9922,7 +9928,7 @@ classes:
   InhibitionConstant:
     name: InhibitionConstant
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/InhibitionConstant
-    description: 'Synonym: Ki -  (The inhibition constant (Ki) describing the affinity
+    description: 'Synonym: Ki - (The inhibition constant (Ki) describing the affinity
       of an inhibitor for an enzyme. A lower Ki indicates stronger binding.)'
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
@@ -11543,6 +11549,8 @@ classes:
     description: A planned process that has the objective to produce information about
       a material entity by examining it. (OBI:0000070 stub)
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - OBI:0000070
     is_a: PlannedProcess
     slots:
     - id
@@ -11559,7 +11567,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - EvaluatedActivity_other_identifier
-    class_uri: strendcat_biocatalysis:MeasurementProcess
+    class_uri: OBI:0000070
   BiocatalyticReaction:
     name: BiocatalyticReaction
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/BiocatalyticReaction
@@ -15148,7 +15156,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-06-25T11:06:57'
-source_file_size: 77346
-generation_date: '2026-06-25T11:24:55'
+source_file_date: '2026-07-15T13:40:09'
+source_file_size: 74302
+generation_date: '2026-07-15T13:54:10'
 

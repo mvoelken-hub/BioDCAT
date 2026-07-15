@@ -75,19 +75,16 @@ enums:
         description: >-
           All reaction components are mixed simultaneously in a closed system
           and the reaction proceeds until a predetermined endpoint.
-        meaning: CHMO:0000611
+        meaning: VOC4CAT:0000110
       FedBatch:
         description: >-
           Additional compounds are gradually added during the reaction to
           control reaction conditions or enhance product formation.
-        todos:
-          - Verify CHMO identifier for fed-batch operation
       Continuous:
         description: >-
           The reaction operates continuously with substrates continuously
           supplied and products continuously removed.
-        todos:
-          - Verify CHMO identifier for continuous operation
+        meaning: VOC4CAT:0000109
       Combinatorial:
         description: >-
           A mixture of operation modes used to systematically explore various
@@ -195,40 +192,32 @@ classes:
     class_uri: AFR:0001881
     description: >-
       Flow rate is a quality quantification facet that quantifies the motion of material through a surface per time.
-    #todos:
-    #  - Bind has_quantity_type to qudt:VolumeFlowRate
 
   ResidenceTime:
     is_a: QuantitativeAttribute
     class_uri: NCIT:C85700
     description: >-
       Mean residence time (MRT) from the time of dosing to the time of the last measurable concentration.
-    #todos:
-    #  - Bind has_quantity_type to qudt:Time
 
   AngularVelocity:
     is_a: QuantitativeAttribute
     description: >-
       The speed or frequency at which a stirrer or shaker operates.
-    # Maybe add to Voc4Cat or map to NCIT:C179817 (ASB)
-    #todos:
-    #  - Bind has_quantity_type to qudt:AngularVelocity
+    #TODO: Maybe add to Voc4Cat or map to NCIT:C179817 (ASB)
 
   PowerPerVolume:
     is_a: QuantitativeAttribute
     description: >-
       The amount of mixing power or energy input per unit volume of the
       reaction mixture.
-    # Maybe add to Voc4Cat
-    #todos:
-    #  - Bind has_quantity_type to qudt:PowerPerVolume
+    #TODO: Maybe add to Voc4Cat
 
   QuenchingRatio:
     is_a: QuantitativeAttribute
     description: >-
       The ratio of the volume of quenching solution to the volume of the
       reaction mixture.
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   SamplingTimepoint:
     is_a: QuantitativeAttribute
@@ -238,7 +227,7 @@ classes:
     slots:
       - has_time_value
       - time_unit
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   TemperatureTimepoint:
     is_a: QuantitativeAttribute
@@ -248,7 +237,7 @@ classes:
     slots:
       - has_temperature
       - has_time_value
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # Kinetic / result quantity types
@@ -261,32 +250,24 @@ classes:
       Michaelis-Menten constant - 
       (The substrate concentration at which an enzyme achieves half of its
       maximum reaction rate (Km).)
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
 
   MaximumReactionRate:
     is_a: QuantitativeAttribute
     class_uri: EDAM:data_0909
     description: >-
       The maximum initial velocity or rate of a reaction. It is the limiting velocity as substrate concentrations get very large.
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
 
   TurnoverNumber:
     is_a: QuantitativeAttribute
     class_uri: BAO:0000481
     description: >-
       Turnover number representing the maximum number of substrate molecules converted to products per active site per unit time.
-    #todos:
-    #  - Bind has_quantity_type to qudt:Frequency
 
   CatalyticEfficiency:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000302
     description: >-
       Constant representing the actual efficiency of an enzyme, taking into account its microscopic catalytic activity and the rates of substrate binding and dissociation.
-    #todos:
-    #  - Bind has_quantity_type to qudt:VolumePerAmountOfSubstancePerTime
 
   DissociationConstant:
     is_a: QuantitativeAttribute
@@ -295,119 +276,89 @@ classes:
       Synonym: Kd  - 
       (The equilibrium dissociation constant (Kd) representing the balance
       between a complex and its dissociated components.)
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
 
   HillCoefficient:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000190
     description: >-
       Empirical parameter created by Archibald Vivian Hill to describe the cooperative binding of oxygen on hemoglobine (Hill (1910). The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves. J Physiol 40: iv-vii).
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
 
   InhibitionConstant:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000261
     description: >-
-      Synonym: Ki - 
-      (The inhibition constant (Ki) describing the affinity of an inhibitor for
-      an enzyme. A lower Ki indicates stronger binding.)
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+      Synonym: Ki - (The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger binding.)
 
   HalfLife:
     is_a: QuantitativeAttribute
     class_uri: UO:0000152
     description: >-
       A time unit which represents the period over which the activity or concentration of a specified chemical or element falls to half its original activity or concentration.
-    #todos:
-    #  - Bind has_quantity_type to qudt:Time
 
   SpaceTimeYield:
     is_a: QuantitativeAttribute
     class_uri: VOC4CAT:0005006
     description: >-
       A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})
-    #todos:
-    #  - Bind has_quantity_type to qudt:MassPerVolumePerTime
 
   SubstrateConversion:
     is_a: QuantitativeAttribute
     class_uri: VOC4CAT:0005004
     description: >-
       A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
 
   SpecificActivity:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000558
     description: >-
       A measure of enzyme activity under standard conditions, at a specific substrate concentration (usually saturation), expressed as the amount of product formed per unit time, per amount of enzyme. This is often expressed as micromol per min per mg, rather than the less practical official unit, Katal (1 mol per second).
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
 
   InitialReactionRate:
     is_a: QuantitativeAttribute
     description: >-
       The rate at which product is formed in the first 10% of the enzymatic
       reaction under specific initial substrate concentrations and conditions.
-    # Maybe add to Voc4Cat
-    #todos:
-    #  - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+    #TODO Maybe add to Voc4Cat
     
   EnantioselectivityRatio:
     is_a: QuantitativeAttribute
     description: >-
       The enantiomeric ratio (E) defining the enzyme's preference to
       catalyze the transformation of one enantiomer over its mirror image.
-    # Maybe add to Voc4Cat
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
+    #TODO Maybe add to Voc4Cat
 
   EnantiomericExcess:
     is_a: QuantitativeAttribute
     class_uri: AFQ:0000220
     description: >-
       The absolute value of the mole fraction for one enantiomer in a mixture minus the mole fraction for the other enantiomer. [CHMO]
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
 
   DiastereomericExcess:
     is_a: QuantitativeAttribute
     class_uri: AFQ:0000217
     description: >-
       The absolute value of the mole fraction for one diastereomer in a mixture minus the mole fraction for the other. [CHMO]
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
 
   IsomericContent:
     is_a: QuantitativeAttribute
     description: >-
       The isomeric content expressed as a percentage of a specific isomer
       relative to total product.
-    # Maybe add to Voc4Cat
-    #todos:
-    #  - Bind has_quantity_type to qudt:Dimensionless
+    #TODO Maybe add to Voc4Cat
 
   GibbsFreeEnergyChange:
     is_a: QuantitativeAttribute
     class_uri: NCIT:C52567
     description: >-
       A measure of the spontaneity of a chemical reaction. It is the change in the free energy of a system during a chemical reaction at a pH of 7.0. It is equal to the change in the enthalpy of the system minus the change in the product of the temperature times the entropy of the system.  The resulting sign of Delta G determines if a reaction is spontaneous or not: DG < 0 indicates that the reaction is spontaneous; DG > 0 indicates that the reaction is not spontaneous; and DG = 0 indicates that the reaction is at equilibrium.
-    #todos:
-    #  - Bind has_quantity_type to qudt:Energy
-    #  - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+    # Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
 
   EnthalpyChange:
     is_a: QuantitativeAttribute
     class_uri: SBO:0000573
     description: >-
       Change in enthalpy observed in the constituents of a thermodynamic system when undergoing a transformation or chemical reaction. This is the preferred way of expressing the energy changes to a system at constant pressure, since enthalpy itself cannot be directly measured. The enthalpy change is positive in endothermic reactions, negative in exothermic reactions, and is defined as the difference between the final and initial enthalpy of the system under study: delta_H = Hf - Hi. The standard unit of measure is J.
-    #todos:
-    #  - Bind has_quantity_type to qudt:Energy
-    #  - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+    # Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
 
   # =============================================================================
   # STORAGE CONDITIONS (D-003 — shared between BiocatalystPreparation and BiocatalyticComponent)
@@ -419,11 +370,7 @@ classes:
       A ChemicalSubstance added to a storage medium to preserve or stabilize
       a MaterialEntity during storage (e.g. antioxidants, stabilizers,
       drying agents, inert gases such as argon or nitrogen).
-    # Maybe add to Voc4Cat
-    #todos:
-    #  - Constrain role via CHEBI role hierarchy in a future iteration
-    #    (e.g. CHEBI:22586 antioxidant, CHEBI:35225 stabilizer)
-
+    #TODO Maybe add to Voc4Cat
 
   StorageConditions:
     is_a: QuantitativeAttribute
@@ -436,7 +383,7 @@ classes:
       - has_temperature
       - storage_start
       - has_storage_additive
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   DryingProcess:
     is_a: MaterialProcessing
@@ -480,7 +427,7 @@ classes:
         description: >-
           Quantitative attributes of the biocatalyst entity, such as
           molecular weight.
-    #todos: (ASB)
+    #TODO: (ASB)
     # Maybe set to SBO:0000460 (enzymatic catalyst) & PREFER:0000012 (cell biocatalyst) or as seperate subclass
 
   BiocatalystProductionProcess:
@@ -496,7 +443,7 @@ classes:
       - purification_method
       - has_purity
       - purity_specification
-    # Mabye add to Voc4Cat
+    #TODO Mabye add to Voc4Cat
 
   BiocatalystPreparation:
     is_a: SubstanceSample
@@ -519,7 +466,7 @@ classes:
         description: The Biocatalyst from which this preparation was derived.
         range: Biocatalyst
         required: true
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   PurifiedEnzymePreparation:
     is_a: BiocatalystPreparation
@@ -527,7 +474,7 @@ classes:
     slots:
       - concentration_determination_method
       - activity_determination_method
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   CrudeCellExtractPreparation:
     is_a: BiocatalystPreparation
@@ -537,7 +484,7 @@ classes:
     slots:
       - cell_disruption_process
       - concentration_determination_method
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   WholeCellPreparation:
     is_a: BiocatalystPreparation
@@ -546,7 +493,7 @@ classes:
     slots:
       - harvesting_method
       - concentration_determination_method
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   SecretedEnzymePreparation:
     is_a: BiocatalystPreparation
@@ -556,7 +503,7 @@ classes:
     slots:
       - separation_method
       - concentration_determination_method
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   CellFreePreparation:
     is_a: BiocatalystPreparation
@@ -566,7 +513,7 @@ classes:
     slots:
       - source_of_cellfree_extract
       - concentration_determination_method
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   ImmobilisedPreparation:
     is_a: BiocatalystPreparation
@@ -588,7 +535,7 @@ classes:
           which this immobilised preparation was derived.
         range: BiocatalystPreparation
         required: true
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # BIOCATALYTIC COMPONENT (D-004 — ChemicalSubstance / MaterialEntity)
@@ -618,7 +565,7 @@ classes:
           Free-text description of additional component characteristics not
           covered by other slots (STRENDA special_treatment fallback, P-001).
           Flagged as candidate for future structured modelling.
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # REACTION CONDITIONS — PHASE SYSTEM (D-006 — attachment to BiocatalyticReaction via has_reaction_medium)
@@ -641,7 +588,7 @@ classes:
         description: >-
           Free-text description of additional medium characteristics
           (STRENDA special_treatment fallback, P-001).
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   LiquidPhase:
     is_a: MaterialEntity
@@ -681,7 +628,7 @@ classes:
       - has_temperature_after
       - has_trigger_event
       - has_temperature_at_timepoint
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   TemperatureGradient:
     is_a: PlannedProcess
@@ -693,7 +640,7 @@ classes:
       - has_temperature_end
       - has_gradient_length
       - has_measurement_points
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   PHShiftProcess:
     is_a: PlannedProcess
@@ -706,7 +653,7 @@ classes:
       - has_trigger_event
       - has_ph_at_timepoint
       - has_ph_measurement
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   PHGradient:
     is_a: PlannedProcess
@@ -719,7 +666,7 @@ classes:
       - has_gradient_length
       - has_measurement_points
       - has_ph_measurement
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   PHMeasurementProcess:
     is_a: MeasurementProcess
@@ -735,7 +682,7 @@ classes:
       - detected_how
       - has_temperature
       - has_calibration_info
-    # Maybe add to Voc4Cat
+    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # VESSELS AND MIXING (D-007)
@@ -864,8 +811,6 @@ classes:
       - has_gas_phase
       - gas_supply_method
       - has_flow_rate
-    #todos:
-    # Maybe set as subclass
 
   TemperatureControlDevice:
     is_a: Device
@@ -1050,9 +995,6 @@ classes:
     description: >-
       A process that realizes a plan — i.e. it is carried out with the
       intention of achieving a specified objective. (OBI:0000011 stub)
-    #todos:
-    #  - Replace with direct OBI import
-    #  - Verify correct DCAT-AP-Plus ancestor for BFO process classes
 
   MaterialProcessing:
     class_uri: AFP:0003275
@@ -1061,12 +1003,11 @@ classes:
       A process that affects the physical qualities of materials or creates, destroys or converts materials. [Allotrope]
 
   MeasurementProcess:
-    #class_uri: OBI:0000070
+    class_uri: OBI:0000070
     is_a: PlannedProcess
     description: >-
       A planned process that has the objective to produce information about
       a material entity by examining it. (OBI:0000070 stub)
-    # Maybe add to Voc4CAt
   
   # =============================================================================
   # BIOCATALYTIC REACTION(D-001 evaluated activity; D-006 conditions attachment point)
@@ -1287,8 +1228,6 @@ slots:
     description: >-
       The method used to disrupt cells to obtain the crude cell extract
       (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).
-    todos:
-      - P-001 candidate: could be modelled as CellDisruptionProcess (subclass of OBI:0000094) with method_type enum in a future iteration
 
   harvesting_method:
     slot_uri: SIO:000008
@@ -1297,8 +1236,6 @@ slots:
     description: >-
       The method used to harvest whole cells from culture
       (e.g. centrifugation, filtration).
-    todos:
-      - P-001 candidate: could be modelled as CellHarvestingProcess (subclass of OBI:0000094) in a future iteration
 
   separation_method:
     slot_uri: SIO:000008
@@ -1307,8 +1244,6 @@ slots:
     description: >-
       The method used to separate the secreted enzyme supernatant from cells
       (e.g. centrifugation, filtration).
-    todos:
-      - P-001 candidate: could be modelled as SeparationProcess (subclass of OBI:0000094) in a future iteration
 
   source_of_cellfree_extract:
     slot_uri: SIO:000008
@@ -1348,8 +1283,6 @@ slots:
     description: >-
       The support material used for immobilisation (name, type, supplier,
       product details).
-    todos:
-      - P-001 candidate: carrier_material is a MaterialEntity with its own identity; could be modelled as a ChemicalSubstance or MaterialEntity subclass with supplied_by slot in a future iteration
 
   linkers:
     slot_uri: SIO:000008
@@ -1358,8 +1291,6 @@ slots:
     description: >-
       Chemical linkers or spacers used to connect the biocatalyst to the
       carrier material.
-    todos:
-      - P-001 candidate: linkers are ChemicalSubstances with a specific role; could be modelled as ChemicalSubstance with CHEBI linker role in a future iteration
 
   immobilisation_method:
     slot_uri: SIO:000008
@@ -1394,9 +1325,10 @@ slots:
     inlined: true
 
   drying_method_type:
+    slot_uri: OBI:0000011
     range: DryingMethodEnum
     description: The type of drying method applied to the biocatalyst preparation.
-    # Maybe add to Voc4Cat
+    
 
   # --- Component slots ---
 
@@ -1472,7 +1404,7 @@ slots:
   has_medium_additive:
     slot_uri: BFO:0000051
     is_a: has_part
-    #range: ChemicalSubstance -->todo: Error: ChemicalRange is not defined until now
+    range: ChemicalEntity
     multivalued: true
     inlined_as_list: true
     description: >-
@@ -2012,9 +1944,6 @@ slots:
     description: >-
       The technique used to stop the reaction (e.g. heat treatment, organic
       solvent, acid/base addition, freezing).
-    todos:
-      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
-        AcidBase, Freezing, Other) in a future iteration.
 
   has_quenching_ratio:
     slot_uri: SIO:000008
@@ -2278,8 +2207,6 @@ slots:
     range: QuantitativeAttribute
     description: >-
       The molecular weight of the biocatalyst, expressed in Da or kDa.
-    todos:
-      - Bind to QUDT MolarMass quantity type
 
   was_processed_by:
     slot_uri: prov:wasGeneratedBy

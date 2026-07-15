@@ -13156,7 +13156,7 @@ class HillCoefficient(QuantitativeAttribute):
 
 class InhibitionConstant(QuantitativeAttribute):
     """
-    Synonym: Ki -  (The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger binding.)
+    Synonym: Ki - (The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger binding.)
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SBO:0000261',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
@@ -14769,8 +14769,7 @@ class Biocatalyst(Catalyst):
     molecular_weight: Optional[list[QuantitativeAttribute]] = Field(default=None, description="""The molecular weight of the biocatalyst, expressed in Da or kDa.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Biocatalyst'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000119',
-         'todos': ['Bind to QUDT MolarMass quantity type']} })
+         'slot_uri': 'SIO:000119'} })
     is_self_produced: bool = Field(default=..., description="""True if the biocatalyst was produced in-house; false if purchased from a commercial supplier. Self-produced biocatalysts should have an associated BiocatalystProductionProcess.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Biocatalyst'], 'slot_uri': 'SIO:000008'} })
     has_biocatalyst_production_process: Optional[BiocatalystProductionProcess] = Field(default=None, description="""The production process by which this biocatalyst was generated. Only present when is_self_produced is true.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Biocatalyst'], 'slot_uri': 'prov:wasGeneratedBy'} })
     has_molar_equivalent: Optional[list[MolarEquivalent]] = Field(default=None, description="""A slot to provide the MolarEquivalent of a ChemicalSubstance, such as the DissolvingSubstance, Starting Material or Reactant, within the context of a chemical reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StartingMaterial', 'Reagent', 'Catalyst'],
@@ -15351,10 +15350,7 @@ class CrudeCellExtractPreparation(BiocatalystPreparation):
     cell_disruption_process: Optional[list[str]] = Field(default=None, description="""The method used to disrupt cells to obtain the crude cell extract (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CrudeCellExtractPreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ["{'P-001 candidate': 'could be modelled as CellDisruptionProcess "
-                   '(subclass of OBI:0000094) with method_type enum in a future '
-                   "iteration'}"]} })
+         'slot_uri': 'SIO:000008'} })
     concentration_determination_method: Optional[list[str]] = Field(default=None, description="""The method used to determine the concentration of the biocatalyst preparation (e.g. Bradford assay, UV absorption, activity assay).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PurifiedEnzymePreparation',
                        'CrudeCellExtractPreparation',
                        'WholeCellPreparation',
@@ -15557,9 +15553,7 @@ class WholeCellPreparation(BiocatalystPreparation):
     harvesting_method: Optional[list[str]] = Field(default=None, description="""The method used to harvest whole cells from culture (e.g. centrifugation, filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['WholeCellPreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ["{'P-001 candidate': 'could be modelled as CellHarvestingProcess "
-                   "(subclass of OBI:0000094) in a future iteration'}"]} })
+         'slot_uri': 'SIO:000008'} })
     concentration_determination_method: Optional[list[str]] = Field(default=None, description="""The method used to determine the concentration of the biocatalyst preparation (e.g. Bradford assay, UV absorption, activity assay).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PurifiedEnzymePreparation',
                        'CrudeCellExtractPreparation',
                        'WholeCellPreparation',
@@ -15762,9 +15756,7 @@ class SecretedEnzymePreparation(BiocatalystPreparation):
     separation_method: Optional[list[str]] = Field(default=None, description="""The method used to separate the secreted enzyme supernatant from cells (e.g. centrifugation, filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecretedEnzymePreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ["{'P-001 candidate': 'could be modelled as SeparationProcess "
-                   "(subclass of OBI:0000094) in a future iteration'}"]} })
+         'slot_uri': 'SIO:000008'} })
     concentration_determination_method: Optional[list[str]] = Field(default=None, description="""The method used to determine the concentration of the biocatalyst preparation (e.g. Bradford assay, UV absorption, activity assay).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PurifiedEnzymePreparation',
                        'CrudeCellExtractPreparation',
                        'WholeCellPreparation',
@@ -16182,18 +16174,11 @@ class ImmobilisedPreparation(BiocatalystPreparation):
     carrier_material: Optional[list[str]] = Field(default=None, description="""The support material used for immobilisation (name, type, supplier, product details).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ImmobilisedPreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ["{'P-001 candidate': 'carrier_material is a MaterialEntity with its "
-                   'own identity; could be modelled as a ChemicalSubstance or '
-                   'MaterialEntity subclass with supplied_by slot in a future '
-                   "iteration'}"]} })
+         'slot_uri': 'SIO:000008'} })
     linkers: Optional[list[str]] = Field(default=None, description="""Chemical linkers or spacers used to connect the biocatalyst to the carrier material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ImmobilisedPreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ["{'P-001 candidate': 'linkers are ChemicalSubstances with a "
-                   'specific role; could be modelled as ChemicalSubstance with CHEBI '
-                   "linker role in a future iteration'}"]} })
+         'slot_uri': 'SIO:000008'} })
     immobilisation_method: Optional[list[str]] = Field(default=None, description="""Detailed description of the immobilisation procedure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ImmobilisedPreparation'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
@@ -16598,7 +16583,7 @@ class ReactionMedium(MaterialEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_medium_additive: Optional[list[str]] = Field(default=None, description="""Additional substances in the reaction medium such as cosolvents or ionic strength adjusters. Optional role annotation via CHEBI role hierarchy recommended.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionMedium'], 'is_a': 'has_part', 'slot_uri': 'BFO:0000051'} })
+    has_medium_additive: Optional[list[ChemicalEntity]] = Field(default=None, description="""Additional substances in the reaction medium such as cosolvents or ionic strength adjusters. Optional role annotation via CHEBI role hierarchy recommended.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionMedium'], 'is_a': 'has_part', 'slot_uri': 'BFO:0000051'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -20647,7 +20632,7 @@ class DryingProcess(MaterialProcessing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFP:0001876',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
-    drying_method_type: Optional[DryingMethodEnum] = Field(default=None, description="""The type of drying method applied to the biocatalyst preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingProcess']} })
+    drying_method_type: Optional[DryingMethodEnum] = Field(default=None, description="""The type of drying method applied to the biocatalyst preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingProcess'], 'slot_uri': 'OBI:0000011'} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Dataset',
@@ -21111,9 +21096,7 @@ class QuenchingProcess(MaterialProcessing):
     quenching_method_type: Optional[list[str]] = Field(default=None, description="""The technique used to stop the reaction (e.g. heat treatment, organic solvent, acid/base addition, freezing).""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuenchingProcess'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'SIO:000008',
-         'todos': ['Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent, '
-                   'AcidBase, Freezing, Other) in a future iteration.']} })
+         'slot_uri': 'SIO:000008'} })
     has_quenching_ratio: Optional[list[QuenchingRatio]] = Field(default=None, description="""The ratio of quenching solution volume to reaction mixture volume.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuenchingProcess'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
@@ -21406,7 +21389,8 @@ class MeasurementProcess(PlannedProcess):
     """
     A planned process that has the objective to produce information about a material entity by examining it. (OBI:0000070 stub)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
+         'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',

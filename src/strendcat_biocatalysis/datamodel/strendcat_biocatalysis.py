@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-06-25T12:03:18
+# Generation date: 2026-07-15T13:40:41
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
@@ -2269,8 +2269,8 @@ class MeasurementProcess(PlannedProcess):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["MeasurementProcess"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:MeasurementProcess"
+    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
+    class_class_curie: ClassVar[str] = "OBI:0000070"
     class_name: ClassVar[str] = "MeasurementProcess"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.MeasurementProcess
 
@@ -5121,7 +5121,7 @@ class ReactionMedium(MaterialEntity):
     has_solid_phase: Optional[Union[dict[Union[str, SolidPhaseId], Union[dict, "SolidPhase"]], list[Union[dict, "SolidPhase"]]]] = empty_dict()
     has_gas_phase: Optional[Union[dict[Union[str, GasPhaseId], Union[dict, "GasPhase"]], list[Union[dict, "GasPhase"]]]] = empty_dict()
     has_ionic_strength: Optional[Union[Union[dict, IonicStrength], list[Union[dict, IonicStrength]]]] = empty_list()
-    has_medium_additive: Optional[Union[str, list[str]]] = empty_list()
+    has_medium_additive: Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]] = empty_dict()
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -5141,9 +5141,7 @@ class ReactionMedium(MaterialEntity):
 
         self._normalize_inlined_as_list(slot_name="has_ionic_strength", slot_type=IonicStrength, key_name="value", keyed=False)
 
-        if not isinstance(self.has_medium_additive, list):
-            self.has_medium_additive = [self.has_medium_additive] if self.has_medium_additive is not None else []
-        self.has_medium_additive = [v if isinstance(v, str) else str(v) for v in self.has_medium_additive]
+        self._normalize_inlined_as_list(slot_name="has_medium_additive", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -5979,13 +5977,14 @@ class OperationModeEnum(EnumDefinitionImpl):
     Batch = PermissibleValue(
         text="Batch",
         description="""All reaction components are mixed simultaneously in a closed system and the reaction proceeds until a predetermined endpoint.""",
-        meaning=CHMO["0000611"])
+        meaning=VOC4CAT["0000110"])
     FedBatch = PermissibleValue(
         text="FedBatch",
         description="""Additional compounds are gradually added during the reaction to control reaction conditions or enhance product formation.""")
     Continuous = PermissibleValue(
         text="Continuous",
-        description="""The reaction operates continuously with substrates continuously supplied and products continuously removed.""")
+        description="""The reaction operates continuously with substrates continuously supplied and products continuously removed.""",
+        meaning=VOC4CAT["0000109"])
     Combinatorial = PermissibleValue(
         text="Combinatorial",
         description="""A mixture of operation modes used to systematically explore various reaction conditions or components in a combined manner.""")
@@ -6331,7 +6330,7 @@ slots.has_storage_additive = Slot(uri=BFO['0000051'], name="has_storage_additive
 slots.has_storage_conditions = Slot(uri=SIO['000008'], name="has_storage_conditions", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_storage_conditions, domain=None, range=Optional[Union[dict, StorageConditions]])
 
-slots.drying_method_type = Slot(uri=STRENDCAT_BIOCATALYSIS.drying_method_type, name="drying_method_type", curie=STRENDCAT_BIOCATALYSIS.curie('drying_method_type'),
+slots.drying_method_type = Slot(uri=OBI['0000011'], name="drying_method_type", curie=OBI.curie('0000011'),
                    model_uri=STRENDCAT_BIOCATALYSIS.drying_method_type, domain=None, range=Optional[Union[str, "DryingMethodEnum"]])
 
 slots.has_component_role = Slot(uri=RO['0000087'], name="has_component_role", curie=RO.curie('0000087'),
@@ -6362,7 +6361,7 @@ slots.has_ionic_strength = Slot(uri=SIO['000008'], name="has_ionic_strength", cu
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ionic_strength, domain=None, range=Optional[Union[Union[dict, IonicStrength], list[Union[dict, IonicStrength]]]])
 
 slots.has_medium_additive = Slot(uri=BFO['0000051'], name="has_medium_additive", curie=BFO.curie('0000051'),
-                   model_uri=STRENDCAT_BIOCATALYSIS.has_medium_additive, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=STRENDCAT_BIOCATALYSIS.has_medium_additive, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
 
 slots.has_liquid_type = Slot(uri=SIO['000008'], name="has_liquid_type", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_liquid_type, domain=None, range=Optional[Union[str, list[str]]])

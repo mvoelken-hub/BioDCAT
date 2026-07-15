@@ -1,0 +1,13 @@
+- Mapping der letzten Klassen/Slot (STRG + f: voc4cat)
+
+- "Echten" Datensatz ins Schema übersetzen
+
+- Robot nutzen um eine "MinimalOntology" zu erzeugen							- Nochmal klären was ASB meinte?? 
+
+- Beispiel SPARQL Queries
+
+- React_flow_schema GUI nochmal um erneut aufsetzen, wenn Schema soweit "fertiggestellt" ist.
+
+
+Zusatzaufgabe:
+- DrawIO für StrenDCAT-Biocatalysis erstellen
