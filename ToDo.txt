@@ -1,12 +1,17 @@
 - Mapping der letzten Klassen/Slot (STRG + f: voc4cat)
+	-- Mit mapping aus enzymeML-Schema abgleichen
 
 - "Echten" Datensatz ins Schema übersetzen
+	-- EnzymeML Datensatz von Alex Simulation nutzen (Link in Teams)
 
-- Robot nutzen um eine "MinimalOntology" zu erzeugen							- Nochmal klären was ASB meinte?? 
+- Robot nutzen um eine "MinimalOntology" zu erzeugen
+
+- Pipeline zum umwandeln von Strenda/EnzymeML Datensätze in DCAT Form (have a look: PyEnzyme)
 
 - Beispiel SPARQL Queries
 
 - React_flow_schema GUI nochmal um erneut aufsetzen, wenn Schema soweit "fertiggestellt" ist.
+	-- Light mode, dickere Pfeile
 
 
 Zusatzaufgabe:
