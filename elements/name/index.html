@@ -486,8 +486,8 @@
 
 
 <h1 id="slot-name">Slot: name</h1>
-<p><em>A human-readable name for a thing</em></p>
-<p>URI: <a href="http://schema.org/name">schema:name</a>
+<p><em>This slot is described in more detail within the class in which it is used.</em></p>
+<p>URI: <a href="http://xmlns.com/foaf/0.1/name">foaf:name</a>
 Alias: name</p>
 <!-- no inheritance hierarchy -->
 
@@ -502,14 +502,9 @@ Alias: name</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Person/">Person</a></td>
-<td>Represents a Person</td>
-<td>no</td>
+<td><a href="../Agent/">Agent</a></td>
+<td>See [DCAT-AP specs:Agent](https://semiceu</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -529,11 +524,11 @@ Alias: name</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../Agent/">Agent</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
-<td><a href="http://schema.org/name">schema:name</a></td>
+<td><a href="http://xmlns.com/foaf/0.1/name">foaf:name</a></td>
 </tr>
 </tbody>
 </table>
@@ -568,7 +563,7 @@ Alias: name</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:name</td>
+<td>foaf:name</td>
 </tr>
 <tr>
 <td>native</td>
@@ -579,13 +574,14 @@ Alias: name</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable name for a thing</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This slot is described in more detail within the class in which it is</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">used.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:name</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foaf:name</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Agent</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
