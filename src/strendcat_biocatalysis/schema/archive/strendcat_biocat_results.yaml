@@ -1,0 +1,469 @@
+---
+id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+name: StrenDCAT-Biocatalysis
+title: StrenDCAT-Biocatalysis
+description: |-
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+license: MIT
+see_also:
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
+prefixes:
+  strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: strendcat_biocatalysis
+default_range: string
+
+imports:
+  - linkml:types
+  - chem_dcat_ap
+  - strendcat_biocat_common
+
+#enums:
+## --- enumerations ---
+#  InhibitionTypeEnum:
+#    description: Type of enzyme inhibition observed.
+#    permissible_values:
+#      Competitive:
+#        meaning: SIO:010997
+#      NonCompetitive:
+#        meaning: SIO:010998
+#      Uncompetitive:
+#        meaning: SIO:010999
+#      Mixed:
+#      Irreversible:
+
+classes:
+# --- results classes ---
+  ActivityAndInitialReactionRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping activity and initial reaction rate measurements
+      for a biocatalytic reaction.
+    slots:
+      - has_specific_activity
+      - has_initial_reaction_rate
+    slot_usage:
+      description:
+        description: >-
+          Additional activity measurement details
+          (STRENDA special_treatment fallback, P-001).
+
+  KineticParameters:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping kinetic parameters determined for a
+      biocatalytic reaction. Km and kcat values must be determined by
+      varying all substrate concentrations to obtain true (non-apparent) values.
+    todos:
+      - Identify appropriate OBI measurement datum URI for kinetic parameter set
+    slots:
+      - has_michaelis_constant
+      - has_maximum_reaction_rate
+      - has_turnover_number
+      - has_catalytic_efficiency
+      - has_dissociation_constant
+      - has_hill_coefficient
+      - has_inhibition_characterisation
+      - has_enzyme_stability
+    slot_usage:
+      description:
+        description: >-
+          Additional kinetic characterisation details not covered by other
+          slots (STRENDA special_treatment fallback, P-001).
+
+  SelectivityAndSpecificity:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping selectivity and specificity parameters for a
+      biocatalytic reaction.
+    slots:
+      - has_enantioselectivity_ratio
+      - has_enantiomeric_excess
+      - has_diastereomeric_excess
+      - has_isomeric_content
+      - stereoselectivity_description
+      - chemoselectivity_description
+      - regioselectivity_description
+    slot_usage:
+      description:
+        description: >-
+          Additional selectivity determination details
+          (STRENDA special_treatment fallback, P-001).
+
+  ThermodynamicParameters:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping thermodynamic parameters for a biocatalytic
+      reaction.
+    slots:
+      - has_gibbs_free_energy_change
+      - has_enthalpy_change
+    slot_usage:
+      description:
+        description: >-
+          Additional thermodynamic characterisation details
+          (STRENDA special_treatment fallback, P-001).
+
+  YieldAndConversion:
+    is_a: QuantitativeAttribute
+    description: >-
+      A wrapper class grouping yield and conversion metrics for a biocatalytic
+      reaction.
+    slots:
+      - has_yield
+      - has_space_time_yield
+      - has_substrate_conversion
+    slot_usage:
+      description:
+        description: >-
+          Additional yield or conversion determination details
+          (STRENDA special_treatment fallback, P-001).
+
+# --- range classes ---
+  InitialReactionRate:
+    is_a: QuantitativeAttribute
+    description: >-
+      The rate at which product is formed in the first 10% of the enzymatic
+      reaction under specific initial substrate concentrations and conditions.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+
+  SpecificActivity:
+    is_a: QuantitativeAttribute
+    description: >-
+      The amount of product formed or substrate consumed per unit of enzyme
+      per unit of time. Expressed as µmol/min/mg.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstancePerMassPerTime
+
+  CatalyticEfficiency:
+    is_a: QuantitativeAttribute
+    description: >-
+      The ratio of turnover number to Michaelis constant (kcat/Km), measuring
+      how effectively an enzyme converts substrate to product.
+    todos:
+      - Bind has_quantity_type to qudt:VolumePerAmountOfSubstancePerTime
+
+  DissociationConstant:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000609
+    description: >-
+      The equilibrium dissociation constant (Kd) representing the balance
+      between a complex and its dissociated components.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+  EnzymeStabilityCharacterisation:
+    is_a: QuantitativeAttribute
+    description: >-
+      A characterisation of biocatalyst stability, including half-life and
+      qualitative description of activity decline or preservation.
+    slots:
+      - has_half_life
+      - stability_description
+    todos:
+      - ActivityDeclineProfile class may be warranted in a future iteration
+        to handle activity-over-time trajectories analogously to
+        TemperatureGradient (D-006).
+
+  HillCoefficient:
+    is_a: QuantitativeAttribute
+    description: >-
+      A parameter describing cooperativity in molecular binding. Values greater
+      than 1 indicate positive cooperativity; less than 1 negative cooperativity.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  EnzymeInhibitionCharacterisation:
+    is_a: QuantitativeAttribute
+    description: >-
+      A paired description of enzyme inhibition type and inhibition constant
+      (Ki). The two fields are semantically coupled and should always appear
+      together.
+    slots:
+      - inhibition_type
+      - has_inhibition_constant
+
+  MaximumReactionRate:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000612
+    description: >-
+      The maximum reaction rate (Vmax) under conditions of enzyme saturation
+      with substrate.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentrationPerTime
+
+  MichaelisConstant:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000610
+    description: >-
+      The substrate concentration at which an enzyme achieves half of its
+      maximum reaction rate (Km).
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+  TurnoverNumber:
+    is_a: QuantitativeAttribute
+    class_uri: SIO:000611
+    description: >-
+      The number of substrate molecules converted per active site per unit
+      time when the enzyme is fully saturated (kcat).
+    todos:
+      - Bind has_quantity_type to qudt:Frequency
+
+  EnantiomericExcess:
+    is_a: QuantitativeAttribute
+    description: >-
+      The enantiomeric excess (ee) expressed as a percentage, indicating the
+      predominance of one enantiomer over the other in the product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  DiastereomericExcess:
+    is_a: QuantitativeAttribute
+    description: >-
+      The diastereomeric excess (de) expressed as a percentage, indicating
+      the predominance of one diastereomer over the other in the product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  EnantioselectivityRatio:
+    is_a: QuantitativeAttribute
+    description: >-
+      The enantiomeric ratio (E) defining the enzyme's preference to
+      catalyze the transformation of one enantiomer over its mirror image.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  IsomericContent:
+    is_a: QuantitativeAttribute
+    description: >-
+      The isomeric content expressed as a percentage of a specific isomer
+      relative to total product.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  EnthalpyChange:
+    is_a: QuantitativeAttribute
+    description: >-
+      The change in enthalpy (delta H) for a biocatalytic reaction.
+    close_mappings:
+      - PATO:0001563
+    todos:
+      - Bind has_quantity_type to qudt:Energy
+      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+
+  GibbsFreeEnergyChange:
+    is_a: QuantitativeAttribute
+    description: >-
+      The change in Gibbs free energy (delta G) for a biocatalytic reaction,
+      indicating thermodynamic spontaneity.
+    close_mappings:
+      - PATO:0001546
+    todos:
+      - Bind has_quantity_type to qudt:Energy
+      - Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
+
+  SpaceTimeYield:
+    is_a: QuantitativeAttribute
+    description: >-
+      The mass of product obtained per unit volume of the reactor per unit
+      time. Also referred to as volumetric productivity.
+    todos:
+      - Bind has_quantity_type to qudt:MassPerVolumePerTime
+
+  SubstrateConversion:
+    is_a: QuantitativeAttribute
+    description: >-
+      The percentage of substrate that undergoes transformation into the
+      desired product during a reaction.
+    todos:
+      - Bind has_quantity_type to qudt:Dimensionless
+
+  HalfLife:
+    is_a: QuantitativeAttribute
+    description: >-
+      The time required for the activity of a biocatalyst to decrease to half
+      of its initial value under defined conditions.
+    todos:
+      - Bind has_quantity_type to qudt:Time
+
+  InhibitionConstant:
+    is_a: QuantitativeAttribute
+    description: >-
+      The inhibition constant (Ki) describing the affinity of an inhibitor for
+      an enzyme. A lower Ki indicates stronger binding.
+    todos:
+      - Bind has_quantity_type to qudt:AmountOfSubstanceConcentration
+
+#slots:
+#  has_specific_activity:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SpecificActivity
+#    description: Specific activity of the biocatalyst.
+#
+#  has_initial_reaction_rate:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: InitialReactionRate
+#    description: Initial reaction rate in the first 10% of the reaction.
+#
+#  has_michaelis_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: MichaelisConstant
+#    description: The Michaelis-Menten constant (Km) of the enzyme.
+#
+#  has_maximum_reaction_rate:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: MaximumReactionRate
+#    description: The maximum reaction rate (Vmax) of the enzyme.
+#
+#  has_turnover_number:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: TurnoverNumber
+#    description: The turnover number (kcat) of the enzyme.
+#
+#  has_catalytic_efficiency:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: CatalyticEfficiency
+#    description: The catalytic efficiency (kcat/Km) of the enzyme.
+#
+#  has_dissociation_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: DissociationConstant
+#    description: The dissociation constant (Kd) of the enzyme-substrate complex.
+#
+#  has_hill_coefficient:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: HillCoefficient
+#    description: The Hill coefficient describing binding cooperativity.
+#
+#  has_inhibition_characterisation:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnzymeInhibitionCharacterisation
+#    description: Inhibition type and constant for the enzyme.
+#    inlined: true
+#
+#  has_enzyme_stability:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnzymeStabilityCharacterisation
+#    description: Stability characterisation of the biocatalyst.
+#    inlined: true
+#
+#  has_enantioselectivity_ratio:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnantioselectivityRatio
+#    description: Enantiomeric ratio (E) of the biocatalytic reaction.
+#
+#  has_enantiomeric_excess:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnantiomericExcess
+#    description: Enantiomeric excess (ee) of the product.
+#
+#  has_diastereomeric_excess:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: DiastereomericExcess
+#    description: Diastereomeric excess (de) of the product.
+#
+#  has_isomeric_content:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: IsomericContent
+#    description: Isomeric content of the product as a percentage.
+#
+#  stereoselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of stereoselectivity — the preference of the
+#      reaction to produce a specific stereoisomer or spatial arrangement.
+#
+#  chemoselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of chemoselectivity — the ability to target
+#      a specific functional group without affecting others.
+#
+#  regioselectivity_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of regioselectivity — the preference for
+#      reaction at a specific site within the molecule.
+#
+#  has_gibbs_free_energy_change:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: GibbsFreeEnergyChange
+#    description: Change in Gibbs free energy (delta G) for the reaction.
+#
+#  has_enthalpy_change:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: EnthalpyChange
+#    description: Change in enthalpy (delta H) for the reaction.
+#
+#  has_space_time_yield:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SpaceTimeYield
+#    description: >-
+#      The mass of product obtained per unit volume per unit time
+#      (volumetric productivity).
+#
+#  has_substrate_conversion:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SubstrateConversion
+#    description: >-
+#      The percentage of substrate converted to desired product.
+#
+#  has_half_life:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: HalfLife
+#    description: >-
+#      The half-life of the biocatalyst under defined conditions.
+#
+#  stability_description:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      Qualitative description of enzyme stability including activity decline
+#      profile and preservation conditions.
+#
+#  inhibition_type:
+#    slot_uri: SIO:000008
+#    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
+#    range: InhibitionTypeEnum
+#    description: >-
+#      The type of enzyme inhibition observed (competitive, non-competitive,
+#      uncompetitive, mixed, or irreversible).
+#
+#  has_inhibition_constant:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: InhibitionConstant
+#    description: The inhibition constant (Ki) of the inhibitor.

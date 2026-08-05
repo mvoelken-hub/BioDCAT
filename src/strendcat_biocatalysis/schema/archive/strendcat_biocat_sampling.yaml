@@ -1,0 +1,206 @@
+id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/sampling
+name: StrenDCAT-Biocatalysis
+title: StrenDCAT-Biocatalysis
+description: |-
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+license: MIT
+see_also:
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
+prefixes:
+  strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: strendcat_biocatalysis
+default_range: string
+
+imports:
+  - linkml:types
+  - chem_dcat_ap
+  - strendcat_biocat_common
+
+classes:
+# --- physical / chemical quantity classes ---
+  SamplingTimepoint:
+    is_a: QuantitativeAttribute
+    description: >-
+      The time at which a sample was taken from the reaction vessel,
+      expressed relative to the start of the reaction.
+    slots:
+      - has_time_value
+      - time_unit
+
+  QuenchingRatio:
+    is_a: QuantitativeAttribute
+    description: >-
+      The ratio of the volume of quenching solution to the volume of the
+      reaction mixture.
+
+# --- process classes ---
+  PlannedProcess:
+    class_uri: OBI:0000011
+    is_a: EvaluatedActivity
+    description: >-
+      A process that realizes a plan — i.e. it is carried out with the
+      intention of achieving a specified objective. (OBI:0000011 stub)
+    todos:
+      - Replace with direct OBI import
+      - Verify correct DCAT-AP-Plus ancestor for BFO process classes
+
+  MaterialProcessing:
+    class_uri: OBI:0000094
+    is_a: PlannedProcess
+    description: >-
+      A planned process that has the objective to produce a material entity
+      by processing input material entities. (OBI:0000094 stub)
+    todos:
+      - Replace with direct OBI import
+
+# --- sampling classes ---
+  SamplingProcess:
+    is_a: PlannedProcess
+    class_uri: OBI:0000744
+    description: >-
+      A PlannedProcess describing how samples were taken from the reaction
+      vessel during a BiocatalyticExperiment, including phase, volume,
+      timing, and vessel state.
+    slots:
+      - has_sample_volume
+      - has_sampling_timepoint
+      - mixing_during_sampling
+      - vessel_opened_for_sampling
+      - has_gas_phase
+      - sampled_from_phase
+      - biocatalyst_contamination_possible
+    slot_usage:
+      had_output_entity:
+        description: The MaterialSample produced by this SamplingProcess.
+        range: MaterialSample
+        multivalued: true
+        inlined_as_list: true
+ 
+  ## Class already defined in DCAT-AP+
+  #MaterialSample:
+  #  slot_usage:
+  #    description:
+  #      description: >-
+  #        Free-text description of this material sample.
+  #  slots:
+  #    - was_processed_by
+
+  SamplePreparationProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A MaterialProcessing step applied to a collected MaterialSample before
+      analysis, including quenching and further treatment steps.
+    todos:
+      - Identify specific OBI subclass URI for sample preparation
+    slot_usage:
+      has_part:
+        description: >-
+          Subprocess steps of sample preparation, including QuenchingProcess
+          and SampleTreatmentProcess.
+        range: MaterialProcessing
+        multivalued: true
+        inlined_as_list: true
+
+  QuenchingProcess:
+    is_a: MaterialProcessing
+    description: >-
+      A reaction-stopping MaterialProcessing step applied to a collected
+      sample. The choice of quenching method directly affects downstream
+      analytical results.
+    todos:
+      - Identify specific OBI subclass URI for quenching (e.g. OBI:0302893
+        enzymatic inactivation or similar)
+    slots:
+      - quenching_method_type
+      - has_quenching_ratio
+
+  SampleTreatmentProcess:
+    is_a: MaterialProcessing
+    description: >-
+      Additional sample processing steps applied after quenching
+      (e.g. filtration, centrifugation, dilution).
+    todos:
+      - Identify specific OBI subclass URI for sample treatment
+    slot_usage:
+      description:
+        description: >-
+          Description of treatment procedure and any additional sample
+          handling steps (STRENDA special_treatment fallback, P-001).
+
+
+#slots:
+#  has_sample_volume:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: Volume
+#    description: Volume of the collected sample.
+#
+#  has_sampling_timepoint:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: SamplingTimepoint
+#    description: The timepoint at which the sample was taken.
+#    inlined: true
+#
+#  mixing_during_sampling:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: >-
+#      Whether the reaction was mixed during sampling. Affects the
+#      representativeness of the collected sample.
+#
+#  vessel_opened_for_sampling:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: Whether the reaction vessel was opened for sampling.
+#  
+#  sampled_from_phase:
+#    slot_uri: SIO:000008
+#    range: MaterialEntity
+#    multivalued: true
+#    inlined_as_list: true
+#    description: >-
+#      The phase(s) from which the sample was collected. Range is
+#      LiquidPhase, SolidPhase, or GasPhase (reuse from D-006).
+#
+#  biocatalyst_contamination_possible:
+#    slot_uri: SIO:000008
+#    range: boolean
+#    description: >-
+#      Whether the collected sample may be contaminated with the biocatalyst.
+#
+#  quenching_method_type:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The technique used to stop the reaction (e.g. heat treatment, organic
+#      solvent, acid/base addition, freezing).
+#    todos:
+#      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
+#        AcidBase, Freezing, Other) in a future iteration.
+#
+#  has_quenching_ratio:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: QuenchingRatio
+#    description: >-
+#      The ratio of quenching solution volume to reaction mixture volume.
+#
+#  has_time_value:
+#    slot_uri: SIO:000008
+#    is_a: has_quantitative_attribute
+#    range: float
+#    description: A time value as a numeric quantity.
+#
+#  time_unit:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: Unit for a time value (s, min, h).

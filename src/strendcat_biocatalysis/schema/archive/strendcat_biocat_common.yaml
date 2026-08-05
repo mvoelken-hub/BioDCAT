@@ -3,57 +3,18 @@ id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
 name: StrenDCAT-Biocatalysis
 title: StrenDCAT-Biocatalysis
 description: |-
-   This is an application profile for biocatalytic experiments based on the
-   STRENDA Biocatalysis Guidelines (https://github.com/Strenda-biocatalysis/Strenda-biocatalysis).
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
 license: MIT
 see_also:
-  - https://github.com/Strenda-biocatalysis/Strenda-biocatalysis
-  - https://nfdi-de.github.io/chem-dcat-ap/
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
 prefixes:
   strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
-  chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
-  dcterms: http://purl.org/dc/terms/
-  dcat: http://www.w3.org/ns/dcat#
-  prov: http://www.w3.org/ns/prov#
-  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  rdfs: http://www.w3.org/2000/01/rdf-schema#
-  owl: http://www.w3.org/2002/07/owl#
-  skos: http://www.w3.org/2004/02/skos/core#
-  foaf: http://xmlns.com/foaf/0.1/
-  qudt: http://qudt.org/schema/qudt/
-  xsd: http://www.w3.org/2001/XMLSchema#
-  RO: http://purl.obolibrary.org/obo/RO_
   PATO: http://purl.obolibrary.org/obo/PATO_
-  OBI: http://purl.obolibrary.org/obo/OBI_
-  IAO: http://purl.obolibrary.org/obo/IAO_
-  BFO: http://purl.obolibrary.org/obo/BFO_
-  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
-  CHMO: http://purl.obolibrary.org/obo/CHMO_
-  CHEMINF: http://semanticscience.org/resource/CHEMINF_
-  RXNO: http://purl.obolibrary.org/obo/RXNO_
-  SIO: http://semanticscience.org/resource/SIO_
-  AFE: http://purl.allotrope.org/ontologies/equipment#AFE_
-  AFP: http://purl.allotrope.org/ontologies/process#AFP_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
-  ENVO: http://purl.obolibrary.org/obo/ENVO_
-  PROCO: http://purl.obolibrary.org/obo/PROCO_
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  NCIT: http://purl.obolibrary.org/obo/NCIT_
-  adms: http://www.w3.org/ns/adms#
-  time: http://www.w3.org/2006/time#
-
-  # New added Ontologies
-  BAO: http://www.bioassayontology.org/bao#BAO_
-  EDAM: http://edamontology.org/data_
-  SBO: https://biomodels.net/SBO/SBO_
-  UO: https://purl.obolibrary.org/obo/UO_
-  AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
-  NPO: http://purl.bioontology.org/ontology/npo#NPO_
-  CAO: http://champ-project.org/images/ontology/cao.owl#CAO_
-  SNOMED: http://snomed.info/id/
+  example: https://example.org/
 default_prefix: strendcat_biocatalysis
 default_range: string
 
@@ -61,12 +22,7 @@ imports:
   - linkml:types
   - chem_dcat_ap
 
-# =============================================================================
-# ENUMERATIONS
-# =============================================================================
-
 enums:
-
   OperationModeEnum:
     description: >-
       The mode in which a biocatalytic experiment was operated.
@@ -75,16 +31,19 @@ enums:
         description: >-
           All reaction components are mixed simultaneously in a closed system
           and the reaction proceeds until a predetermined endpoint.
-        meaning: VOC4CAT:0000110
+        meaning: CHMO:0000611
       FedBatch:
         description: >-
           Additional compounds are gradually added during the reaction to
           control reaction conditions or enhance product formation.
+        todos:
+          - Verify CHMO identifier for fed-batch operation
       Continuous:
         description: >-
           The reaction operates continuously with substrates continuously
           supplied and products continuously removed.
-        meaning: VOC4CAT:0000109
+        todos:
+          - Verify CHMO identifier for continuous operation
       Combinatorial:
         description: >-
           A mixture of operation modes used to systematically explore various
@@ -163,279 +122,14 @@ enums:
       Other:
 
 classes:
-  # =============================================================================
-  # Physical / chemical quantity types
-  # =============================================================================
-
-  Purity:
-    is_a: QuantitativeAttribute
-    class_uri: AFR:0002371
-    description: >-
-      A purity (datum) is a quality quantification facet that quantifies the purity of a portion of material.
-
-  SolubilityLimit:
-    is_a: QuantitativeAttribute
-    description: >-
-      The maximum concentration of a component that can dissolve in a solution
-      or gas phase under given conditions.
-    # Maybe add to Voc4Cat as subclass of solubility
-
-  IonicStrength:
-    is_a: QuantitativeAttribute
-    description: >-
-      Ionic strength calculated from dissolved ions in the solvent,
-      I = 0.5 * sum(ci * zi^2).
-    # Maybe add to Voc4Cat
-
-  FlowRate:
-    is_a: QuantitativeAttribute
-    class_uri: AFR:0001881
-    description: >-
-      Flow rate is a quality quantification facet that quantifies the motion of material through a surface per time.
-
-  ResidenceTime:
-    is_a: QuantitativeAttribute
-    class_uri: NCIT:C85700
-    description: >-
-      Mean residence time (MRT) from the time of dosing to the time of the last measurable concentration.
-
-  AngularVelocity:
-    is_a: QuantitativeAttribute
-    description: >-
-      The speed or frequency at which a stirrer or shaker operates.
-    #TODO: Maybe add to Voc4Cat or map to NCIT:C179817 (ASB)
-
-  PowerPerVolume:
-    is_a: QuantitativeAttribute
-    description: >-
-      The amount of mixing power or energy input per unit volume of the
-      reaction mixture.
-    #TODO: Maybe add to Voc4Cat
-
-  QuenchingRatio:
-    is_a: QuantitativeAttribute
-    description: >-
-      The ratio of the volume of quenching solution to the volume of the
-      reaction mixture.
-    #TODO Maybe add to Voc4Cat
-
-  SamplingTimepoint:
-    is_a: QuantitativeAttribute
-    description: >-
-      The time at which a sample was taken from the reaction vessel,
-      expressed relative to the start of the reaction.
-    slots:
-      - has_time_value
-      - time_unit
-    #TODO Maybe add to Voc4Cat
-
-  TemperatureTimepoint:
-    is_a: QuantitativeAttribute
-    description: >-
-      A temperature value recorded at a specific time point during a
-      temperature shift or profile.
-    slots:
-      - has_temperature
-      - has_time_value
-    #TODO Maybe add to Voc4Cat
-
-  # =============================================================================
-  # Kinetic / result quantity types
-  # =============================================================================
-  
-  MichaelisConstant:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000027
-    description: >-
-      Michaelis-Menten constant - 
-      (The substrate concentration at which an enzyme achieves half of its
-      maximum reaction rate (Km).)
-
-  MaximumReactionRate:
-    is_a: QuantitativeAttribute
-    class_uri: EDAM:data_0909
-    description: >-
-      The maximum initial velocity or rate of a reaction. It is the limiting velocity as substrate concentrations get very large.
-
-  TurnoverNumber:
-    is_a: QuantitativeAttribute
-    class_uri: BAO:0000481
-    description: >-
-      Turnover number representing the maximum number of substrate molecules converted to products per active site per unit time.
-
-  CatalyticEfficiency:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000302
-    description: >-
-      Constant representing the actual efficiency of an enzyme, taking into account its microscopic catalytic activity and the rates of substrate binding and dissociation.
-
-  DissociationConstant:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000282
-    description: >-
-      Synonym: Kd  - 
-      (The equilibrium dissociation constant (Kd) representing the balance
-      between a complex and its dissociated components.)
-
-  HillCoefficient:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000190
-    description: >-
-      Empirical parameter created by Archibald Vivian Hill to describe the cooperative binding of oxygen on hemoglobine (Hill (1910). The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves. J Physiol 40: iv-vii).
-
-  InhibitionConstant:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000261
-    description: >-
-      Synonym: Ki - (The inhibition constant (Ki) describing the affinity of an inhibitor for an enzyme. A lower Ki indicates stronger binding.)
-
-  HalfLife:
-    is_a: QuantitativeAttribute
-    class_uri: UO:0000152
-    description: >-
-      A time unit which represents the period over which the activity or concentration of a specified chemical or element falls to half its original activity or concentration.
-
-  SpaceTimeYield:
-    is_a: QuantitativeAttribute
-    class_uri: VOC4CAT:0005006
-    description: >-
-      A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})
-
-  SubstrateConversion:
-    is_a: QuantitativeAttribute
-    class_uri: VOC4CAT:0005004
-    description: >-
-      A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).
-
-  SpecificActivity:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000558
-    description: >-
-      A measure of enzyme activity under standard conditions, at a specific substrate concentration (usually saturation), expressed as the amount of product formed per unit time, per amount of enzyme. This is often expressed as micromol per min per mg, rather than the less practical official unit, Katal (1 mol per second).
-
-  InitialReactionRate:
-    is_a: QuantitativeAttribute
-    description: >-
-      The rate at which product is formed in the first 10% of the enzymatic
-      reaction under specific initial substrate concentrations and conditions.
-    #TODO Maybe add to Voc4Cat
-    
-  EnantioselectivityRatio:
-    is_a: QuantitativeAttribute
-    description: >-
-      The enantiomeric ratio (E) defining the enzyme's preference to
-      catalyze the transformation of one enantiomer over its mirror image.
-    #TODO Maybe add to Voc4Cat
-
-  EnantiomericExcess:
-    is_a: QuantitativeAttribute
-    class_uri: AFQ:0000220
-    description: >-
-      The absolute value of the mole fraction for one enantiomer in a mixture minus the mole fraction for the other enantiomer. [CHMO]
-
-  DiastereomericExcess:
-    is_a: QuantitativeAttribute
-    class_uri: AFQ:0000217
-    description: >-
-      The absolute value of the mole fraction for one diastereomer in a mixture minus the mole fraction for the other. [CHMO]
-
-  IsomericContent:
-    is_a: QuantitativeAttribute
-    description: >-
-      The isomeric content expressed as a percentage of a specific isomer
-      relative to total product.
-    #TODO Maybe add to Voc4Cat
-
-  GibbsFreeEnergyChange:
-    is_a: QuantitativeAttribute
-    class_uri: NCIT:C52567
-    description: >-
-      A measure of the spontaneity of a chemical reaction. It is the change in the free energy of a system during a chemical reaction at a pH of 7.0. It is equal to the change in the enthalpy of the system minus the change in the product of the temperature times the entropy of the system.  The resulting sign of Delta G determines if a reaction is spontaneous or not: DG < 0 indicates that the reaction is spontaneous; DG > 0 indicates that the reaction is not spontaneous; and DG = 0 indicates that the reaction is at equilibrium.
-    # Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
-
-  EnthalpyChange:
-    is_a: QuantitativeAttribute
-    class_uri: SBO:0000573
-    description: >-
-      Change in enthalpy observed in the constituents of a thermodynamic system when undergoing a transformation or chemical reaction. This is the preferred way of expressing the energy changes to a system at constant pressure, since enthalpy itself cannot be directly measured. The enthalpy change is positive in endothermic reactions, negative in exothermic reactions, and is defined as the difference between the final and initial enthalpy of the system under study: delta_H = Hf - Hi. The standard unit of measure is J.
-    # Note: STRENDA models this as string — schema corrects to QuantitativeAttribute. Converter should attempt numeric parsing with string fallback.
-
-  # =============================================================================
-  # STORAGE CONDITIONS (D-003 — shared between BiocatalystPreparation and BiocatalyticComponent)
-  # =============================================================================
-
-  StorageAdditive:
-    is_a: ChemicalEntity #ChemicalSubstance
-    description: >-
-      A ChemicalSubstance added to a storage medium to preserve or stabilize
-      a MaterialEntity during storage (e.g. antioxidants, stabilizers,
-      drying agents, inert gases such as argon or nitrogen).
-    #TODO Maybe add to Voc4Cat
-
-  StorageConditions:
-    is_a: QuantitativeAttribute
-    description: >-
-      The conditions under which a biocatalyst preparation or reaction
-      component is stored, including temperature, start date, and additives.
-      Modelled as a QuantitativeAttribute cluster rather than Entity since
-      it describes measurable environmental conditions of a material entity.
-    slots:
-      - has_temperature
-      - storage_start
-      - has_storage_additive
-    #TODO Maybe add to Voc4Cat
-
-  DryingProcess:
-    is_a: MaterialProcessing
-    class_uri: AFP:0001876
-    description: >-
-      The process of removing a solvent from a substance. [CHMO]
-    slots:
-      - drying_method_type
-
-  # =============================================================================
-  # BIOCATALYST (D-002 — Biocatalyst as subclass of Catalyst (AgenticEntity), BiocatalystPreparation as MaterialSample)
-  # =============================================================================
-
-  Biocatalyst:
-    is_a: Catalyst
-    class_uri: CHEBI:35233
-    description: >-
-      An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of
-      Catalyst (AgenticEntity). The physical form in which it is applied is
-      described by an associated BiocatalystPreparation.
-    slots:
-      - ec_number
-      - sequence_amino_acid
-      - sequence_DNA
-      - origin_organism
-      - posttranslational_modification
-      - molecular_weight
-      - is_self_produced
-      - has_biocatalyst_production_process
-    slot_usage:
-      title:
-        description: >-
-          The name of the biocatalyst, either generic (e.g. 'lipase') or
-          specific (genus and species, e.g. 'Candida antarctica lipase B').
-        required: true
-      other_identifier:
-        description: >-
-          Identifiers for the biocatalyst such as UniProt accession,
-          EC number reference, or other database identifiers.
-      has_quantitative_attribute:
-        description: >-
-          Quantitative attributes of the biocatalyst entity, such as
-          molecular weight.
-    #TODO: (ASB)
-    # Maybe set to SBO:0000460 (enzymatic catalyst) & PREFER:0000012 (cell biocatalyst) or as seperate subclass
-
   BiocatalystProductionProcess:
     is_a: MaterialProcessing
     description: >-
       A MaterialProcessing that describes how a biocatalyst was produced,
       including the production organism, plasmid, and purification steps.
       Only present when Biocatalyst.is_self_produced is true.
+    todos:
+      - Identify specific OBI subclass URI (e.g. OBI:0000070 protein expression)
     slots:
       - production_organism
       - sequence_plasmid
@@ -443,689 +137,51 @@ classes:
       - purification_method
       - has_purity
       - purity_specification
-    #TODO Mabye add to Voc4Cat
-
-  BiocatalystPreparation:
-    is_a: SubstanceSample
-    #class_uri: OBI:0000747 #(Material Sample)
-    description: >-
-      The physical form in which a Biocatalyst is applied in a
-      BiocatalyticExperiment. Derived from the Biocatalyst entity via
-      prov:wasDerivedFrom. Subclasses encode the specific application form;
-      the application_form slot is retained here for P-002 converter
-      compatibility but is redundant with the subclass type.
-    slots:
-      - application_form
-      - has_concentration
-      - has_activity
-      - has_formulation
-      - has_storage_conditions
-      - had_drying_process
-    slot_usage:
-      derived_from:
-        description: The Biocatalyst from which this preparation was derived.
-        range: Biocatalyst
-        required: true
-    #TODO Maybe add to Voc4Cat
-
-  PurifiedEnzymePreparation:
-    is_a: BiocatalystPreparation
-    description: A BiocatalystPreparation consisting of a purified enzyme solution.
-    slots:
-      - concentration_determination_method
-      - activity_determination_method
-    #TODO Maybe add to Voc4Cat
-
-  CrudeCellExtractPreparation:
-    is_a: BiocatalystPreparation
-    description: >-
-      A BiocatalystPreparation consisting of a crude cell extract obtained
-      by cell disruption.
-    slots:
-      - cell_disruption_process
-      - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
-
-  WholeCellPreparation:
-    is_a: BiocatalystPreparation
-    description: >-
-      A BiocatalystPreparation in which whole cells serve as the biocatalyst.
-    slots:
-      - harvesting_method
-      - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
-
-  SecretedEnzymePreparation:
-    is_a: BiocatalystPreparation
-    description: >-
-      A BiocatalystPreparation consisting of an enzyme secreted into the
-      culture supernatant and separated from cells.
-    slots:
-      - separation_method
-      - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
-
-  CellFreePreparation:
-    is_a: BiocatalystPreparation
-    description: >-
-      A BiocatalystPreparation produced by cell-free expression, where
-      synthesis occurs outside living cells using extracted cellular machinery.
-    slots:
-      - source_of_cellfree_extract
-      - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
-
-  ImmobilisedPreparation:
-    is_a: BiocatalystPreparation
-    description: >-
-      A BiocatalystPreparation in which the biocatalyst is attached to or
-      entrapped within a carrier material. Always derived from another
-      BiocatalystPreparation via prov:wasDerivedFrom.
-    slots:
-      - immobilisation_chemistry
-      - carrier_material
-      - linkers
-      - immobilisation_method
-      - purification_method
-      - concentration_determination_method
-    slot_usage:
-      derived_from:
-        description: >-
-          The BiocatalystPreparation (e.g. PurifiedEnzymePreparation) from
-          which this immobilised preparation was derived.
-        range: BiocatalystPreparation
-        required: true
-    #TODO Maybe add to Voc4Cat
-
-  # =============================================================================
-  # BIOCATALYTIC COMPONENT (D-004 — ChemicalSubstance / MaterialEntity)
-  # =============================================================================
-
-  BiocatalyticComponent:
-    is_a: ChemicalEntity 
-    description: >-
-      A ChemicalSubstance present in the reaction mixture of a biocatalytic
-      experiment, regardless of its functional role (substrate, cofactor,
-      buffer, cosolvent, etc.). Role differentiation is optional per P-002.
-    slots:
-      - has_component_role
-      - has_concentration
-      - has_solubility_limit
-      - has_purity
-      - supplied_by
-      - has_formulation
-      - has_storage_conditions
-    slot_usage:
-      other_identifier:
-        description: >-
-          One or more persistent identifiers for the component such as CAS
-          number, PubChem CID, InChI, or similar database identifiers.
-      description:
-        description: >-
-          Free-text description of additional component characteristics not
-          covered by other slots (STRENDA special_treatment fallback, P-001).
-          Flagged as candidate for future structured modelling.
-    #TODO Maybe add to Voc4Cat
-
-  # =============================================================================
-  # REACTION CONDITIONS — PHASE SYSTEM (D-006 — attachment to BiocatalyticReaction via has_reaction_medium)
-  # =============================================================================
-
-  ReactionMedium:
-    is_a: MaterialEntity
-    description: >-
-      The medium in which a biocatalytic reaction takes place, described by
-      its phase composition, ionic strength, and additives.
-    slots:
-      - has_phase_count
-      - has_liquid_phase
-      - has_solid_phase
-      - has_gas_phase
-      - has_ionic_strength
-      - has_medium_additive
-    slot_usage:
-      description:
-        description: >-
-          Free-text description of additional medium characteristics
-          (STRENDA special_treatment fallback, P-001).
-    #TODO Maybe add to Voc4Cat
-
-  LiquidPhase:
-    is_a: MaterialEntity
-    class_uri: BAO:0002164
-    description: A liquid phase present in the reaction medium.
-    slots:
-      - has_liquid_type
-      - has_volume
-
-  SolidPhase:
-    is_a: MaterialEntity
-    class_uri: BAO:0002163
-    description: A solid phase present in the reaction medium.
-    slots:
-      - has_solid_type
-      - has_mass
-
-  GasPhase:
-    is_a: MaterialEntity
-    class_uri: NPO:1613
-    description: A gas phase present in the reaction medium or headspace.
-    slots:
-      - has_gas_type
-      - has_amount
-
-  # =============================================================================
-  # REACTION CONDITIONS — TEMPERATURE AND pH PROFILES (D-006)
-  # =============================================================================
-
-  TemperatureShiftProcess:
-    is_a: PlannedProcess
-    description: >-
-      A PlannedProcess representing an event-based change in temperature
-      during a biocatalytic reaction.
-    slots:
-      - has_temperature_before
-      - has_temperature_after
-      - has_trigger_event
-      - has_temperature_at_timepoint
-    #TODO Maybe add to Voc4Cat
-
-  TemperatureGradient:
-    is_a: PlannedProcess
-    description: >-
-      A PlannedProcess representing a dynamic temperature gradient applied
-      over distance or time in a tubular flow reactor.
-    slots:
-      - has_temperature_start
-      - has_temperature_end
-      - has_gradient_length
-      - has_measurement_points
-    #TODO Maybe add to Voc4Cat
-
-  PHShiftProcess:
-    is_a: PlannedProcess
-    description: >-
-      A PlannedProcess representing an event-based change in pH during a
-      biocatalytic reaction.
-    slots:
-      - has_ph_before
-      - has_ph_after
-      - has_trigger_event
-      - has_ph_at_timepoint
-      - has_ph_measurement
-    #TODO Maybe add to Voc4Cat
-
-  PHGradient:
-    is_a: PlannedProcess
-    description: >-
-      A PlannedProcess representing a dynamic pH gradient applied over
-      distance or time in a tubular flow reactor.
-    slots:
-      - has_ph_start
-      - has_ph_end
-      - has_gradient_length
-      - has_measurement_points
-      - has_ph_measurement
-    #TODO Maybe add to Voc4Cat
-
-  PHMeasurementProcess:
-    is_a: MeasurementProcess
-    class_uri: OBI:0000070
-    description: >-
-      A MeasurementProcess capturing the method and context of pH measurement,
-      including when it was measured and by which method. Retained for
-      reproducibility provenance; acknowledged as potentially deeper than
-      strictly necessary for this schema.
-    slots:
-      - has_ph_value
-      - detected_when
-      - detected_how
-      - has_temperature
-      - has_calibration_info
-    #TODO Maybe add to Voc4Cat
-
-  # =============================================================================
-  # VESSELS AND MIXING (D-007)
-  # =============================================================================
-
-  ReactionVessel:
-    is_a: Reactor
-    class_uri: AFE:0000153
-    description: >-
-      A reactor is a container for controlling a biological or chemical reaction or process. [Allotrope]
-
-  Vial:
-    is_a: ReactionVessel
-    class_uri: AFE:0000329
-    description: >-
-      A vial is a small vessel or bottle. [Allotrope]
-    slots:
-      - has_volume
-      - vial_size_unit
-      - vial_material
-      - closure_type
-    slot_usage:
-      description:
-        description: >-
-          Additional vial preparation details (STRENDA special_treatment
-          fallback, P-001). Candidate for VesselPreparationProcess in
-          future iteration.
-
-  Plate:
-    is_a: ReactionVessel
-    class_uri: AFE:0000029
-    description: >-
-      A plate is a tray with multiple "wells" used as small test tubes. [Wikipedia]
-    slots:
-      - plate_type
-      - plate_material
-      - number_of_wells
-      - well_shape
-      - well_volume
-      - well_arrangement
-      - sealing_method
-      - sealing_material
-      - supplied_by
-    slot_usage:
-      other_identifier:
-        description: Lot number or batch code of the plate (adms:Identifier).
-
-  StirredTankReactor:
-    is_a: ReactionVessel
-    class_uri: VOC4CAT:0007103
-    description: >-
-      An abstract concept/ideal reactor model type, in which the volume of fluid in the reaction vessel is considered to be perfectly mixed which results in the same concentration of all components in the whole reaction volume.
-    slots:
-      - reactor_material
-      - has_volume
-      - geometry
-      - bottom_type
-    slot_usage:
-      has_part:
-        description: >-
-          Parts of the StirredTankReactor including MixingImpeller,
-          GasSupplySystem, and TemperatureControlDevice.
-        range: Device
-        multivalued: true
-        inlined_as_list: true
-    
-
-  TubularFlowReactor:
-    is_a: ReactionVessel
-    class_uri: VOC4CAT:0007104
-    description: >-
-      A reactor model, in which opposing to the ideal plug flow behavior, friction is acting on the fluid, thus creating a residence time distribution.
-    slots:
-      - reactor_type_description
-      - reactor_material
-      - has_volume
-      - geometry
-      - tubing
-      - has_flow_rate
-      - has_catalyst_localisation
-      - has_residence_time
-      - has_reynolds_number
-      - has_passive_mixing
-      - has_active_mixer
-      - has_pulsing_description
-
-  MixingImpeller:
-    is_a: Device
-    class_uri: VOC4CAT:0008113
-    description: >-
-      The category of mechanical or magnetic agitation device used to ensure homogeneous mixing within a reaction system or mixing vessel, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer.
-    slots:
-      - stirring_type
-      - stirrer_material
-      - supplied_by
-      - number_of_stirrers
-      - distance_between_stirrers
-      - blade_pitch_angle
-      - number_of_blades
-      - blade_size
-      - stirrer_geometry
-      - stirrer_speed
-      - height_above_vessel_base
-      - power_per_volume_input
-      - stir_bar_size
-      - stir_bar_shape
-
-  Shaker:
-    is_a: Device
-    class_uri: http://opendata.inrae.fr/PO2/Ontology/TransformON/c_uO2UNi #(ASB: kommt aus TFO)
-    description: >-
-      A laboratory equipment with a platform that oscillates in two or three directions. It is used to move and mix the mostly liquid contents of different vessels.
-    slots:
-      - shaking_type
-      - deflection
-      - shaking_speed
-      - shaking_position
-
-  GasSupplySystem:
-    is_a: Device
-    class_uri: SNOMED:285707009
-    description: >-
-      A device that supplies gas to a StirredTankReactor, forming a part
-      of it via has_part.
-    slots:
-      - has_gas_phase
-      - gas_supply_method
-      - has_flow_rate
-
-  TemperatureControlDevice:
-    is_a: Device
-    class_uri: VOC4CAT:0000151
-    description: >-
-      Equipment used for controlling and/or monitoring the temperature in various parts of a reactor. This can include hot plates, heating elements and cryostats.
-    slots:
-      - temperature_control_method
-
-  # =============================================================================
-  # SAMPLING (D-008)
-  # =============================================================================
-
-  SamplingProcess:
-    is_a: PlannedProcess
-    class_uri: OBI:0000744
-    description: >-
-      A specimen gathering process with the objective to obtain a specimen that is representative of the input material entity
-    slots:
-      - has_sample_volume
-      - has_sampling_timepoint
-      - mixing_during_sampling
-      - vessel_opened_for_sampling
-      - has_gas_phase
-      - sampled_from_phase
-      - biocatalyst_contamination_possible
-    slot_usage:
-      had_output_entity:
-        description: The MaterialSample produced by this SamplingProcess.
-        range: MaterialSample
-        multivalued: true
-        inlined_as_list: true
-
-  SamplePreparationProcess:
-    is_a: MaterialProcessing
-    class_uri: CAO:000043
-    description: >-
-      Methods by which physical/chemical processing of samples are performed prior to chemical analysis
-    slot_usage:
-      has_part:
-        description: >-
-          Subprocess steps of sample preparation, including QuenchingProcess
-          and SampleTreatmentProcess.
-        range: MaterialProcessing
-        multivalued: true
-        inlined_as_list: true
-
-  QuenchingProcess:
-    is_a: MaterialProcessing
-    class_uri: CHMO:0002917
-    description: >-
-      Material processing in which a sample is cooled by immersion in a fluid.
-    slots:
-      - quenching_method_type
-      - has_quenching_ratio
-
-  SampleTreatmentProcess:
-    is_a: MaterialProcessing
-    description: >-
-      Additional sample processing steps applied after quenching
-      (e.g. filtration, centrifugation, dilution).
-    slot_usage:
-      description:
-        description: >-
-          Description of treatment procedure and any additional sample
-          handling steps (STRENDA special_treatment fallback, P-001).
-    # Maybe add to Voc4Cat
-
-  # =============================================================================
-  # RESULT WRAPPER CLASSES (D-009)
-  # =============================================================================
-
-  KineticParameters:
-    is_a: QuantitativeAttribute
-    class_uri: SIO:000144
-    description: >-
-      A wrapper class grouping kinetic parameters determined for a
-      biocatalytic reaction. Km and kcat values must be determined by
-      varying all substrate concentrations to obtain true (non-apparent) values.
-    slots:
-      - has_michaelis_constant
-      - has_maximum_reaction_rate
-      - has_turnover_number
-      - has_catalytic_efficiency
-      - has_dissociation_constant
-      - has_hill_coefficient
-      - has_inhibition_characterisation
-      - has_enzyme_stability
-    slot_usage:
-      description:
-        description: >-
-          Additional kinetic characterisation details not covered by other
-          slots (STRENDA special_treatment fallback, P-001).
-
-  EnzymeInhibitionCharacterisation:
-    is_a: QuantitativeAttribute
-    description: >-
-      A paired description of enzyme inhibition type and inhibition constant
-      (Ki). The two fields are semantically coupled and should always appear
-      together.
-    slots:
-      - inhibition_type
-      - has_inhibition_constant
-    # Maybe add to Voc4Cat
-
-  EnzymeStabilityCharacterisation:
-    is_a: QuantitativeAttribute
-    description: >-
-      A characterisation of biocatalyst stability, including half-life and
-      qualitative description of activity decline or preservation.
-    slots:
-      - has_half_life
-      - stability_description
-    # Maybe add to Voc4Cat
-
-  YieldAndConversion:
-    is_a: QuantitativeAttribute
-    description: >-
-      A wrapper class grouping yield and conversion metrics for a biocatalytic
-      reaction.
-    slots:
-      - has_yield
-      - has_space_time_yield
-      - has_substrate_conversion
-    slot_usage:
-      description:
-        description: >-
-          Additional yield or conversion determination details
-          (STRENDA special_treatment fallback, P-001).
-
-  ActivityAndInitialReactionRate:
-    is_a: QuantitativeAttribute
-    description: >-
-      A wrapper class grouping activity and initial reaction rate measurements
-      for a biocatalytic reaction.
-    slots:
-      - has_specific_activity
-      - has_initial_reaction_rate
-    slot_usage:
-      description:
-        description: >-
-          Additional activity measurement details
-          (STRENDA special_treatment fallback, P-001).
-
-  SelectivityAndSpecificity:
-    is_a: QuantitativeAttribute
-    description: >-
-      A wrapper class grouping selectivity and specificity parameters for a
-      biocatalytic reaction.
-    slots:
-      - has_enantioselectivity_ratio
-      - has_enantiomeric_excess
-      - has_diastereomeric_excess
-      - has_isomeric_content
-      - stereoselectivity_description
-      - chemoselectivity_description
-      - regioselectivity_description
-    slot_usage:
-      description:
-        description: >-
-          Additional selectivity determination details
-          (STRENDA special_treatment fallback, P-001).
-
-  ThermodynamicParameters:
-    is_a: QuantitativeAttribute
-    class_uri: SIO:000144
-    description: >-
-      A wrapper class grouping thermodynamic parameters for a biocatalytic
-      reaction.
-    slots:
-      - has_gibbs_free_energy_change
-      - has_enthalpy_change
-    slot_usage:
-      description:
-        description: >-
-          Additional thermodynamic characterisation details
-          (STRENDA special_treatment fallback, P-001).
-
-  PlannedProcess:
-    class_uri: OBI:0000011 #http://opendata.inrae.fr/PO2/Ontology/TransformON/c_0o7O38 (ASB)
-    is_a: EvaluatedActivity
-    description: >-
-      A process that realizes a plan — i.e. it is carried out with the
-      intention of achieving a specified objective. (OBI:0000011 stub)
-
-  MaterialProcessing:
-    class_uri: AFP:0003275
-    is_a: PlannedProcess
-    description: >-
-      A process that affects the physical qualities of materials or creates, destroys or converts materials. [Allotrope]
-
-  MeasurementProcess:
-    class_uri: OBI:0000070
-    is_a: PlannedProcess
-    description: >-
-      A planned process that has the objective to produce information about
-      a material entity by examining it. (OBI:0000070 stub)
-  
-  # =============================================================================
-  # BIOCATALYTIC REACTION(D-001 evaluated activity; D-006 conditions attachment point)
-  # =============================================================================
-
-  BiocatalyticReaction:
-    is_a: ChemicalReaction
-    class_uri: SIO:010345
-    description: >-
-      A ChemicalReaction that is catalyzed by a Biocatalyst (enzyme or whole
-      cell). Evaluated by a BiocatalyticExperiment. Carries reaction conditions,
-      phase system, and result attributes.
-    slots:
-      - has_reaction_medium
-      - has_temperature_shift
-      - has_temperature_gradient
-      - has_ph_shift
-      - has_ph_gradient
-      - has_ph_measurement
-      - has_kinetic_parameters
-      - has_yield_and_conversion
-      - has_activity_and_reaction_rate
-      - has_selectivity_and_specificity
-      - has_thermodynamic_parameters
-    slot_usage:
-      used_catalyst:
-        description: >-
-          The Biocatalyst (AgenticEntity) that catalyzes this reaction.
-        range: Biocatalyst
-      has_temperature:
-        description: >-
-          The constant temperature at which the reaction takes place.
-          For non-constant temperatures use has_temperature_shift or
-          has_temperature_gradient.
-      has_ph_value:
-        description: >-
-          The constant pH of the reaction medium. For non-constant pH
-          use has_ph_shift or has_ph_gradient.
-    # Maybe add to Voc4Cat
-
-  # =============================================================================
-  # BIOCATALYTIC EXPERIMENT (D-001 — top-level DataGeneratingActivity)
-  # =============================================================================
-
-  BiocatalyticExperiment:
-    is_a: DataGeneratingActivity
-    class_uri: OBI:0000066
-    aliases:
-      - BiocatalyticInvestigation
-    description: >-
-      A DataGeneratingActivity representing a biocatalytic experiment
-      carried out according to the STRENDA Biocatalysis Guidelines.
-      The BiocatalyticReaction is the evaluated activity; all STRENDA
-      modules (biocatalyst, components, vessel, operation mode, conditions,
-      sampling, results) attach to or via this class.
-    slots:
-      - has_operation_mode
-      - used_biocatalyst_preparation
-      - has_biocatalytic_component
-      - used_reaction_vessel
-      - has_sampling_process
-    slot_usage:
-      evaluated_activity:
-        description: The BiocatalyticReaction that this experiment evaluates.
-        range: BiocatalyticReaction
-        multivalued: false
-        inlined: true
-      occurred_in:
-        description: The Laboratory in which the experiment took place.
-        range: Laboratory
-      carried_out_by:
-        description: >-
-          AgenticEntities that carried out the experiment, including
-          Shaker devices.
-
-# =============================================================================
-# SLOTS
-# =============================================================================
 
 slots:
+
   # --- Biocatalyst slots ---
+
   ec_number:
-    slot_uri: CHEMINF:000447
+    slot_uri: SIO:001235
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      A seven-digit identifier for chemical substances for regulatory purposes within the European Union.
+      Numerical classification of the enzyme based on its biochemical
+      function, e.g. EC 3.1.4.12.
 
   sequence_amino_acid:
     slot_uri: SIO:010016
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      A nucleic acid sequence is a symbolic sequence of nucleic acid residues in a nucleic acid.
+      The amino acid sequence of the biocatalyst in one-letter or
+      three-letter code. Refer to UniProt for standardized sequences.
 
   sequence_DNA:
-    slot_uri: SIO:010015 # protein sequence
+    slot_uri: SIO:010015
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      A protein sequence is a symbolic sequence of amino acid residues in a protein or class of proteins.
+      The DNA sequence of the biocatalyst including any tags and linkers.
 
   origin_organism:
     slot_uri: SIO:010079
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      The genus and species of the organism from which the biocatalyst is derived or isolated.
+      The genus and species of the organism from which the biocatalyst
+      is derived or isolated.
 
   posttranslational_modification:
     slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      Chemical modifications to the biocatalyst protein after translation (e.g. phosphorylation, glycosylation, acetylation).
+      Chemical modifications to the biocatalyst protein after translation
+      (e.g. phosphorylation, glycosylation, acetylation).
 
   is_self_produced:
-    slot_uri: SIO:000008 
     range: boolean
     required: true
     description: >-
@@ -1142,7 +198,7 @@ slots:
     inlined: true
 
   production_organism:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1150,7 +206,7 @@ slots:
       context of heterologous gene expression.
 
   sequence_plasmid:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1158,7 +214,7 @@ slots:
       or a database identifier for it.
 
   plasmid_specifications:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1166,7 +222,7 @@ slots:
       introduced into the plasmid.
 
   purification_method:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1174,7 +230,7 @@ slots:
       precipitation, ultrafiltration.
 
   purity_specification:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1182,7 +238,7 @@ slots:
       e.g. gel electrophoresis, HPLC, Bradford assay.
 
   has_purity:
-    slot_uri: SIO:000008 
+    slot_uri: SIO:000008
     is_a: has_quantitative_attribute
     range: Purity
     description: >-
@@ -1190,7 +246,6 @@ slots:
       pure compound relative to the total preparation.
 
   application_form:
-    slot_uri: SIO:000008 
     range: BiocatalystApplicationFormEnum
     required: true
     description: >-
@@ -1228,6 +283,8 @@ slots:
     description: >-
       The method used to disrupt cells to obtain the crude cell extract
       (e.g. ultrasonication, high-pressure homogenization, enzymatic lysis).
+    todos:
+      - P-001 candidate: could be modelled as CellDisruptionProcess (subclass of OBI:0000094) with method_type enum in a future iteration
 
   harvesting_method:
     slot_uri: SIO:000008
@@ -1236,6 +293,8 @@ slots:
     description: >-
       The method used to harvest whole cells from culture
       (e.g. centrifugation, filtration).
+    todos:
+      - P-001 candidate: could be modelled as CellHarvestingProcess (subclass of OBI:0000094) in a future iteration
 
   separation_method:
     slot_uri: SIO:000008
@@ -1244,6 +303,8 @@ slots:
     description: >-
       The method used to separate the secreted enzyme supernatant from cells
       (e.g. centrifugation, filtration).
+    todos:
+      - P-001 candidate: could be modelled as SeparationProcess (subclass of OBI:0000094) in a future iteration
 
   source_of_cellfree_extract:
     slot_uri: SIO:000008
@@ -1283,6 +344,8 @@ slots:
     description: >-
       The support material used for immobilisation (name, type, supplier,
       product details).
+    todos:
+      - P-001 candidate: carrier_material is a MaterialEntity with its own identity; could be modelled as a ChemicalSubstance or MaterialEntity subclass with supplied_by slot in a future iteration
 
   linkers:
     slot_uri: SIO:000008
@@ -1291,6 +354,8 @@ slots:
     description: >-
       Chemical linkers or spacers used to connect the biocatalyst to the
       carrier material.
+    todos:
+      - P-001 candidate: linkers are ChemicalSubstances with a specific role; could be modelled as ChemicalSubstance with CHEBI linker role in a future iteration
 
   immobilisation_method:
     slot_uri: SIO:000008
@@ -1325,10 +390,8 @@ slots:
     inlined: true
 
   drying_method_type:
-    slot_uri: OBI:0000011
     range: DryingMethodEnum
     description: The type of drying method applied to the biocatalyst preparation.
-    
 
   # --- Component slots ---
 
@@ -1404,7 +467,7 @@ slots:
   has_medium_additive:
     slot_uri: BFO:0000051
     is_a: has_part
-    range: ChemicalEntity
+    #range: ChemicalSubstance
     multivalued: true
     inlined_as_list: true
     description: >-
@@ -1611,6 +674,15 @@ slots:
     description: >-
       The material from which the reactor is constructed
       (e.g. glass, polypropylene, stainless steel).
+
+#  SLOT ALREADY EXISTING IN DCAT-AP+
+#  geometry:
+#    slot_uri: SIO:000008
+#    is_a: has_qualitative_attribute
+#    range: string
+#    description: >-
+#      The geometric dimensions or ratios of the reactor
+#      (e.g. height:width ratio for STR).
 
   bottom_type:
     slot_uri: SIO:000008
@@ -1944,6 +1016,9 @@ slots:
     description: >-
       The technique used to stop the reaction (e.g. heat treatment, organic
       solvent, acid/base addition, freezing).
+    todos:
+      - Consider QuenchingMethodEnum (HeatTreatment, OrganicSolvent,
+        AcidBase, Freezing, Other) in a future iteration.
 
   has_quenching_ratio:
     slot_uri: SIO:000008
@@ -2041,6 +1116,7 @@ slots:
 
   inhibition_type:
     slot_uri: SIO:000008
+    # is_a: has_qualitative_attribute #PROBLEMATIC CAUSE "has_..." HAS INLINED:TRUE (not allowed for enums)
     range: InhibitionTypeEnum
     description: >-
       The type of enzyme inhibition observed (competitive, non-competitive,
@@ -2201,12 +1277,35 @@ slots:
     description: >-
       Sampling processes carried out during the BiocatalyticExperiment.
 
+  # --- Missing slots identified in self-critique ---
+ #SLOT ALREADY EXIST IN DCAT-AP+
+ # has_amount:
+ #   slot_uri: SIO:000008
+ #   is_a: has_quantitative_attribute
+ #   range: QuantitativeAttribute
+ #   description: >-
+ #     The amount of a gas phase present in the reaction medium or headspace,
+ #     expressed as volume fraction, partial pressure, or moles.
+ #   todos:
+ #     - Bind to appropriate QUDT quantity type (AmountOfSubstance or
+ #       VolumeFraction depending on context)
+ #SLOT ALREADY EXIST IN DCAT-AP+
+ # has_yield:
+ #   slot_uri: SIO:000008
+ #   is_a: has_quantitative_attribute
+ #   range: Yield
+ #   description: >-
+ #     The chemical yield of a biocatalytic reaction expressed as a percentage.
+ #     Reuses Yield from chemical_reaction_ap.
+
   molecular_weight:
     slot_uri: SIO:000119
     is_a: has_quantitative_attribute
     range: QuantitativeAttribute
     description: >-
       The molecular weight of the biocatalyst, expressed in Da or kDa.
+    todos:
+      - Bind to QUDT MolarMass quantity type
 
   was_processed_by:
     slot_uri: prov:wasGeneratedBy

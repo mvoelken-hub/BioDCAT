@@ -1,0 +1,23 @@
+---
+id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+name: StrenDCAT-Biocatalysis
+title: StrenDCAT-Biocatalysis
+description: |-
+  Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+license: MIT
+see_also:
+  - https://mvoelken-hub.github.io/StrenDCAT-Biocatalysis
+
+prefixes:
+  strendcat_biocatalysis: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: strendcat_biocatalysis
+default_range: string
+
+
+# MAYBE NO SEPERATE YAML-FILE NECESSARY
+# Note: Operation mode is implemented as slot where needed
