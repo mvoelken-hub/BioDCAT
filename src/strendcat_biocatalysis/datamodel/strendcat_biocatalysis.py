@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-15T13:40:41
+# Generation date: 2026-08-05T10:04:37
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
