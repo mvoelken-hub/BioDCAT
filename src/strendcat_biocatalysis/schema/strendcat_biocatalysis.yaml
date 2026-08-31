@@ -125,6 +125,25 @@ enums:
         meaning: CHEBI:24867
       InternalStandard:
         meaning: CHEBI:50504
+      Activator:
+        description: >-
+          A substance that increases the rate or extent of a biocatalytic
+          reaction without being consumed (EnzymeML ModifierRole ACTIVATOR).
+      Inhibitor:
+        description: >-
+          A substance that decreases the rate or extent of a biocatalytic
+          reaction (EnzymeML ModifierRole INHIBITOR). Fuer den eigentlichen
+          Ki-Wert weiterhin EnzymeInhibitionCharacterisation verwenden.
+      Solvent:
+        description: >-
+          The primary liquid a reaction is carried out in, as distinct from
+          Cosolvent (EnzymeML ModifierRole SOLVENT).
+      AuxiliaryCatalyst:
+        description: >-
+          A non-biological catalyst present alongside or instead of the
+          Biocatalyst (EnzymeML ModifierRole CATALYST, wenn KEIN Biokatalysator
+          gemeint ist -- der Biokatalysator selbst laeuft ueber used_catalyst,
+          nicht ueber diese Rolle).
       Other:
 
   InhibitionTypeEnum:
@@ -161,6 +180,41 @@ enums:
         meaning: PATO:0001737
       Suspension:
       Other:
+
+  KineticEquationTypeEnum:
+    description: >-
+      The role a KineticEquation plays within a kinetic model (EnzymeML
+      EquationType).
+    permissible_values:
+      Assignment:
+        description: A variable is directly assigned the result of the equation.
+      InitialAssignment:
+        description: >-
+          The equation sets the initial value of a variable before
+          simulation/integration starts.
+      ODE:
+        description: >-
+          The equation is an ordinary differential equation describing the
+          rate of change of a species or variable over time.
+      RateLaw:
+        description: >-
+          The equation describes the rate law of a BiocatalyticReaction
+          (e.g. Michaelis-Menten kinetics).
+
+  MeasurementDataTypeEnum:
+    description: >-
+      The physical/analytical nature of a raw measurement data series
+      (EnzymeML DataTypes).
+    permissible_values:
+      Absorbance:
+      Amount:
+      Concentration:
+      Conversion:
+      Fluorescence:
+      PeakArea:
+      Transmittance:
+      Turnover:
+      Yield:
 
 classes:
   # =============================================================================
@@ -413,6 +467,7 @@ classes:
       - molecular_weight
       - is_self_produced
       - has_biocatalyst_production_process
+      - organism_taxonomy_id
     slot_usage:
       title:
         description: >-
@@ -461,6 +516,7 @@ classes:
       - has_formulation
       - has_storage_conditions
       - had_drying_process
+      - has_constant_concentration
     slot_usage:
       derived_from:
         description: The Biocatalyst from which this preparation was derived.
@@ -555,6 +611,7 @@ classes:
       - supplied_by
       - has_formulation
       - has_storage_conditions
+      - has_constant_concentration
     slot_usage:
       other_identifier:
         description: >-
@@ -693,6 +750,8 @@ classes:
     class_uri: AFE:0000153
     description: >-
       A reactor is a container for controlling a biological or chemical reaction or process. [Allotrope]
+    slots:
+    - has_constant_volume
 
   Vial:
     is_a: ReactionVessel
@@ -1032,6 +1091,8 @@ classes:
       - has_activity_and_reaction_rate
       - has_selectivity_and_specificity
       - has_thermodynamic_parameters
+      - has_kinetic_equation
+      - is_reversible
     slot_usage:
       used_catalyst:
         description: >-
@@ -1082,6 +1143,151 @@ classes:
         description: >-
           AgenticEntities that carried out the experiment, including
           Shaker devices.
+
+# =============================================================================
+# Specific Classes for EnzymeML Datasets
+# =============================================================================
+
+  EnzymeMLDocument:
+    is_a: Dataset
+    description: >-
+      A Dataset that represents a converted EnzymeML document: a container
+      for a biocatalytic experiment's vessels, species, reactions,
+      measurements and kinetic model, expressed as STRENDA-Biocatalysis
+      metadata.
+    slot_usage:
+      was_generated_by:
+        description: >-
+          The BiocatalyticExperiment that this EnzymeML document describes.
+        range: BiocatalyticExperiment
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      is_about_activity:
+        description: >-
+          The BiocatalyticReaction(s) this EnzymeML document is about. An
+          EnzymeML document may hold more than one reaction, therefore
+          multivalued (unlike the single-valued base in
+          ReactionMonitoringDataset).
+        range: BiocatalyticReaction
+        multivalued: true
+        inlined_as_list: true
+        recommended: true
+      creator:
+        description: The author(s)/contributor(s) of the EnzymeML document.
+        range: EnzymeMLCreator
+        required: true
+        multivalued: true
+        inlined_as_list: true
+
+  EnzymeMLCreator:
+    is_a: Agent
+    class_uri: schema:person
+    description: >-
+      An author or contributor of an EnzymeML document, with the
+      given/family name split and email address EnzymeML captures.
+    slots:
+      - given_name
+      - family_name
+      - mail
+
+  MolecularComplex:
+    is_a: ChemicalEntity
+    class_uri: NCIT:C19398
+    description: >-
+      A grouping of two or more species (SmallMolecule/BiocatalyticComponent
+      and/or Biocatalyst) into a single complex, e.g. an enzyme-substrate
+      complex or a buffer/solvent mixture (EnzymeML Complex).
+    slots:
+      - has_constant_concentration
+      - has_complex_participant
+    slot_usage:
+      has_part:
+        description: >-
+          Nested ChemicalEntity-branch participants of this complex (inherited
+          from ChemicalEntity; use has_complex_participant instead when a
+          Biocatalyst/enzyme is one of the participants).
+        range: ChemicalEntity
+
+  KineticEquation:
+    is_a: QualitativeAttribute
+    description: >-
+      A mathematical equation used to model part of a BiocatalyticReaction's
+      kinetics (EnzymeML Equation). The equation expression itself is stored
+      in the inherited "value" slot.
+    slots:
+      - equation_species_reference
+      - equation_type
+      - has_equation_variable
+
+  EquationVariable:
+    is_a: QualitativeAttribute
+    description: >-
+      A symbolic variable used inside a KineticEquation's expression
+      (EnzymeML Variable). The variable's symbol is stored in the inherited
+      "value" slot, its human-readable name in the inherited "title" slot.
+
+  KineticModelParameter:
+    is_a: QuantitativeAttribute
+    description: >-
+      An estimated or fixed parameter of a kinetic model, such as a rate or
+      binding constant (EnzymeML Parameter).
+    slots:
+      - parameter_symbol
+      - initial_value
+      - upper_bound
+      - lower_bound
+      - stderr
+      - is_fitted
+      - is_fixed_parameter
+    slot_usage:
+      value:
+        description: >-
+          The estimated value of the parameter. Optional here (unlike the
+          base QuantitativeAttribute), because a parameter may not yet have
+          been fitted.
+        required: false
+
+  EnzymeMeasurement:
+    is_a: MeasurementProcess
+    description: >-
+      A single measurement/experimental run within an EnzymeML document,
+      grouping time-course data for all observed species (EnzymeML
+      Measurement).
+    slots:
+      - measurement_group_id
+      - has_measurement_species_data
+    slot_usage:
+      has_ph_value:
+        description: The pH at which this measurement was recorded.
+      has_temperature:
+        description: The temperature at which this measurement was recorded.
+
+  EnzymeMeasurementSpeciesData:
+    is_a: QuantitativeAttribute
+    description: >-
+      Time-course measurement data for a single species within an
+      EnzymeMeasurement (EnzymeML MeasurementData). "value" (inherited) is
+      not used directly here -- see has_timepoint for the actual series.
+    slots:
+      - measured_species_reference
+      - prepared_amount
+      - initial_amount
+      - measurement_data_type
+      - is_simulated
+      - has_timepoint
+    slot_usage:
+      value:
+        required: false
+
+  MeasurementTimepoint:
+    is_a: QuantitativeAttribute
+    description: >-
+      A single (time, value) pair within a time-course measurement,
+      generalising the existing TemperatureTimepoint pattern.
+    slots:
+      - has_time_value
+      - time_unit
 
 # =============================================================================
 # SLOTS
@@ -2215,3 +2421,203 @@ slots:
       The SamplePreparationProcess (quenching, treatment) that was applied
       to this MaterialSample before analysis.
     inlined: true
+
+# --- EnzymeML specific slots ---
+
+  given_name:
+    slot_uri: schema:givenName
+    is_a: has_qualitative_attribute
+    range: string
+    description: Given name of a document creator/contributor.
+
+  family_name:
+    slot_uri: schema:familyName
+    is_a: has_qualitative_attribute
+    range: string
+    description: Family name of a document creator/contributor.
+
+  mail:
+    slot_uri: schema:email
+    is_a: has_qualitative_attribute
+    range: string
+    description: Email address of a document creator/contributor.
+
+  has_complex_participant:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    description: >-
+      A participant of a MolecularComplex. Covers both the ChemicalEntity
+      branch (SmallMolecule/BiocatalyticComponent/nested MolecularComplex)
+      and the AgenticEntity branch (Biocatalyst), which is why any_of is
+      used instead of a single range.
+    range: ChemicalEntity
+    multivalued: true
+    inlined_as_list: true
+    any_of:
+      - range: ChemicalEntity
+      - range: Biocatalyst
+
+  has_constant_concentration:
+    slot_uri: SIO:000008
+    range: boolean
+    description: >-
+      Whether the concentration of this component/preparation is treated as
+      constant throughout the experiment (EnzymeML "constant" on
+      Protein/Complex/SmallMolecule). Distinct from a vessel's volume being
+      constant -- see has_constant_volume on ReactionVessel, and distinct
+      from a KineticModelParameter being fixed -- see is_fixed_parameter.
+
+  has_constant_volume:
+    slot_uri: SIO:000008
+    range: boolean
+    description: >-
+      Whether the volume of a vessel is treated as constant throughout the
+      experiment (EnzymeML Vessel "constant").
+
+  equation_species_reference:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Reference (id or name) of the species this equation's left-hand side
+      refers to. Kept as a plain string deliberately, since the referenced
+      species may be a Biocatalyst, BiocatalyticComponent or
+      MolecularComplex (three different, incompatible class branches) --
+      resolving this into a typed link is left to the converter.
+
+  equation_type:
+    slot_uri: SIO:000008
+    range: KineticEquationTypeEnum
+    description: The role this KineticEquation plays within the kinetic model.
+
+  has_equation_variable:
+    slot_uri: SIO:000008
+    is_a: has_part
+    range: EquationVariable
+    multivalued: true
+    inlined_as_list: true
+    description: The variables that appear in this KineticEquation's expression.
+
+  has_kinetic_equation:
+    slot_uri: SIO:000008
+    is_a: has_part
+    range: KineticEquation
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Kinetic model equation(s) describing this BiocatalyticReaction,
+      including but not limited to its rate law (EnzymeML Reaction
+      kinetic_law and the document-level equations pool).
+
+  parameter_symbol:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: The symbol used for this parameter in kinetic equations (e.g. "Km").
+
+  initial_value:
+    slot_uri: SIO:000008
+    range: float
+    description: >-
+      The initial value used for this parameter before optimization/fitting.
+      Assumed to share the same unit as the parameter's own value.
+
+  upper_bound:
+    slot_uri: SIO:000008
+    range: float
+    description: >-
+      The upper bound used for this parameter during optimization/fitting.
+
+  lower_bound:
+    slot_uri: SIO:000008
+    range: float
+    description: >-
+      The lower bound used for this parameter during optimization/fitting.
+
+  stderr:
+    slot_uri: SIO:000008
+    range: float
+    description: The standard error of the estimated parameter value.
+
+  is_fitted:
+    slot_uri: SIO:000008
+    range: boolean
+    description: Whether this parameter was varied during optimization/fitting.
+
+  is_fixed_parameter:
+    slot_uri: SIO:000008
+    range: boolean
+    description: >-
+      Whether this parameter is treated as fixed/constant rather than
+      estimated (EnzymeML Parameter "constant"). Distinct from is_fitted:
+      EnzymeML keeps both fields independently, so both are carried through
+      as-is rather than collapsed into one.
+
+  is_reversible:
+    slot_uri: SIO:000008
+    range: boolean
+    description: Whether the reaction is reversible (EnzymeML Reaction "reversible").
+
+  organism_taxonomy_id:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      A taxonomy database identifier (e.g. NCBI Taxonomy ID) for the
+      organism named in origin_organism.
+
+  measurement_group_id:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      User-defined identifier linking together several EnzymeMeasurements
+      that belong to the same experimental series.
+
+  has_measurement_species_data:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: EnzymeMeasurementSpeciesData
+    multivalued: true
+    inlined_as_list: true
+    description: Per-species time-course data recorded within this measurement.
+
+  measured_species_reference:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    description: >-
+      Reference (id or name) of the measured species. Kept as a plain string
+      for the same reason as equation_species_reference above.
+
+  prepared_amount:
+    slot_uri: SIO:000008
+    range: float
+    description: >-
+      The amount of the species present before the measurement started
+      (EnzymeML MeasurementData "prepared").
+
+  initial_amount:
+    slot_uri: SIO:000008
+    range: float
+    description: >-
+      The amount of the species at the first recorded data point (EnzymeML
+      MeasurementData "initial").
+
+  measurement_data_type:
+    slot_uri: SIO:000008
+    range: MeasurementDataTypeEnum
+    description: The physical/analytical nature of the recorded data series.
+
+  is_simulated:
+    slot_uri: SIO:000008
+    range: boolean
+    description: Whether this data series was generated by simulation rather than measured.
+
+  has_timepoint:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: MeasurementTimepoint
+    multivalued: true
+    inlined_as_list: true
+    description: The individual (time, value) data points of this series.
