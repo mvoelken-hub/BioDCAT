@@ -523,6 +523,25 @@ enums:
       InternalStandard:
         text: InternalStandard
         meaning: CHEBI:50504
+      Activator:
+        text: Activator
+        description: A substance that increases the rate or extent of a biocatalytic
+          reaction without being consumed (EnzymeML ModifierRole ACTIVATOR).
+      Inhibitor:
+        text: Inhibitor
+        description: A substance that decreases the rate or extent of a biocatalytic
+          reaction (EnzymeML ModifierRole INHIBITOR). Fuer den eigentlichen Ki-Wert
+          weiterhin EnzymeInhibitionCharacterisation verwenden.
+      Solvent:
+        text: Solvent
+        description: The primary liquid a reaction is carried out in, as distinct
+          from Cosolvent (EnzymeML ModifierRole SOLVENT).
+      AuxiliaryCatalyst:
+        text: AuxiliaryCatalyst
+        description: A non-biological catalyst present alongside or instead of the
+          Biocatalyst (EnzymeML ModifierRole CATALYST, wenn KEIN Biokatalysator gemeint
+          ist -- der Biokatalysator selbst laeuft ueber used_catalyst, nicht ueber
+          diese Rolle).
       Other:
         text: Other
   InhibitionTypeEnum:
@@ -581,6 +600,53 @@ enums:
         text: Suspension
       Other:
         text: Other
+  KineticEquationTypeEnum:
+    name: KineticEquationTypeEnum
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/KineticEquationTypeEnum
+    description: The role a KineticEquation plays within a kinetic model (EnzymeML
+      EquationType).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    permissible_values:
+      Assignment:
+        text: Assignment
+        description: A variable is directly assigned the result of the equation.
+      InitialAssignment:
+        text: InitialAssignment
+        description: The equation sets the initial value of a variable before simulation/integration
+          starts.
+      ODE:
+        text: ODE
+        description: The equation is an ordinary differential equation describing
+          the rate of change of a species or variable over time.
+      RateLaw:
+        text: RateLaw
+        description: The equation describes the rate law of a BiocatalyticReaction
+          (e.g. Michaelis-Menten kinetics).
+  MeasurementDataTypeEnum:
+    name: MeasurementDataTypeEnum
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MeasurementDataTypeEnum
+    description: The physical/analytical nature of a raw measurement data series (EnzymeML
+      DataTypes).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    permissible_values:
+      Absorbance:
+        text: Absorbance
+      Amount:
+        text: Amount
+      Concentration:
+        text: Concentration
+      Conversion:
+        text: Conversion
+      Fluorescence:
+        text: Fluorescence
+      PeakArea:
+        text: PeakArea
+      Transmittance:
+        text: Transmittance
+      Turnover:
+        text: Turnover
+      Yield:
+        text: Yield
   DatasetThemes:
     name: DatasetThemes
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DatasetThemes
@@ -1832,10 +1898,11 @@ slots:
     - SIO:000008
     is_a: has_quantitative_attribute
     slot_uri: SIO:000008
-    owner: TemperatureTimepoint
+    owner: MeasurementTimepoint
     domain_of:
     - SamplingTimepoint
     - TemperatureTimepoint
+    - MeasurementTimepoint
     range: float
     recommended: true
     multivalued: true
@@ -1849,9 +1916,10 @@ slots:
     - SIO:000008
     is_a: has_qualitative_attribute
     slot_uri: SIO:000008
-    owner: SamplingTimepoint
+    owner: MeasurementTimepoint
     domain_of:
     - SamplingTimepoint
+    - MeasurementTimepoint
     range: string
     recommended: true
     multivalued: true
@@ -3241,6 +3309,43 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  has_enzyme_measurement:
+    name: has_enzyme_measurement
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_enzyme_measurement
+    description: Measurement runs (time-course data collection events) carried out
+      during the BiocatalyticExperiment (EnzymeML Measurement pool).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - BFO:0000051
+    is_a: has_part
+    slot_uri: BFO:0000051
+    owner: BiocatalyticExperiment
+    domain_of:
+    - BiocatalyticExperiment
+    range: EnzymeMeasurement
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_molecular_complex:
+    name: has_molecular_complex
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_molecular_complex
+    description: MolecularComplex groupings (e.g. enzyme-substrate complexes) present
+      in the reaction mixture of the BiocatalyticExperiment (EnzymeML Complex pool).
+      Kept separate from has_biocatalytic_component because MolecularComplex is not
+      a BiocatalyticComponent.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - prov:used
+    is_a: had_input_entity
+    slot_uri: prov:used
+    owner: BiocatalyticExperiment
+    domain_of:
+    - BiocatalyticExperiment
+    range: MolecularComplex
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   molecular_weight:
     name: molecular_weight
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/molecular_weight
@@ -3270,6 +3375,446 @@ slots:
     range: SamplePreparationProcess
     inlined: true
     inlined_as_list: false
+  given_name:
+    name: given_name
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/given_name
+    description: Given name of a document creator/contributor.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - schema:givenName
+    is_a: has_qualitative_attribute
+    slot_uri: schema:givenName
+    owner: EnzymeMLCreator
+    domain_of:
+    - EnzymeMLCreator
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  family_name:
+    name: family_name
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/family_name
+    description: Family name of a document creator/contributor.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - schema:familyName
+    is_a: has_qualitative_attribute
+    slot_uri: schema:familyName
+    owner: EnzymeMLCreator
+    domain_of:
+    - EnzymeMLCreator
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  mail:
+    name: mail
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/mail
+    description: Email address of a document creator/contributor.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - schema:email
+    is_a: has_qualitative_attribute
+    slot_uri: schema:email
+    owner: EnzymeMLCreator
+    domain_of:
+    - EnzymeMLCreator
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_complex_participant:
+    name: has_complex_participant
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_complex_participant
+    description: A participant of a MolecularComplex. Covers both the ChemicalEntity
+      branch (SmallMolecule/BiocatalyticComponent/nested MolecularComplex) and the
+      AgenticEntity branch (Biocatalyst), which is why any_of is used instead of a
+      single range.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - BFO:0000051
+    is_a: has_part
+    slot_uri: BFO:0000051
+    owner: MolecularComplex
+    domain_of:
+    - MolecularComplex
+    range: ChemicalEntity
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    any_of:
+    - range: ChemicalEntity
+    - range: Biocatalyst
+  has_constant_concentration:
+    name: has_constant_concentration
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_constant_concentration
+    description: Whether the concentration of this component/preparation is treated
+      as constant throughout the experiment (EnzymeML "constant" on Protein/Complex/SmallMolecule).
+      Distinct from a vessel's volume being constant -- see has_constant_volume on
+      ReactionVessel, and distinct from a KineticModelParameter being fixed -- see
+      is_fixed_parameter.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: MolecularComplex
+    domain_of:
+    - BiocatalystPreparation
+    - BiocatalyticComponent
+    - MolecularComplex
+    range: boolean
+  has_constant_volume:
+    name: has_constant_volume
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_constant_volume
+    description: Whether the volume of a vessel is treated as constant throughout
+      the experiment (EnzymeML Vessel "constant").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: ReactionVessel
+    domain_of:
+    - ReactionVessel
+    range: boolean
+  equation_species_reference:
+    name: equation_species_reference
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/equation_species_reference
+    description: Reference (id or name) of the species this equation's left-hand side
+      refers to. Kept as a plain string deliberately, since the referenced species
+      may be a Biocatalyst, BiocatalyticComponent or MolecularComplex (three different,
+      incompatible class branches) -- resolving this into a typed link is left to
+      the converter.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: KineticEquation
+    domain_of:
+    - KineticEquation
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  equation_type:
+    name: equation_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/equation_type
+    description: The role this KineticEquation plays within the kinetic model.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticEquation
+    domain_of:
+    - KineticEquation
+    range: KineticEquationTypeEnum
+  has_equation_variable:
+    name: has_equation_variable
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_equation_variable
+    description: The variables that appear in this KineticEquation's expression.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_part
+    slot_uri: SIO:000008
+    owner: KineticEquation
+    domain_of:
+    - KineticEquation
+    range: EquationVariable
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_kinetic_equation:
+    name: has_kinetic_equation
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_kinetic_equation
+    description: Kinetic model equation(s) describing this BiocatalyticReaction, including
+      but not limited to its rate law (EnzymeML Reaction kinetic_law and the document-level
+      equations pool).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_part
+    slot_uri: SIO:000008
+    owner: BiocatalyticReaction
+    domain_of:
+    - BiocatalyticReaction
+    range: KineticEquation
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_kinetic_model_parameter:
+    name: has_kinetic_model_parameter
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_kinetic_model_parameter
+    description: Estimated or fixed kinetic model parameters associated with this
+      BiocatalyticReaction (EnzymeML Parameter pool, referenced by symbol from KineticEquation
+      expressions).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_part
+    slot_uri: SIO:000008
+    owner: BiocatalyticReaction
+    domain_of:
+    - BiocatalyticReaction
+    range: KineticModelParameter
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  parameter_symbol:
+    name: parameter_symbol
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/parameter_symbol
+    description: The symbol used for this parameter in kinetic equations (e.g. "Km").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  initial_value:
+    name: initial_value
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/initial_value
+    description: The initial value used for this parameter before optimization/fitting.
+      Assumed to share the same unit as the parameter's own value.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: float
+  upper_bound:
+    name: upper_bound
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/upper_bound
+    description: The upper bound used for this parameter during optimization/fitting.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: float
+  lower_bound:
+    name: lower_bound
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/lower_bound
+    description: The lower bound used for this parameter during optimization/fitting.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: float
+  stderr:
+    name: stderr
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/stderr
+    description: The standard error of the estimated parameter value.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: float
+  is_fitted:
+    name: is_fitted
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/is_fitted
+    description: Whether this parameter was varied during optimization/fitting.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: boolean
+  is_fixed_parameter:
+    name: is_fixed_parameter
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/is_fixed_parameter
+    description: 'Whether this parameter is treated as fixed/constant rather than
+      estimated (EnzymeML Parameter "constant"). Distinct from is_fitted: EnzymeML
+      keeps both fields independently, so both are carried through as-is rather than
+      collapsed into one.'
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    range: boolean
+  is_reversible:
+    name: is_reversible
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/is_reversible
+    description: Whether the reaction is reversible (EnzymeML Reaction "reversible").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: BiocatalyticReaction
+    domain_of:
+    - BiocatalyticReaction
+    range: boolean
+  organism_taxonomy_id:
+    name: organism_taxonomy_id
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/organism_taxonomy_id
+    description: A taxonomy database identifier (e.g. NCBI Taxonomy ID) for the organism
+      named in origin_organism.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: Biocatalyst
+    domain_of:
+    - Biocatalyst
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  measurement_group_id:
+    name: measurement_group_id
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/measurement_group_id
+    description: User-defined identifier linking together several EnzymeMeasurements
+      that belong to the same experimental series.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurement
+    domain_of:
+    - EnzymeMeasurement
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_measurement_species_data:
+    name: has_measurement_species_data
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_measurement_species_data
+    description: Per-species time-course data recorded within this measurement.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - BFO:0000051
+    is_a: has_part
+    slot_uri: BFO:0000051
+    owner: EnzymeMeasurement
+    domain_of:
+    - EnzymeMeasurement
+    range: EnzymeMeasurementSpeciesData
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  measured_species_reference:
+    name: measured_species_reference
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/measured_species_reference
+    description: Reference (id or name) of the measured species. Kept as a plain string
+      for the same reason as equation_species_reference above.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  prepared_amount:
+    name: prepared_amount
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/prepared_amount
+    description: The amount of the species present before the measurement started
+      (EnzymeML MeasurementData "prepared").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: float
+  initial_amount:
+    name: initial_amount
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/initial_amount
+    description: The amount of the species at the first recorded data point (EnzymeML
+      MeasurementData "initial").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: float
+  measurement_data_type:
+    name: measurement_data_type
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/measurement_data_type
+    description: The physical/analytical nature of the recorded data series.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: MeasurementDataTypeEnum
+  is_simulated:
+    name: is_simulated
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/is_simulated
+    description: Whether this data series was generated by simulation rather than
+      measured.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    slot_uri: SIO:000008
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: boolean
+  has_timepoint:
+    name: has_timepoint
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/has_timepoint
+    description: The individual (time, value) data points of this series.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - BFO:0000051
+    is_a: has_part
+    slot_uri: BFO:0000051
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    range: MeasurementTimepoint
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  synonymous_names:
+    name: synonymous_names
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/synonymous_names
+    description: Alternative names by which this component is also known (EnzymeML
+      SmallMolecule "synonymous_names").
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: BiocatalyticComponent
+    domain_of:
+    - BiocatalyticComponent
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
   access_URL:
     name: access_URL
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_URL
@@ -4807,6 +5352,7 @@ slots:
     owner: ChemicalSubstanceMixin
     domain_of:
     - PHMeasurementProcess
+    - EnzymeMeasurement
     - ChemicalSubstanceMixin
     range: PHValue
     recommended: true
@@ -5154,6 +5700,7 @@ slots:
     - TemperatureTimepoint
     - StorageConditions
     - PHMeasurementProcess
+    - EnzymeMeasurement
     - ChemicalReaction
     - MaterialisticMixin
     range: Temperature
@@ -5816,6 +6363,177 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  EnzymeMLDocument_was_generated_by:
+    name: EnzymeMLDocument_was_generated_by
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
+    description: The BiocatalyticExperiment that this EnzymeML document describes.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - prov:wasGeneratedBy
+    is_a: was_generated_by
+    domain: EnzymeMLDocument
+    slot_uri: prov:wasGeneratedBy
+    alias: was_generated_by
+    owner: EnzymeMLDocument
+    domain_of:
+    - EnzymeMLDocument
+    is_usage_slot: true
+    usage_slot_name: was_generated_by
+    range: BiocatalyticExperiment
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  EnzymeMLDocument_is_about_activity:
+    name: EnzymeMLDocument_is_about_activity
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/is_about_activity
+    description: The BiocatalyticReaction(s) this EnzymeML document is about. An EnzymeML
+      document may hold more than one reaction, therefore multivalued (unlike the
+      single-valued base in ReactionMonitoringDataset).
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - dcterms:subject
+    exact_mappings:
+    - IAO:0000136
+    is_a: is_about_activity
+    domain: EnzymeMLDocument
+    slot_uri: dcterms:subject
+    alias: is_about_activity
+    owner: EnzymeMLDocument
+    domain_of:
+    - EnzymeMLDocument
+    is_usage_slot: true
+    usage_slot_name: is_about_activity
+    range: BiocatalyticReaction
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  EnzymeMLDocument_creator:
+    name: EnzymeMLDocument_creator
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/creator
+    description: The author(s)/contributor(s) of the EnzymeML document.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - dcterms:creator
+    is_a: creator
+    domain: EnzymeMLDocument
+    slot_uri: dcterms:creator
+    alias: creator
+    owner: EnzymeMLDocument
+    domain_of:
+    - EnzymeMLDocument
+    is_usage_slot: true
+    usage_slot_name: creator
+    range: EnzymeMLCreator
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  MolecularComplex_has_part:
+    name: MolecularComplex_has_part
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
+    description: Nested ChemicalEntity-branch participants of this complex (inherited
+      from ChemicalEntity; use has_complex_participant instead when a Biocatalyst/enzyme
+      is one of the participants).
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - dcterms:hasPart
+    is_a: has_part
+    domain: MolecularComplex
+    slot_uri: dcterms:hasPart
+    alias: has_part
+    owner: MolecularComplex
+    domain_of:
+    - MolecularComplex
+    is_usage_slot: true
+    usage_slot_name: has_part
+    range: ChemicalEntity
+  KineticModelParameter_value:
+    name: KineticModelParameter_value
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/value
+    description: The estimated value of the parameter. Optional here (unlike the base
+      QuantitativeAttribute), because a parameter may not yet have been fitted.
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - prov:value
+    is_a: value
+    domain: KineticModelParameter
+    slot_uri: prov:value
+    alias: value
+    owner: KineticModelParameter
+    domain_of:
+    - KineticModelParameter
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: false
+  EnzymeMeasurement_has_ph_value:
+    name: EnzymeMeasurement_has_ph_value
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/has_ph_value
+    description: The pH at which this measurement was recorded.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
+    mappings:
+    - SIO:000008
+    is_a: has_ph_value
+    domain: EnzymeMeasurement
+    slot_uri: SIO:000008
+    alias: has_ph_value
+    owner: EnzymeMeasurement
+    domain_of:
+    - EnzymeMeasurement
+    is_usage_slot: true
+    usage_slot_name: has_ph_value
+    range: PHValue
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  EnzymeMeasurement_has_temperature:
+    name: EnzymeMeasurement_has_temperature
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/has_temperature
+    description: The temperature at which this measurement was recorded.
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
+    mappings:
+    - SIO:000008
+    is_a: has_temperature
+    domain: EnzymeMeasurement
+    slot_uri: SIO:000008
+    alias: has_temperature
+    owner: EnzymeMeasurement
+    domain_of:
+    - EnzymeMeasurement
+    is_usage_slot: true
+    usage_slot_name: has_temperature
+    range: Temperature
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  EnzymeMeasurementSpeciesData_value:
+    name: EnzymeMeasurementSpeciesData_value
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/value
+    description: A slot to provide the literal value of an attribute.
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    mappings:
+    - prov:value
+    is_a: value
+    domain: EnzymeMeasurementSpeciesData
+    slot_uri: prov:value
+    alias: value
+    owner: EnzymeMeasurementSpeciesData
+    domain_of:
+    - EnzymeMeasurementSpeciesData
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: false
   SubstanceSampleCharacterizationDataset_was_generated_by:
     name: SubstanceSampleCharacterizationDataset_was_generated_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
@@ -10262,6 +10980,7 @@ classes:
     - molecular_weight
     - is_self_produced
     - has_biocatalyst_production_process
+    - organism_taxonomy_id
     - Biocatalyst_title
     - Biocatalyst_other_identifier
     - Biocatalyst_has_quantitative_attribute
@@ -10347,6 +11066,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     slot_usage:
       derived_from:
@@ -10389,6 +11109,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     - concentration_determination_method
     - activity_determination_method
@@ -10428,6 +11149,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     - cell_disruption_process
     - concentration_determination_method
@@ -10466,6 +11188,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     - harvesting_method
     - concentration_determination_method
@@ -10505,6 +11228,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     - separation_method
     - concentration_determination_method
@@ -10544,6 +11268,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - BiocatalystPreparation_derived_from
     - source_of_cellfree_extract
     - concentration_determination_method
@@ -10584,6 +11309,7 @@ classes:
     - has_formulation
     - has_storage_conditions
     - had_drying_process
+    - has_constant_concentration
     - immobilisation_chemistry
     - carrier_material
     - linkers
@@ -10629,6 +11355,8 @@ classes:
     - supplied_by
     - has_formulation
     - has_storage_conditions
+    - has_constant_concentration
+    - synonymous_names
     - BiocatalyticComponent_other_identifier
     - BiocatalyticComponent_description
     slot_usage:
@@ -10933,6 +11661,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - has_constant_volume
     class_uri: AFE:0000153
   Vial:
     name: Vial
@@ -10958,6 +11687,7 @@ classes:
     - has_mass
     - has_density
     - has_pressure
+    - has_constant_volume
     - has_volume
     - vial_size_unit
     - vial_material
@@ -10995,6 +11725,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - has_constant_volume
     - plate_type
     - plate_material
     - number_of_wells
@@ -11036,6 +11767,7 @@ classes:
     - has_mass
     - has_density
     - has_pressure
+    - has_constant_volume
     - reactor_material
     - has_volume
     - geometry
@@ -11076,6 +11808,7 @@ classes:
     - has_mass
     - has_density
     - has_pressure
+    - has_constant_volume
     - reactor_type_description
     - reactor_material
     - has_volume
@@ -11614,6 +12347,9 @@ classes:
     - has_activity_and_reaction_rate
     - has_selectivity_and_specificity
     - has_thermodynamic_parameters
+    - has_kinetic_equation
+    - has_kinetic_model_parameter
+    - is_reversible
     - BiocatalyticReaction_used_catalyst
     - BiocatalyticReaction_has_temperature
     - BiocatalyticReaction_has_ph_value
@@ -11665,6 +12401,8 @@ classes:
     - has_biocatalytic_component
     - used_reaction_vessel
     - has_sampling_process
+    - has_enzyme_measurement
+    - has_molecular_complex
     - BiocatalyticExperiment_evaluated_activity
     - BiocatalyticExperiment_occurred_in
     - BiocatalyticExperiment_carried_out_by
@@ -11684,6 +12422,273 @@ classes:
         description: AgenticEntities that carried out the experiment, including Shaker
           devices.
     class_uri: OBI:0000066
+  EnzymeMLDocument:
+    name: EnzymeMLDocument
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnzymeMLDocument
+    description: 'A Dataset that represents a converted EnzymeML document: a container
+      for a biocatalytic experiment''s vessels, species, reactions, measurements and
+      kinetic model, expressed as STRENDA-Biocatalysis metadata.'
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: Dataset
+    slots:
+    - Dataset_access_rights
+    - Dataset_applicable_legislation
+    - Dataset_conforms_to
+    - Dataset_contact_point
+    - Dataset_dataset_distribution
+    - Dataset_description
+    - Dataset_documentation
+    - Dataset_frequency
+    - Dataset_geographical_coverage
+    - Dataset_has_version
+    - Dataset_identifier
+    - Dataset_in_series
+    - Dataset_is_referenced_by
+    - Dataset_keyword
+    - Dataset_landing_page
+    - Dataset_language
+    - Dataset_modification_date
+    - Dataset_other_identifier
+    - Dataset_provenance
+    - Dataset_publisher
+    - Dataset_qualified_attribution
+    - Dataset_qualified_relation
+    - Dataset_related_resource
+    - Dataset_release_date
+    - Dataset_sample
+    - Dataset_source
+    - Dataset_spatial_resolution
+    - Dataset_temporal_coverage
+    - Dataset_temporal_resolution
+    - Dataset_theme
+    - Dataset_title
+    - Dataset_type
+    - Dataset_version
+    - Dataset_version_notes
+    - id
+    - is_about_entity
+    - EnzymeMLDocument_was_generated_by
+    - EnzymeMLDocument_is_about_activity
+    - EnzymeMLDocument_creator
+    slot_usage:
+      was_generated_by:
+        name: was_generated_by
+        description: The BiocatalyticExperiment that this EnzymeML document describes.
+        range: BiocatalyticExperiment
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      is_about_activity:
+        name: is_about_activity
+        description: The BiocatalyticReaction(s) this EnzymeML document is about.
+          An EnzymeML document may hold more than one reaction, therefore multivalued
+          (unlike the single-valued base in ReactionMonitoringDataset).
+        range: BiocatalyticReaction
+        recommended: true
+        multivalued: true
+        inlined_as_list: true
+      creator:
+        name: creator
+        description: The author(s)/contributor(s) of the EnzymeML document.
+        range: EnzymeMLCreator
+        required: true
+        multivalued: true
+        inlined_as_list: true
+    class_uri: strendcat_biocatalysis:EnzymeMLDocument
+  EnzymeMLCreator:
+    name: EnzymeMLCreator
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnzymeMLCreator
+    description: An author or contributor of an EnzymeML document, with the given/family
+      name split and email address EnzymeML captures.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - schema:person
+    is_a: Agent
+    slots:
+    - Agent_name
+    - Agent_type
+    - given_name
+    - family_name
+    - mail
+    class_uri: schema:person
+  MolecularComplex:
+    name: MolecularComplex
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MolecularComplex
+    description: A grouping of two or more species (SmallMolecule/BiocatalyticComponent
+      and/or Biocatalyst) into a single complex, e.g. an enzyme-substrate complex
+      or a buffer/solvent mixture (EnzymeML Complex).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    mappings:
+    - NCIT:C19398
+    is_a: ChemicalEntity
+    slots:
+    - Entity_title
+    - Entity_description
+    - id
+    - Entity_other_identifier
+    - has_qualitative_attribute
+    - has_quantitative_attribute
+    - Entity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - inchi
+    - inchikey
+    - smiles
+    - molecular_formula
+    - iupac_name
+    - has_molar_mass
+    - has_constant_concentration
+    - has_complex_participant
+    - MolecularComplex_has_part
+    slot_usage:
+      has_part:
+        name: has_part
+        description: Nested ChemicalEntity-branch participants of this complex (inherited
+          from ChemicalEntity; use has_complex_participant instead when a Biocatalyst/enzyme
+          is one of the participants).
+        range: ChemicalEntity
+    class_uri: NCIT:C19398
+  KineticEquation:
+    name: KineticEquation
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/KineticEquation
+    description: A mathematical equation used to model part of a BiocatalyticReaction's
+      kinetics (EnzymeML Equation). The equation expression itself is stored in the
+      inherited "value" slot.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    - equation_species_reference
+    - equation_type
+    - has_equation_variable
+    class_uri: strendcat_biocatalysis:KineticEquation
+  EquationVariable:
+    name: EquationVariable
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EquationVariable
+    description: A symbolic variable used inside a KineticEquation's expression (EnzymeML
+      Variable). The variable's symbol is stored in the inherited "value" slot, its
+      human-readable name in the inherited "title" slot.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: strendcat_biocatalysis:EquationVariable
+  KineticModelParameter:
+    name: KineticModelParameter
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/KineticModelParameter
+    description: An estimated or fixed parameter of a kinetic model, such as a rate
+      or binding constant (EnzymeML Parameter).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    - parameter_symbol
+    - initial_value
+    - upper_bound
+    - lower_bound
+    - stderr
+    - is_fitted
+    - is_fixed_parameter
+    - KineticModelParameter_value
+    slot_usage:
+      value:
+        name: value
+        description: The estimated value of the parameter. Optional here (unlike the
+          base QuantitativeAttribute), because a parameter may not yet have been fitted.
+        required: false
+    class_uri: strendcat_biocatalysis:KineticModelParameter
+  EnzymeMeasurement:
+    name: EnzymeMeasurement
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnzymeMeasurement
+    description: A single measurement/experimental run within an EnzymeML document,
+      grouping time-course data for all observed species (EnzymeML Measurement).
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: MeasurementProcess
+    slots:
+    - id
+    - Activity_title
+    - Activity_description
+    - Activity_has_part
+    - Activity_had_input_entity
+    - Activity_had_output_entity
+    - Activity_had_input_activity
+    - Activity_carried_out_by
+    - Activity_has_qualitative_attribute
+    - Activity_has_quantitative_attribute
+    - Activity_part_of
+    - ClassifierMixin_type
+    - rdf_type
+    - EvaluatedActivity_other_identifier
+    - measurement_group_id
+    - has_measurement_species_data
+    - EnzymeMeasurement_has_ph_value
+    - EnzymeMeasurement_has_temperature
+    slot_usage:
+      has_ph_value:
+        name: has_ph_value
+        description: The pH at which this measurement was recorded.
+      has_temperature:
+        name: has_temperature
+        description: The temperature at which this measurement was recorded.
+    class_uri: strendcat_biocatalysis:EnzymeMeasurement
+  EnzymeMeasurementSpeciesData:
+    name: EnzymeMeasurementSpeciesData
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/EnzymeMeasurementSpeciesData
+    description: Time-course measurement data for a single species within an EnzymeMeasurement
+      (EnzymeML MeasurementData). "value" (inherited) is not used directly here --
+      see has_timepoint for the actual series.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    - measured_species_reference
+    - prepared_amount
+    - initial_amount
+    - measurement_data_type
+    - is_simulated
+    - has_timepoint
+    - EnzymeMeasurementSpeciesData_value
+    slot_usage:
+      value:
+        name: value
+        required: false
+    class_uri: strendcat_biocatalysis:EnzymeMeasurementSpeciesData
+  MeasurementTimepoint:
+    name: MeasurementTimepoint
+    definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/MeasurementTimepoint
+    description: A single (time, value) pair within a time-course measurement, generalising
+      the existing TemperatureTimepoint pattern.
+    from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    - has_time_value
+    - time_unit
+    class_uri: strendcat_biocatalysis:MeasurementTimepoint
   SubstanceSampleCharacterizationDataset:
     name: SubstanceSampleCharacterizationDataset
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/SubstanceSampleCharacterizationDataset
@@ -15156,7 +16161,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-07-20T09:12:49'
-source_file_size: 74302
-generation_date: '2026-08-05T09:41:51'
+source_file_date: '2026-08-31T16:01:52'
+source_file_size: 89669
+generation_date: '2026-08-31T16:18:21'
 

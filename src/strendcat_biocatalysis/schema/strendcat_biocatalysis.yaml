@@ -612,6 +612,7 @@ classes:
       - has_formulation
       - has_storage_conditions
       - has_constant_concentration
+      - synonymous_names
     slot_usage:
       other_identifier:
         description: >-
@@ -1092,6 +1093,7 @@ classes:
       - has_selectivity_and_specificity
       - has_thermodynamic_parameters
       - has_kinetic_equation
+      - has_kinetic_model_parameter
       - is_reversible
     slot_usage:
       used_catalyst:
@@ -1130,6 +1132,8 @@ classes:
       - has_biocatalytic_component
       - used_reaction_vessel
       - has_sampling_process
+      - has_enzyme_measurement
+      - has_molecular_complex
     slot_usage:
       evaluated_activity:
         description: The BiocatalyticReaction that this experiment evaluates.
@@ -1257,6 +1261,8 @@ classes:
     slots:
       - measurement_group_id
       - has_measurement_species_data
+      - has_ph_value
+      - has_temperature
     slot_usage:
       has_ph_value:
         description: The pH at which this measurement was recorded.
@@ -2407,6 +2413,28 @@ slots:
     description: >-
       Sampling processes carried out during the BiocatalyticExperiment.
 
+  has_enzyme_measurement:
+    slot_uri: BFO:0000051
+    is_a: has_part
+    range: EnzymeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Measurement runs (time-course data collection events) carried out
+      during the BiocatalyticExperiment (EnzymeML Measurement pool).
+
+  has_molecular_complex:
+    slot_uri: prov:used
+    is_a: had_input_entity
+    range: MolecularComplex
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      MolecularComplex groupings (e.g. enzyme-substrate complexes) present
+      in the reaction mixture of the BiocatalyticExperiment (EnzymeML
+      Complex pool). Kept separate from has_biocatalytic_component because
+      MolecularComplex is not a BiocatalyticComponent.
+
   molecular_weight:
     slot_uri: SIO:000119
     is_a: has_quantitative_attribute
@@ -2508,6 +2536,17 @@ slots:
       Kinetic model equation(s) describing this BiocatalyticReaction,
       including but not limited to its rate law (EnzymeML Reaction
       kinetic_law and the document-level equations pool).
+
+  has_kinetic_model_parameter:
+    slot_uri: SIO:000008
+    is_a: has_part
+    range: KineticModelParameter
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Estimated or fixed kinetic model parameters associated with this
+      BiocatalyticReaction (EnzymeML Parameter pool, referenced by symbol
+      from KineticEquation expressions).
 
   parameter_symbol:
     slot_uri: SIO:000008
@@ -2621,3 +2660,12 @@ slots:
     multivalued: true
     inlined_as_list: true
     description: The individual (time, value) data points of this series.
+
+  synonymous_names:
+    slot_uri: SIO:000008
+    is_a: has_qualitative_attribute
+    range: string
+    multivalued: true
+    description: >-
+      Alternative names by which this component is also known (EnzymeML
+      SmallMolecule "synonymous_names").
