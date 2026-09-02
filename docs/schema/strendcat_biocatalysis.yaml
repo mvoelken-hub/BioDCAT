@@ -6230,27 +6230,6 @@ slots:
     is_usage_slot: true
     usage_slot_name: description
     range: string
-  BiocatalyticReaction_used_catalyst:
-    name: BiocatalyticReaction_used_catalyst
-    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/used_catalyst
-    description: The Biocatalyst (AgenticEntity) that catalyzes this reaction.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - RXNO:0000425
-    is_a: used_catalyst
-    domain: BiocatalyticReaction
-    slot_uri: RXNO:0000425
-    alias: used_catalyst
-    owner: BiocatalyticReaction
-    domain_of:
-    - BiocatalyticReaction
-    is_usage_slot: true
-    usage_slot_name: used_catalyst
-    range: Biocatalyst
-    recommended: true
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   BiocatalyticReaction_has_temperature:
     name: BiocatalyticReaction_has_temperature
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/has_temperature
@@ -6414,7 +6393,9 @@ slots:
   EnzymeMLDocument_creator:
     name: EnzymeMLDocument_creator
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/creator
-    description: The author(s)/contributor(s) of the EnzymeML document.
+    description: 'The author(s)/contributor(s) of the EnzymeML document. Not required:
+      many real-world EnzymeML documents carry no creator metadata, and the converter
+      cannot fabricate it.'
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:creator
@@ -6428,7 +6409,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: creator
     range: EnzymeMLCreator
-    required: true
+    recommended: true
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -10946,21 +10927,21 @@ classes:
     name: Biocatalyst
     definition_uri: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/Biocatalyst
     description: An enzyme or cell that catalyzes a biocatalytic reaction. Subclass
-      of Catalyst (AgenticEntity). The physical form in which it is applied is described
-      by an associated BiocatalystPreparation.
+      of MaterialEntity. The physical form in which it is applied is described by
+      an associated BiocatalystPreparation; its role as the catalyst of a specific
+      BiocatalyticReaction is described by a Catalyst wrapper via used_catalyst.
     from_schema: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
     mappings:
     - CHEBI:35233
-    is_a: Catalyst
+    is_a: MaterialEntity
     slots:
+    - Entity_description
     - id
-    - description
     - has_qualitative_attribute
-    - AgenticEntity_has_part
-    - AgenticEntity_part_of
+    - Entity_part_of
     - ClassifierMixin_type
     - rdf_type
-    - has_molar_equivalent
+    - MaterialEntity_has_part
     - alternative_label
     - has_physical_state
     - has_temperature
@@ -10968,10 +10949,6 @@ classes:
     - has_volume
     - has_density
     - has_pressure
-    - has_concentration
-    - has_ph_value
-    - composed_of
-    - has_amount
     - ec_number
     - sequence_amino_acid
     - sequence_DNA
@@ -12329,6 +12306,7 @@ classes:
     - used_starting_material
     - used_reactant
     - generated_product
+    - used_catalyst
     - used_solvent
     - has_duration
     - used_reactor
@@ -12350,14 +12328,9 @@ classes:
     - has_kinetic_equation
     - has_kinetic_model_parameter
     - is_reversible
-    - BiocatalyticReaction_used_catalyst
     - BiocatalyticReaction_has_temperature
     - BiocatalyticReaction_has_ph_value
     slot_usage:
-      used_catalyst:
-        name: used_catalyst
-        description: The Biocatalyst (AgenticEntity) that catalyzes this reaction.
-        range: Biocatalyst
       has_temperature:
         name: has_temperature
         description: The constant temperature at which the reaction takes place. For
@@ -12489,9 +12462,11 @@ classes:
         inlined_as_list: true
       creator:
         name: creator
-        description: The author(s)/contributor(s) of the EnzymeML document.
+        description: 'The author(s)/contributor(s) of the EnzymeML document. Not required:
+          many real-world EnzymeML documents carry no creator metadata, and the converter
+          cannot fabricate it.'
         range: EnzymeMLCreator
-        required: true
+        recommended: true
         multivalued: true
         inlined_as_list: true
     class_uri: strendcat_biocatalysis:EnzymeMLDocument
@@ -16161,7 +16136,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: strendcat_biocatalysis.yaml
-source_file_date: '2026-08-31T16:01:52'
-source_file_size: 89669
-generation_date: '2026-08-31T16:18:21'
+source_file_date: '2026-09-02T09:51:14'
+source_file_size: 90002
+generation_date: '2026-09-02T10:57:19'
 

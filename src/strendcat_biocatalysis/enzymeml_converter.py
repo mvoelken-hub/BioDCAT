@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 from pathlib import Path
 from typing import Any, Optional
@@ -43,6 +44,7 @@ from strendcat_biocatalysis.datamodel.strendcat_biocatalysis_pydantic import (
     BiocatalyticExperiment,
     BiocatalyticReaction,
     BiocatalystPreparation,
+    Catalyst,
     ChemicalProduct,
     EnzymeMeasurement,
     EnzymeMeasurementSpeciesData,
@@ -167,9 +169,20 @@ OPERATION_MODE_DEFAULT = "Batch"
 # =============================================================================
 
 
+_URI_UNSAFE_RUN = re.compile(r"\s+")
+
+
 def _mint_uri(local_id: str, kind: str) -> str:
-    """Turn a short EnzymeML local id (e.g. "s0") into a schema-conformant URI."""
-    return f"{BASE_URI}/{kind}/{local_id}"
+    """Turn a short EnzymeML local id (e.g. "s0") into a schema-conformant URI.
+
+    EnzymeML ids are usually already URL-safe short tokens, but some
+    real-world documents reuse a free-text name as an id (observed for
+    measurement ids) -- collapse whitespace to hyphens so the result is
+    always a valid URI, since some generated identifier types (e.g.
+    EnzymeMeasurementId) validate this strictly on load.
+    """
+    slug = _URI_UNSAFE_RUN.sub("-", local_id.strip())
+    return f"{BASE_URI}/{kind}/{slug}"
 
 
 def _unit_type_to_string(unit_definition: Optional[dict]) -> Optional[str]:
@@ -450,7 +463,7 @@ def _resolve_species_as_chemical(species_id: str, species_index: SpeciesIndex, *
     return None
 
 
-def _wrap_reaction_element(cls, element: dict, species_index: SpeciesIndex, *, context: str):
+def _wrap_reaction_element(cls, element: dict, species_index: SpeciesIndex, *, role: str, rid: str, context: str):
     """Wrap a resolved species into a Reagent/ChemicalProduct/StartingMaterial
     identity+stoichiometry record. NOTE: these wrapper classes have no
     chemical-descriptor slots (inchi/smiles/...) -- the full descriptors live
@@ -461,7 +474,7 @@ def _wrap_reaction_element(cls, element: dict, species_index: SpeciesIndex, *, c
     species_id = element["species_id"]
     resolved = _resolve_species_as_chemical(species_id, species_index, context=context)
     title = resolved.title if resolved is not None else species_id
-    kwargs: dict[str, Any] = {"id": _mint_uri(f"{species_id}-{context}", "reaction-element"), "title": title}
+    kwargs: dict[str, Any] = {"id": _mint_uri(f"{species_id}-{rid}-{role}", "reaction-element"), "title": title}
     # ChemicalProduct has no has_molar_equivalent slot (only Reagent/StartingMaterial/
     # Catalyst/DissolvingSubstance do) -- stoichiometry of products is not carried.
     if cls is ChemicalProduct:
@@ -563,7 +576,17 @@ def convert_measurement_data(species_data: dict, species_index: SpeciesIndex) ->
             len(timepoints),
         )
 
+    # EnzymeMeasurementSpeciesData.value (inherited from QuantitativeAttribute) is not
+    # semantically used here -- has_timepoint carries the actual series -- and the schema
+    # marks it slot_usage required:false accordingly. The generated dataclass still enforces
+    # QuantitativeAttribute's own required check on super().__post_init__() regardless, so
+    # mirror initial_amount (or the first timepoint) into it to satisfy that redundant check.
+    value = species_data.get("initial")
+    if value is None and values:
+        value = values[0]
+
     return EnzymeMeasurementSpeciesData(
+        value=value,
         measured_species_reference=[resolved.title if resolved is not None else species_id],
         prepared_amount=species_data.get("prepared"),
         initial_amount=species_data.get("initial"),
@@ -629,13 +652,13 @@ def convert_reaction(
     }
 
     used_reactant = [
-        _wrap_reaction_element(Reagent, el, species_index, context=f"Reaction {rid} reactant")
+        _wrap_reaction_element(Reagent, el, species_index, role="reactant", rid=rid, context=f"Reaction {rid} reactant")
         for el in reaction.get("reactants") or []
     ]
     if used_reactant:
         kwargs["used_reactant"] = used_reactant
     generated_product = [
-        _wrap_reaction_element(ChemicalProduct, el, species_index, context=f"Reaction {rid} product")
+        _wrap_reaction_element(ChemicalProduct, el, species_index, role="product", rid=rid, context=f"Reaction {rid} product")
         for el in reaction.get("products") or []
     ]
     if generated_product:
@@ -643,7 +666,7 @@ def convert_reaction(
 
     catalysts = []
     for modifier in reaction.get("modifiers") or []:
-        result = convert_modifier(modifier, species_index)
+        result = convert_modifier(modifier, species_index, rid=rid)
         if result is not None and result[0] == "catalyst":
             catalysts.append(result[1])
     if catalysts:
@@ -663,8 +686,8 @@ def convert_reaction(
     return BiocatalyticReaction(**kwargs)
 
 
-def convert_modifier(modifier: dict, species_index: SpeciesIndex):
-    """Returns ("catalyst", Biocatalyst) for a BIOCATALYST modifier, or
+def convert_modifier(modifier: dict, species_index: SpeciesIndex, *, rid: str):
+    """Returns ("catalyst", Catalyst) for a BIOCATALYST modifier, or
     ("component", BiocatalyticComponent) for any other role, or None if the
     species could not be resolved."""
     species_id = modifier["species_id"]
@@ -678,7 +701,11 @@ def convert_modifier(modifier: dict, species_index: SpeciesIndex):
                 species_index.kind_of(species_id),
             )
             return None
-        return ("catalyst", bio)
+        catalyst = Catalyst(
+            id=_mint_uri(f"{species_id}-{rid}-catalyst", "reaction-element"),
+            title=bio.title,
+        )
+        return ("catalyst", catalyst)
 
     resolved = _resolve_species_as_chemical(species_id, species_index, context=f"Modifier {species_id}")
     if resolved is None:
@@ -720,7 +747,7 @@ def translate_document(data: dict) -> EnzymeMLDocument:
     all_complexes: list = list(species_index.all_complexes())
     for modifier_owner_reaction in data.get("reactions") or []:
         for modifier in modifier_owner_reaction.get("modifiers") or []:
-            result = convert_modifier(modifier, species_index)
+            result = convert_modifier(modifier, species_index, rid=modifier_owner_reaction["id"])
             if result is None:
                 continue
             kind, obj = result
@@ -790,7 +817,7 @@ def translate_document(data: dict) -> EnzymeMLDocument:
 
     creators = [convert_creator(c) for c in data.get("creators") or []]
     if not creators:
-        logger.warning("Document %r has no creators; EnzymeMLDocument.creator is required and left empty.", doc_name)
+        logger.warning("Document %r has no creators; EnzymeMLDocument.creator is recommended and left empty.", doc_name)
 
     return EnzymeMLDocument(
         id=_mint_uri(doc_name, "document"),
@@ -819,8 +846,41 @@ def load_enzymeml_file(path: Path) -> dict:
     raise ValueError(f"Unsupported input file extension: {path.suffix!r} (expected .json/.yaml/.yml)")
 
 
+def _flatten_value_only_dicts(obj: Any) -> Any:
+    """Work around a linkml_runtime yaml_loader bug (confirmed against
+    linkml-runtime==1.10.0): a multivalued, inlined slot whose range is a
+    bare {value: ...} wrapper class (InChi, InChIKey, SMILES, ...) fails to
+    round-trip when serialized -- as pydantic naturally does -- as a list of
+    single-key {"value": x} dicts; yaml_loader's _normalize_inlined
+    misconstructs the wrapper from the whole dict instead of just x. A list
+    of bare scalars is the form yaml_loader parses correctly, and the same
+    wrapper class reconstructs identically from either shape on load.
+
+    Trade-off (deliberate, confirmed with the project maintainer): the bare
+    scalar form is not what the schema formally declares (range: InChi, a
+    class/object type), so `just test`'s separate `_test-examples` step
+    (JSON Schema validation via linkml-run-examples) rejects it with "is not
+    of type 'object'" for these three slots. There is currently no single
+    on-disk shape that satisfies both linkml_runtime's dataclass loader and
+    its JSON Schema generator for this pattern -- pytest (`_test-python`) was
+    prioritized since that's the check this converter's output is meant to
+    satisfy. Revisit if a future linkml_runtime release fixes the
+    _normalize_inlined bug (see git history around this function for the
+    reproduction), which would let this workaround be removed entirely.
+    """
+    if isinstance(obj, dict):
+        return {k: _flatten_value_only_dicts(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [
+            item["value"] if isinstance(item, dict) and list(item) == ["value"] else _flatten_value_only_dicts(item)
+            for item in obj
+        ]
+    return obj
+
+
 def dump_biodcat(doc: EnzymeMLDocument, path: Path) -> None:
     data = doc.model_dump(exclude_none=True, mode="json")
+    data = _flatten_value_only_dicts(data)
     path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")
 
 

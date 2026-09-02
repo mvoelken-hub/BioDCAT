@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-31T16:02:59
+# Generation date: 2026-09-02T11:14:12
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
@@ -352,10 +352,6 @@ class CatalystId(AgenticEntityId):
     pass
 
 
-class BiocatalystId(CatalystId):
-    pass
-
-
 class ReactorId(DeviceId):
     pass
 
@@ -381,6 +377,10 @@ class TubularFlowReactorId(ReactionVesselId):
 
 
 class MaterialEntityId(EntityId):
+    pass
+
+
+class BiocatalystId(MaterialEntityId):
     pass
 
 
@@ -1311,8 +1311,8 @@ class EnzymeMLDocument(Dataset):
     description: Union[str, list[str]] = None
     title: Union[str, list[str]] = None
     was_generated_by: Union[dict[Union[str, BiocatalyticExperimentId], Union[dict, BiocatalyticExperiment]], list[Union[dict, BiocatalyticExperiment]]] = empty_dict()
-    creator: Union[Union[dict, EnzymeMLCreator], list[Union[dict, EnzymeMLCreator]]] = None
     is_about_activity: Optional[Union[dict[Union[str, BiocatalyticReactionId], Union[dict, "BiocatalyticReaction"]], list[Union[dict, "BiocatalyticReaction"]]]] = empty_dict()
+    creator: Optional[Union[Union[dict, EnzymeMLCreator], list[Union[dict, EnzymeMLCreator]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1324,11 +1324,9 @@ class EnzymeMLDocument(Dataset):
             self.MissingRequiredField("was_generated_by")
         self._normalize_inlined_as_list(slot_name="was_generated_by", slot_type=BiocatalyticExperiment, key_name="id", keyed=True)
 
-        if self._is_empty(self.creator):
-            self.MissingRequiredField("creator")
-        self._normalize_inlined_as_list(slot_name="creator", slot_type=EnzymeMLCreator, key_name="name", keyed=False)
-
         self._normalize_inlined_as_list(slot_name="is_about_activity", slot_type=BiocatalyticReaction, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="creator", slot_type=EnzymeMLCreator, key_name="name", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -4724,7 +4722,6 @@ class BiocatalyticReaction(ChemicalReaction):
     has_kinetic_equation: Optional[Union[Union[dict, KineticEquation], list[Union[dict, KineticEquation]]]] = empty_list()
     has_kinetic_model_parameter: Optional[Union[Union[dict, KineticModelParameter], list[Union[dict, KineticModelParameter]]]] = empty_list()
     is_reversible: Optional[Union[bool, Bool]] = None
-    used_catalyst: Optional[Union[dict[Union[str, BiocatalystId], Union[dict, "Biocatalyst"]], list[Union[dict, "Biocatalyst"]]]] = empty_dict()
     has_temperature: Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]] = empty_list()
     has_ph_value: Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]] = empty_list()
 
@@ -4768,8 +4765,6 @@ class BiocatalyticReaction(ChemicalReaction):
 
         if self.is_reversible is not None and not isinstance(self.is_reversible, Bool):
             self.is_reversible = Bool(self.is_reversible)
-
-        self._normalize_inlined_as_list(slot_name="used_catalyst", slot_type=Biocatalyst, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="has_temperature", slot_type=Temperature, key_name="value", keyed=False)
 
@@ -4897,86 +4892,6 @@ class Catalyst(AgenticEntity):
         self._normalize_inlined_as_list(slot_name="composed_of", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="has_amount", slot_type=AmountOfSubstance, key_name="value", keyed=False)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Biocatalyst(Catalyst):
-    """
-    An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form
-    in which it is applied is described by an associated BiocatalystPreparation.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = CHEBI["35233"]
-    class_class_curie: ClassVar[str] = "CHEBI:35233"
-    class_name: ClassVar[str] = "Biocatalyst"
-    class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Biocatalyst
-
-    id: Union[str, BiocatalystId] = None
-    is_self_produced: Union[bool, Bool] = None
-    title: str = None
-    ec_number: Optional[Union[str, list[str]]] = empty_list()
-    sequence_amino_acid: Optional[Union[str, list[str]]] = empty_list()
-    sequence_DNA: Optional[Union[str, list[str]]] = empty_list()
-    origin_organism: Optional[Union[str, list[str]]] = empty_list()
-    posttranslational_modification: Optional[Union[str, list[str]]] = empty_list()
-    molecular_weight: Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]] = empty_list()
-    has_biocatalyst_production_process: Optional[Union[dict, BiocatalystProductionProcess]] = None
-    organism_taxonomy_id: Optional[Union[str, list[str]]] = empty_list()
-    other_identifier: Optional[str] = None
-    has_quantitative_attribute: Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, BiocatalystId):
-            self.id = BiocatalystId(self.id)
-
-        if self._is_empty(self.is_self_produced):
-            self.MissingRequiredField("is_self_produced")
-        if not isinstance(self.is_self_produced, Bool):
-            self.is_self_produced = Bool(self.is_self_produced)
-
-        if self._is_empty(self.title):
-            self.MissingRequiredField("title")
-        if not isinstance(self.title, str):
-            self.title = str(self.title)
-
-        if not isinstance(self.ec_number, list):
-            self.ec_number = [self.ec_number] if self.ec_number is not None else []
-        self.ec_number = [v if isinstance(v, str) else str(v) for v in self.ec_number]
-
-        if not isinstance(self.sequence_amino_acid, list):
-            self.sequence_amino_acid = [self.sequence_amino_acid] if self.sequence_amino_acid is not None else []
-        self.sequence_amino_acid = [v if isinstance(v, str) else str(v) for v in self.sequence_amino_acid]
-
-        if not isinstance(self.sequence_DNA, list):
-            self.sequence_DNA = [self.sequence_DNA] if self.sequence_DNA is not None else []
-        self.sequence_DNA = [v if isinstance(v, str) else str(v) for v in self.sequence_DNA]
-
-        if not isinstance(self.origin_organism, list):
-            self.origin_organism = [self.origin_organism] if self.origin_organism is not None else []
-        self.origin_organism = [v if isinstance(v, str) else str(v) for v in self.origin_organism]
-
-        if not isinstance(self.posttranslational_modification, list):
-            self.posttranslational_modification = [self.posttranslational_modification] if self.posttranslational_modification is not None else []
-        self.posttranslational_modification = [v if isinstance(v, str) else str(v) for v in self.posttranslational_modification]
-
-        self._normalize_inlined_as_list(slot_name="molecular_weight", slot_type=QuantitativeAttribute, key_name="value", keyed=False)
-
-        if self.has_biocatalyst_production_process is not None and not isinstance(self.has_biocatalyst_production_process, BiocatalystProductionProcess):
-            self.has_biocatalyst_production_process = BiocatalystProductionProcess(**as_dict(self.has_biocatalyst_production_process))
-
-        if not isinstance(self.organism_taxonomy_id, list):
-            self.organism_taxonomy_id = [self.organism_taxonomy_id] if self.organism_taxonomy_id is not None else []
-        self.organism_taxonomy_id = [v if isinstance(v, str) else str(v) for v in self.organism_taxonomy_id]
-
-        if self.other_identifier is not None and not isinstance(self.other_identifier, str):
-            self.other_identifier = str(self.other_identifier)
-
-        self._normalize_inlined_as_list(slot_name="has_quantitative_attribute", slot_type=QuantitativeAttribute, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -5468,6 +5383,87 @@ class MaterialEntity(Entity):
         self._normalize_inlined_as_list(slot_name="has_density", slot_type=Density, key_name="value", keyed=False)
 
         self._normalize_inlined_as_list(slot_name="has_pressure", slot_type=Pressure, key_name="value", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Biocatalyst(MaterialEntity):
+    """
+    An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of MaterialEntity. The physical form in which
+    it is applied is described by an associated BiocatalystPreparation; its role as the catalyst of a specific
+    BiocatalyticReaction is described by a Catalyst wrapper via used_catalyst.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = CHEBI["35233"]
+    class_class_curie: ClassVar[str] = "CHEBI:35233"
+    class_name: ClassVar[str] = "Biocatalyst"
+    class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.Biocatalyst
+
+    id: Union[str, BiocatalystId] = None
+    is_self_produced: Union[bool, Bool] = None
+    title: str = None
+    ec_number: Optional[Union[str, list[str]]] = empty_list()
+    sequence_amino_acid: Optional[Union[str, list[str]]] = empty_list()
+    sequence_DNA: Optional[Union[str, list[str]]] = empty_list()
+    origin_organism: Optional[Union[str, list[str]]] = empty_list()
+    posttranslational_modification: Optional[Union[str, list[str]]] = empty_list()
+    molecular_weight: Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]] = empty_list()
+    has_biocatalyst_production_process: Optional[Union[dict, BiocatalystProductionProcess]] = None
+    organism_taxonomy_id: Optional[Union[str, list[str]]] = empty_list()
+    other_identifier: Optional[str] = None
+    has_quantitative_attribute: Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, BiocatalystId):
+            self.id = BiocatalystId(self.id)
+
+        if self._is_empty(self.is_self_produced):
+            self.MissingRequiredField("is_self_produced")
+        if not isinstance(self.is_self_produced, Bool):
+            self.is_self_produced = Bool(self.is_self_produced)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
+        if not isinstance(self.ec_number, list):
+            self.ec_number = [self.ec_number] if self.ec_number is not None else []
+        self.ec_number = [v if isinstance(v, str) else str(v) for v in self.ec_number]
+
+        if not isinstance(self.sequence_amino_acid, list):
+            self.sequence_amino_acid = [self.sequence_amino_acid] if self.sequence_amino_acid is not None else []
+        self.sequence_amino_acid = [v if isinstance(v, str) else str(v) for v in self.sequence_amino_acid]
+
+        if not isinstance(self.sequence_DNA, list):
+            self.sequence_DNA = [self.sequence_DNA] if self.sequence_DNA is not None else []
+        self.sequence_DNA = [v if isinstance(v, str) else str(v) for v in self.sequence_DNA]
+
+        if not isinstance(self.origin_organism, list):
+            self.origin_organism = [self.origin_organism] if self.origin_organism is not None else []
+        self.origin_organism = [v if isinstance(v, str) else str(v) for v in self.origin_organism]
+
+        if not isinstance(self.posttranslational_modification, list):
+            self.posttranslational_modification = [self.posttranslational_modification] if self.posttranslational_modification is not None else []
+        self.posttranslational_modification = [v if isinstance(v, str) else str(v) for v in self.posttranslational_modification]
+
+        self._normalize_inlined_as_list(slot_name="molecular_weight", slot_type=QuantitativeAttribute, key_name="value", keyed=False)
+
+        if self.has_biocatalyst_production_process is not None and not isinstance(self.has_biocatalyst_production_process, BiocatalystProductionProcess):
+            self.has_biocatalyst_production_process = BiocatalystProductionProcess(**as_dict(self.has_biocatalyst_production_process))
+
+        if not isinstance(self.organism_taxonomy_id, list):
+            self.organism_taxonomy_id = [self.organism_taxonomy_id] if self.organism_taxonomy_id is not None else []
+        self.organism_taxonomy_id = [v if isinstance(v, str) else str(v) for v in self.organism_taxonomy_id]
+
+        if self.other_identifier is not None and not isinstance(self.other_identifier, str):
+            self.other_identifier = str(self.other_identifier)
+
+        self._normalize_inlined_as_list(slot_name="has_quantitative_attribute", slot_type=QuantitativeAttribute, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -7660,9 +7656,6 @@ slots.SelectivityAndSpecificity_description = Slot(uri=DCTERMS.description, name
 slots.ThermodynamicParameters_description = Slot(uri=DCTERMS.description, name="ThermodynamicParameters_description", curie=DCTERMS.curie('description'),
                    model_uri=STRENDCAT_BIOCATALYSIS.ThermodynamicParameters_description, domain=ThermodynamicParameters, range=Optional[str])
 
-slots.BiocatalyticReaction_used_catalyst = Slot(uri=RXNO['0000425'], name="BiocatalyticReaction_used_catalyst", curie=RXNO.curie('0000425'),
-                   model_uri=STRENDCAT_BIOCATALYSIS.BiocatalyticReaction_used_catalyst, domain=BiocatalyticReaction, range=Optional[Union[dict[Union[str, BiocatalystId], Union[dict, "Biocatalyst"]], list[Union[dict, "Biocatalyst"]]]])
-
 slots.BiocatalyticReaction_has_temperature = Slot(uri=SIO['000008'], name="BiocatalyticReaction_has_temperature", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.BiocatalyticReaction_has_temperature, domain=BiocatalyticReaction, range=Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]])
 
@@ -7685,7 +7678,7 @@ slots.EnzymeMLDocument_is_about_activity = Slot(uri=DCTERMS.subject, name="Enzym
                    model_uri=STRENDCAT_BIOCATALYSIS.EnzymeMLDocument_is_about_activity, domain=EnzymeMLDocument, range=Optional[Union[dict[Union[str, BiocatalyticReactionId], Union[dict, "BiocatalyticReaction"]], list[Union[dict, "BiocatalyticReaction"]]]])
 
 slots.EnzymeMLDocument_creator = Slot(uri=DCTERMS.creator, name="EnzymeMLDocument_creator", curie=DCTERMS.curie('creator'),
-                   model_uri=STRENDCAT_BIOCATALYSIS.EnzymeMLDocument_creator, domain=EnzymeMLDocument, range=Union[Union[dict, EnzymeMLCreator], list[Union[dict, EnzymeMLCreator]]])
+                   model_uri=STRENDCAT_BIOCATALYSIS.EnzymeMLDocument_creator, domain=EnzymeMLDocument, range=Optional[Union[Union[dict, EnzymeMLCreator], list[Union[dict, EnzymeMLCreator]]]])
 
 slots.MolecularComplex_has_part = Slot(uri=DCTERMS.hasPart, name="MolecularComplex_has_part", curie=DCTERMS.curie('hasPart'),
                    model_uri=STRENDCAT_BIOCATALYSIS.MolecularComplex_has_part, domain=MolecularComplex, range=Optional[Union[str, ChemicalEntityId]])

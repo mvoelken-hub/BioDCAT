@@ -28,6 +28,10 @@ Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
 There are several pre-defined command-recipes available.
 They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
 
+## Run EnzymeML-Converter
+
+uv run python -m strendcat_biocatalysis.enzymeml_converter <input_file> -o <output_file> -v
+
 ## Credits
 
 This project uses the template [linkml-project-copier](https://github.com/dalito/linkml-project-copier) published as [doi:10.5281/zenodo.15163584](https://doi.org/10.5281/zenodo.15163584).

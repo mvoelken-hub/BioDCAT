@@ -448,16 +448,20 @@ classes:
       - drying_method_type
 
   # =============================================================================
-  # BIOCATALYST (D-002 — Biocatalyst as subclass of Catalyst (AgenticEntity), BiocatalystPreparation as MaterialSample)
+  # BIOCATALYST (D-002 rev2 — Biocatalyst as subclass of MaterialEntity (Entity branch), so it can be
+  # used as BiocatalystPreparation.derived_from; used_catalyst instead wraps it in a generic Catalyst,
+  # the same reaction-role-wrapper pattern used_reactant/generated_product already use for Reagent/ChemicalProduct)
   # =============================================================================
 
   Biocatalyst:
-    is_a: Catalyst
+    is_a: MaterialEntity
     class_uri: CHEBI:35233
     description: >-
       An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of
-      Catalyst (AgenticEntity). The physical form in which it is applied is
-      described by an associated BiocatalystPreparation.
+      MaterialEntity. The physical form in which it is applied is
+      described by an associated BiocatalystPreparation; its role as the
+      catalyst of a specific BiocatalyticReaction is described by a
+      Catalyst wrapper via used_catalyst.
     slots:
       - ec_number
       - sequence_amino_acid
@@ -1096,10 +1100,6 @@ classes:
       - has_kinetic_model_parameter
       - is_reversible
     slot_usage:
-      used_catalyst:
-        description: >-
-          The Biocatalyst (AgenticEntity) that catalyzes this reaction.
-        range: Biocatalyst
       has_temperature:
         description: >-
           The constant temperature at which the reaction takes place.
@@ -1178,9 +1178,12 @@ classes:
         inlined_as_list: true
         recommended: true
       creator:
-        description: The author(s)/contributor(s) of the EnzymeML document.
+        description: >-
+          The author(s)/contributor(s) of the EnzymeML document. Not
+          required: many real-world EnzymeML documents carry no creator
+          metadata, and the converter cannot fabricate it.
         range: EnzymeMLCreator
-        required: true
+        recommended: true
         multivalued: true
         inlined_as_list: true
 

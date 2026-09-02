@@ -313,7 +313,7 @@ class BiocatalystApplicationFormEnum(str, Enum):
 
 class ComponentRoleEnum(str, Enum):
     """
-    The functional role of a chemical component in a biocatalytic reaction. Maps to CHEBI role hierarchy. Optional per P-002 â€” a structural converter may leave this unpopulated.
+    The functional role of a chemical component in a biocatalytic reaction. Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter may leave this unpopulated.
     """
     Substrate = "Substrate"
     Cofactor = "Cofactor"
@@ -357,7 +357,7 @@ class DryingMethodEnum(str, Enum):
     """
     FreezeDrying = "FreezeDrying"
     """
-    Lyophilization â€” moisture removed under vacuum from frozen material.
+    Lyophilization — moisture removed under vacuum from frozen material.
     """
     SprayDrying = "SprayDrying"
     """
@@ -14810,9 +14810,9 @@ class StorageConditions(QuantitativeAttribute):
          'slot_uri': 'rdf:type'} })
 
 
-class Biocatalyst(Catalyst):
+class Biocatalyst(MaterialEntity):
     """
-    An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.
+    An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of MaterialEntity. The physical form in which it is applied is described by an associated BiocatalystPreparation; its role as the catalyst of a specific BiocatalyticReaction is described by a Catalyst wrapper via used_catalyst.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEBI:35233',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
@@ -14867,139 +14867,6 @@ class Biocatalyst(Catalyst):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_molar_equivalent: Optional[list[MolarEquivalent]] = Field(default=None, description="""A slot to provide the MolarEquivalent of a ChemicalSubstance, such as the DissolvingSubstance, Starting Material or Reactant, within the context of a chemical reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StartingMaterial', 'Reagent', 'Catalyst'],
-         'is_a': 'has_quantitative_attribute',
-         'recommended': True,
-         'slot_uri': 'SIO:000008'} })
-    has_concentration: Optional[list[Concentration]] = Field(default=None, description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin',
-                       'BiocatalystPreparation',
-                       'BiocatalyticComponent'],
-         'is_a': 'has_quantitative_attribute',
-         'recommended': True,
-         'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=None, description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin',
-                       'PHMeasurementProcess',
-                       'EnzymeMeasurement'],
-         'is_a': 'has_quantitative_attribute',
-         'recommended': True,
-         'slot_uri': 'SIO:000008'} })
-    composed_of: Optional[list[ChemicalEntity]] = Field(default=None, description="""The slot to provide the chemical entities of which a ChemicalSubstance is composed of.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['AFX:0000940'],
-         'domain_of': ['ChemicalSubstanceMixin'],
-         'is_a': 'has_part',
-         'recommended': True,
-         'slot_uri': 'BFO:0000051'} })
-    has_amount: Optional[list[AmountOfSubstance]] = Field(default=None, description="""The slot to provide the AmountConcentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin', 'GasPhase'],
-         'is_a': 'has_quantitative_attribute',
-         'recommended': True,
-         'slot_uri': 'SIO:000008'} })
-    id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
-                       'AgenticEntity',
-                       'Dataset',
-                       'DefinedTerm',
-                       'Document',
-                       'Entity',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'Resource'],
-         'in_subset': ['domain_agnostic_core']} })
-    title: str = Field(default=..., description="""The name of the biocatalyst, either generic (e.g. 'lipase') or specific (genus and species, e.g. 'Candida antarctica lipase B').""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
-                       'AgenticEntity',
-                       'Any',
-                       'Attribution',
-                       'Catalogue',
-                       'CatalogueRecord',
-                       'ChecksumAlgorithm',
-                       'Concept',
-                       'ConceptScheme',
-                       'DataService',
-                       'Dataset',
-                       'DatasetSeries',
-                       'DefinedTerm',
-                       'Distribution',
-                       'Document',
-                       'Entity',
-                       'Frequency',
-                       'Geometry',
-                       'Identifier',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'LinguisticSystem',
-                       'MediaType',
-                       'MediaTypeOrExtent',
-                       'PeriodOfTime',
-                       'Plan',
-                       'Policy',
-                       'ProvenanceStatement',
-                       'QualitativeAttribute',
-                       'QuantitativeAttribute',
-                       'Resource',
-                       'RightsStatement',
-                       'Role',
-                       'Standard',
-                       'SupportiveEntity',
-                       'Surrounding',
-                       'TimeInstant'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
-                       'AgenticEntity',
-                       'Any',
-                       'Attribution',
-                       'Catalogue',
-                       'CatalogueRecord',
-                       'ChecksumAlgorithm',
-                       'Concept',
-                       'ConceptScheme',
-                       'DataService',
-                       'Dataset',
-                       'DatasetSeries',
-                       'Distribution',
-                       'Document',
-                       'Entity',
-                       'Frequency',
-                       'Geometry',
-                       'Identifier',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'LinguisticSystem',
-                       'MediaType',
-                       'MediaTypeOrExtent',
-                       'PeriodOfTime',
-                       'Plan',
-                       'Policy',
-                       'ProvenanceStatement',
-                       'QualitativeAttribute',
-                       'QuantitativeAttribute',
-                       'Resource',
-                       'RightsStatement',
-                       'Role',
-                       'Standard',
-                       'SupportiveEntity',
-                       'Surrounding',
-                       'TimeInstant'],
-         'slot_uri': 'dcterms:description'} })
-    other_identifier: Optional[list[Identifier]] = Field(default=None, description="""Identifiers for the biocatalyst such as UniProt accession, EC number reference, or other database identifiers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Dataset', 'Entity'],
-         'slot_uri': 'adms:identifier'} })
-    has_qualitative_attribute: Optional[list[QualitativeAttribute]] = Field(default=None, description="""The slot to relate a qualitative attribute to an EvaluatedEntity, EvaluatedActivity or AgenticEntity""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'recommended': True,
-         'slot_uri': 'dcterms:relation'} })
-    has_quantitative_attribute: Optional[list[QuantitativeAttribute]] = Field(default=None, description="""Quantitative attributes of the biocatalyst entity, such as molecular weight.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'recommended': True,
-         'slot_uri': 'dcterms:relation'} })
-    has_part: Optional[list[AgenticEntity]] = Field(default=None, description="""The slot to specify parts of an AgenticEntity that are themselves AgenticEntities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Catalogue', 'Entity'],
-         'slot_uri': 'dcterms:hasPart'} })
-    part_of: Optional[list[AgenticEntity]] = Field(default=None, description="""The slot to provide the AgenticEntity of which theAgenticEntity is a part.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'inverse': 'has_part',
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'dcterms:isPartOf'} })
-    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
-         'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
-         'in_subset': ['domain_agnostic_core'],
-         'recommended': True,
-         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -15039,6 +14906,115 @@ class Biocatalyst(Catalyst):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
+    title: str = Field(default=..., description="""The name of the biocatalyst, either generic (e.g. 'lipase') or specific (genus and species, e.g. 'Candida antarctica lipase B').""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'AgenticEntity',
+                       'Dataset',
+                       'DefinedTerm',
+                       'Document',
+                       'Entity',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'Resource'],
+         'in_subset': ['domain_agnostic_core']} })
+    other_identifier: Optional[list[Identifier]] = Field(default=None, description="""Identifiers for the biocatalyst such as UniProt accession, EC number reference, or other database identifiers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Dataset', 'Entity'],
+         'slot_uri': 'adms:identifier'} })
+    has_qualitative_attribute: Optional[list[QualitativeAttribute]] = Field(default=None, description="""The slot to relate a qualitative attribute to an EvaluatedEntity, EvaluatedActivity or AgenticEntity""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'dcterms:relation'} })
+    has_quantitative_attribute: Optional[list[QuantitativeAttribute]] = Field(default=None, description="""Quantitative attributes of the biocatalyst entity, such as molecular weight.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'dcterms:relation'} })
+    has_part: Optional[list[MaterialEntity]] = Field(default=None, description="""The slot to provide the parts of a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Catalogue', 'Entity'],
+         'recommended': True,
+         'slot_uri': 'BFO:0000051'} })
+    part_of: Optional[list[Entity]] = Field(default=None, description="""The slot to specify an Entity of which the Entity is a part.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
+         'in_subset': ['domain_agnostic_core'],
+         'inverse': 'has_part',
+         'notes': ['not in DCAT-AP'],
+         'slot_uri': 'dcterms:isPartOf'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
 
 
 class BiocatalystPreparation(SubstanceSample):
@@ -16549,7 +16525,7 @@ class BiocatalyticComponent(ChemicalEntity):
                                                             'database identifiers.',
                                              'name': 'other_identifier'}}})
 
-    has_component_role: Optional[ComponentRoleEnum] = Field(default=None, description="""The functional role of this component in the biocatalytic reaction. Optional per P-002 â€” a structural converter may leave this unpopulated; a smarter converter or human annotator populates it from CHEBI roles.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalyticComponent'],
+    has_component_role: Optional[ComponentRoleEnum] = Field(default=None, description="""The functional role of this component in the biocatalytic reaction. Optional per P-002 — a structural converter may leave this unpopulated; a smarter converter or human annotator populates it from CHEBI roles.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalyticComponent'],
          'recommended': True,
          'slot_uri': 'RO:0000087'} })
     has_concentration: Optional[list[Concentration]] = Field(default=None, description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin',
@@ -17733,7 +17709,7 @@ class Plate(ReactionVessel):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    well_volume: Optional[list[Volume]] = Field(default=None, description="""The volume of each well, typically expressed in ÂµL.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Plate'],
+    well_volume: Optional[list[Volume]] = Field(default=None, description="""The volume of each well, typically expressed in µL.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Plate'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -19471,15 +19447,15 @@ class SelectivityAndSpecificity(QuantitativeAttribute):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    stereoselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of stereoselectivity â€” the preference of the reaction to produce a specific stereoisomer or spatial arrangement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
+    stereoselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of stereoselectivity — the preference of the reaction to produce a specific stereoisomer or spatial arrangement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    chemoselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of chemoselectivity â€” the ability to target a specific functional group without affecting others.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
+    chemoselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of chemoselectivity — the ability to target a specific functional group without affecting others.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    regioselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of regioselectivity â€” the preference for reaction at a specific site within the molecule.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
+    regioselectivity_description: Optional[list[str]] = Field(default=None, description="""Qualitative description of regioselectivity — the preference for reaction at a specific site within the molecule.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SelectivityAndSpecificity'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -19709,7 +19685,7 @@ class ThermodynamicParameters(QuantitativeAttribute):
 
 class PlannedProcess(EvaluatedActivity):
     """
-    A process that realizes a plan â€” i.e. it is carried out with the intention of achieving a specified objective. (OBI:0000011 stub)
+    A process that realizes a plan — i.e. it is carried out with the intention of achieving a specified objective. (OBI:0000011 stub)
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000011',
          'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis'})
@@ -21727,7 +21703,7 @@ class PHMeasurementProcess(MeasurementProcess):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_calibration_info: Optional[list[str]] = Field(default=None, description="""Calibration conditions for the pH electrode, especially if differing from standard (20-25Â°C buffer calibration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHMeasurementProcess'],
+    has_calibration_info: Optional[list[str]] = Field(default=None, description="""Calibration conditions for the pH electrode, especially if differing from standard (20-25°C buffer calibration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHMeasurementProcess'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -21886,12 +21862,7 @@ class BiocatalyticReaction(ChemicalReaction):
                                                            'use has_temperature_shift '
                                                            'or '
                                                            'has_temperature_gradient.',
-                                            'name': 'has_temperature'},
-                        'used_catalyst': {'description': 'The Biocatalyst '
-                                                         '(AgenticEntity) that '
-                                                         'catalyzes this reaction.',
-                                          'name': 'used_catalyst',
-                                          'range': 'Biocatalyst'}}})
+                                            'name': 'has_temperature'}}})
 
     has_reaction_medium: Optional[ReactionMedium] = Field(default=None, description="""The reaction medium in which the biocatalytic reaction takes place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalyticReaction'], 'slot_uri': 'SIO:000008'} })
     has_temperature_shift: Optional[list[TemperatureShiftProcess]] = Field(default=None, description="""Event-based temperature change(s) during the reaction. Use instead of has_temperature when temperature is not constant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiocatalyticReaction'], 'slot_uri': 'SIO:000008'} })
@@ -21939,7 +21910,7 @@ class BiocatalyticReaction(ChemicalReaction):
          'is_a': 'had_output_entity',
          'recommended': True,
          'slot_uri': 'RO:0004008'} })
-    used_catalyst: Optional[list[Biocatalyst]] = Field(default=None, description="""The Biocatalyst (AgenticEntity) that catalyzes this reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'],
+    used_catalyst: Optional[list[Catalyst]] = Field(default=None, description="""The slot to specify the Catalyst of a ChemicalReaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'],
          'is_a': 'carried_out_by',
          'recommended': True,
          'slot_uri': 'RXNO:0000425'} })
@@ -22314,12 +22285,16 @@ class EnzymeMLDocument(Dataset):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis',
          'slot_usage': {'creator': {'description': 'The author(s)/contributor(s) of '
-                                                   'the EnzymeML document.',
+                                                   'the EnzymeML document. Not '
+                                                   'required: many real-world EnzymeML '
+                                                   'documents carry no creator '
+                                                   'metadata, and the converter cannot '
+                                                   'fabricate it.',
                                     'inlined_as_list': True,
                                     'multivalued': True,
                                     'name': 'creator',
                                     'range': 'EnzymeMLCreator',
-                                    'required': True},
+                                    'recommended': True},
                         'is_about_activity': {'description': 'The '
                                                              'BiocatalyticReaction(s) '
                                                              'this EnzymeML document '
@@ -22356,7 +22331,9 @@ class EnzymeMLDocument(Dataset):
     contact_point: Optional[list[Kind]] = Field(default=None, description="""Contact information that can be used for sending comments about the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset', 'DatasetSeries'],
          'recommended': True,
          'slot_uri': 'dcat:contactPoint'} })
-    creator: list[EnzymeMLCreator] = Field(default=..., description="""The author(s)/contributor(s) of the EnzymeML document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
+    creator: Optional[list[EnzymeMLCreator]] = Field(default=None, description="""The author(s)/contributor(s) of the EnzymeML document. Not required: many real-world EnzymeML documents carry no creator metadata, and the converter cannot fabricate it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'],
+         'recommended': True,
+         'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=None, description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
     description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
