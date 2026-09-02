@@ -407,9 +407,9 @@ def convert_small_molecule(sm: dict) -> BiocatalyticComponent:
     return BiocatalyticComponent(
         id=_mint_uri(sid, "component"),
         title=sm.get("name", sid),
-        smiles=[SMILES(value=sm["canonical_smiles"])] if sm.get("canonical_smiles") else None,
-        inchi=[InChi(value=sm["inchi"])] if sm.get("inchi") else None,
-        inchikey=[InChIKey(value=sm["inchikey"])] if sm.get("inchikey") else None,
+        smiles=[SMILES(value=sm["canonical_smiles"], title="SMILES")] if sm.get("canonical_smiles") else None,
+        inchi=[InChi(value=sm["inchi"], title="InChI")] if sm.get("inchi") else None,
+        inchikey=[InChIKey(value=sm["inchikey"], title="InChIKey")] if sm.get("inchikey") else None,
         synonymous_names=sm.get("synonymous_names"),
         has_constant_concentration=sm.get("constant"),
     )
@@ -846,41 +846,8 @@ def load_enzymeml_file(path: Path) -> dict:
     raise ValueError(f"Unsupported input file extension: {path.suffix!r} (expected .json/.yaml/.yml)")
 
 
-def _flatten_value_only_dicts(obj: Any) -> Any:
-    """Work around a linkml_runtime yaml_loader bug (confirmed against
-    linkml-runtime==1.10.0): a multivalued, inlined slot whose range is a
-    bare {value: ...} wrapper class (InChi, InChIKey, SMILES, ...) fails to
-    round-trip when serialized -- as pydantic naturally does -- as a list of
-    single-key {"value": x} dicts; yaml_loader's _normalize_inlined
-    misconstructs the wrapper from the whole dict instead of just x. A list
-    of bare scalars is the form yaml_loader parses correctly, and the same
-    wrapper class reconstructs identically from either shape on load.
-
-    Trade-off (deliberate, confirmed with the project maintainer): the bare
-    scalar form is not what the schema formally declares (range: InChi, a
-    class/object type), so `just test`'s separate `_test-examples` step
-    (JSON Schema validation via linkml-run-examples) rejects it with "is not
-    of type 'object'" for these three slots. There is currently no single
-    on-disk shape that satisfies both linkml_runtime's dataclass loader and
-    its JSON Schema generator for this pattern -- pytest (`_test-python`) was
-    prioritized since that's the check this converter's output is meant to
-    satisfy. Revisit if a future linkml_runtime release fixes the
-    _normalize_inlined bug (see git history around this function for the
-    reproduction), which would let this workaround be removed entirely.
-    """
-    if isinstance(obj, dict):
-        return {k: _flatten_value_only_dicts(v) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [
-            item["value"] if isinstance(item, dict) and list(item) == ["value"] else _flatten_value_only_dicts(item)
-            for item in obj
-        ]
-    return obj
-
-
 def dump_biodcat(doc: EnzymeMLDocument, path: Path) -> None:
     data = doc.model_dump(exclude_none=True, mode="json")
-    data = _flatten_value_only_dicts(data)
     path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")
 
 
