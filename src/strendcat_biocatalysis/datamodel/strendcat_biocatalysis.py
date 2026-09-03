@@ -1,5 +1,5 @@
 # Auto generated from strendcat_biocatalysis.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-09-02T14:59:05
+# Generation date: 2026-09-03T11:30:26
 # Schema: StrenDCAT-Biocatalysis
 #
 # id: https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis
@@ -2676,8 +2676,8 @@ class EquationVariable(QualitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["EquationVariable"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:EquationVariable"
+    class_class_uri: ClassVar[URIRef] = IAO["0000028"]
+    class_class_curie: ClassVar[str] = "IAO:0000028"
     class_name: ClassVar[str] = "EquationVariable"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.EquationVariable
 
@@ -2754,8 +2754,8 @@ class SolubilityLimit(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SolubilityLimit"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SolubilityLimit"
+    class_class_uri: ClassVar[URIRef] = CHMO["0002815"]
+    class_class_curie: ClassVar[str] = "CHMO:0002815"
     class_name: ClassVar[str] = "SolubilityLimit"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SolubilityLimit
 
@@ -2769,8 +2769,8 @@ class IonicStrength(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["IonicStrength"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:IonicStrength"
+    class_class_uri: ClassVar[URIRef] = NCIT["C52478"]
+    class_class_curie: ClassVar[str] = "NCIT:C52478"
     class_name: ClassVar[str] = "IonicStrength"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.IonicStrength
 
@@ -2814,8 +2814,8 @@ class AngularVelocity(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["AngularVelocity"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:AngularVelocity"
+    class_class_uri: ClassVar[URIRef] = PATO["0001413"]
+    class_class_curie: ClassVar[str] = "PATO:0001413"
     class_name: ClassVar[str] = "AngularVelocity"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.AngularVelocity
 
@@ -2859,8 +2859,8 @@ class SamplingTimepoint(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SamplingTimepoint"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SamplingTimepoint"
+    class_class_uri: ClassVar[URIRef] = OBI["0001508"]
+    class_class_curie: ClassVar[str] = "OBI:0001508"
     class_name: ClassVar[str] = "SamplingTimepoint"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SamplingTimepoint
 
@@ -3537,8 +3537,8 @@ class EnzymeMeasurementSpeciesData(QuantitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["EnzymeMeasurementSpeciesData"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:EnzymeMeasurementSpeciesData"
+    class_class_uri: ClassVar[URIRef] = IAO["0000584"]
+    class_class_curie: ClassVar[str] = "IAO:0000584"
     class_name: ClassVar[str] = "EnzymeMeasurementSpeciesData"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.EnzymeMeasurementSpeciesData
 
@@ -4373,8 +4373,8 @@ class StorageAdditive(ChemicalEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["StorageAdditive"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:StorageAdditive"
+    class_class_uri: ClassVar[URIRef] = CHEBI["747330"]
+    class_class_curie: ClassVar[str] = "CHEBI:747330"
     class_name: ClassVar[str] = "StorageAdditive"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.StorageAdditive
 
@@ -4397,8 +4397,8 @@ class BiocatalyticComponent(ChemicalEntity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["BiocatalyticComponent"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:BiocatalyticComponent"
+    class_class_uri: ClassVar[URIRef] = CHEBI["59999"]
+    class_class_curie: ClassVar[str] = "CHEBI:59999"
     class_name: ClassVar[str] = "BiocatalyticComponent"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.BiocatalyticComponent
 
@@ -5998,8 +5998,8 @@ class CrudeCellExtractPreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["CrudeCellExtractPreparation"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:CrudeCellExtractPreparation"
+    class_class_uri: ClassVar[URIRef] = OBI["1000036"]
+    class_class_curie: ClassVar[str] = "OBI:1000036"
     class_name: ClassVar[str] = "CrudeCellExtractPreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.CrudeCellExtractPreparation
 
@@ -6068,8 +6068,8 @@ class SecretedEnzymePreparation(BiocatalystPreparation):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS["SecretedEnzymePreparation"]
-    class_class_curie: ClassVar[str] = "strendcat_biocatalysis:SecretedEnzymePreparation"
+    class_class_uri: ClassVar[URIRef] = OBI["1000023"]
+    class_class_curie: ClassVar[str] = "OBI:1000023"
     class_name: ClassVar[str] = "SecretedEnzymePreparation"
     class_model_uri: ClassVar[URIRef] = STRENDCAT_BIOCATALYSIS.SecretedEnzymePreparation
 
@@ -6675,73 +6675,73 @@ slots.sequence_DNA = Slot(uri=SIO['010015'], name="sequence_DNA", curie=SIO.curi
 slots.origin_organism = Slot(uri=SIO['010079'], name="origin_organism", curie=SIO.curie('010079'),
                    model_uri=STRENDCAT_BIOCATALYSIS.origin_organism, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.posttranslational_modification = Slot(uri=SIO['000008'], name="posttranslational_modification", curie=SIO.curie('000008'),
+slots.posttranslational_modification = Slot(uri=RO['0000053'], name="posttranslational_modification", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.posttranslational_modification, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.is_self_produced = Slot(uri=SIO['000008'], name="is_self_produced", curie=SIO.curie('000008'),
+slots.is_self_produced = Slot(uri=RO['0000086'], name="is_self_produced", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_self_produced, domain=None, range=Union[bool, Bool])
 
 slots.has_biocatalyst_production_process = Slot(uri=PROV.wasGeneratedBy, name="has_biocatalyst_production_process", curie=PROV.curie('wasGeneratedBy'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_biocatalyst_production_process, domain=None, range=Optional[Union[dict, BiocatalystProductionProcess]])
 
-slots.production_organism = Slot(uri=SIO['000008'], name="production_organism", curie=SIO.curie('000008'),
+slots.production_organism = Slot(uri=RO['0000053'], name="production_organism", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.production_organism, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.sequence_plasmid = Slot(uri=SIO['000008'], name="sequence_plasmid", curie=SIO.curie('000008'),
+slots.sequence_plasmid = Slot(uri=RO['0000053'], name="sequence_plasmid", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.sequence_plasmid, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.plasmid_specifications = Slot(uri=SIO['000008'], name="plasmid_specifications", curie=SIO.curie('000008'),
+slots.plasmid_specifications = Slot(uri=RO['0000053'], name="plasmid_specifications", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.plasmid_specifications, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.purification_method = Slot(uri=SIO['000008'], name="purification_method", curie=SIO.curie('000008'),
+slots.purification_method = Slot(uri=RO['0000053'], name="purification_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.purification_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.purity_specification = Slot(uri=SIO['000008'], name="purity_specification", curie=SIO.curie('000008'),
+slots.purity_specification = Slot(uri=RO['0000053'], name="purity_specification", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.purity_specification, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_purity = Slot(uri=SIO['000008'], name="has_purity", curie=SIO.curie('000008'),
+slots.has_purity = Slot(uri=RO['0000086'], name="has_purity", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_purity, domain=None, range=Optional[Union[Union[dict, Purity], list[Union[dict, Purity]]]])
 
-slots.application_form = Slot(uri=SIO['000008'], name="application_form", curie=SIO.curie('000008'),
+slots.application_form = Slot(uri=RO['0000086'], name="application_form", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.application_form, domain=None, range=Union[str, "BiocatalystApplicationFormEnum"])
 
-slots.has_activity = Slot(uri=SIO['000008'], name="has_activity", curie=SIO.curie('000008'),
+slots.has_activity = Slot(uri=RO['0000086'], name="has_activity", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_activity, domain=None, range=Optional[Union[Union[dict, SpecificActivity], list[Union[dict, SpecificActivity]]]])
 
-slots.has_formulation = Slot(uri=SIO['000008'], name="has_formulation", curie=SIO.curie('000008'),
+slots.has_formulation = Slot(uri=RO['0000053'], name="has_formulation", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_formulation, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.had_drying_process = Slot(uri=PROV.wasGeneratedBy, name="had_drying_process", curie=PROV.curie('wasGeneratedBy'),
                    model_uri=STRENDCAT_BIOCATALYSIS.had_drying_process, domain=None, range=Optional[Union[dict, DryingProcess]])
 
-slots.cell_disruption_process = Slot(uri=SIO['000008'], name="cell_disruption_process", curie=SIO.curie('000008'),
+slots.cell_disruption_process = Slot(uri=RO['0000053'], name="cell_disruption_process", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.cell_disruption_process, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.harvesting_method = Slot(uri=SIO['000008'], name="harvesting_method", curie=SIO.curie('000008'),
+slots.harvesting_method = Slot(uri=RO['0000053'], name="harvesting_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.harvesting_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.separation_method = Slot(uri=SIO['000008'], name="separation_method", curie=SIO.curie('000008'),
+slots.separation_method = Slot(uri=RO['0000053'], name="separation_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.separation_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.source_of_cellfree_extract = Slot(uri=SIO['000008'], name="source_of_cellfree_extract", curie=SIO.curie('000008'),
+slots.source_of_cellfree_extract = Slot(uri=RO['0000053'], name="source_of_cellfree_extract", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.source_of_cellfree_extract, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.concentration_determination_method = Slot(uri=SIO['000008'], name="concentration_determination_method", curie=SIO.curie('000008'),
+slots.concentration_determination_method = Slot(uri=RO['0000053'], name="concentration_determination_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.concentration_determination_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.activity_determination_method = Slot(uri=SIO['000008'], name="activity_determination_method", curie=SIO.curie('000008'),
+slots.activity_determination_method = Slot(uri=RO['0000053'], name="activity_determination_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.activity_determination_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.immobilisation_chemistry = Slot(uri=SIO['000008'], name="immobilisation_chemistry", curie=SIO.curie('000008'),
+slots.immobilisation_chemistry = Slot(uri=RO['0000053'], name="immobilisation_chemistry", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.immobilisation_chemistry, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.carrier_material = Slot(uri=SIO['000008'], name="carrier_material", curie=SIO.curie('000008'),
+slots.carrier_material = Slot(uri=RO['0000053'], name="carrier_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.carrier_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.linkers = Slot(uri=SIO['000008'], name="linkers", curie=SIO.curie('000008'),
+slots.linkers = Slot(uri=RO['0000053'], name="linkers", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.linkers, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.immobilisation_method = Slot(uri=SIO['000008'], name="immobilisation_method", curie=SIO.curie('000008'),
+slots.immobilisation_method = Slot(uri=RO['0000053'], name="immobilisation_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.immobilisation_method, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.storage_start = Slot(uri=DCTERMS.created, name="storage_start", curie=DCTERMS.curie('created'),
@@ -6750,7 +6750,7 @@ slots.storage_start = Slot(uri=DCTERMS.created, name="storage_start", curie=DCTE
 slots.has_storage_additive = Slot(uri=BFO['0000051'], name="has_storage_additive", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_storage_additive, domain=None, range=Optional[Union[dict[Union[str, StorageAdditiveId], Union[dict, StorageAdditive]], list[Union[dict, StorageAdditive]]]])
 
-slots.has_storage_conditions = Slot(uri=SIO['000008'], name="has_storage_conditions", curie=SIO.curie('000008'),
+slots.has_storage_conditions = Slot(uri=RO['0000086'], name="has_storage_conditions", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_storage_conditions, domain=None, range=Optional[Union[dict, StorageConditions]])
 
 slots.drying_method_type = Slot(uri=OBI['0000011'], name="drying_method_type", curie=OBI.curie('0000011'),
@@ -6759,16 +6759,16 @@ slots.drying_method_type = Slot(uri=OBI['0000011'], name="drying_method_type", c
 slots.has_component_role = Slot(uri=RO['0000087'], name="has_component_role", curie=RO.curie('0000087'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_component_role, domain=None, range=Optional[Union[str, "ComponentRoleEnum"]])
 
-slots.has_solubility_limit = Slot(uri=SIO['000008'], name="has_solubility_limit", curie=SIO.curie('000008'),
+slots.has_solubility_limit = Slot(uri=RO['0000086'], name="has_solubility_limit", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_solubility_limit, domain=None, range=Optional[Union[Union[dict, SolubilityLimit], list[Union[dict, SolubilityLimit]]]])
 
 slots.supplied_by = Slot(uri=PROV.wasAttributedTo, name="supplied_by", curie=PROV.curie('wasAttributedTo'),
                    model_uri=STRENDCAT_BIOCATALYSIS.supplied_by, domain=None, range=Optional[Union[dict, Agent]])
 
-slots.has_reaction_medium = Slot(uri=SIO['000008'], name="has_reaction_medium", curie=SIO.curie('000008'),
+slots.has_reaction_medium = Slot(uri=BFO['0000051'], name="has_reaction_medium", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_reaction_medium, domain=None, range=Optional[Union[dict, ReactionMedium]])
 
-slots.has_phase_count = Slot(uri=SIO['000008'], name="has_phase_count", curie=SIO.curie('000008'),
+slots.has_phase_count = Slot(uri=RO['0000086'], name="has_phase_count", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_phase_count, domain=None, range=Optional[int])
 
 slots.has_liquid_phase = Slot(uri=BFO['0000051'], name="has_liquid_phase", curie=BFO.curie('0000051'),
@@ -6780,325 +6780,325 @@ slots.has_solid_phase = Slot(uri=BFO['0000051'], name="has_solid_phase", curie=B
 slots.has_gas_phase = Slot(uri=BFO['0000051'], name="has_gas_phase", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_gas_phase, domain=None, range=Optional[Union[dict[Union[str, GasPhaseId], Union[dict, GasPhase]], list[Union[dict, GasPhase]]]])
 
-slots.has_ionic_strength = Slot(uri=SIO['000008'], name="has_ionic_strength", curie=SIO.curie('000008'),
+slots.has_ionic_strength = Slot(uri=RO['0000086'], name="has_ionic_strength", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ionic_strength, domain=None, range=Optional[Union[Union[dict, IonicStrength], list[Union[dict, IonicStrength]]]])
 
 slots.has_medium_additive = Slot(uri=BFO['0000051'], name="has_medium_additive", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_medium_additive, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
 
-slots.has_liquid_type = Slot(uri=SIO['000008'], name="has_liquid_type", curie=SIO.curie('000008'),
+slots.has_liquid_type = Slot(uri=RO['0000053'], name="has_liquid_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_liquid_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_solid_type = Slot(uri=SIO['000008'], name="has_solid_type", curie=SIO.curie('000008'),
+slots.has_solid_type = Slot(uri=RO['0000053'], name="has_solid_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_solid_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_gas_type = Slot(uri=SIO['000008'], name="has_gas_type", curie=SIO.curie('000008'),
+slots.has_gas_type = Slot(uri=RO['0000053'], name="has_gas_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_gas_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_temperature_shift = Slot(uri=SIO['000008'], name="has_temperature_shift", curie=SIO.curie('000008'),
+slots.has_temperature_shift = Slot(uri=BFO['0000051'], name="has_temperature_shift", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_shift, domain=None, range=Optional[Union[dict[Union[str, TemperatureShiftProcessId], Union[dict, TemperatureShiftProcess]], list[Union[dict, TemperatureShiftProcess]]]])
 
-slots.has_temperature_gradient = Slot(uri=SIO['000008'], name="has_temperature_gradient", curie=SIO.curie('000008'),
+slots.has_temperature_gradient = Slot(uri=BFO['0000051'], name="has_temperature_gradient", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_gradient, domain=None, range=Optional[Union[dict, TemperatureGradient]])
 
-slots.has_ph_shift = Slot(uri=SIO['000008'], name="has_ph_shift", curie=SIO.curie('000008'),
+slots.has_ph_shift = Slot(uri=BFO['0000051'], name="has_ph_shift", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_shift, domain=None, range=Optional[Union[dict[Union[str, PHShiftProcessId], Union[dict, PHShiftProcess]], list[Union[dict, PHShiftProcess]]]])
 
-slots.has_ph_gradient = Slot(uri=SIO['000008'], name="has_ph_gradient", curie=SIO.curie('000008'),
+slots.has_ph_gradient = Slot(uri=BFO['0000051'], name="has_ph_gradient", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_gradient, domain=None, range=Optional[Union[dict, PHGradient]])
 
-slots.has_ph_measurement = Slot(uri=SIO['000008'], name="has_ph_measurement", curie=SIO.curie('000008'),
+slots.has_ph_measurement = Slot(uri=BFO['0000051'], name="has_ph_measurement", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_measurement, domain=None, range=Optional[Union[dict, PHMeasurementProcess]])
 
-slots.has_temperature_before = Slot(uri=SIO['000008'], name="has_temperature_before", curie=SIO.curie('000008'),
+slots.has_temperature_before = Slot(uri=RO['0000086'], name="has_temperature_before", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_before, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
 
-slots.has_temperature_after = Slot(uri=SIO['000008'], name="has_temperature_after", curie=SIO.curie('000008'),
+slots.has_temperature_after = Slot(uri=RO['0000086'], name="has_temperature_after", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_after, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
 
-slots.has_temperature_start = Slot(uri=SIO['000008'], name="has_temperature_start", curie=SIO.curie('000008'),
+slots.has_temperature_start = Slot(uri=RO['0000086'], name="has_temperature_start", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_start, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
 
-slots.has_temperature_end = Slot(uri=SIO['000008'], name="has_temperature_end", curie=SIO.curie('000008'),
+slots.has_temperature_end = Slot(uri=RO['0000086'], name="has_temperature_end", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_end, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
 
-slots.has_temperature_at_timepoint = Slot(uri=SIO['000008'], name="has_temperature_at_timepoint", curie=SIO.curie('000008'),
+slots.has_temperature_at_timepoint = Slot(uri=RO['0000086'], name="has_temperature_at_timepoint", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_temperature_at_timepoint, domain=None, range=Optional[Union[Union[dict, TemperatureTimepoint], list[Union[dict, TemperatureTimepoint]]]])
 
-slots.has_trigger_event = Slot(uri=SIO['000008'], name="has_trigger_event", curie=SIO.curie('000008'),
+slots.has_trigger_event = Slot(uri=RO['0000053'], name="has_trigger_event", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_trigger_event, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_ph_before = Slot(uri=SIO['000008'], name="has_ph_before", curie=SIO.curie('000008'),
+slots.has_ph_before = Slot(uri=RO['0000086'], name="has_ph_before", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_before, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
-slots.has_ph_after = Slot(uri=SIO['000008'], name="has_ph_after", curie=SIO.curie('000008'),
+slots.has_ph_after = Slot(uri=RO['0000086'], name="has_ph_after", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_after, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
-slots.has_ph_start = Slot(uri=SIO['000008'], name="has_ph_start", curie=SIO.curie('000008'),
+slots.has_ph_start = Slot(uri=RO['0000086'], name="has_ph_start", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_start, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
-slots.has_ph_end = Slot(uri=SIO['000008'], name="has_ph_end", curie=SIO.curie('000008'),
+slots.has_ph_end = Slot(uri=RO['0000086'], name="has_ph_end", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_end, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
-slots.has_ph_at_timepoint = Slot(uri=SIO['000008'], name="has_ph_at_timepoint", curie=SIO.curie('000008'),
+slots.has_ph_at_timepoint = Slot(uri=RO['0000086'], name="has_ph_at_timepoint", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_ph_at_timepoint, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
-slots.has_gradient_length = Slot(uri=SIO['000008'], name="has_gradient_length", curie=SIO.curie('000008'),
+slots.has_gradient_length = Slot(uri=RO['0000086'], name="has_gradient_length", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_gradient_length, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.has_measurement_points = Slot(uri=SIO['000008'], name="has_measurement_points", curie=SIO.curie('000008'),
+slots.has_measurement_points = Slot(uri=RO['0000053'], name="has_measurement_points", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_measurement_points, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.detected_when = Slot(uri=SIO['000008'], name="detected_when", curie=SIO.curie('000008'),
+slots.detected_when = Slot(uri=RO['0000053'], name="detected_when", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.detected_when, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.detected_how = Slot(uri=SIO['000008'], name="detected_how", curie=SIO.curie('000008'),
+slots.detected_how = Slot(uri=RO['0000053'], name="detected_how", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.detected_how, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_calibration_info = Slot(uri=SIO['000008'], name="has_calibration_info", curie=SIO.curie('000008'),
+slots.has_calibration_info = Slot(uri=RO['0000053'], name="has_calibration_info", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_calibration_info, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_time_value = Slot(uri=SIO['000008'], name="has_time_value", curie=SIO.curie('000008'),
+slots.has_time_value = Slot(uri=RO['0000086'], name="has_time_value", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_time_value, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.time_unit = Slot(uri=SIO['000008'], name="time_unit", curie=SIO.curie('000008'),
+slots.time_unit = Slot(uri=RO['0000053'], name="time_unit", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.time_unit, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.reactor_material = Slot(uri=SIO['000008'], name="reactor_material", curie=SIO.curie('000008'),
+slots.reactor_material = Slot(uri=RO['0000053'], name="reactor_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.reactor_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.bottom_type = Slot(uri=SIO['000008'], name="bottom_type", curie=SIO.curie('000008'),
+slots.bottom_type = Slot(uri=RO['0000053'], name="bottom_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.bottom_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.reactor_type_description = Slot(uri=SIO['000008'], name="reactor_type_description", curie=SIO.curie('000008'),
+slots.reactor_type_description = Slot(uri=RO['0000053'], name="reactor_type_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.reactor_type_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.tubing = Slot(uri=SIO['000008'], name="tubing", curie=SIO.curie('000008'),
+slots.tubing = Slot(uri=RO['0000053'], name="tubing", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.tubing, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_flow_rate = Slot(uri=SIO['000008'], name="has_flow_rate", curie=SIO.curie('000008'),
+slots.has_flow_rate = Slot(uri=RO['0000086'], name="has_flow_rate", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_flow_rate, domain=None, range=Optional[Union[Union[dict, FlowRate], list[Union[dict, FlowRate]]]])
 
-slots.has_catalyst_localisation = Slot(uri=SIO['000008'], name="has_catalyst_localisation", curie=SIO.curie('000008'),
+slots.has_catalyst_localisation = Slot(uri=RO['0000053'], name="has_catalyst_localisation", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_catalyst_localisation, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_residence_time = Slot(uri=SIO['000008'], name="has_residence_time", curie=SIO.curie('000008'),
+slots.has_residence_time = Slot(uri=RO['0000086'], name="has_residence_time", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_residence_time, domain=None, range=Optional[Union[Union[dict, ResidenceTime], list[Union[dict, ResidenceTime]]]])
 
-slots.has_reynolds_number = Slot(uri=SIO['000008'], name="has_reynolds_number", curie=SIO.curie('000008'),
+slots.has_reynolds_number = Slot(uri=RO['0000053'], name="has_reynolds_number", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_reynolds_number, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_passive_mixing = Slot(uri=SIO['000008'], name="has_passive_mixing", curie=SIO.curie('000008'),
+slots.has_passive_mixing = Slot(uri=RO['0000053'], name="has_passive_mixing", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_passive_mixing, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_active_mixer = Slot(uri=SIO['000008'], name="has_active_mixer", curie=SIO.curie('000008'),
+slots.has_active_mixer = Slot(uri=RO['0000053'], name="has_active_mixer", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_active_mixer, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_pulsing_description = Slot(uri=SIO['000008'], name="has_pulsing_description", curie=SIO.curie('000008'),
+slots.has_pulsing_description = Slot(uri=RO['0000053'], name="has_pulsing_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_pulsing_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.vial_size_unit = Slot(uri=SIO['000008'], name="vial_size_unit", curie=SIO.curie('000008'),
+slots.vial_size_unit = Slot(uri=RO['0000053'], name="vial_size_unit", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.vial_size_unit, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.vial_material = Slot(uri=SIO['000008'], name="vial_material", curie=SIO.curie('000008'),
+slots.vial_material = Slot(uri=RO['0000053'], name="vial_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.vial_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.closure_type = Slot(uri=SIO['000008'], name="closure_type", curie=SIO.curie('000008'),
+slots.closure_type = Slot(uri=RO['0000053'], name="closure_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.closure_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.plate_type = Slot(uri=SIO['000008'], name="plate_type", curie=SIO.curie('000008'),
+slots.plate_type = Slot(uri=RO['0000053'], name="plate_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.plate_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.plate_material = Slot(uri=SIO['000008'], name="plate_material", curie=SIO.curie('000008'),
+slots.plate_material = Slot(uri=RO['0000053'], name="plate_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.plate_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_wells = Slot(uri=SIO['000008'], name="number_of_wells", curie=SIO.curie('000008'),
+slots.number_of_wells = Slot(uri=RO['0000086'], name="number_of_wells", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.number_of_wells, domain=None, range=Optional[int])
 
-slots.well_shape = Slot(uri=SIO['000008'], name="well_shape", curie=SIO.curie('000008'),
+slots.well_shape = Slot(uri=RO['0000053'], name="well_shape", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.well_shape, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.well_volume = Slot(uri=SIO['000008'], name="well_volume", curie=SIO.curie('000008'),
+slots.well_volume = Slot(uri=RO['0000086'], name="well_volume", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.well_volume, domain=None, range=Optional[Union[Union[dict, Volume], list[Union[dict, Volume]]]])
 
-slots.well_arrangement = Slot(uri=SIO['000008'], name="well_arrangement", curie=SIO.curie('000008'),
+slots.well_arrangement = Slot(uri=RO['0000053'], name="well_arrangement", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.well_arrangement, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.sealing_method = Slot(uri=SIO['000008'], name="sealing_method", curie=SIO.curie('000008'),
+slots.sealing_method = Slot(uri=RO['0000053'], name="sealing_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.sealing_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.sealing_material = Slot(uri=SIO['000008'], name="sealing_material", curie=SIO.curie('000008'),
+slots.sealing_material = Slot(uri=RO['0000053'], name="sealing_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.sealing_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.stirring_type = Slot(uri=SIO['000008'], name="stirring_type", curie=SIO.curie('000008'),
+slots.stirring_type = Slot(uri=RO['0000053'], name="stirring_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stirring_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.stirrer_material = Slot(uri=SIO['000008'], name="stirrer_material", curie=SIO.curie('000008'),
+slots.stirrer_material = Slot(uri=RO['0000053'], name="stirrer_material", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stirrer_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_stirrers = Slot(uri=SIO['000008'], name="number_of_stirrers", curie=SIO.curie('000008'),
+slots.number_of_stirrers = Slot(uri=RO['0000086'], name="number_of_stirrers", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.number_of_stirrers, domain=None, range=Optional[int])
 
-slots.distance_between_stirrers = Slot(uri=SIO['000008'], name="distance_between_stirrers", curie=SIO.curie('000008'),
+slots.distance_between_stirrers = Slot(uri=RO['0000086'], name="distance_between_stirrers", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.distance_between_stirrers, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.blade_pitch_angle = Slot(uri=SIO['000008'], name="blade_pitch_angle", curie=SIO.curie('000008'),
+slots.blade_pitch_angle = Slot(uri=RO['0000086'], name="blade_pitch_angle", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.blade_pitch_angle, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.number_of_blades = Slot(uri=SIO['000008'], name="number_of_blades", curie=SIO.curie('000008'),
+slots.number_of_blades = Slot(uri=RO['0000086'], name="number_of_blades", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.number_of_blades, domain=None, range=Optional[int])
 
-slots.blade_size = Slot(uri=SIO['000008'], name="blade_size", curie=SIO.curie('000008'),
+slots.blade_size = Slot(uri=RO['0000086'], name="blade_size", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.blade_size, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.stirrer_geometry = Slot(uri=SIO['000008'], name="stirrer_geometry", curie=SIO.curie('000008'),
+slots.stirrer_geometry = Slot(uri=RO['0000053'], name="stirrer_geometry", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stirrer_geometry, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.stirrer_speed = Slot(uri=SIO['000008'], name="stirrer_speed", curie=SIO.curie('000008'),
+slots.stirrer_speed = Slot(uri=RO['0000086'], name="stirrer_speed", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stirrer_speed, domain=None, range=Optional[Union[Union[dict, AngularVelocity], list[Union[dict, AngularVelocity]]]])
 
-slots.height_above_vessel_base = Slot(uri=SIO['000008'], name="height_above_vessel_base", curie=SIO.curie('000008'),
+slots.height_above_vessel_base = Slot(uri=RO['0000086'], name="height_above_vessel_base", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.height_above_vessel_base, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.power_per_volume_input = Slot(uri=SIO['000008'], name="power_per_volume_input", curie=SIO.curie('000008'),
+slots.power_per_volume_input = Slot(uri=RO['0000086'], name="power_per_volume_input", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.power_per_volume_input, domain=None, range=Optional[Union[Union[dict, PowerPerVolume], list[Union[dict, PowerPerVolume]]]])
 
-slots.stir_bar_size = Slot(uri=SIO['000008'], name="stir_bar_size", curie=SIO.curie('000008'),
+slots.stir_bar_size = Slot(uri=RO['0000086'], name="stir_bar_size", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stir_bar_size, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.stir_bar_shape = Slot(uri=SIO['000008'], name="stir_bar_shape", curie=SIO.curie('000008'),
+slots.stir_bar_shape = Slot(uri=RO['0000053'], name="stir_bar_shape", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stir_bar_shape, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.shaking_type = Slot(uri=SIO['000008'], name="shaking_type", curie=SIO.curie('000008'),
+slots.shaking_type = Slot(uri=RO['0000053'], name="shaking_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.shaking_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.deflection = Slot(uri=SIO['000008'], name="deflection", curie=SIO.curie('000008'),
+slots.deflection = Slot(uri=RO['0000086'], name="deflection", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.deflection, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
-slots.shaking_speed = Slot(uri=SIO['000008'], name="shaking_speed", curie=SIO.curie('000008'),
+slots.shaking_speed = Slot(uri=RO['0000086'], name="shaking_speed", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.shaking_speed, domain=None, range=Optional[Union[Union[dict, AngularVelocity], list[Union[dict, AngularVelocity]]]])
 
-slots.shaking_position = Slot(uri=SIO['000008'], name="shaking_position", curie=SIO.curie('000008'),
+slots.shaking_position = Slot(uri=RO['0000053'], name="shaking_position", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.shaking_position, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.gas_supply_method = Slot(uri=SIO['000008'], name="gas_supply_method", curie=SIO.curie('000008'),
+slots.gas_supply_method = Slot(uri=RO['0000053'], name="gas_supply_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.gas_supply_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.temperature_control_method = Slot(uri=SIO['000008'], name="temperature_control_method", curie=SIO.curie('000008'),
+slots.temperature_control_method = Slot(uri=RO['0000053'], name="temperature_control_method", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.temperature_control_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_sample_volume = Slot(uri=SIO['000008'], name="has_sample_volume", curie=SIO.curie('000008'),
+slots.has_sample_volume = Slot(uri=RO['0000086'], name="has_sample_volume", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_sample_volume, domain=None, range=Optional[Union[Union[dict, Volume], list[Union[dict, Volume]]]])
 
-slots.has_sampling_timepoint = Slot(uri=SIO['000008'], name="has_sampling_timepoint", curie=SIO.curie('000008'),
+slots.has_sampling_timepoint = Slot(uri=RO['0000086'], name="has_sampling_timepoint", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_sampling_timepoint, domain=None, range=Optional[Union[Union[dict, SamplingTimepoint], list[Union[dict, SamplingTimepoint]]]])
 
-slots.mixing_during_sampling = Slot(uri=SIO['000008'], name="mixing_during_sampling", curie=SIO.curie('000008'),
+slots.mixing_during_sampling = Slot(uri=RO['0000086'], name="mixing_during_sampling", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.mixing_during_sampling, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.vessel_opened_for_sampling = Slot(uri=SIO['000008'], name="vessel_opened_for_sampling", curie=SIO.curie('000008'),
+slots.vessel_opened_for_sampling = Slot(uri=RO['0000086'], name="vessel_opened_for_sampling", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.vessel_opened_for_sampling, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.sampled_from_phase = Slot(uri=SIO['000008'], name="sampled_from_phase", curie=SIO.curie('000008'),
                    model_uri=STRENDCAT_BIOCATALYSIS.sampled_from_phase, domain=None, range=Optional[Union[dict[Union[str, MaterialEntityId], Union[dict, MaterialEntity]], list[Union[dict, MaterialEntity]]]])
 
-slots.biocatalyst_contamination_possible = Slot(uri=SIO['000008'], name="biocatalyst_contamination_possible", curie=SIO.curie('000008'),
+slots.biocatalyst_contamination_possible = Slot(uri=RO['0000086'], name="biocatalyst_contamination_possible", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.biocatalyst_contamination_possible, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.quenching_method_type = Slot(uri=SIO['000008'], name="quenching_method_type", curie=SIO.curie('000008'),
+slots.quenching_method_type = Slot(uri=RO['0000053'], name="quenching_method_type", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.quenching_method_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_quenching_ratio = Slot(uri=SIO['000008'], name="has_quenching_ratio", curie=SIO.curie('000008'),
+slots.has_quenching_ratio = Slot(uri=RO['0000086'], name="has_quenching_ratio", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_quenching_ratio, domain=None, range=Optional[Union[Union[dict, QuenchingRatio], list[Union[dict, QuenchingRatio]]]])
 
-slots.has_kinetic_parameters = Slot(uri=SIO['000008'], name="has_kinetic_parameters", curie=SIO.curie('000008'),
+slots.has_kinetic_parameters = Slot(uri=RO['0000086'], name="has_kinetic_parameters", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_kinetic_parameters, domain=None, range=Optional[Union[Union[dict, KineticParameters], list[Union[dict, KineticParameters]]]])
 
-slots.has_yield_and_conversion = Slot(uri=SIO['000008'], name="has_yield_and_conversion", curie=SIO.curie('000008'),
+slots.has_yield_and_conversion = Slot(uri=RO['0000086'], name="has_yield_and_conversion", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_yield_and_conversion, domain=None, range=Optional[Union[Union[dict, YieldAndConversion], list[Union[dict, YieldAndConversion]]]])
 
-slots.has_activity_and_reaction_rate = Slot(uri=SIO['000008'], name="has_activity_and_reaction_rate", curie=SIO.curie('000008'),
+slots.has_activity_and_reaction_rate = Slot(uri=RO['0000086'], name="has_activity_and_reaction_rate", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_activity_and_reaction_rate, domain=None, range=Optional[Union[Union[dict, ActivityAndInitialReactionRate], list[Union[dict, ActivityAndInitialReactionRate]]]])
 
-slots.has_selectivity_and_specificity = Slot(uri=SIO['000008'], name="has_selectivity_and_specificity", curie=SIO.curie('000008'),
+slots.has_selectivity_and_specificity = Slot(uri=RO['0000086'], name="has_selectivity_and_specificity", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_selectivity_and_specificity, domain=None, range=Optional[Union[Union[dict, SelectivityAndSpecificity], list[Union[dict, SelectivityAndSpecificity]]]])
 
-slots.has_thermodynamic_parameters = Slot(uri=SIO['000008'], name="has_thermodynamic_parameters", curie=SIO.curie('000008'),
+slots.has_thermodynamic_parameters = Slot(uri=RO['0000086'], name="has_thermodynamic_parameters", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_thermodynamic_parameters, domain=None, range=Optional[Union[Union[dict, ThermodynamicParameters], list[Union[dict, ThermodynamicParameters]]]])
 
-slots.has_michaelis_constant = Slot(uri=SIO['000008'], name="has_michaelis_constant", curie=SIO.curie('000008'),
+slots.has_michaelis_constant = Slot(uri=RO['0000086'], name="has_michaelis_constant", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_michaelis_constant, domain=None, range=Optional[Union[Union[dict, MichaelisConstant], list[Union[dict, MichaelisConstant]]]])
 
-slots.has_maximum_reaction_rate = Slot(uri=SIO['000008'], name="has_maximum_reaction_rate", curie=SIO.curie('000008'),
+slots.has_maximum_reaction_rate = Slot(uri=RO['0000086'], name="has_maximum_reaction_rate", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_maximum_reaction_rate, domain=None, range=Optional[Union[Union[dict, MaximumReactionRate], list[Union[dict, MaximumReactionRate]]]])
 
-slots.has_turnover_number = Slot(uri=SIO['000008'], name="has_turnover_number", curie=SIO.curie('000008'),
+slots.has_turnover_number = Slot(uri=RO['0000086'], name="has_turnover_number", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_turnover_number, domain=None, range=Optional[Union[Union[dict, TurnoverNumber], list[Union[dict, TurnoverNumber]]]])
 
-slots.has_catalytic_efficiency = Slot(uri=SIO['000008'], name="has_catalytic_efficiency", curie=SIO.curie('000008'),
+slots.has_catalytic_efficiency = Slot(uri=RO['0000086'], name="has_catalytic_efficiency", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_catalytic_efficiency, domain=None, range=Optional[Union[Union[dict, CatalyticEfficiency], list[Union[dict, CatalyticEfficiency]]]])
 
-slots.has_dissociation_constant = Slot(uri=SIO['000008'], name="has_dissociation_constant", curie=SIO.curie('000008'),
+slots.has_dissociation_constant = Slot(uri=RO['0000086'], name="has_dissociation_constant", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_dissociation_constant, domain=None, range=Optional[Union[Union[dict, DissociationConstant], list[Union[dict, DissociationConstant]]]])
 
-slots.has_hill_coefficient = Slot(uri=SIO['000008'], name="has_hill_coefficient", curie=SIO.curie('000008'),
+slots.has_hill_coefficient = Slot(uri=RO['0000086'], name="has_hill_coefficient", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_hill_coefficient, domain=None, range=Optional[Union[Union[dict, HillCoefficient], list[Union[dict, HillCoefficient]]]])
 
-slots.has_inhibition_characterisation = Slot(uri=SIO['000008'], name="has_inhibition_characterisation", curie=SIO.curie('000008'),
+slots.has_inhibition_characterisation = Slot(uri=RO['0000086'], name="has_inhibition_characterisation", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_inhibition_characterisation, domain=None, range=Optional[Union[Union[dict, EnzymeInhibitionCharacterisation], list[Union[dict, EnzymeInhibitionCharacterisation]]]])
 
-slots.has_enzyme_stability = Slot(uri=SIO['000008'], name="has_enzyme_stability", curie=SIO.curie('000008'),
+slots.has_enzyme_stability = Slot(uri=RO['0000086'], name="has_enzyme_stability", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_enzyme_stability, domain=None, range=Optional[Union[Union[dict, EnzymeStabilityCharacterisation], list[Union[dict, EnzymeStabilityCharacterisation]]]])
 
-slots.inhibition_type = Slot(uri=SIO['000008'], name="inhibition_type", curie=SIO.curie('000008'),
+slots.inhibition_type = Slot(uri=RO['0000086'], name="inhibition_type", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.inhibition_type, domain=None, range=Optional[Union[str, "InhibitionTypeEnum"]])
 
-slots.has_inhibition_constant = Slot(uri=SIO['000008'], name="has_inhibition_constant", curie=SIO.curie('000008'),
+slots.has_inhibition_constant = Slot(uri=RO['0000086'], name="has_inhibition_constant", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_inhibition_constant, domain=None, range=Optional[Union[Union[dict, InhibitionConstant], list[Union[dict, InhibitionConstant]]]])
 
-slots.has_half_life = Slot(uri=SIO['000008'], name="has_half_life", curie=SIO.curie('000008'),
+slots.has_half_life = Slot(uri=RO['0000086'], name="has_half_life", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_half_life, domain=None, range=Optional[Union[Union[dict, HalfLife], list[Union[dict, HalfLife]]]])
 
-slots.stability_description = Slot(uri=SIO['000008'], name="stability_description", curie=SIO.curie('000008'),
+slots.stability_description = Slot(uri=RO['0000053'], name="stability_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stability_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_space_time_yield = Slot(uri=SIO['000008'], name="has_space_time_yield", curie=SIO.curie('000008'),
+slots.has_space_time_yield = Slot(uri=RO['0000086'], name="has_space_time_yield", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_space_time_yield, domain=None, range=Optional[Union[Union[dict, SpaceTimeYield], list[Union[dict, SpaceTimeYield]]]])
 
-slots.has_substrate_conversion = Slot(uri=SIO['000008'], name="has_substrate_conversion", curie=SIO.curie('000008'),
+slots.has_substrate_conversion = Slot(uri=RO['0000086'], name="has_substrate_conversion", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_substrate_conversion, domain=None, range=Optional[Union[Union[dict, SubstrateConversion], list[Union[dict, SubstrateConversion]]]])
 
-slots.has_specific_activity = Slot(uri=SIO['000008'], name="has_specific_activity", curie=SIO.curie('000008'),
+slots.has_specific_activity = Slot(uri=RO['0000086'], name="has_specific_activity", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_specific_activity, domain=None, range=Optional[Union[Union[dict, SpecificActivity], list[Union[dict, SpecificActivity]]]])
 
-slots.has_initial_reaction_rate = Slot(uri=SIO['000008'], name="has_initial_reaction_rate", curie=SIO.curie('000008'),
+slots.has_initial_reaction_rate = Slot(uri=RO['0000086'], name="has_initial_reaction_rate", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_initial_reaction_rate, domain=None, range=Optional[Union[Union[dict, InitialReactionRate], list[Union[dict, InitialReactionRate]]]])
 
-slots.has_enantioselectivity_ratio = Slot(uri=SIO['000008'], name="has_enantioselectivity_ratio", curie=SIO.curie('000008'),
+slots.has_enantioselectivity_ratio = Slot(uri=RO['0000086'], name="has_enantioselectivity_ratio", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_enantioselectivity_ratio, domain=None, range=Optional[Union[Union[dict, EnantioselectivityRatio], list[Union[dict, EnantioselectivityRatio]]]])
 
-slots.has_enantiomeric_excess = Slot(uri=SIO['000008'], name="has_enantiomeric_excess", curie=SIO.curie('000008'),
+slots.has_enantiomeric_excess = Slot(uri=RO['0000086'], name="has_enantiomeric_excess", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_enantiomeric_excess, domain=None, range=Optional[Union[Union[dict, EnantiomericExcess], list[Union[dict, EnantiomericExcess]]]])
 
-slots.has_diastereomeric_excess = Slot(uri=SIO['000008'], name="has_diastereomeric_excess", curie=SIO.curie('000008'),
+slots.has_diastereomeric_excess = Slot(uri=RO['0000086'], name="has_diastereomeric_excess", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_diastereomeric_excess, domain=None, range=Optional[Union[Union[dict, DiastereomericExcess], list[Union[dict, DiastereomericExcess]]]])
 
-slots.has_isomeric_content = Slot(uri=SIO['000008'], name="has_isomeric_content", curie=SIO.curie('000008'),
+slots.has_isomeric_content = Slot(uri=RO['0000086'], name="has_isomeric_content", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_isomeric_content, domain=None, range=Optional[Union[Union[dict, IsomericContent], list[Union[dict, IsomericContent]]]])
 
-slots.stereoselectivity_description = Slot(uri=SIO['000008'], name="stereoselectivity_description", curie=SIO.curie('000008'),
+slots.stereoselectivity_description = Slot(uri=RO['0000053'], name="stereoselectivity_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stereoselectivity_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.chemoselectivity_description = Slot(uri=SIO['000008'], name="chemoselectivity_description", curie=SIO.curie('000008'),
+slots.chemoselectivity_description = Slot(uri=RO['0000053'], name="chemoselectivity_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.chemoselectivity_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.regioselectivity_description = Slot(uri=SIO['000008'], name="regioselectivity_description", curie=SIO.curie('000008'),
+slots.regioselectivity_description = Slot(uri=RO['0000053'], name="regioselectivity_description", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.regioselectivity_description, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.has_gibbs_free_energy_change = Slot(uri=SIO['000008'], name="has_gibbs_free_energy_change", curie=SIO.curie('000008'),
+slots.has_gibbs_free_energy_change = Slot(uri=RO['0000086'], name="has_gibbs_free_energy_change", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_gibbs_free_energy_change, domain=None, range=Optional[Union[Union[dict, GibbsFreeEnergyChange], list[Union[dict, GibbsFreeEnergyChange]]]])
 
-slots.has_enthalpy_change = Slot(uri=SIO['000008'], name="has_enthalpy_change", curie=SIO.curie('000008'),
+slots.has_enthalpy_change = Slot(uri=RO['0000086'], name="has_enthalpy_change", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_enthalpy_change, domain=None, range=Optional[Union[Union[dict, EnthalpyChange], list[Union[dict, EnthalpyChange]]]])
 
 slots.has_operation_mode = Slot(uri=DCTERMS.type, name="has_operation_mode", curie=DCTERMS.curie('type'),
@@ -7140,79 +7140,79 @@ slots.mail = Slot(uri=SCHEMA.email, name="mail", curie=SCHEMA.curie('email'),
 slots.has_complex_participant = Slot(uri=BFO['0000051'], name="has_complex_participant", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_complex_participant, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
 
-slots.has_constant_concentration = Slot(uri=SIO['000008'], name="has_constant_concentration", curie=SIO.curie('000008'),
+slots.has_constant_concentration = Slot(uri=RO['0000086'], name="has_constant_concentration", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_constant_concentration, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.has_constant_volume = Slot(uri=SIO['000008'], name="has_constant_volume", curie=SIO.curie('000008'),
+slots.has_constant_volume = Slot(uri=RO['0000086'], name="has_constant_volume", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_constant_volume, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.equation_species_reference = Slot(uri=SIO['000008'], name="equation_species_reference", curie=SIO.curie('000008'),
+slots.equation_species_reference = Slot(uri=RO['0000053'], name="equation_species_reference", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.equation_species_reference, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.equation_type = Slot(uri=SIO['000008'], name="equation_type", curie=SIO.curie('000008'),
+slots.equation_type = Slot(uri=RO['0000086'], name="equation_type", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.equation_type, domain=None, range=Optional[Union[str, "KineticEquationTypeEnum"]])
 
-slots.has_equation_variable = Slot(uri=SIO['000008'], name="has_equation_variable", curie=SIO.curie('000008'),
+slots.has_equation_variable = Slot(uri=BFO['0000051'], name="has_equation_variable", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_equation_variable, domain=None, range=Optional[Union[Union[dict, EquationVariable], list[Union[dict, EquationVariable]]]])
 
-slots.has_kinetic_equation = Slot(uri=SIO['000008'], name="has_kinetic_equation", curie=SIO.curie('000008'),
+slots.has_kinetic_equation = Slot(uri=BFO['0000051'], name="has_kinetic_equation", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_kinetic_equation, domain=None, range=Optional[Union[Union[dict, KineticEquation], list[Union[dict, KineticEquation]]]])
 
-slots.has_kinetic_model_parameter = Slot(uri=SIO['000008'], name="has_kinetic_model_parameter", curie=SIO.curie('000008'),
+slots.has_kinetic_model_parameter = Slot(uri=BFO['0000051'], name="has_kinetic_model_parameter", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_kinetic_model_parameter, domain=None, range=Optional[Union[Union[dict, KineticModelParameter], list[Union[dict, KineticModelParameter]]]])
 
-slots.parameter_symbol = Slot(uri=SIO['000008'], name="parameter_symbol", curie=SIO.curie('000008'),
+slots.parameter_symbol = Slot(uri=RO['0000053'], name="parameter_symbol", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.parameter_symbol, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.initial_value = Slot(uri=SIO['000008'], name="initial_value", curie=SIO.curie('000008'),
+slots.initial_value = Slot(uri=RO['0000086'], name="initial_value", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.initial_value, domain=None, range=Optional[float])
 
-slots.upper_bound = Slot(uri=SIO['000008'], name="upper_bound", curie=SIO.curie('000008'),
+slots.upper_bound = Slot(uri=RO['0000086'], name="upper_bound", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.upper_bound, domain=None, range=Optional[float])
 
-slots.lower_bound = Slot(uri=SIO['000008'], name="lower_bound", curie=SIO.curie('000008'),
+slots.lower_bound = Slot(uri=RO['0000086'], name="lower_bound", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.lower_bound, domain=None, range=Optional[float])
 
-slots.stderr = Slot(uri=SIO['000008'], name="stderr", curie=SIO.curie('000008'),
+slots.stderr = Slot(uri=RO['0000086'], name="stderr", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.stderr, domain=None, range=Optional[float])
 
-slots.is_fitted = Slot(uri=SIO['000008'], name="is_fitted", curie=SIO.curie('000008'),
+slots.is_fitted = Slot(uri=RO['0000086'], name="is_fitted", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_fitted, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.is_fixed_parameter = Slot(uri=SIO['000008'], name="is_fixed_parameter", curie=SIO.curie('000008'),
+slots.is_fixed_parameter = Slot(uri=RO['0000086'], name="is_fixed_parameter", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_fixed_parameter, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.is_reversible = Slot(uri=SIO['000008'], name="is_reversible", curie=SIO.curie('000008'),
+slots.is_reversible = Slot(uri=RO['0000086'], name="is_reversible", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_reversible, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.organism_taxonomy_id = Slot(uri=SIO['000008'], name="organism_taxonomy_id", curie=SIO.curie('000008'),
+slots.organism_taxonomy_id = Slot(uri=RO['0000053'], name="organism_taxonomy_id", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.organism_taxonomy_id, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.measurement_group_id = Slot(uri=SIO['000008'], name="measurement_group_id", curie=SIO.curie('000008'),
+slots.measurement_group_id = Slot(uri=RO['0000053'], name="measurement_group_id", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.measurement_group_id, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.has_measurement_species_data = Slot(uri=BFO['0000051'], name="has_measurement_species_data", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_measurement_species_data, domain=None, range=Optional[Union[Union[dict, EnzymeMeasurementSpeciesData], list[Union[dict, EnzymeMeasurementSpeciesData]]]])
 
-slots.measured_species_reference = Slot(uri=SIO['000008'], name="measured_species_reference", curie=SIO.curie('000008'),
+slots.measured_species_reference = Slot(uri=RO['0000053'], name="measured_species_reference", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.measured_species_reference, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.prepared_amount = Slot(uri=SIO['000008'], name="prepared_amount", curie=SIO.curie('000008'),
+slots.prepared_amount = Slot(uri=RO['0000086'], name="prepared_amount", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.prepared_amount, domain=None, range=Optional[float])
 
-slots.initial_amount = Slot(uri=SIO['000008'], name="initial_amount", curie=SIO.curie('000008'),
+slots.initial_amount = Slot(uri=RO['0000086'], name="initial_amount", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.initial_amount, domain=None, range=Optional[float])
 
-slots.measurement_data_type = Slot(uri=SIO['000008'], name="measurement_data_type", curie=SIO.curie('000008'),
+slots.measurement_data_type = Slot(uri=RO['0000086'], name="measurement_data_type", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.measurement_data_type, domain=None, range=Optional[Union[str, "MeasurementDataTypeEnum"]])
 
-slots.is_simulated = Slot(uri=SIO['000008'], name="is_simulated", curie=SIO.curie('000008'),
+slots.is_simulated = Slot(uri=RO['0000086'], name="is_simulated", curie=RO.curie('0000086'),
                    model_uri=STRENDCAT_BIOCATALYSIS.is_simulated, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.has_timepoint = Slot(uri=BFO['0000051'], name="has_timepoint", curie=BFO.curie('0000051'),
                    model_uri=STRENDCAT_BIOCATALYSIS.has_timepoint, domain=None, range=Optional[Union[Union[dict, MeasurementTimepoint], list[Union[dict, MeasurementTimepoint]]]])
 
-slots.synonymous_names = Slot(uri=SIO['000008'], name="synonymous_names", curie=SIO.curie('000008'),
+slots.synonymous_names = Slot(uri=RO['0000053'], name="synonymous_names", curie=RO.curie('0000053'),
                    model_uri=STRENDCAT_BIOCATALYSIS.synonymous_names, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.access_URL = Slot(uri=DCAT.accessURL, name="access_URL", curie=DCAT.curie('accessURL'),
