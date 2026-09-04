@@ -8,6 +8,10 @@ tmp/
 project/
 !project/README.md
 
+# Intermediate ROBOT/MIREOT fragments from build_minimal_ontology.py
+# (the merged ontology/*.owl.ttl output itself is tracked, not ignored)
+ontology/build/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

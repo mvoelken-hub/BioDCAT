@@ -126,6 +126,16 @@ gen-project:
   fi
   uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > "{{dest}}/owl/{{schema_name}}.owl.ttl"
 
+# Build a minimal ROBOT/MIREOT-linked ontology from the schema for Knowledge Graph use
+# (see src/strendcat_biocatalysis/build_minimal_ontology.py). Requires Java 11+ on PATH;
+# downloads robot.jar into ~/.robot-tool-cache on first use.
+[group('model development')]
+build-ontology:
+  @if [ ! -d "ontology" ]; then \
+    mkdir -p ontology ; \
+  fi
+  uv run python -m strendcat_biocatalysis.build_minimal_ontology {{source_schema_path}} -o ontology/{{schema_name}}.owl.ttl -v
+
 # ============== Migrations recipes for Copier ==============
 
 # Hidden command to adjust the directory layout on upgrading a project
