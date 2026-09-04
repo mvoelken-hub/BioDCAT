@@ -521,8 +521,18 @@ Alias: has_mass</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../CellFreePreparation/">CellFreePreparation</a></td>
-<td>A BiocatalystPreparation produced by cell-free expression, where synthesis oc...</td>
+<td><a href="../MaterialEntity/">MaterialEntity</a></td>
+<td>A material is an Entity that has some portion of matter as proper part</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../WholeCellPreparation/">WholeCellPreparation</a></td>
+<td>A BiocatalystPreparation in which whole cells serve as the biocatalyst</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TubularFlowReactor/">TubularFlowReactor</a></td>
+<td>A reactor model, in which opposing to the ideal plug flow behavior, friction ...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -531,33 +541,38 @@ Alias: has_mass</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CrudeCellExtractPreparation/">CrudeCellExtractPreparation</a></td>
-<td>A BiocatalystPreparation consisting of a crude cell extract obtained by cell ...</td>
+<td><a href="../PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../LiquidPhase/">LiquidPhase</a></td>
-<td>A liquid phase present in the reaction medium</td>
+<td><a href="../ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities t...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Plate/">Plate</a></td>
-<td>A plate is a tray with multiple "wells" used as small test tubes</td>
+<td><a href="../ReactionVessel/">ReactionVessel</a></td>
+<td>A reactor is a container for controlling a biological or chemical reaction or...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../StartingMaterial/">StartingMaterial</a></td>
-<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
+<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MaterialEntity/">MaterialEntity</a></td>
-<td>A material is an Entity that has some portion of matter as proper part</td>
+<td><a href="../StirredTankReactor/">StirredTankReactor</a></td>
+<td>An abstract concept/ideal reactor model type, in which the volume of fluid in...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../GasPhase/">GasPhase</a></td>
-<td>A gas phase present in the reaction medium or headspace</td>
+<td><a href="../PolymerMixin/">PolymerMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all chemical substances...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ImmobilisedPreparation/">ImmobilisedPreparation</a></td>
+<td>A BiocatalystPreparation in which the biocatalyst is attached to or entrapped...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -571,23 +586,38 @@ Alias: has_mass</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities t...</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 <td>A LinkML mixin used to pass down properties common to all material entities</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../TubularFlowReactor/">TubularFlowReactor</a></td>
-<td>A reactor model, in which opposing to the ideal plug flow behavior, friction ...</td>
+<td><a href="../ChemicalProduct/">ChemicalProduct</a></td>
+<td>A chemical substance that is produced by a ChemicalReaction</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GasPhase/">GasPhase</a></td>
+<td>A gas phase present in the reaction medium or headspace</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../LiquidPhase/">LiquidPhase</a></td>
+<td>A liquid phase present in the reaction medium</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StartingMaterial/">StartingMaterial</a></td>
+<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../BiocatalystPreparation/">BiocatalystPreparation</a></td>
 <td>The physical form in which a Biocatalyst is applied in a BiocatalyticExperime...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SolidPhase/">SolidPhase</a></td>
+<td>A solid phase present in the reaction medium</td>
 <td>no</td>
 </tr>
 <tr>
@@ -601,6 +631,11 @@ Alias: has_mass</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../CrudeCellExtractPreparation/">CrudeCellExtractPreparation</a></td>
+<td>A BiocatalystPreparation consisting of a crude cell extract obtained by cell ...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../SecretedEnzymePreparation/">SecretedEnzymePreparation</a></td>
 <td>A BiocatalystPreparation consisting of an enzyme secreted into the culture su...</td>
 <td>no</td>
@@ -611,48 +646,18 @@ Alias: has_mass</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../SolidPhase/">SolidPhase</a></td>
-<td>A solid phase present in the reaction medium</td>
+<td><a href="../Vial/">Vial</a></td>
+<td>A vial is a small vessel or bottle</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../WholeCellPreparation/">WholeCellPreparation</a></td>
-<td>A BiocatalystPreparation in which whole cells serve as the biocatalyst</td>
+<td><a href="../Plate/">Plate</a></td>
+<td>A plate is a tray with multiple "wells" used as small test tubes</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PolymerMixin/">PolymerMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all chemical substances...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ReactionVessel/">ReactionVessel</a></td>
-<td>A reactor is a container for controlling a biological or chemical reaction or...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ImmobilisedPreparation/">ImmobilisedPreparation</a></td>
-<td>A BiocatalystPreparation in which the biocatalyst is attached to or entrapped...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ReactionMedium/">ReactionMedium</a></td>
-<td>The medium in which a biocatalytic reaction takes place, described by its pha...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../StirredTankReactor/">StirredTankReactor</a></td>
-<td>An abstract concept/ideal reactor model type, in which the volume of fluid in...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalProduct/">ChemicalProduct</a></td>
-<td>A chemical substance that is produced by a ChemicalReaction</td>
+<td><a href="../CellFreePreparation/">CellFreePreparation</a></td>
+<td>A BiocatalystPreparation produced by cell-free expression, where synthesis oc...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -661,13 +666,8 @@ Alias: has_mass</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Vial/">Vial</a></td>
-<td>A vial is a small vessel or bottle</td>
+<td><a href="../ReactionMedium/">ReactionMedium</a></td>
+<td>The medium in which a biocatalytic reaction takes place, described by its pha...</td>
 <td>no</td>
 </tr>
 </tbody>

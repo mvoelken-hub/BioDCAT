@@ -525,14 +525,19 @@ Alias: has_part</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SamplingProcess/">SamplingProcess</a></td>
-<td>A specimen gathering process with the objective to obtain a specimen that is ...</td>
+<td><a href="../ReactionMonitoring/">ReactionMonitoring</a></td>
+<td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../QuenchingProcess/">QuenchingProcess</a></td>
-<td>Material processing in which a sample is cooled by immersion in a fluid</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+<td>A process that leads to the transformation of one set of chemical substances ...</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../MaterialEntity/">MaterialEntity</a></td>
+<td>A material is an Entity that has some portion of matter as proper part</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../DataGeneratingActivity/">DataGeneratingActivity</a></td>
@@ -545,8 +550,23 @@ Alias: has_part</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../CellFreePreparation/">CellFreePreparation</a></td>
-<td>A BiocatalystPreparation produced by cell-free expression, where synthesis oc...</td>
+<td><a href="../EvaluatedEntity/">EvaluatedEntity</a></td>
+<td>An Entity that is being evaluated in a DataGeneratingActivity</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../WholeCellPreparation/">WholeCellPreparation</a></td>
+<td>A BiocatalystPreparation in which whole cells serve as the biocatalyst</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TubularFlowReactor/">TubularFlowReactor</a></td>
+<td>A reactor model, in which opposing to the ideal plug flow behavior, friction ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TemperatureGradient/">TemperatureGradient</a></td>
+<td>A PlannedProcess representing a dynamic temperature gradient applied over dis...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -555,88 +575,13 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Activity/">Activity</a></td>
-<td>See [DCAT-AP specs:Activity](https://semiceu</td>
+<td><a href="../SamplePreparationProcess/">SamplePreparationProcess</a></td>
+<td>Methods by which physical/chemical processing of samples are performed prior ...</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../CrudeCellExtractPreparation/">CrudeCellExtractPreparation</a></td>
-<td>A BiocatalystPreparation consisting of a crude cell extract obtained by cell ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../LiquidPhase/">LiquidPhase</a></td>
-<td>A liquid phase present in the reaction medium</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Plate/">Plate</a></td>
-<td>A plate is a tray with multiple "wells" used as small test tubes</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SampleTreatmentProcess/">SampleTreatmentProcess</a></td>
-<td>Additional sample processing steps applied after quenching (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TemperatureShiftProcess/">TemperatureShiftProcess</a></td>
-<td>A PlannedProcess representing an event-based change in temperature during a b...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalEntity/">ChemicalEntity</a></td>
-<td>Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, ...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../StartingMaterial/">StartingMaterial</a></td>
-<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PHMeasurementProcess/">PHMeasurementProcess</a></td>
-<td>A MeasurementProcess capturing the method and context of pH measurement, incl...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MaterialEntity/">MaterialEntity</a></td>
-<td>A material is an Entity that has some portion of matter as proper part</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Device/">Device</a></td>
-<td>A material instrument that is designed to perform a function primarily by mea...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../BiocatalystProductionProcess/">BiocatalystProductionProcess</a></td>
-<td>A MaterialProcessing that describes how a biocatalyst was produced, including...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GasPhase/">GasPhase</a></td>
-<td>A gas phase present in the reaction medium or headspace</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BiocatalyticExperiment/">BiocatalyticExperiment</a></td>
-<td>A DataGeneratingActivity representing a biocatalytic experiment carried out a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DryingProcess/">DryingProcess</a></td>
-<td>The process of removing a solvent from a substance</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MaterialSample/">MaterialSample</a></td>
-<td>A Sample that was derived from a previous MaterialSample or some other kind o...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Reagent/">Reagent</a></td>
-<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction</td>
+<td><a href="../PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer</td>
 <td>no</td>
 </tr>
 <tr>
@@ -650,113 +595,13 @@ Alias: has_part</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../PHShiftProcess/">PHShiftProcess</a></td>
-<td>A PlannedProcess representing an event-based change in pH during a biocatalyt...</td>
+<td><a href="../ReactionVessel/">ReactionVessel</a></td>
+<td>A reactor is a container for controlling a biological or chemical reaction or...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BiocatalyticReaction/">BiocatalyticReaction</a></td>
-<td>A ChemicalReaction that is catalyzed by a Biocatalyst (enzyme or whole cell)</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Entity/">Entity</a></td>
-<td>A physical, digital, conceptual, or other kind of thing with some fixed aspec...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../TubularFlowReactor/">TubularFlowReactor</a></td>
-<td>A reactor model, in which opposing to the ideal plug flow behavior, friction ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DataAnalysis/">DataAnalysis</a></td>
-<td>An Activity that evaluates the data produced by another Activity</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BiocatalystPreparation/">BiocatalystPreparation</a></td>
-<td>The physical form in which a Biocatalyst is applied in a BiocatalyticExperime...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BiocatalyticComponent/">BiocatalyticComponent</a></td>
-<td>A ChemicalSubstance present in the reaction mixture of a biocatalytic experim...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Shaker/">Shaker</a></td>
-<td>A laboratory equipment with a platform that oscillates in two or three direct...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Catalyst/">Catalyst</a></td>
-<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a Chemica...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SamplePreparationProcess/">SamplePreparationProcess</a></td>
-<td>Methods by which physical/chemical processing of samples are performed prior ...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Biocatalyst/">Biocatalyst</a></td>
-<td>An enzyme or cell that catalyzes a biocatalytic reaction</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SecretedEnzymePreparation/">SecretedEnzymePreparation</a></td>
-<td>A BiocatalystPreparation consisting of an enzyme secreted into the culture su...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TemperatureControlDevice/">TemperatureControlDevice</a></td>
-<td>Equipment used for controlling and/or monitoring the temperature in various p...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GasSupplySystem/">GasSupplySystem</a></td>
-<td>A device that supplies gas to a StirredTankReactor, forming a part of it via ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ReactionMonitoring/">ReactionMonitoring</a></td>
-<td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SubstanceSample/">SubstanceSample</a></td>
-<td>A MaterialSample derived from a chemical substance that is of interest in an ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SolidPhase/">SolidPhase</a></td>
-<td>A solid phase present in the reaction medium</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
-<td>A process that leads to the transformation of one set of chemical substances ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Software/">Software</a></td>
-<td>An instrument composed of a series of instructions that can be interpreted by...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../WholeCellPreparation/">WholeCellPreparation</a></td>
-<td>A BiocatalystPreparation in which whole cells serve as the biocatalyst</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PlannedProcess/">PlannedProcess</a></td>
-<td>A process that realizes a plan — i</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MeasurementProcess/">MeasurementProcess</a></td>
-<td>A planned process that has the objective to produce information about a mater...</td>
+<td><a href="../PHMeasurementProcess/">PHMeasurementProcess</a></td>
+<td>A MeasurementProcess capturing the method and context of pH measurement, incl...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -765,9 +610,39 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../TemperatureGradient/">TemperatureGradient</a></td>
-<td>A PlannedProcess representing a dynamic temperature gradient applied over dis...</td>
+<td><a href="../DataAnalysis/">DataAnalysis</a></td>
+<td>An Activity that evaluates the data produced by another Activity</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Activity/">Activity</a></td>
+<td>See [DCAT-AP specs:Activity](https://semiceu</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../QuenchingProcess/">QuenchingProcess</a></td>
+<td>Material processing in which a sample is cooled by immersion in a fluid</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TemperatureControlDevice/">TemperatureControlDevice</a></td>
+<td>Equipment used for controlling and/or monitoring the temperature in various p...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
+<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StirredTankReactor/">StirredTankReactor</a></td>
+<td>An abstract concept/ideal reactor model type, in which the volume of fluid in...</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../MixingImpeller/">MixingImpeller</a></td>
@@ -780,14 +655,24 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ReactionVessel/">ReactionVessel</a></td>
-<td>A reactor is a container for controlling a biological or chemical reaction or...</td>
+<td><a href="../GasSupplySystem/">GasSupplySystem</a></td>
+<td>A device that supplies gas to a StirredTankReactor, forming a part of it via ...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Atom/">Atom</a></td>
-<td>An Entity constituting the smallest component of a chemical element having th...</td>
+<td><a href="../MaterialSample/">MaterialSample</a></td>
+<td>A Sample that was derived from a previous MaterialSample or some other kind o...</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../Reagent/">Reagent</a></td>
+<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalEntity/">ChemicalEntity</a></td>
+<td>Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, ...</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../ChemicalProduct/">ChemicalProduct</a></td>
@@ -795,13 +680,103 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ReactionMedium/">ReactionMedium</a></td>
-<td>The medium in which a biocatalytic reaction takes place, described by its pha...</td>
+<td><a href="../GasPhase/">GasPhase</a></td>
+<td>A gas phase present in the reaction medium or headspace</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MaterialProcessing/">MaterialProcessing</a></td>
-<td>A process that affects the physical qualities of materials or creates, destro...</td>
+<td><a href="../LiquidPhase/">LiquidPhase</a></td>
+<td>A liquid phase present in the reaction medium</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StartingMaterial/">StartingMaterial</a></td>
+<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SamplingProcess/">SamplingProcess</a></td>
+<td>A specimen gathering process with the objective to obtain a specimen that is ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BiocatalystPreparation/">BiocatalystPreparation</a></td>
+<td>The physical form in which a Biocatalyst is applied in a BiocatalyticExperime...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PHShiftProcess/">PHShiftProcess</a></td>
+<td>A PlannedProcess representing an event-based change in pH during a biocatalyt...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MeasurementProcess/">MeasurementProcess</a></td>
+<td>A planned process that has the objective to produce information about a mater...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TemperatureShiftProcess/">TemperatureShiftProcess</a></td>
+<td>A PlannedProcess representing an event-based change in temperature during a b...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DryingProcess/">DryingProcess</a></td>
+<td>The process of removing a solvent from a substance</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SolidPhase/">SolidPhase</a></td>
+<td>A solid phase present in the reaction medium</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BiocatalyticComponent/">BiocatalyticComponent</a></td>
+<td>A ChemicalSubstance present in the reaction mixture of a biocatalytic experim...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Biocatalyst/">Biocatalyst</a></td>
+<td>An enzyme or cell that catalyzes a biocatalytic reaction</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Catalyst/">Catalyst</a></td>
+<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a Chemica...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Shaker/">Shaker</a></td>
+<td>A laboratory equipment with a platform that oscillates in two or three direct...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CrudeCellExtractPreparation/">CrudeCellExtractPreparation</a></td>
+<td>A BiocatalystPreparation consisting of a crude cell extract obtained by cell ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SecretedEnzymePreparation/">SecretedEnzymePreparation</a></td>
+<td>A BiocatalystPreparation consisting of an enzyme secreted into the culture su...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SampleTreatmentProcess/">SampleTreatmentProcess</a></td>
+<td>Additional sample processing steps applied after quenching (e</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
+<td>A process that realizes a plan — i</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SubstanceSample/">SubstanceSample</a></td>
+<td>A MaterialSample derived from a chemical substance that is of interest in an ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Vial/">Vial</a></td>
+<td>A vial is a small vessel or bottle</td>
 <td>no</td>
 </tr>
 <tr>
@@ -810,28 +785,53 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../StirredTankReactor/">StirredTankReactor</a></td>
-<td>An abstract concept/ideal reactor model type, in which the volume of fluid in...</td>
+<td><a href="../StorageAdditive/">StorageAdditive</a></td>
+<td>A ChemicalSubstance added to a storage medium to preserve or stabilize a Mate...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MaterialProcessing/">MaterialProcessing</a></td>
+<td>A process that affects the physical qualities of materials or creates, destro...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BiocatalyticReaction/">BiocatalyticReaction</a></td>
+<td>A ChemicalReaction that is catalyzed by a Biocatalyst (enzyme or whole cell)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Device/">Device</a></td>
+<td>A material instrument that is designed to perform a function primarily by mea...</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../EvaluatedEntity/">EvaluatedEntity</a></td>
-<td>An Entity that is being evaluated in a DataGeneratingActivity</td>
+<td><a href="../Software/">Software</a></td>
+<td>An instrument composed of a series of instructions that can be interpreted by...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Atom/">Atom</a></td>
+<td>An Entity constituting the smallest component of a chemical element having th...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
+<td><a href="../Entity/">Entity</a></td>
+<td>A physical, digital, conceptual, or other kind of thing with some fixed aspec...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../BiocatalystProductionProcess/">BiocatalystProductionProcess</a></td>
+<td>A MaterialProcessing that describes how a biocatalyst was produced, including...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
-<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
+<td><a href="../Plate/">Plate</a></td>
+<td>A plate is a tray with multiple "wells" used as small test tubes</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../StorageAdditive/">StorageAdditive</a></td>
-<td>A ChemicalSubstance added to a storage medium to preserve or stabilize a Mate...</td>
+<td><a href="../CellFreePreparation/">CellFreePreparation</a></td>
+<td>A BiocatalystPreparation produced by cell-free expression, where synthesis oc...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -840,13 +840,13 @@ Alias: has_part</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer</td>
+<td><a href="../BiocatalyticExperiment/">BiocatalyticExperiment</a></td>
+<td>A DataGeneratingActivity representing a biocatalytic experiment carried out a...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Vial/">Vial</a></td>
-<td>A vial is a small vessel or bottle</td>
+<td><a href="../ReactionMedium/">ReactionMedium</a></td>
+<td>The medium in which a biocatalytic reaction takes place, described by its pha...</td>
 <td>no</td>
 </tr>
 </tbody>
