@@ -46,14 +46,8 @@ prefixes:
   time: http://www.w3.org/2006/time#
 
   # New added Ontologies
-  BAO: http://www.bioassayontology.org/bao#BAO_
-  EDAM: http://edamontology.org/data_
-  SBO: https://biomodels.net/SBO/SBO_
+  SBO: http://purl.obolibrary.org/obo/SBO_
   UO: https://purl.obolibrary.org/obo/UO_
-  AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
-  NPO: http://purl.bioontology.org/ontology/npo#NPO_
-  CAO: http://champ-project.org/images/ontology/cao.owl#CAO_
-  SNOMED: http://snomed.info/id/
 default_prefix: strendcat_biocatalysis
 default_range: string
 
@@ -110,7 +104,7 @@ enums:
   ComponentRoleEnum:
     description: >-
       The functional role of a chemical component in a biocatalytic reaction.
-      Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter
+      Maps to CHEBI role hierarchy. Optional per P-002 - a structural converter
       may leave this unpopulated.
     permissible_values:
       Substrate:
@@ -162,7 +156,7 @@ enums:
     description: Method used to remove moisture from a biocatalyst preparation.
     permissible_values:
       FreezeDrying:
-        description: Lyophilization — moisture removed under vacuum from frozen material.
+        description: Lyophilization - moisture removed under vacuum from frozen material.
       SprayDrying:
         description: Solution atomized into small particles before drying.
       VacuumDrying:
@@ -233,7 +227,6 @@ classes:
     description: >-
       The maximum concentration of a component that can dissolve in a solution
       or gas phase under given conditions.
-    # Maybe add to Voc4Cat as subclass of solubility
 
   IonicStrength:
     is_a: QuantitativeAttribute
@@ -241,7 +234,6 @@ classes:
     description: >-
       Ionic strength calculated from dissolved ions in the solvent,
       I = 0.5 * sum(ci * zi^2).
-    # Maybe add to Voc4Cat
 
   FlowRate:
     is_a: QuantitativeAttribute
@@ -263,17 +255,17 @@ classes:
 
   PowerPerVolume:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00001
     description: >-
       The amount of mixing power or energy input per unit volume of the
       reaction mixture.
-    #TODO: Maybe add to Voc4Cat
 
   QuenchingRatio:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00002
     description: >-
       The ratio of the volume of quenching solution to the volume of the
       reaction mixture.
-    #TODO Maybe add to Voc4Cat
 
   SamplingTimepoint:
     is_a: QuantitativeAttribute
@@ -287,13 +279,13 @@ classes:
 
   TemperatureTimepoint:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00003
     description: >-
       A temperature value recorded at a specific time point during a
       temperature shift or profile.
     slots:
       - has_temperature
       - has_time_value
-    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # Kinetic / result quantity types
@@ -309,13 +301,13 @@ classes:
 
   MaximumReactionRate:
     is_a: QuantitativeAttribute
-    class_uri: EDAM:data_0909
+    class_uri: SBO:0000186
     description: >-
       The maximum initial velocity or rate of a reaction. It is the limiting velocity as substrate concentrations get very large.
 
   TurnoverNumber:
     is_a: QuantitativeAttribute
-    class_uri: BAO:0000481
+    class_uri: SBO:0000025
     description: >-
       Turnover number representing the maximum number of substrate molecules converted to products per active site per unit time.
 
@@ -371,36 +363,36 @@ classes:
 
   InitialReactionRate:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00004
     description: >-
       The rate at which product is formed in the first 10% of the enzymatic
       reaction under specific initial substrate concentrations and conditions.
-    #TODO Maybe add to Voc4Cat
     
   EnantioselectivityRatio:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00005
     description: >-
       The enantiomeric ratio (E) defining the enzyme's preference to
       catalyze the transformation of one enantiomer over its mirror image.
-    #TODO Maybe add to Voc4Cat
 
   EnantiomericExcess:
     is_a: QuantitativeAttribute
-    class_uri: AFQ:0000220
+    class_uri: CHMO:0002856
     description: >-
       The absolute value of the mole fraction for one enantiomer in a mixture minus the mole fraction for the other enantiomer. [CHMO]
 
   DiastereomericExcess:
     is_a: QuantitativeAttribute
-    class_uri: AFQ:0000217
+    class_uri: CHMO:0002860
     description: >-
       The absolute value of the mole fraction for one diastereomer in a mixture minus the mole fraction for the other. [CHMO]
 
   IsomericContent:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00006
     description: >-
       The isomeric content expressed as a percentage of a specific isomer
       relative to total product.
-    #TODO Maybe add to Voc4Cat
 
   GibbsFreeEnergyChange:
     is_a: QuantitativeAttribute
@@ -421,7 +413,7 @@ classes:
   # =============================================================================
 
   StorageAdditive:
-    is_a: ChemicalEntity #ChemicalSubstance
+    is_a: ChemicalEntity
     class_uri: CHEBI:747330
     description: >-
       A ChemicalSubstance added to a storage medium to preserve or stabilize
@@ -430,6 +422,7 @@ classes:
 
   StorageConditions:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00007
     description: >-
       The conditions under which a biocatalyst preparation or reaction
       component is stored, including temperature, start date, and additives.
@@ -439,7 +432,6 @@ classes:
       - has_temperature
       - storage_start
       - has_storage_additive
-    #TODO Maybe add to Voc4Cat
 
   DryingProcess:
     is_a: MaterialProcessing
@@ -488,11 +480,10 @@ classes:
         description: >-
           Quantitative attributes of the biocatalyst entity, such as
           molecular weight.
-    #TODO: (ASB)
-    # Maybe set to SBO:0000460 (enzymatic catalyst) & PREFER:0000012 (cell biocatalyst) or as seperate subclass
 
   BiocatalystProductionProcess:
     is_a: MaterialProcessing
+    class_uri: strendcat_biocatalysis:00008
     description: >-
       A MaterialProcessing that describes how a biocatalyst was produced,
       including the production organism, plasmid, and purification steps.
@@ -504,11 +495,10 @@ classes:
       - purification_method
       - has_purity
       - purity_specification
-    #TODO Mabye add to Voc4Cat
 
   BiocatalystPreparation:
     is_a: SubstanceSample
-    #class_uri: OBI:0000747 #(Material Sample)
+    class_uri: strendcat_biocatalysis:00009
     description: >-
       The physical form in which a Biocatalyst is applied in a
       BiocatalyticExperiment. Derived from the Biocatalyst entity via
@@ -528,15 +518,14 @@ classes:
         description: The Biocatalyst from which this preparation was derived.
         range: Biocatalyst
         required: true
-    #TODO Maybe add to Voc4Cat
 
   PurifiedEnzymePreparation:
     is_a: BiocatalystPreparation
+    class_uri: strendcat_biocatalysis:00010
     description: A BiocatalystPreparation consisting of a purified enzyme solution.
     slots:
       - concentration_determination_method
       - activity_determination_method
-    #TODO Maybe add to Voc4Cat
 
   CrudeCellExtractPreparation:
     is_a: BiocatalystPreparation
@@ -550,12 +539,12 @@ classes:
 
   WholeCellPreparation:
     is_a: BiocatalystPreparation
+    class_uri: strendcat_biocatalysis:00011
     description: >-
       A BiocatalystPreparation in which whole cells serve as the biocatalyst.
     slots:
       - harvesting_method
       - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
 
   SecretedEnzymePreparation:
     is_a: BiocatalystPreparation
@@ -569,16 +558,17 @@ classes:
 
   CellFreePreparation:
     is_a: BiocatalystPreparation
+    class_uri: strendcat_biocatalysis:00012
     description: >-
       A BiocatalystPreparation produced by cell-free expression, where
       synthesis occurs outside living cells using extracted cellular machinery.
     slots:
       - source_of_cellfree_extract
       - concentration_determination_method
-    #TODO Maybe add to Voc4Cat
 
   ImmobilisedPreparation:
     is_a: BiocatalystPreparation
+    class_uri: strendcat_biocatalysis:00013
     description: >-
       A BiocatalystPreparation in which the biocatalyst is attached to or
       entrapped within a carrier material. Always derived from another
@@ -597,7 +587,6 @@ classes:
           which this immobilised preparation was derived.
         range: BiocatalystPreparation
         required: true
-    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # BIOCATALYTIC COMPONENT (D-004 — ChemicalSubstance / MaterialEntity)
@@ -637,6 +626,7 @@ classes:
 
   ReactionMedium:
     is_a: MaterialEntity
+    class_uri: strendcat_biocatalysis:00014
     description: >-
       The medium in which a biocatalytic reaction takes place, described by
       its phase composition, ionic strength, and additives.
@@ -652,11 +642,10 @@ classes:
         description: >-
           Free-text description of additional medium characteristics
           (STRENDA special_treatment fallback, P-001).
-    #TODO Maybe add to Voc4Cat
 
   LiquidPhase:
     is_a: MaterialEntity
-    class_uri: BAO:0002164
+    class_uri: ENVO:01001690
     description: A liquid phase present in the reaction medium.
     slots:
       - has_liquid_type
@@ -664,7 +653,7 @@ classes:
 
   SolidPhase:
     is_a: MaterialEntity
-    class_uri: BAO:0002163
+    class_uri: ENVO:01001687
     description: A solid phase present in the reaction medium.
     slots:
       - has_solid_type
@@ -672,7 +661,7 @@ classes:
 
   GasPhase:
     is_a: MaterialEntity
-    class_uri: NPO:1613
+    class_uri: ENVO:01001689
     description: A gas phase present in the reaction medium or headspace.
     slots:
       - has_gas_type
@@ -684,6 +673,7 @@ classes:
 
   TemperatureShiftProcess:
     is_a: PlannedProcess
+    class_uri: strendcat_biocatalysis:00015
     description: >-
       A PlannedProcess representing an event-based change in temperature
       during a biocatalytic reaction.
@@ -692,10 +682,10 @@ classes:
       - has_temperature_after
       - has_trigger_event
       - has_temperature_at_timepoint
-    #TODO Maybe add to Voc4Cat
 
   TemperatureGradient:
     is_a: PlannedProcess
+    class_uri: strendcat_biocatalysis:00016
     description: >-
       A PlannedProcess representing a dynamic temperature gradient applied
       over distance or time in a tubular flow reactor.
@@ -704,10 +694,10 @@ classes:
       - has_temperature_end
       - has_gradient_length
       - has_measurement_points
-    #TODO Maybe add to Voc4Cat
 
   PHShiftProcess:
     is_a: PlannedProcess
+    class_uri: strendcat_biocatalysis:00017
     description: >-
       A PlannedProcess representing an event-based change in pH during a
       biocatalytic reaction.
@@ -717,10 +707,10 @@ classes:
       - has_trigger_event
       - has_ph_at_timepoint
       - has_ph_measurement
-    #TODO Maybe add to Voc4Cat
 
   PHGradient:
     is_a: PlannedProcess
+    class_uri: strendcat_biocatalysis:00018
     description: >-
       A PlannedProcess representing a dynamic pH gradient applied over
       distance or time in a tubular flow reactor.
@@ -730,7 +720,6 @@ classes:
       - has_gradient_length
       - has_measurement_points
       - has_ph_measurement
-    #TODO Maybe add to Voc4Cat
 
   PHMeasurementProcess:
     is_a: MeasurementProcess
@@ -746,7 +735,6 @@ classes:
       - detected_how
       - has_temperature
       - has_calibration_info
-    #TODO Maybe add to Voc4Cat
 
   # =============================================================================
   # VESSELS AND MIXING (D-007)
@@ -858,7 +846,7 @@ classes:
 
   Shaker:
     is_a: Device
-    class_uri: http://opendata.inrae.fr/PO2/Ontology/TransformON/c_uO2UNi #(ASB: kommt aus TFO)
+    class_uri: http://opendata.inrae.fr/PO2/Ontology/TransformON/c_uO2UNi
     description: >-
       A laboratory equipment with a platform that oscillates in two or three directions. It is used to move and mix the mostly liquid contents of different vessels.
     slots:
@@ -869,7 +857,7 @@ classes:
 
   GasSupplySystem:
     is_a: Device
-    class_uri: SNOMED:285707009
+    class_uri: VOC4CAT:0000163
     description: >-
       A device that supplies gas to a StirredTankReactor, forming a part
       of it via has_part.
@@ -912,7 +900,7 @@ classes:
 
   SamplePreparationProcess:
     is_a: MaterialProcessing
-    class_uri: CAO:000043
+    class_uri: OBI:0000073
     description: >-
       Methods by which physical/chemical processing of samples are performed prior to chemical analysis
     slot_usage:
@@ -935,6 +923,7 @@ classes:
 
   SampleTreatmentProcess:
     is_a: MaterialProcessing
+    class_uri: strendcat_biocatalysis:00019
     description: >-
       Additional sample processing steps applied after quenching
       (e.g. filtration, centrifugation, dilution).
@@ -943,7 +932,6 @@ classes:
         description: >-
           Description of treatment procedure and any additional sample
           handling steps (STRENDA special_treatment fallback, P-001).
-    # Maybe add to Voc4Cat
 
   # =============================================================================
   # RESULT WRAPPER CLASSES (D-009)
@@ -973,6 +961,7 @@ classes:
 
   EnzymeInhibitionCharacterisation:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00020
     description: >-
       A paired description of enzyme inhibition type and inhibition constant
       (Ki). The two fields are semantically coupled and should always appear
@@ -980,20 +969,20 @@ classes:
     slots:
       - inhibition_type
       - has_inhibition_constant
-    # Maybe add to Voc4Cat
 
   EnzymeStabilityCharacterisation:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00021
     description: >-
       A characterisation of biocatalyst stability, including half-life and
       qualitative description of activity decline or preservation.
     slots:
       - has_half_life
       - stability_description
-    # Maybe add to Voc4Cat
 
   YieldAndConversion:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00022
     description: >-
       A wrapper class grouping yield and conversion metrics for a biocatalytic
       reaction.
@@ -1009,6 +998,7 @@ classes:
 
   ActivityAndInitialReactionRate:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00023
     description: >-
       A wrapper class grouping activity and initial reaction rate measurements
       for a biocatalytic reaction.
@@ -1023,6 +1013,7 @@ classes:
 
   SelectivityAndSpecificity:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00024
     description: >-
       A wrapper class grouping selectivity and specificity parameters for a
       biocatalytic reaction.
@@ -1056,10 +1047,10 @@ classes:
           (STRENDA special_treatment fallback, P-001).
 
   PlannedProcess:
-    class_uri: OBI:0000011 #http://opendata.inrae.fr/PO2/Ontology/TransformON/c_0o7O38 (ASB)
+    class_uri: OBI:0000011
     is_a: EvaluatedActivity
     description: >-
-      A process that realizes a plan — i.e. it is carried out with the
+      A process that realizes a plan - i.e. it is carried out with the
       intention of achieving a specified objective. (OBI:0000011 stub)
 
   MaterialProcessing:
@@ -1111,7 +1102,6 @@ classes:
         description: >-
           The constant pH of the reaction medium. For non-constant pH
           use has_ph_shift or has_ph_gradient.
-    # Maybe add to Voc4Cat
 
   # =============================================================================
   # BIOCATALYTIC EXPERIMENT (D-001 — top-level DataGeneratingActivity)
@@ -1156,6 +1146,7 @@ classes:
 
   EnzymeMLDocument:
     is_a: Dataset
+    class_uri: strendcat_biocatalysis:00025
     description: >-
       A Dataset that represents a converted EnzymeML document: a container
       for a biocatalytic experiment's vessels, species, reactions,
@@ -1220,6 +1211,7 @@ classes:
 
   KineticEquation:
     is_a: QualitativeAttribute
+    class_uri: strendcat_biocatalysis:00026
     description: >-
       A mathematical equation used to model part of a BiocatalyticReaction's
       kinetics (EnzymeML Equation). The equation expression itself is stored
@@ -1239,6 +1231,7 @@ classes:
 
   KineticModelParameter:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00027
     description: >-
       An estimated or fixed parameter of a kinetic model, such as a rate or
       binding constant (EnzymeML Parameter).
@@ -1260,6 +1253,7 @@ classes:
 
   EnzymeMeasurement:
     is_a: MeasurementProcess
+    class_uri: strendcat_biocatalysis:00028
     description: >-
       A single measurement/experimental run within an EnzymeML document,
       grouping time-course data for all observed species (EnzymeML
@@ -1295,6 +1289,7 @@ classes:
 
   MeasurementTimepoint:
     is_a: QuantitativeAttribute
+    class_uri: strendcat_biocatalysis:00029
     description: >-
       A single (time, value) pair within a time-course measurement,
       generalising the existing TemperatureTimepoint pattern.
@@ -1323,7 +1318,7 @@ slots:
       A nucleic acid sequence is a symbolic sequence of nucleic acid residues in a nucleic acid.
 
   sequence_DNA:
-    slot_uri: SIO:010015 # protein sequence
+    slot_uri: SIO:010015
     is_a: has_qualitative_attribute
     range: string
     description: >-
@@ -1548,7 +1543,6 @@ slots:
     range: DryingMethodEnum
     description: The type of drying method applied to the biocatalyst preparation.
     
-
   # --- Component slots ---
 
   has_component_role:
@@ -1556,7 +1550,7 @@ slots:
     range: ComponentRoleEnum
     description: >-
       The functional role of this component in the biocatalytic reaction.
-      Optional per P-002 — a structural converter may leave this unpopulated;
+      Optional per P-002 - a structural converter may leave this unpopulated;
       a smarter converter or human annotator populates it from CHEBI roles.
     recommended: true
 
@@ -2342,7 +2336,7 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      Qualitative description of stereoselectivity — the preference of the
+      Qualitative description of stereoselectivity - the preference of the
       reaction to produce a specific stereoisomer or spatial arrangement.
 
   chemoselectivity_description:
@@ -2350,7 +2344,7 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      Qualitative description of chemoselectivity — the ability to target
+      Qualitative description of chemoselectivity - the ability to target
       a specific functional group without affecting others.
 
   regioselectivity_description:
@@ -2358,7 +2352,7 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     description: >-
-      Qualitative description of regioselectivity — the preference for
+      Qualitative description of regioselectivity - the preference for
       reaction at a specific site within the molecule.
 
   has_gibbs_free_energy_change:
