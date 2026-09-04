@@ -529,33 +529,13 @@ Alias: had_output_entity</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../PlannedProcess/">PlannedProcess</a></td>
-<td>A process that realizes a plan — i</td>
-<td>no</td>
+<td><a href="../SamplingProcess/">SamplingProcess</a></td>
+<td>A specimen gathering process with the objective to obtain a specimen that is ...</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
-<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BiocatalyticExperiment/">BiocatalyticExperiment</a></td>
-<td>A DataGeneratingActivity representing a biocatalytic experiment carried out a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SampleTreatmentProcess/">SampleTreatmentProcess</a></td>
-<td>Additional sample processing steps applied after quenching (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SamplePreparationProcess/">SamplePreparationProcess</a></td>
-<td>Methods by which physical/chemical processing of samples are performed prior ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DataAnalysis/">DataAnalysis</a></td>
-<td>An Activity that evaluates the data produced by another Activity</td>
+<td><a href="../QuenchingProcess/">QuenchingProcess</a></td>
+<td>Material processing in which a sample is cooled by immersion in a fluid</td>
 <td>no</td>
 </tr>
 <tr>
@@ -564,18 +544,13 @@ Alias: had_output_entity</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PHMeasurementProcess/">PHMeasurementProcess</a></td>
-<td>A MeasurementProcess capturing the method and context of pH measurement, incl...</td>
-<td>no</td>
+<td><a href="../Activity/">Activity</a></td>
+<td>See [DCAT-AP specs:Activity](https://semiceu</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../ReactionMonitoring/">ReactionMonitoring</a></td>
-<td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BiocatalystProductionProcess/">BiocatalystProductionProcess</a></td>
-<td>A MaterialProcessing that describes how a biocatalyst was produced, including...</td>
+<td><a href="../SampleTreatmentProcess/">SampleTreatmentProcess</a></td>
+<td>Additional sample processing steps applied after quenching (e</td>
 <td>no</td>
 </tr>
 <tr>
@@ -584,28 +559,18 @@ Alias: had_output_entity</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Activity/">Activity</a></td>
-<td>See [DCAT-AP specs:Activity](https://semiceu</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../PHShiftProcess/">PHShiftProcess</a></td>
-<td>A PlannedProcess representing an event-based change in pH during a biocatalyt...</td>
+<td><a href="../PHMeasurementProcess/">PHMeasurementProcess</a></td>
+<td>A MeasurementProcess capturing the method and context of pH measurement, incl...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PHGradient/">PHGradient</a></td>
-<td>A PlannedProcess representing a dynamic pH gradient applied over distance or ...</td>
+<td><a href="../BiocatalystProductionProcess/">BiocatalystProductionProcess</a></td>
+<td>A MaterialProcessing that describes how a biocatalyst was produced, including...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
-<td>A DataGeneratingActivity that produces data about a SubstanceSample, such as ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TemperatureGradient/">TemperatureGradient</a></td>
-<td>A PlannedProcess representing a dynamic temperature gradient applied over dis...</td>
+<td><a href="../BiocatalyticExperiment/">BiocatalyticExperiment</a></td>
+<td>A DataGeneratingActivity representing a biocatalytic experiment carried out a...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -614,8 +579,33 @@ Alias: had_output_entity</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
+<td>A DataGeneratingActivity that produces data about a SubstanceSample, such as ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PHShiftProcess/">PHShiftProcess</a></td>
+<td>A PlannedProcess representing an event-based change in pH during a biocatalyt...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../BiocatalyticReaction/">BiocatalyticReaction</a></td>
 <td>A ChemicalReaction that is catalyzed by a Biocatalyst (enzyme or whole cell)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DataAnalysis/">DataAnalysis</a></td>
+<td>An Activity that evaluates the data produced by another Activity</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SamplePreparationProcess/">SamplePreparationProcess</a></td>
+<td>Methods by which physical/chemical processing of samples are performed prior ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ReactionMonitoring/">ReactionMonitoring</a></td>
+<td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -624,8 +614,18 @@ Alias: had_output_entity</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
+<td>A process that realizes a plan — i</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../MeasurementProcess/">MeasurementProcess</a></td>
 <td>A planned process that has the objective to produce information about a mater...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TemperatureGradient/">TemperatureGradient</a></td>
+<td>A PlannedProcess representing a dynamic temperature gradient applied over dis...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -634,13 +634,13 @@ Alias: had_output_entity</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../SamplingProcess/">SamplingProcess</a></td>
-<td>A specimen gathering process with the objective to obtain a specimen that is ...</td>
-<td>yes</td>
+<td><a href="../PHGradient/">PHGradient</a></td>
+<td>A PlannedProcess representing a dynamic pH gradient applied over distance or ...</td>
+<td>no</td>
 </tr>
 <tr>
-<td><a href="../QuenchingProcess/">QuenchingProcess</a></td>
-<td>Material processing in which a sample is cooled by immersion in a fluid</td>
+<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
+<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
 <td>no</td>
 </tr>
 </tbody>
