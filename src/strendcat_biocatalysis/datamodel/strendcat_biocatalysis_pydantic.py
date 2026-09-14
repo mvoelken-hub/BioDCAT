@@ -17718,7 +17718,7 @@ class Plate(ReactionVessel):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'RO:0000053'} })
-    well_volume: Optional[list[Volume]] = Field(default=None, description="""The volume of each well, typically expressed in ÂµL.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Plate'],
+    well_volume: Optional[list[Volume]] = Field(default=None, description="""The volume of each well, typically expressed in µL.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Plate'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'RO:0000086'} })
@@ -21723,7 +21723,7 @@ class PHMeasurementProcess(MeasurementProcess):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_calibration_info: Optional[list[str]] = Field(default=None, description="""Calibration conditions for the pH electrode, especially if differing from standard (20-25Â°C buffer calibration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHMeasurementProcess'],
+    has_calibration_info: Optional[list[str]] = Field(default=None, description="""Calibration conditions for the pH electrode, especially if differing from standard (20-25°C buffer calibration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PHMeasurementProcess'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'RO:0000053'} })

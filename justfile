@@ -136,6 +136,16 @@ build-ontology:
   fi
   uv run python -m strendcat_biocatalysis.build_minimal_ontology {{source_schema_path}} -o ontology/{{schema_name}}.owl.ttl -v
 
+# Combine tests/data/valid instance data with the minimal ontology into a knowledge
+# graph (see src/strendcat_biocatalysis/build_knowledge_graph.py). Requires
+# ontology/strendcat_biocatalysis.owl.ttl to exist (run `just build-ontology` first).
+[group('model development')]
+build-kg:
+  @if [ ! -d "ontology" ]; then \
+    mkdir -p ontology ; \
+  fi
+  uv run python -m strendcat_biocatalysis.build_knowledge_graph -v
+
 # ============== Migrations recipes for Copier ==============
 
 # Hidden command to adjust the directory layout on upgrading a project

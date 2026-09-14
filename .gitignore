@@ -149,3 +149,4 @@ dmypy.json
 
 # Ignore dataset
 tests/data/valid/EnzymeMLDocument-100mM-HEPES_thscGAS.yaml
+ontology/strendcat_biocatalysis_kg.ttl
