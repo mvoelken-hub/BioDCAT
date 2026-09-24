@@ -2,7 +2,7 @@
 
 # StrenDCAT-Biocatalysis
 
-Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+Aligning STRENDABiocatalysis guidelines to the DCAT-AP Plus schema.
 
 ## Documentation Website
 
