@@ -447,7 +447,7 @@
 
 
 <h1 id="enum-componentroleenum">Enum: ComponentRoleEnum</h1>
-<p><em>The functional role of a chemical component in a biocatalytic reaction. Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter may leave this unpopulated.</em></p>
+<p><em>The functional role of a chemical component in a biocatalytic reaction. Maps to CHEBI role hierarchy. Optional per P-002 - a structural converter may leave this unpopulated.</em></p>
 <p>URI: <a href="https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/ComponentRoleEnum">strendcat_biocatalysis:ComponentRoleEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -490,6 +490,26 @@
 <td></td>
 </tr>
 <tr>
+<td>Activator</td>
+<td>None</td>
+<td>A substance that increases the rate or extent of a biocatalytic reaction with...</td>
+</tr>
+<tr>
+<td>Inhibitor</td>
+<td>None</td>
+<td>A substance that decreases the rate or extent of a biocatalytic reaction (Enz...</td>
+</tr>
+<tr>
+<td>Solvent</td>
+<td>None</td>
+<td>The primary liquid a reaction is carried out in, as distinct from Cosolvent (...</td>
+</tr>
+<tr>
+<td>AuxiliaryCatalyst</td>
+<td>None</td>
+<td>A non-biological catalyst present alongside or instead of the Biocatalyst (En...</td>
+</tr>
+<tr>
 <td>Other</td>
 <td>None</td>
 <td></td>
@@ -520,7 +540,7 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ComponentRoleEnum</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The functional role of a chemical component in a biocatalytic reaction.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Maps to CHEBI role hierarchy. Optional per P-002 — a structural converter may leave</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Maps to CHEBI role hierarchy. Optional per P-002 - a structural converter may leave</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">this unpopulated.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -543,6 +563,24 @@
 <span class="w">  </span><span class="nt">InternalStandard</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InternalStandard</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:50504</span>
+<span class="w">  </span><span class="nt">Activator</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Activator</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A substance that increases the rate or extent of a biocatalytic reaction</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">without being consumed (EnzymeML ModifierRole ACTIVATOR).</span>
+<span class="w">  </span><span class="nt">Inhibitor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Inhibitor</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A substance that decreases the rate or extent of a biocatalytic reaction</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(EnzymeML ModifierRole INHIBITOR). Fuer den eigentlichen Ki-Wert weiterhin EnzymeInhibitionCharacterisation</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">verwenden.</span>
+<span class="w">  </span><span class="nt">Solvent</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Solvent</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The primary liquid a reaction is carried out in, as distinct from</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Cosolvent (EnzymeML ModifierRole SOLVENT).</span>
+<span class="w">  </span><span class="nt">AuxiliaryCatalyst</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AuxiliaryCatalyst</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A non-biological catalyst present alongside or instead of the Biocatalyst</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(EnzymeML ModifierRole CATALYST, wenn KEIN Biokatalysator gemeint ist -- der</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Biokatalysator selbst laeuft ueber used_catalyst, nicht ueber diese Rolle).</span>
 <span class="w">  </span><span class="nt">Other</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other</span>
 </code></pre></div>

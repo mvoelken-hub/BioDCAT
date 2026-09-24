@@ -305,11 +305,6 @@
       AgenticEntity &lt;|-- Catalyst
         click AgenticEntity href "../AgenticEntity/"
 
-
-      Catalyst &lt;|-- Biocatalyst
-        click Biocatalyst href "../Biocatalyst/"
-
-
       Catalyst : alternative_label
 
       Catalyst : composed_of
@@ -520,10 +515,7 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../AgenticEntity/">AgenticEntity</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
-<li><strong>Catalyst</strong> [ <a href="../ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a>]<ul>
-<li><a href="../Biocatalyst/">Biocatalyst</a></li>
-</ul>
-</li>
+<li><strong>Catalyst</strong> [ <a href="../ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a>]</li>
 </ul>
 </li>
 </ul>
@@ -699,6 +691,12 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../BiocatalyticReaction/">BiocatalyticReaction</a></td>
+<td><a href="../used_catalyst/">used_catalyst</a></td>
+<td>range</td>
+<td><a href="./">Catalyst</a></td>
+</tr>
+<tr>
 <td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
 <td><a href="../used_catalyst/">used_catalyst</a></td>
 <td>range</td>
@@ -823,6 +821,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catalyst</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHMeasurementProcess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnzymeMeasurement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalSubstanceMixin</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHValue</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1155,6 +1154,7 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TemperatureTimepoint</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageConditions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHMeasurementProcess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnzymeMeasurement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>

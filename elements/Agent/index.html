@@ -190,6 +190,15 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#class-properties">
 <span class="md-ellipsis">
       
@@ -291,6 +300,9 @@
 <pre class="mermaid"><code> classDiagram
     class Agent
     click Agent href "../Agent/"
+      Agent &lt;|-- EnzymeMLCreator
+        click EnzymeMLCreator href "../EnzymeMLCreator/"
+
       Agent : name
 
       Agent : type
@@ -305,7 +317,13 @@
 
 
 </code></pre>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><strong>Agent</strong><ul>
+<li><a href="../EnzymeMLCreator/">EnzymeMLCreator</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="class-properties">Class Properties</h2>
 <table>
 <thead>
@@ -372,6 +390,12 @@
 <tr>
 <td><a href="../MixingImpeller/">MixingImpeller</a></td>
 <td><a href="../supplied_by/">supplied_by</a></td>
+<td>range</td>
+<td><a href="./">Agent</a></td>
+</tr>
+<tr>
+<td><a href="../EnzymeMLDocument/">EnzymeMLDocument</a></td>
+<td><a href="../publisher/">publisher</a></td>
 <td>range</td>
 <td><a href="./">Agent</a></td>
 </tr>

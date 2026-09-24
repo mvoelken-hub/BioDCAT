@@ -306,6 +306,8 @@
         click Entity href "../Entity/"
 
 
+      MaterialEntity &lt;|-- Biocatalyst
+        click Biocatalyst href "../Biocatalyst/"
       MaterialEntity &lt;|-- ReactionMedium
         click ReactionMedium href "../ReactionMedium/"
       MaterialEntity &lt;|-- LiquidPhase
@@ -478,6 +480,7 @@
 <ul>
 <li><a href="../Entity/">Entity</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
 <li><strong>MaterialEntity</strong> [ <a href="../MaterialisticMixin/">MaterialisticMixin</a>]<ul>
+<li><a href="../Biocatalyst/">Biocatalyst</a></li>
 <li><a href="../ReactionMedium/">ReactionMedium</a></li>
 <li><a href="../LiquidPhase/">LiquidPhase</a></li>
 <li><a href="../SolidPhase/">SolidPhase</a></li>
@@ -631,6 +634,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../Biocatalyst/">Biocatalyst</a></td>
+<td><a href="../has_part/">has_part</a></td>
+<td>range</td>
+<td><a href="./">MaterialEntity</a></td>
+</tr>
 <tr>
 <td><a href="../ReactionMedium/">ReactionMedium</a></td>
 <td><a href="../has_part/">has_part</a></td>
@@ -796,6 +805,7 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TemperatureTimepoint</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageConditions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHMeasurementProcess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnzymeMeasurement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>

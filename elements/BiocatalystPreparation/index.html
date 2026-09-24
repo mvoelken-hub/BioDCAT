@@ -199,6 +199,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#class-properties">
+<span class="md-ellipsis">
+      
+        Class Properties
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -287,7 +296,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-biocatalystpreparation">Class: BiocatalystPreparation</h1>
 <p><em>The physical form in which a Biocatalyst is applied in a BiocatalyticExperiment. Derived from the Biocatalyst entity via prov:wasDerivedFrom. Subclasses encode the specific application form; the application_form slot is retained here for P-002 converter compatibility but is redundant with the subclass type.</em></p>
-<p>URI: <a href="https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/BiocatalystPreparation">strendcat_biocatalysis:BiocatalystPreparation</a></p>
+<p>URI: <a href="https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/00009">strendcat_biocatalysis:00009</a></p>
 <pre class="mermaid"><code> classDiagram
     class BiocatalystPreparation
     click BiocatalystPreparation href "../BiocatalystPreparation/"
@@ -389,6 +398,8 @@
         click Concentration href "../Concentration/"
 
 
+
+      BiocatalystPreparation : has_constant_concentration
 
       BiocatalystPreparation : has_density
 
@@ -597,6 +608,21 @@
 </ul>
 </li>
 </ul>
+<h2 id="class-properties">Class Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class URI</td>
+<td><a href="https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/00009">strendcat_biocatalysis:00009</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -642,6 +668,12 @@
 <td><a href="../had_drying_process/">had_drying_process</a></td>
 <td>0..1 <br/> <a href="../DryingProcess/">DryingProcess</a></td>
 <td>A drying step applied to the biocatalyst preparation prior to or during stora...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../has_constant_concentration/">has_constant_concentration</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the concentration of this component/preparation is treated as constan...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -819,7 +851,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>strendcat_biocatalysis:BiocatalystPreparation</td>
+<td>strendcat_biocatalysis:00009</td>
 </tr>
 <tr>
 <td>native</td>
@@ -845,12 +877,14 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_formulation</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_storage_conditions</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_drying_process</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">derived_from</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">derived_from</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Biocatalyst from which this preparation was derived.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Biocatalyst</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strendcat_biocatalysis:00009</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -874,7 +908,7 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The physical form in which the biocatalyst is applied in the experiment.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application_form</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -906,7 +940,7 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_activity</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -923,7 +957,7 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000053</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_formulation</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -940,7 +974,7 @@
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is stored.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_storage_conditions</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -961,6 +995,23 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingProcess</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_constant_concentration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether the concentration of this component/preparation is treated</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as constant throughout the experiment (EnzymeML "constant" on Protein/Complex/SmallMolecule).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Distinct from a vessel's volume being constant -- see has_constant_volume on</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">ReactionVessel, and distinct from a KineticModelParameter being fixed -- see</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is_fixed_parameter.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MolecularComplex</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
 <span class="w">  </span><span class="nt">has_ph_value</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_ph_value</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to provide the PHValue of a ChemicalSubstance.</span>
@@ -972,6 +1023,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHMeasurementProcess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnzymeMeasurement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalSubstanceMixin</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHValue</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1078,6 +1130,7 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TemperatureTimepoint</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageConditions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PHMeasurementProcess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnzymeMeasurement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>
@@ -1411,6 +1464,7 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DefinedTerm</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strendcat_biocatalysis:00009</span>
 </code></pre></div>
 </details>
 </article>

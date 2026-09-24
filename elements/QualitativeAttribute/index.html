@@ -313,6 +313,10 @@
         click ClassifierMixin href "../ClassifierMixin/"
 
 
+      QualitativeAttribute &lt;|-- KineticEquation
+        click KineticEquation href "../KineticEquation/"
+      QualitativeAttribute &lt;|-- EquationVariable
+        click EquationVariable href "../EquationVariable/"
       QualitativeAttribute &lt;|-- InChIKey
         click InChIKey href "../InChIKey/"
       QualitativeAttribute &lt;|-- InChi
@@ -357,6 +361,8 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>QualitativeAttribute</strong> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
+<li><a href="../KineticEquation/">KineticEquation</a></li>
+<li><a href="../EquationVariable/">EquationVariable</a></li>
 <li><a href="../InChIKey/">InChIKey</a></li>
 <li><a href="../InChi/">InChi</a></li>
 <li><a href="../MolecularFormula/">MolecularFormula</a></li>
@@ -664,6 +670,18 @@
 </tr>
 <tr>
 <td><a href="../BiocatalyticExperiment/">BiocatalyticExperiment</a></td>
+<td><a href="../has_qualitative_attribute/">has_qualitative_attribute</a></td>
+<td>range</td>
+<td><a href="./">QualitativeAttribute</a></td>
+</tr>
+<tr>
+<td><a href="../MolecularComplex/">MolecularComplex</a></td>
+<td><a href="../has_qualitative_attribute/">has_qualitative_attribute</a></td>
+<td>range</td>
+<td><a href="./">QualitativeAttribute</a></td>
+</tr>
+<tr>
+<td><a href="../EnzymeMeasurement/">EnzymeMeasurement</a></td>
 <td><a href="../has_qualitative_attribute/">has_qualitative_attribute</a></td>
 <td>range</td>
 <td><a href="./">QualitativeAttribute</a></td>

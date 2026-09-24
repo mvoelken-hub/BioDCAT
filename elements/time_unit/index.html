@@ -498,7 +498,7 @@
 
 <h1 id="slot-time_unit">Slot: time_unit</h1>
 <p><em>Unit for a time value (s, min, h).</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
+<p>URI: <a href="http://purl.obolibrary.org/obo/RO_0000053">RO:0000053</a>
 Alias: time_unit</p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
@@ -522,6 +522,11 @@ Alias: time_unit</p>
 <td>The time at which a sample was taken from the reaction vessel, expressed rela...</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../MeasurementTimepoint/">MeasurementTimepoint</a></td>
+<td>A single (time, value) pair within a time-course measurement, generalising th...</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
@@ -540,11 +545,11 @@ Alias: time_unit</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../SamplingTimepoint/">SamplingTimepoint</a></td>
+<td><a href="../SamplingTimepoint/">SamplingTimepoint</a>, <a href="../MeasurementTimepoint/">MeasurementTimepoint</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
-<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+<td><a href="http://purl.obolibrary.org/obo/RO_0000053">RO:0000053</a></td>
 </tr>
 </tbody>
 </table>
@@ -583,7 +588,7 @@ Alias: time_unit</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>SIO:000008</td>
+<td>RO:0000053</td>
 </tr>
 <tr>
 <td>native</td>
@@ -598,10 +603,11 @@ Alias: time_unit</p>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000053</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_unit</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SamplingTimepoint</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasurementTimepoint</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

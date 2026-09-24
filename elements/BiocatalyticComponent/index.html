@@ -199,6 +199,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#class-properties">
+<span class="md-ellipsis">
+      
+        Class Properties
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -287,7 +296,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-biocatalyticcomponent">Class: BiocatalyticComponent</h1>
 <p><em>A ChemicalSubstance present in the reaction mixture of a biocatalytic experiment, regardless of its functional role (substrate, cofactor, buffer, cosolvent, etc.). Role differentiation is optional per P-002.</em></p>
-<p>URI: <a href="https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis/BiocatalyticComponent">strendcat_biocatalysis:BiocatalyticComponent</a></p>
+<p>URI: <a href="http://purl.obolibrary.org/obo/CHEBI_59999">CHEBI:59999</a></p>
 <pre class="mermaid"><code> classDiagram
     class BiocatalyticComponent
     click BiocatalyticComponent href "../BiocatalyticComponent/"
@@ -317,6 +326,8 @@
         click Concentration href "../Concentration/"
 
 
+
+      BiocatalyticComponent : has_constant_concentration
 
       BiocatalyticComponent : has_formulation
 
@@ -498,6 +509,8 @@
 
 
 
+      BiocatalyticComponent : synonymous_names
+
       BiocatalyticComponent : title
 
       BiocatalyticComponent : type
@@ -522,6 +535,21 @@
 </ul>
 </li>
 </ul>
+<h2 id="class-properties">Class Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class URI</td>
+<td><a href="http://purl.obolibrary.org/obo/CHEBI_59999">CHEBI:59999</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -573,6 +601,18 @@
 <td><a href="../has_storage_conditions/">has_storage_conditions</a></td>
 <td>0..1 <br/> <a href="../StorageConditions/">StorageConditions</a></td>
 <td>The conditions under which the biocatalyst preparation or component is stored</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../has_constant_concentration/">has_constant_concentration</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the concentration of this component/preparation is treated as constan...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../synonymous_names/">synonymous_names</a></td>
+<td>* <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>Alternative names by which this component is also known (EnzymeML SmallMolecu...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -708,7 +748,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>strendcat_biocatalysis:BiocatalyticComponent</td>
+<td>CHEBI:59999</td>
 </tr>
 <tr>
 <td>native</td>
@@ -734,6 +774,8 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supplied_by</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_formulation</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_storage_conditions</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synonymous_names</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">other_identifier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_identifier</span>
@@ -744,6 +786,7 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Free-text description of additional component characteristics not</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">covered by other slots (STRENDA special_treatment fallback, P-001). Flagged</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as candidate for future structured modelling.</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:59999</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -768,7 +811,7 @@
 <span class="w">  </span><span class="nt">has_component_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_component_role</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The functional role of this component in the biocatalytic reaction.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Optional per P-002 — a structural converter may leave this unpopulated; a smarter</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Optional per P-002 - a structural converter may leave this unpopulated; a smarter</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">converter or human annotator populates it from CHEBI roles.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -804,7 +847,7 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_solubility_limit</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -821,7 +864,7 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_purity</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -853,7 +896,7 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000053</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_formulation</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -870,7 +913,7 @@
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is stored.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_storage_conditions</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -878,6 +921,40 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageConditions</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_constant_concentration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether the concentration of this component/preparation is treated</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as constant throughout the experiment (EnzymeML "constant" on Protein/Complex/SmallMolecule).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Distinct from a vessel's volume being constant -- see has_constant_volume on</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">ReactionVessel, and distinct from a KineticModelParameter being fixed -- see</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is_fixed_parameter.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000086</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_constant_concentration</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalystPreparation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MolecularComplex</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">  </span><span class="nt">synonymous_names</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synonymous_names</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alternative names by which this component is also known (EnzymeML</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">SmallMolecule "synonymous_names").</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/mvoelken-hub/StrenDCAT-Biocatalysis</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0000053</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synonymous_names</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiocatalyticComponent</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">inchi</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inchi</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to provide the InChi descriptor of a ChemicalEntity.</span>
@@ -1218,6 +1295,7 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DefinedTerm</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:59999</span>
 </code></pre></div>
 </details>
 </article>
