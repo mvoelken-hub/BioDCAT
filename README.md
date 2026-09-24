@@ -2,7 +2,7 @@
 
 # BioDCAT-AP
 
-Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
+Aligning STRENDABiocatalysis guidelines to the DCAT-AP Plus schema.
 
 ## Documentation Website
 
@@ -27,6 +27,10 @@ Aligning StrendaBiocatalysis guidelines to the DCAT-AP Plus schema.
 
 There are several pre-defined command-recipes available.
 They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
+
+## Run EnzymeML-Converter
+
+uv run python -m strendcat_biocatalysis.enzymeml_converter <input_file> -o <output_file> -v
 
 ## Credits
 

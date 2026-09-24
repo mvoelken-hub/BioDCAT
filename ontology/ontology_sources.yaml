@@ -1,0 +1,107 @@
+# ontology_sources.yaml
+#
+# Tells build_minimal_ontology.py where to MIREOT-extract a class_uri/meaning
+# term's ancestor chain from, for CURIE prefixes that do NOT follow the OBO
+# Foundry PURL convention (http://purl.obolibrary.org/obo/<prefix>.owl),
+# which is derived automatically for every other external prefix without
+# needing an entry here (CHEBI, OBI, BFO, RO, PATO, IAO, CHMO, ENVO, NCIT, UO,
+# SIO, CHEMINF, RXNO, ... all resolve this way for strendcat_biocatalysis.yaml).
+#
+# Each entry is keyed by CURIE prefix (as declared under `prefixes:` in the
+# LinkML schema) and is either:
+#
+#   <PREFIX>:
+#     iri: <ontology IRI or local file path robot should read from>
+#
+#   <PREFIX>:
+#     skip: true
+#     note: <why this prefix cannot be MIREOT-extracted -- shown in warnings>
+#
+# A class_uri/meaning that is already an absolute URI rather than a
+# "prefix:local_id" CURIE (e.g. Shaker's class_uri in
+# strendcat_biocatalysis.yaml, http://opendata.inrae.fr/PO2/Ontology/...) has
+# no prefix at all and is skipped automatically -- it needs no entry here.
+
+VOC4CAT:
+  skip: true
+  note: >-
+    NFDI4Cat's controlled vocabulary for catalysis is published as SKOS
+    (skos:broader relations between skos:Concept individuals), not as OWL
+    classes with rdfs:subClassOf -- MIREOT has no class hierarchy to climb.
+    See https://github.com/nfdi4cat/voc4cat
+
+AFE:
+  skip: true
+  note: >-
+    Allotrope Foundation Ontologies (equipment module). A public merged
+    release exists at
+    http://purl.allotrope.org/voc/afo/merged/REC/2025/06/merged-without-qudt-and-inferred
+    but its licensing/access and compatibility with `robot extract
+    --input-iri` were not verified while building this script -- replace
+    `skip: true` with an `iri:` once confirmed.
+AFP:
+  skip: true
+  note: "Allotrope Foundation Ontologies (process module) -- see AFE."
+AFR:
+  skip: true
+  note: "Allotrope Foundation Ontologies (result module) -- see AFE."
+
+schema:
+  skip: true
+  note: >-
+    schema.org publishes OWL/RDFS exports (e.g. schemaorg-current-https.owl)
+    but the current canonical download URL was not verified while building
+    this script -- replace with an `iri:` once confirmed. Only affects
+    EnzymeMLCreator (schema:person) in strendcat_biocatalysis.yaml.
+
+# The entries below are only reached once imports (chem_dcat_ap and its own
+# imports) are included in the full SchemaView closure -- they don't appear
+# among strendcat_biocatalysis.yaml's own directly-authored class_uri/slot_uri
+# values. Best-effort canonical ontology documents for well-known W3C/DCMI
+# vocabularies; not exhaustively verified against `robot extract` -- correct
+# or flip to `skip: true` based on what a real run reports.
+dcterms:
+  iri: http://purl.org/dc/terms/
+foaf:
+  iri: http://xmlns.com/foaf/0.1/
+skos:
+  iri: http://www.w3.org/2004/02/skos/core#
+rdfs:
+  iri: http://www.w3.org/2000/01/rdf-schema#
+dcat:
+  iri: http://www.w3.org/ns/dcat#
+prov:
+  iri: http://www.w3.org/ns/prov#
+adms:
+  iri: https://www.w3.org/ns/adms#
+time:
+  iri: http://www.w3.org/2006/time#
+SIO:
+  iri: https://raw.githubusercontent.com/MaastrichtU-IDS/semanticscience/master/ontology/sio.owl
+  note: >-
+    The generic OBO PURL guess (purl.obolibrary.org/obo/sio.owl) redirects to
+    the now-unreachable berkeleybop.org and fails; verified working against
+    this GitHub raw URL instead while building this script (2026-09).
+adms:
+  skip: true
+  note: >-
+    https://www.w3.org/ns/adms# content-negotiates to an HTML/RDFa page that
+    ROBOT's RDFa parser rejects ("Did not recognise RDF format object RDFa"),
+    confirmed while building this script. ADMS is now maintained by SEMIC
+    (https://github.com/SEMICeu, https://uri.semic.eu/w3c/ns/adms) -- a
+    direct .ttl/.rdf release file from there would need to be sourced and
+    set as `iri:` to fix this. Only affects the generic adms:Identifier
+    class_uri used by strendcat_biocatalysis's own `Identifier` class.
+
+qudt:
+  skip: true
+  note: >-
+    QUDT has published several incompatible schema versions (1.1/2.0/2.1/3.1)
+    at different URLs; no single stable "current" document IRI was confirmed
+    while building this script.
+linkml:
+  skip: true
+  note: >-
+    LinkML's own metamodel OWL export location was not confirmed while
+    building this script (only reached via `linkml:Any`, a very generic
+    type, through the linkml:types import).
